@@ -1,10 +1,16 @@
 <template lang="pug">
-  #app.translator
+  #app.translator.text-center
     .container.translator__container
       .row.translator__row
         .col-md-8.col-md-offset-2.translator__column
-          h1.page-header.text-center.translator__title {{ title }}
-          h4.page-header.text-center.translator__subtitle {{ subtitle }}
+          h1.page-header.translator__title {{ title }}
+          h4.page-header.translator__subtitle {{ subtitle }}
+      .row
+        .col-md-8.col-md-offset-2.translator__column
+          appInputTranslate( @sendText="sendRequest" )
+      .row
+        .col-md-8.col-md-offset-2.translator__column
+          appOutputTranslate( :outputText="textTranslated" )
 </template>
 
 <script>
@@ -16,7 +22,16 @@
     data () {
       return {
         title: 'yandex word translator',
-        subtitle: 'Powered vy Vue.js and Booswatch'
+        subtitle: 'Powered by Vue.js and Booswatch',
+        textTranslated: ''
+      }
+    },
+    methods: {
+      sendRequest (value, language) {
+        this.axios.get('https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20170407T073200Z.87326d01e2890332.ce114330ab323decb916a482270e20aebdbe5708&text=' + value + '&lang=' + language)
+          .then(response => {
+            this.textTranslated = response.data.text[0]
+          })
       }
     },
     components: {
