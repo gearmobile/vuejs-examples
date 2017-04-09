@@ -11,20 +11,7 @@
         .bnt-group( role="group" )
           button.btn.btn-primary( type="button", @click="onSimpleRequest" ) get request
           button.btn.btn-warning( type="button", @click="onSimpleClear" ) clear request
-          .panel-body( v-if="isSimpleShow" )
-            h3 result
-            h4 status
-            pre {{ status }} {{ statusText }}
-            h4 headers
-            pre {{ header }}
-            h4 data
-            pre {{ datas }}
-          .panel-body( v-if="isSimpleError" )
-            h3 result
-            h4 status
-            pre {{ status }}
-            h4 error message
-            pre {{ message }}
+          component( :is="currSimpleView" )
     
     // GET REQUEST WITH PARAMETERS
     .panel.panel-primary
@@ -34,20 +21,7 @@
           input.form-control( type="text", placeholder="Enter ID of request here ...", v-model.trim="requestID", required )
           button.btn.btn-primary( type="button", @click="onComplexRequest" ) get request
           button.btn.btn-warning( type="button", @click="onComplexClear" ) clear request
-          .panel-body( v-if="isComplexShow" )
-            h3 result
-            h4 status
-            pre {{ status }} {{ statusText }}
-            h4 headers
-            pre {{ header }}
-            h4 data
-            pre {{ datas }}
-          .panel-body( v-if="isComplexError" )
-            h3 result
-            h4 status
-            pre {{ status }}
-            h4 error message
-            pre {{ message }}
+          component( :is="currComplexView" )
     
     // POST REQUEST
     .panel.panel-primary
@@ -58,42 +32,36 @@
             input.form-control( type="text", placeholder="Enter number more than 200", title="Enter number more than 200", v-model.trim.number="postID", @keyup.enter="onPost" )
           button.btn.btn-primary( type="submit", @click.prevent="onPost" ) send request
         button.btn.btn-warning( type="button", @click="onPostClear" ) clear input
-        .panel-body( v-if="isPostSuccess" )
-            h3 result
-            h4 status
-            pre {{ status }} {{ statusText }}
-            h4 headers
-            pre {{ header }}
-            h4 data
-            pre {{ datas }}
-        .panel-body( v-if="isPostError" )
-          h3 result
-          h4 status
-          pre {{ status }}
-          h4 error message
-          pre {{ message }}
+        component( :is="currPostView" )
 
 </template>
 
 <script>
   const url = 'https://jsonplaceholder.typicode.com/todos'
+
+  import OutputSuccess from './outputSuccess.vue'
+  import OutputError from './outputError.vue'
+
+  import eventBus from '../main.js'
+
   export default {
     name: 'primo',
     data () {
       return {
+        currSimpleView: '',
+        currComplexView: '',
+        currPostView: '',
         status: '',
         header: '',
         datas: '',
         message: '',
-        isSimpleShow: false,
-        isSimpleError: false,
-        isComplexShow: false,
-        isComplexError: false,
-        isPostSuccess: false,
-        isPostError: false,
         requestID: '',
         postID: ''
       }
+    },
+    components: {
+      appOutputSuccess: OutputSuccess,
+      appOutputError: OutputError
     },
     computed: {
       statusText () {
@@ -117,12 +85,12 @@
           this.axios.post(url, newUser)
           .then(response => {
             this.fillSuccessData(response)
-            this.isPostSuccess = true
+            this.currPostView = 'appOutputSuccess'
             this.postID = ''
           })
           .catch(error => {
             this.fillErrorData(error)
-            this.isPostError = true
+            this.currPostView = 'appOutputError'
           })
         } else {
           alert('Enter number more than 200')
@@ -130,8 +98,7 @@
       },
       onPostClear () {
         this.postID = ''
-        this.isPostSuccess = false
-        this.isPostError = false
+        this.currPostView = ''
       },
       // COMPLEX REQUEST METHODS
       onComplexRequest () {
@@ -143,17 +110,16 @@
           .then(response => {
             this.requestID = ''
             this.fillSuccessData(response)
-            this.isComplexShow = true
+            this.currComplexView = 'appOutputSuccess'
           })
           .catch(error => {
             this.fillErrorData(error)
-            this.isComplexError = true
+            this.currComplexView = 'appOutputError'
           })
       },
       onComplexClear () {
         this.clearData()
-        this.isComplexShow = false
-        this.isComplexError = false
+        this.currComplexView = ''
         this.requestID = ''
       },
       // SIMPLE REQUEST METHODS
@@ -161,17 +127,18 @@
         this.axios.get(url)
           .then(response => {
             this.fillSuccessData(response)
-            this.isSimpleShow = true
+            eventBus.$emit('getSuccess', this.status, this.statusText, this.header, this.datas)
+            this.currSimpleView = 'appOutputSuccess'
           })
           .catch(error => {
             this.fillErrorData(error)
-            this.isSimpleError = true
+            eventBus.$emit('getError', this.message, this.status)
+            this.currSimpleView = 'appOutputError'
           })
       },
       onSimpleClear () {
         this.clearData()
-        this.isSimpleShow = false
-        this.isSimpleError = false
+        this.currSimpleView = ''
       },
       // HELPER METHODS
       clearData () {
@@ -195,16 +162,5 @@
 </script>
 
 <style lang="scss" scoped>
-  h3 {
-    font-weight: 700;
-    text-transform: capitalize;
-  }
-  h4 {
-    font-weight: 700;
-    text-transform: capitalize;
-
-    &::after {
-      content: ':'
-    }
-  }
+// 
 </style>
