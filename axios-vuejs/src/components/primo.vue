@@ -4,7 +4,7 @@
       h1 axios example
       h4 axios is a library not just for vue
     
-    // get simple request
+    // GET SIMPLE REQUEST
     .panel.panel-primary
       .panel-heading get simple request
       .panel-body
@@ -26,7 +26,7 @@
             h4 error message
             pre {{ message }}
     
-    // get request with parameters
+    // GET REQUEST WITH PARAMETERS
     .panel.panel-primary
       .panel-heading get request with parameter
       .panel-body
@@ -49,13 +49,13 @@
             h4 error message
             pre {{ message }}
     
-    // post request
+    // POST REQUEST
     .panel.panel-primary
       .panel-heading post request 
       .panel-body
         form.form-inline
           .form-group
-            input.form-control( type="text", placeholder="Enter number more than 200", title="Enter number more than 200", v-model.trim.number="postID" )
+            input.form-control( type="text", placeholder="Enter number more than 200", title="Enter number more than 200", v-model.trim.number="postID", @keyup.enter="onPost" )
           button.btn.btn-primary( type="submit", @click.prevent="onPost" ) send request
         button.btn.btn-warning( type="button", @click="onPostClear" ) clear input
         .panel-body( v-if="isPostSuccess" )
@@ -108,15 +108,17 @@
       // POST METHODS
       onPost () {
         if (this.postID && this.postID > 200) {
-          this.axios.post(url, {
+          const newUser = {
             userId: this.postID,
             id: this.postID,
             title: 'title from vuejs',
             completed: false
-          })
+          }
+          this.axios.post(url, newUser)
           .then(response => {
             this.fillSuccessData(response)
             this.isPostSuccess = true
+            this.postID = ''
           })
           .catch(error => {
             this.fillErrorData(error)
