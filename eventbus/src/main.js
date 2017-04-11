@@ -7,7 +7,7 @@ import Vue from 'vue'
 import App from './App'
 import Axios from 'axios'
 import VueAxios from 'vue-axios'
-import 'bulma'
+// import 'bulma'
 
 Vue.use(VueAxios, Axios)
 
