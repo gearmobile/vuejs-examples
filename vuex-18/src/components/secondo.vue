@@ -1,36 +1,36 @@
 <template lang="pug">
-  article.message.is-warning
+  .message.is-danger
     .message-header
-      h1.title.is-5 {{ title }}
+      h2.title.is-5 {{ title }}
     .message-body
-      p {{ state }}
-    .message-body.is-danger
-      .field
-        .control
-          a.button.is-warning( @click="onLarge" ) make count large
-        .control
-          a.button.is-danger( @click="onSmall" ) make count small
+      p.title.is-5 {{ state }}
+      .notification.is-primary
+        .field.is-grouped
+          .control
+            a.button.is-outlined( @click="up(2)" ) to large by 2
+          .control
+            a.button.is-outlined( @click="down(4)" ) to small by 4
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
-    name: 'primo',
+    name: 'secondo',
     data () {
       return {
-        title: 'Vuex - Simple Start'
+        title: 'Vuex - Complex Start'
       }
     },
     computed: {
       ...mapGetters({
-        state: 'output'
+        state: 'delayOutput'
       })
     },
     methods: {
       ...mapActions({
-        onLarge: 'increase',
-        onSmall: 'decrease'
+        up: 'more',
+        down: 'less'
       })
     }
   }

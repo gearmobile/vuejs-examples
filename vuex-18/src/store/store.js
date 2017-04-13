@@ -4,12 +4,20 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  count: 0
+  count: 0,
+  step: 0,
+  time: 0
 }
 
 const getters = {
   output (state) {
     return state.count + ' clicks'
+  },
+  delayOutput (state) {
+    return state.step + ' steps'
+  },
+  timeOutput (state) {
+    return state.time + ' after times'
   }
 }
 
@@ -19,6 +27,15 @@ const mutations = {
   },
   insmall (state) {
     state.count -= 1
+  },
+  large (state, payload) {
+    state.step += payload
+  },
+  small (state, payload) {
+    state.step -= payload
+  },
+  picollo (state, payload) {
+    state.time -= payload
   }
 }
 
@@ -28,6 +45,17 @@ const actions = {
   },
   decrease (context) {
     context.commit('insmall')
+  },
+  more (context, payload) {
+    context.commit('large', payload)
+  },
+  less (context, payload) {
+    context.commit('small', payload)
+  },
+  actPicollo (context, payload) {
+    setTimeout(() => {
+      context.commit('picollo', payload.count)
+    }, payload.delay)
   }
 }
 
