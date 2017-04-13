@@ -9,17 +9,22 @@
     .columns
       .column.is-12
         appSecondo
+    .columns
+      .column.is-12
+        appTetro
 </template>
 
 <script>
   import Primo from './components/primo'
   import Secondo from './components/secondo'
+  import Tetro from './components/tetro'
 
   export default {
     name: 'app',
     components: {
       appPrimo: Primo,
-      appSecondo: Secondo
+      appSecondo: Secondo,
+      appTetro: Tetro
     }
   }
 </script>

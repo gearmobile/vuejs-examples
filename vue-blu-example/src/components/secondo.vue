@@ -1,26 +1,21 @@
 <template lang="pug">
   #secondo.notification.is-warning
-    p {{ msg }}
+    h1 {{ msg }}
     .field.is-grouped
       .control
-        a.button.is-outlined( @click="increase" ) increase counter
+        a.button.is-outlined increase counter
       .control
-        a.button.is-outlined( @click="decrease" ) decrease counter
+        a.button.is-outlined decrease counter
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-
   export default {
     name: 'secondo',
     data () {
       return {
-        msg: 'component secondo',
-        increment: 1,
-        decrement: -1
+        msg: 'getter state'
       }
-    },
-    computed: mapGetters(['increase', 'decrease'])
+    }
   }
 </script>
 

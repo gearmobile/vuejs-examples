@@ -1,6 +1,6 @@
 <template lang="pug">
   #primo.notification.is-success
-    p {{ msg }}
+    h1 {{ msg }}
     p current count is : {{ count }}
 </template>
 
@@ -9,7 +9,7 @@
     name: 'primo',
     data () {
       return {
-        msg: 'component primo'
+        msg: 'initial state'
       }
     },
     computed: {

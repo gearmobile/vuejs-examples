@@ -8,20 +8,28 @@ const state = {
   counter: 0
 }
 
-const getters = {
+const mutations = {
   increase (state) {
-    let result = state.counter++
-    return result
+    state.counter += 1
   },
   decrease (state) {
-    state.counter--
-    return state.counter
+    state.counter -= 1
+  }
+}
+
+const actions = {
+  actIncrease (context) {
+    context.commit('increase')
+  },
+  actDecrease (context) {
+    context.commit('decrease')
   }
 }
 
 const store = new Vuex.Store({
   state,
-  getters
+  mutations,
+  actions
 })
 
 export default store
