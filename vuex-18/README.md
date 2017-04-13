@@ -1,4 +1,4 @@
-# vue-blu
+# vuex-18
 
 > A Vue.js project
 
