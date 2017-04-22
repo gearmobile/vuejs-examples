@@ -2,13 +2,10 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import VueBlu from 'vue-blu'
-import Axios from 'axios'
-import VueAxios from 'vue-axios'
+import VueFire from 'vuefire'
 import router from './router/router'
-import '../node_modules/vue-blu/dist/css/vue-blu.min.css'
 
-Vue.use(VueAxios, Axios, VueBlu)
+Vue.use(VueFire)
 
 Vue.config.productionTip = false
 

@@ -1,11 +1,9 @@
 <template lang="pug">
-  #app
-    .columns
-      .column.is-8.is-offset-2
-        app-header
-    .columns
-      .column.is-8.is-offset-2
-        router-view
+  #app.container
+    .row
+      app-header
+    .row
+      router-view
 </template>
 
 <script>
@@ -26,5 +24,6 @@
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     margin-top: 60px;
+    margin-bottom: 30px;
   }
 </style>

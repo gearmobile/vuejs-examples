@@ -1,12 +1,14 @@
 <template lang="pug">
-  #header
-    nav.nav
-      .nav-left
-        router-link.nav-item( to="/" ) customers app
-        router-link.nav-item( to="/" ) home
-        router-link.nav-item( to="/about" ) about
-      .nav-right
-        router-link.nav-item( to="/add" ) add customer
+  nav.navbar.navbar-default
+    .container
+      .navbar-header
+        router-link.navbar-brand( to="/" ) Customer Manager
+      .collapse.navbar-collapse#navbar
+        ul.nav.navbar-nav
+          router-link( tag="li", to="/", activeClass="active", exact ): a( href="#" ) Home
+          router-link( tag="li", to="/about", activeClass="active" ): a( href="#" ) About
+        ul.nav.navbar-nav.navbar-right
+          router-link( tag="li", to="/add", acticeClass="active" ): a( href="#" ) Add Customer
 </template>
 
 <script>
@@ -21,11 +23,5 @@
 </script>
 
 <style lang="scss" scoped>
-  .nav {
-    background-color: #eee;
-
-    & .nav-item {
-      text-transform: capitalize;
-    }
-  }
+// 
 </style>

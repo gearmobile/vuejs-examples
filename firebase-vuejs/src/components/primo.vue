@@ -47,17 +47,7 @@
 </template>
 
 <script>
-  import firebase from 'firebase'
-  
-  const config = {
-    apiKey: 'AIzaSyDSizpfjY6ENXZJyLQ-4-ybLuieq2Zw9tY',
-    authDomain: 'books-2a159.firebaseapp.com',
-    databaseURL: 'https://books-2a159.firebaseio.com',
-    projectId: 'books-2a159',
-    storageBucket: 'books-2a159.appspot.com',
-    messagingSenderId: '1024914276272'
-  }
-  const ref = firebase.initializeApp(config).database().ref('books')
+  import ref from '../axios'
 
   export default {
     name: 'primo',
@@ -66,12 +56,11 @@
     },
     methods: {
       sendData () {
-        if (this.book.author !== '' && this.book.title !== '' && this.book.email !== '' && this.book.link !== '') {
+        if (!this.book.author && !this.book.title && !this.book.email && !this.book.link) {
           ref.push(this.book)
-          this.book.author = ''
-          this.book.title = ''
-          this.book.email = ''
-          this.book.link = ''
+          for (let key in this.book) {
+            this.book[key] = null
+          }
         } else {
           alert('Enter all fields!')
           return false
@@ -84,10 +73,10 @@
     data () {
       return {
         book: {
-          author: '',
-          title: '',
-          email: '',
-          link: ''
+          author: null,
+          title: null,
+          email: null,
+          link: null
         }
       }
     }

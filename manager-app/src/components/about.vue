@@ -1,19 +1,16 @@
 <template lang="pug">
-  #about
-    p.notification.is-success {{ msg }}
+  #about.container
+    h1.page-header About Customer Manager
 </template>
 
 <script>
   export default {
-    name: 'about',
-    data () {
-      return {
-        msg: 'about'
-      }
-    }
+    name: 'about'
   }
 </script>
 
 <style lang="scss" scoped>
-// 
+  p {
+    color: white
+  }
 </style>
