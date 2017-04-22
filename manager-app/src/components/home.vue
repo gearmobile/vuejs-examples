@@ -1,6 +1,6 @@
 <template lang='pug'>
   #home.container
-    app-alert( :warning="warning" )
+    app-alert( :warning="info", v-if="info" )
     h1.page-header Manager Customers
     table.table.table-striped
       thead
@@ -18,6 +18,7 @@
 <script>
   import ref from '../router/axios'
   import Alert from './alert'
+  // import { eventBus } from '../router/event-bus.js'
 
   export default {
     name: 'home',
@@ -27,12 +28,22 @@
     data () {
       return {
         customers: [],
-        warning: 'warning'
+        info: ''
       }
     },
     components: {
       appAlert: Alert
+    },
+    created () {
+      if (this.$route.query.alert) {
+        this.info = this.$route.query.alert
+      }
     }
+    // created () {
+    //   eventBus.$on('sendAlert', data => {
+    //     this.warning = data
+    //   })
+    // }
   }
 </script>
 

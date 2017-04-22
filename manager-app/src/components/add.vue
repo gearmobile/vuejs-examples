@@ -55,7 +55,8 @@
           address: null,
           city: null,
           state: null
-        }
+        },
+        alert: 'alert'
       }
     },
     methods: {
@@ -67,7 +68,7 @@
           for (let key in this.customer) {
             this.customer[key] = null
           }
-          this.$router.push({ path: '/' })
+          this.$router.push({ path: '/', query: { alert: 'Customer Added' } })
         }
       }
     }
