@@ -1,5 +1,5 @@
 <template lang="pug">
-  //- #add
+  // FORM
   form#add( @submit.prevent="onSend" )
     
     // HEADER
@@ -71,6 +71,7 @@
       onSend () {
         if (this.customer.firstName !== null || this.customer.lastName !== null || this.customer.email !== null) {
           ref.push(this.customer)
+          this.$router.push({ path: '/', query: { name: this.customer.firstName, surname: this.customer.lastName } })
           for (let key in this.customer) {
             this.customer[key] = null
           }

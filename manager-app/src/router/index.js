@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/home'
 import About from '@/components/about'
 import Add from '@/components/add'
+import Edit from '@/components/edit'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/add',
       name: 'Add',
       component: Add
+    },
+    {
+      path: '/edit/:key',
+      name: 'Edit',
+      component: Edit
     }
   ]
 })

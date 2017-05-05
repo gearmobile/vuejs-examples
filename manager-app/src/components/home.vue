@@ -1,16 +1,21 @@
 <template lang="pug">
+  
+  // HOME SECTION
   #home.home
     
-    // header
+    // HEADER
     .page-header
       h1 Customers List
 
-    // input section
+    // ALERT SECTION
+    app-alert( :firstName="userFirtsName", :lastName="userLastName", v-if="alertState" )
+
+    // INPUT SECTION
     form.home__form
       .form-group
         input.form-control( type="search", placeholder="Enter Last Name ..." )
     
-    // output section
+    // OUTPUT SECTION
     table.table.table-striped.table-hover
       thead
         tr
@@ -19,15 +24,18 @@
           th Email
           th Edit
       tbody
-        tr( v-for="(customer, index) in customers" )
+        tr( v-for="customer in customers" )
           td {{ customer.firstName }}
           td {{ customer.lastName }}
           td {{ customer.email }}
-          td: i.fa.fa-pencil.home__edit( aria-hidden="true", @click="onEdit(index)" )
+          td
+            router-link( tag="a", :to="'/edit/' + customer['.key']" )
+              i.fa.fa-pencil.home__edit( aria-hidden="true" )
 </template>
 
 <script>
-  import ref from '../router/axios.js'
+  import ref from '../router/axios'
+  import Alert from '../components/alert'
 
   export default {
     name: 'home',
@@ -36,12 +44,25 @@
     },
     data () {
       return {
-        //
+        userFirtsName: '',
+        userLastName: ''
+      }
+    },
+    components: {
+      appAlert: Alert
+    },
+    computed: {
+      alertState () {
+        return this.userFirtsName && this.userLastName
       }
     },
     methods: {
-      onEdit (index) {
-        //
+      //
+    },
+    created () {
+      if (this.$route.query.name && this.$route.query.surname) {
+        this.userFirtsName = this.$route.query.name
+        this.userLastName = this.$route.query.surname
       }
     }
   }
