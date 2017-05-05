@@ -8,7 +8,7 @@
       h1 Customers List
 
     // ALERT SECTION
-    app-alert( :firstName="userFirtsName", :lastName="userLastName", v-if="alertState" )
+    app-alert( :firstName="userFirtsName", :lastName="userLastName", :message="userMessage", v-if="alertState" )
 
     // INPUT SECTION
     form.home__form
@@ -45,7 +45,8 @@
     data () {
       return {
         userFirtsName: '',
-        userLastName: ''
+        userLastName: '',
+        userMessage: ''
       }
     },
     components: {
@@ -53,16 +54,17 @@
     },
     computed: {
       alertState () {
-        return this.userFirtsName && this.userLastName
+        return this.userFirtsName && this.userLastName && this.userMessage
       }
     },
     methods: {
       //
     },
     created () {
-      if (this.$route.query.name && this.$route.query.surname) {
+      if (this.$route.query.name && this.$route.query.surname && this.$route.query.message) {
         this.userFirtsName = this.$route.query.name
         this.userLastName = this.$route.query.surname
+        this.userMessage = this.$route.query.message
       }
     }
   }

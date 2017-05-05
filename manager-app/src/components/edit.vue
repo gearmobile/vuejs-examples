@@ -65,23 +65,39 @@
           city: null,
           state: null
         },
-        key: '-KiLwEBCr8E50KAFqXyh'
+        key: this.$route.params.key,
+        message: 'updated'
       }
     },
     methods: {
-      onEdit () {
-        //
-      },
-      findCustomer (value) {
-        for (let key in this.customers) {
-          if (this.customers[key] === value) {
-            console.log('found')
+      onEdit (item) {
+        // https://github.com/vuejs/vuefire
+        if (!this.customer.firstName || !this.customer.lastName || !this.customer.email) {
+          alert('Please fill all fields!')
+        } else {
+          ref.child(item['.key']).set(item)
+          this.$router.push({ path: '/', query: { name: this.customer.firstName, surname: this.customer.lastName, message: this.message } })
+          for (let key in this.customer) {
+            this.customer[key] = null
           }
         }
       },
-      created () {
-        this.findCustomer(this.key)
+      findCustomer (value) {
+        for (let i = 0; i < this.customers.length; i += 1) {
+          if (this.customers[i]['.key'] === value) {
+            this.customer.firstName = this.customers[i].firstName
+            this.customer.lastName = this.customers[i].lastName
+            this.customer.email = this.customers[i].email
+            this.customer.phone = this.customers[i].phone
+            this.customer.address = this.customers[i].address
+            this.customer.city = this.customers[i].city
+            this.customer.state = this.customers[i].state
+          }
+        }
       }
+    },
+    created () {
+      this.findCustomer(this.key)
     }
   }
 </script>

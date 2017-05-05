@@ -64,14 +64,15 @@
           address: null,
           city: null,
           state: null
-        }
+        },
+        message: 'added'
       }
     },
     methods: {
       onSend () {
         if (this.customer.firstName !== null || this.customer.lastName !== null || this.customer.email !== null) {
           ref.push(this.customer)
-          this.$router.push({ path: '/', query: { name: this.customer.firstName, surname: this.customer.lastName } })
+          this.$router.push({ path: '/', query: { name: this.customer.firstName, surname: this.customer.lastName, message: this.message } })
           for (let key in this.customer) {
             this.customer[key] = null
           }
