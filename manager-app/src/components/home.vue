@@ -58,7 +58,7 @@
       cursor: pointer;
 
       &:hover {
-        color: teal;
+        color: firebrick
       }
     }
   }
