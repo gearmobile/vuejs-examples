@@ -4,35 +4,36 @@
       q-toolbar-title( :padding="0" ) Tweet Composer
     .layout-view
       .layout-padding
-        .card
-          .card-title.bg-secondary.text-white.text-center New Tweet Message
-          .card-content
-            .row.gutter
-              .auto
-                .floating-label
-                  textarea.full-width.primo__textarea( required, v-model="characters" )
-                  label.primo__label enter your message here ...
-            // trigger upload section
-            .row.gutter.hidden
-              .auto
-                input( type="file", ref="uploadRef", @change="onUpload", multiple )
-            // control section
-            .row.gutter.justify-between.content-center.primo__control
-              .width-1of3.primo__primary
-                i.primo__icon( @click="onTriggerUpload" ) photo_camera
-              .width-1of3.primo__secondary
-                span.on-left( :class="{ 'text-warning': isWarning, 'text-negative': isDanger }" ) {{ remainCharacters }}
-                button.primary.big( @click="onClick", :disabled="isDisabled" )
-                  i.on-left message
-                  | Tweet
-            // output section
-            .row.gutter( v-if="isUploaded" )
-              .auto
-                p.caption Uploaded Images
-                figure.primo__figure( v-for="(photo, index) in photos" )
-                  i.primo__remove( @click="onRemove(index)" ) delete
-                  img.responsive( :src="photo", alt="Image Gallery" )
-
+        q-modal( ref="tweetModal", :content-css="{ minWidth: '80vw' }" )
+          .card.primo__card
+            .card-title.bg-secondary.text-white.text-center New Tweet Message
+            .card-content
+              .row.gutter
+                .auto
+                  .floating-label
+                    textarea.full-width.primo__textarea( required, v-model="characters" )
+                    label.primo__label enter your message here ...
+              // trigger upload section
+              .row.gutter.hidden
+                .auto
+                  input( type="file", ref="uploadRef", @change="onUpload", multiple )
+              // control section
+              .row.gutter.justify-between.content-center.primo__control
+                .width-1of3.primo__primary
+                  i.primo__icon( @click="onTriggerUpload" ) photo_camera
+                .width-1of3.primo__secondary
+                  span.on-left( :class="{ 'text-warning': isWarning, 'text-negative': isDanger }" ) {{ remainCharacters }}
+                  button.primary.big( @click="onClick", :disabled="isDisabled" )
+                    i.on-left message
+                    | Tweet
+              // output section
+              .row.gutter( v-if="isUploaded" )
+                .auto
+                  p.caption Uploaded Images
+                  figure.primo__figure( v-for="(photo, index) in photos" )
+                    i.primo__remove( @click="onRemove(index)" ) delete
+                    img.responsive( :src="photo", alt="Image Gallery" )
+        button.primary.full-width( @click="$refs.tweetModal.open()" ) open window
 </template>
 
 <script>
@@ -90,6 +91,10 @@
 
 <style lang="scss">
   .primo {
+
+    &__card {
+      margin-bottom: 0;
+    }
 
     &__figure {
       position: relative;
