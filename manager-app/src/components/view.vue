@@ -12,7 +12,7 @@
       .panel-body
         .btn-toolbar.clearfix( role="toolbar" )
           .btn-group.pull-left( role="group" )
-            button.btn.btn-primary( type="button", @click="goHome()" ) go home
+            button.btn.btn-default( type="button", @click="goHome()" ) go home
           .btn-group.pull-right( role="group" )
             button.btn.btn-success( type="button", @click="onEdit()" ) edit data
             button.btn.btn-danger( type="button", @click="onRemove(customer)" ) delete data

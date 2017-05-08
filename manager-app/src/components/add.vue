@@ -46,7 +46,7 @@
           input.form-control( name="state", type="text", placeholder="State", v-model.trim="customer.state" )
     
     // SUBMIT FORM
-    button.btn.btn-default( type="submit" ) Send Data
+    button.btn.btn-default( type="submit" ) Add Data
 </template>
 
 <script>

@@ -91,12 +91,12 @@
           this.warning = 'Please fill all fields!'
         } else {
           ref.child(this.key).set(customer)
-          this.goBack()
+          this.$router.push({ path: '/view/' + this.key, query: { label: 'Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' updated' } })
           this.warning = ''
         }
       },
       goBack () {
-        this.$router.push({ path: '/view/' + this.key, query: { label: 'Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' updated' } })
+        this.$router.push({ path: '/view/' + this.key })
       },
       findCustomer (value) {
         for (let i = 0; i < this.customers.length; i += 1) {

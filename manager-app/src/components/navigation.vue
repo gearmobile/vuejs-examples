@@ -2,7 +2,7 @@
   nav.navbar.navbar-default.navbar-fixed-top
     .container-fluid
       .navbar-left
-        a.navbar-brand( href="#" ) managerApp
+        a.navbar-brand( href="#" ) appManager
         ul.nav.navbar-nav
           router-link.nav-item( tag="li", activeClass="active", to="/", exact )
             a( href="#" ) Home
