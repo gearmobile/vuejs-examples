@@ -8,7 +8,13 @@
       h1 Customers List
 
     // ALERT SECTION
-    app-alert( :firstName="userFirtsName", :lastName="userLastName", :message="userMessage", v-if="alertState" )
+    app-alert(
+      :firstName="userFirtsName",
+      :lastName="userLastName",
+      :message="userMessage",
+      v-if="alertState",
+      @onChange="onClear"
+    )
 
     // INPUT SECTION
     form.home__form
@@ -52,20 +58,27 @@
     components: {
       appAlert: Alert
     },
+    methods: {
+      onChange () {
+        if (this.$route.query.name && this.$route.query.surname && this.$route.query.message) {
+          this.userFirtsName = this.$route.query.name
+          this.userLastName = this.$route.query.surname
+          this.userMessage = this.$route.query.message
+        }
+      },
+      onClear () {
+        this.userFirtsName = ''
+        this.userLastName = ''
+        this.userMessage = ''
+      }
+    },
     computed: {
       alertState () {
         return this.userFirtsName && this.userLastName && this.userMessage
       }
     },
-    methods: {
-      //
-    },
     created () {
-      if (this.$route.query.name && this.$route.query.surname && this.$route.query.message) {
-        this.userFirtsName = this.$route.query.name
-        this.userLastName = this.$route.query.surname
-        this.userMessage = this.$route.query.message
-      }
+      this.onChange()
     }
   }
 </script>
