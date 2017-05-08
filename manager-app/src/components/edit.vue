@@ -1,49 +1,59 @@
 <template lang="pug">
-  form#edit( @submit.prevent="onEdit" )
+  
+  // FORM
+  form#edit
     .page-header
-      h2 Edit
+      h2.title edit
+
+    // FORM CONTROL
+    .panel.panel-default
+      .panel-body
+        .btn-toolbar.clearfix( role="toolbar" )
+          .btn-group.pull-left( role="group" )
+            button.btn.btn-primary( type="button", @click="onBack()" ) go home
+          .btn-group.pull-right( role="group" )
+            button.btn.btn-success( type="button", @click="onEdit(customer)" ) edit data
+            button.btn.btn-danger( type="button", @click="onRemove(customer)" ) delete data
     
     // CUSTOMER INFO
     .panel.panel-default
       .panel-heading
-        h2.panel-title Customer Info
+        h2.panel-title customer info
       .panel-body
         .form-group
-          label( for="firstName" ) First Name
+          label( for="firstName" ) first name
           input.form-control( name="firstName", type="text", placeholder="First Name", v-model.trim="customer.firstName", required )
         .form-group
-          label( for="lastName" ) Last Name
+          label( for="lastName" ) last name
           input.form-control( name="lastName", type="text", placeholder="Last Name", v-model.trim="customer.lastName", required )
       
-      // CUSTOMER CONTACT
-      .panel.panel-default
-        .panel-heading
-          h2.panel-title Customer Contact
-        .panel-body
-          .form-group
-            label( for="email" ) Email
-            input.form-control( name="email", type="email", placeholder="Email", v-model.trim="customer.email", required )
-          .form-group
-            label( for="phone" ) Phone
-            input.form-control( name="phone", type="phone", placeholder="Phone", v-model.trim="customer.phone" )
+    // CUSTOMER CONTACT
+    .panel.panel-default
+      .panel-heading
+        h2.panel-title customer contact
+      .panel-body
+        .form-group
+          label( for="email" ) email
+          input.form-control( name="email", type="email", placeholder="Email", v-model.trim="customer.email", required )
+        .form-group
+          label( for="phone" ) phone
+          input.form-control( name="phone", type="phone", placeholder="Phone", v-model.trim="customer.phone" )
 
-      // CUSTOMER LOCATION
-      .panel.panel-default
-        .panel-heading
-          h2.panel-title Customer Location
-        .panel-body
-          .form-group
-            label( for="address" ) Address
-            input.form-control( name="address", type="text", placeholder="Address", v-model.trim="customer.address" )
-          .form-group
-            label( for="city" ) City
-            input.form-control( name="city", type="text", placeholder="City", v-model.trim="customer.city" )
-          .form-group
-            label( for="state" ) State
-            input.form-control( name="state", type="text", placeholder="State", v-model.trim="customer.state" )
+    // CUSTOMER LOCATION
+    .panel.panel-default
+      .panel-heading
+        h2.panel-title customer location
+      .panel-body
+        .form-group
+          label( for="address" ) address
+          input.form-control( name="address", type="text", placeholder="Address", v-model.trim="customer.address" )
+        .form-group
+          label( for="city" ) city
+          input.form-control( name="city", type="text", placeholder="City", v-model.trim="customer.city" )
+        .form-group
+          label( for="state" ) state
+          input.form-control( name="state", type="text", placeholder="State", v-model.trim="customer.state" )
 
-    // SUBMIT FORM
-    button.btn.btn-default( type="submit" ) Send Data
 </template>
 
 <script>
@@ -70,17 +80,27 @@
       }
     },
     methods: {
-      onEdit (item) {
-        // https://github.com/vuejs/vuefire
+      onEdit (customer) {
         if (!this.customer.firstName || !this.customer.lastName || !this.customer.email) {
           alert('Please fill all fields!')
         } else {
-          ref.child(item['.key']).set(item)
-          this.$router.push({ path: '/', query: { name: this.customer.firstName, surname: this.customer.lastName, message: this.message } })
-          for (let key in this.customer) {
-            this.customer[key] = null
-          }
+          ref.child(this.key).set(customer)
+          this.goHome()
         }
+      },
+      onRemove (customer) {
+        if (!this.customer) {
+          return false
+        } else {
+          ref.child(this.key).remove()
+          this.goHome()
+        }
+      },
+      onBack () {
+        this.goHome()
+      },
+      goHome () {
+        this.$router.push({ path: '/' })
       },
       findCustomer (value) {
         for (let i = 0; i < this.customers.length; i += 1) {
@@ -103,5 +123,7 @@
 </script>
 
 <style lang="scss" scoped>
-  //
+  label, .title, .panel-title, .btn {
+    text-transform: capitalize;
+  }
 </style>
