@@ -5,15 +5,17 @@
     .page-header
       h2.title edit
 
+    // ALERT SECTION
+    app-warning( :message="warning", v-if="warning" )
+
     // FORM CONTROL
     .panel.panel-default
       .panel-body
         .btn-toolbar.clearfix( role="toolbar" )
           .btn-group.pull-left( role="group" )
-            button.btn.btn-primary( type="button", @click="goHome()" ) go home
+            button.btn.btn-primary( type="button", @click="goBack()" ) go back
           .btn-group.pull-right( role="group" )
             button.btn.btn-success( type="button", @click="onEdit(customer)" ) edit data
-            button.btn.btn-danger( type="button", @click="onRemove(customer)" ) delete data
     
     // CUSTOMER INFO
     .panel.panel-default
@@ -58,11 +60,15 @@
 
 <script>
   import ref from '../router/axios'
+  import Warning from '../components/warning'
 
   export default {
     name: 'edit',
     firebase: {
       customers: ref
+    },
+    components: {
+      appWarning: Warning
     },
     data () {
       return {
@@ -75,28 +81,22 @@
           city: null,
           state: null
         },
-        key: this.$route.params.key
+        key: this.$route.params.key,
+        warning: ''
       }
     },
     methods: {
       onEdit (customer) {
         if (!this.customer.firstName || !this.customer.lastName || !this.customer.email) {
-          alert('Please fill all fields!')
+          this.warning = 'Please fill all fields!'
         } else {
           ref.child(this.key).set(customer)
-          this.$router.push({ path: '/', query: { name: this.customer.firstName, surname: this.customer.lastName, message: 'updated' } })
+          this.goBack()
+          this.warning = ''
         }
       },
-      onRemove (customer) {
-        if (!this.customer) {
-          return false
-        } else {
-          ref.child(this.key).remove()
-          this.$router.push({ path: '/', query: { name: this.customer.firstName, surname: this.customer.lastName, message: 'deleted' } })
-        }
-      },
-      goHome () {
-        this.$router.push({ path: '/' })
+      goBack () {
+        this.$router.push({ path: '/view/' + this.key, query: { label: 'Customer ' + this.customer.firstName + ' ' + this.customer.lastName + ' updated' } })
       },
       findCustomer (value) {
         for (let i = 0; i < this.customers.length; i += 1) {

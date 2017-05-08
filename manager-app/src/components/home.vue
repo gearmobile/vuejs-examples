@@ -12,14 +12,14 @@
       :firstName="userFirtsName",
       :lastName="userLastName",
       :message="userMessage",
-      v-if="alertState",
-      @onChange="onClear"
+      v-if="alertState"
     )
 
     // INPUT SECTION
     form.home__form
+      h3 Search Customers
       .form-group
-        input.form-control( type="search", placeholder="Enter Last Name ..." )
+        input.form-control( type="search", placeholder="Enter Last Name ...", v-model="filterInput" )
     
     // OUTPUT SECTION
     table.table.table-striped.table-hover
@@ -28,15 +28,15 @@
           th First Name
           th Last Name
           th Email
-          th Edit
+          th Details
       tbody
-        tr( v-for="customer in customers" )
+        tr( v-for="customer in onFilter(customers, filterInput)" )
           td {{ customer.firstName }}
           td {{ customer.lastName }}
           td {{ customer.email }}
           td
-            router-link( tag="a", :to="'/edit/' + customer['.key']" )
-              i.fa.fa-pencil.home__edit( aria-hidden="true" )
+            router-link( tag="a", :to="'/view/' + customer['.key']" )
+              i.fa.fa-eye.home__edit( aria-hidden="true" )
 </template>
 
 <script>
@@ -52,7 +52,8 @@
       return {
         userFirtsName: '',
         userLastName: '',
-        userMessage: ''
+        userMessage: '',
+        filterInput: ''
       }
     },
     components: {
@@ -66,10 +67,11 @@
           this.userMessage = this.$route.query.message
         }
       },
-      onClear () {
-        this.userFirtsName = ''
-        this.userLastName = ''
-        this.userMessage = ''
+      onFilter (list, value) {
+        value = value.charAt(0).toUpperCase() + value.slice(1)
+        return list.filter((customer) => {
+          return customer.lastName.indexOf(value) > -1
+        })
       }
     },
     computed: {
