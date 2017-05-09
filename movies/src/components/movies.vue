@@ -1,5 +1,11 @@
 <template lang="pug">
+  
+  // MOVIE
   #movie.movie
+
+    // SECTION LOGO
+    figure.movie__logo
+      img( src="../assets/imdb.png" )
 
     // HEADER SECTION
     .columns.movie__header
@@ -13,24 +19,24 @@
       .column
         .panel
           .panel-heading.has-text-centered
-            h2.title.is-2.movie__title search movie
+            h3.title.is-3.movie__title search movie
           .panel-block
             p.control.has-icons-left
-              input.input( type="text", placeholder="Search Movie Here ...", v-model.lazy.trim="searchValue", @change.prevent="onSearch" )
+              input.input( type="text", placeholder="Start Search Movie Here ...", v-model.lazy.trim="searchValue", @change.prevent="onSearch" )
               span.icon.is-small.is-left
                 i.fa.fa-search
 
     // OUTPUT SECTION
     .columns.is-multiline.movie__output
       .column.is-one-third-tablet.is-one-quarter-desktop( v-for="movie in movies" )
-        .card
+        .card.movie__card
           .card-image
             figure.image
               img( :src="movie.Poster", :alt="movie.Title" )
           .card-content
             .content.has-text-centered
-              h3.title.is-3 {{ movie.Title  }}
-              a.button.is-primary( href="#", @click.prevent="onPass(movie.imdbID)" ) Movie Details
+              h4.title.is-4 {{ movie.Title  }}
+              a.button.is-primary.is-outlined( href="#", @click.prevent="onPass(movie.imdbID)" ) Movie Details
 </template>
 
 <script>
@@ -58,7 +64,6 @@
           })
       },
       onPass (id) {
-        // console.log(id)
         this.$router.push({ path: '/details/' + id })
       }
     }
@@ -75,6 +80,7 @@
     &__header {
       padding-left: 2rem;
       padding-right: 2rem;
+      padding-bottom: 4rem;
     }
 
     &__search {
@@ -90,6 +96,12 @@
     &__row {
       display: flex;
       flex-wrap: wrap;
+    }
+
+    &__logo {
+      margin: 0 auto 3rem;
+      width: 20rem;
+      height: auto;
     }
   }
 </style>
