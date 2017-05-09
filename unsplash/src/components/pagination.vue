@@ -1,11 +1,11 @@
 <template lang="pug">
   nav#pagination.pagination.is-centered
-    a.pagination-previous( @click="onChangePage(Back)" ) Previous
-    a.pagination-next( @click="onChangePage(Forward)" ) Next Page
+    a.pagination-previous( @click="onChangePage(Back)", v-show="isBack()" ) Previous
+    a.pagination-next( @click="onChangePage(Forward)", v-show="isForward()" ) Next Page
     ul.pagination-list
-      li: a.pagination-link {{ 1 }}
-      li: span.pagination-ellipsis &hellip;
-      li: a.pagination-link {{ currPage - 1 }}
+      //- li: a.pagination-link {{ 1 }}
+      //- li: span.pagination-ellipsis &hellip;
+      //- li: a.pagination-link {{ currPage - 1 }}
       li: a.pagination-link.is-current {{ currPage }}
       li: a.pagination-link {{ currPage + 1 }}
       li: span.pagination-ellipsis &hellip;
@@ -41,9 +41,7 @@
       },
       Back () {
         const currNumber = this.currPage - 1
-        if (currNumber) {
-          return currNumber
-        }
+        return currNumber
       },
       Forward () {
         const currNumber = this.currPage + 1
@@ -53,6 +51,12 @@
     methods: {
       onChangePage (value) {
         this.$emit('pageChanged', value)
+      },
+      isBack () {
+        return this.Back > 0
+      },
+      isForward () {
+        return this.Forward < this.totalPages
       }
     }
   }
