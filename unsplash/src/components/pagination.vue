@@ -3,24 +3,17 @@
     a.pagination-previous( @click="onChangePage(Back)", v-show="isBack()" ) Previous
     a.pagination-next( @click="onChangePage(Forward)", v-show="isForward()" ) Next Page
     ul.pagination-list
-      //- li: a.pagination-link {{ 1 }}
-      //- li: span.pagination-ellipsis &hellip;
-      //- li: a.pagination-link {{ currPage - 1 }}
-      li: a.pagination-link.is-current {{ currPage }}
-      li: a.pagination-link {{ currPage + 1 }}
-      li: span.pagination-ellipsis &hellip;
-      li: a.pagination-link {{ totalPages }}
+      li( v-if="hasFirst" ): a.pagination-link( @click="onChangePage(1)" ) {{ 1 }}
+      li( v-if="hasFirst" ): span.pagination-ellipsis &hellip;
+      li( v-for="page in pages" )
+        a.pagination-link( :class="{ 'is-current': isActive(page) }", @click="onChangePage(page)" ) {{ page }}
+      li( v-if="hasLast" ): span.pagination-ellipsis &hellip;
+      li( v-if="hasLast" ): a.pagination-link( @click="onChangePage(totalPages)" ) {{ totalPages }}
 </template>
 
 <script>
-  
   export default {
     name: 'pagination',
-    data () {
-      return {
-        datas: ''
-      }
-    },
     props: {
       currPage: {
         type: Number,
@@ -33,9 +26,34 @@
       perPage: {
         type: Number,
         default: 9
+      },
+      pageRange: {
+        type: Number,
+        default: 2
       }
     },
     computed: {
+      hasFirst () {
+        return this.rangeStart !== 1
+      },
+      hasLast () {
+        return this.rangeEnd !== this.totalPages
+      },
+      pages () {
+        let pages = []
+        for (let i = this.rangeStart; i <= this.rangeEnd; i += 1) {
+          pages.push(i)
+        }
+        return pages
+      },
+      rangeStart () {
+        const start = this.currPage - this.pageRange
+        return start > 0 ? start : 1
+      },
+      rangeEnd () {
+        const end = this.currPage + this.pageRange
+        return end < this.totalPages ? end : this.totalPages
+      },
       totalPages () {
         return Math.ceil(this.total / this.perPage)
       },
@@ -49,6 +67,9 @@
       }
     },
     methods: {
+      isActive (value) {
+        return value === this.currPage
+      },
       onChangePage (value) {
         this.$emit('pageChanged', value)
       },
@@ -61,7 +82,3 @@
     }
   }
 </script>
-
-<style lang="scss" scoped>
-  //
-</style>

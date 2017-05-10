@@ -1,5 +1,10 @@
 <template lang="pug">
+  
+  // UNSPLASH
   #app.unsplash
+
+    // HEADER SECTION
+    h1.title.is-1.has-text-centered unsplash
     
     // PAGINATION SECTION
     .columns.unsplash__pagination
