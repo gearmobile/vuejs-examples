@@ -1,9 +1,16 @@
 const state = {
-  stock: []
+  stocks: []
 }
 
 const mutations = {
-  'SET_STOCKS' () {
+  'SET_STOCKS' (state, payload) {
+    state.stocks = payload
+  },
+  'RND_STOCK' (state) {
     //
   }
+}
+
+const actions = {
+  buyStock () {}
 }

@@ -41,5 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  //
+  .btn {
+    text-transform: capitalize;
+  }
 </style>
