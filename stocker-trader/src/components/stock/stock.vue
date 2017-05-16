@@ -8,18 +8,13 @@
 
   export default {
     name: 'stock',
-    data () {
-      return {
-        stocks: [
-          { id: 1, name: 'Google', price: 100 },
-          { id: 2, name: 'Apple', price: 200 },
-          { id: 3, name: 'Oracle', price: 300 },
-          { id: 4, name: 'Microsoft', price: 400 }
-        ]
-      }
-    },
     components: {
       stockCard
+    },
+    computed: {
+      stocks () {
+        return this.$store.getters.stocks
+      }
     }
   }
 </script>

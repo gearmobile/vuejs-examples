@@ -15,6 +15,9 @@
     name: 'app',
     components: {
       appNav: Nav
+    },
+    created () {
+      this.$store.dispatch('setStocks')
     }
   }
 </script>
