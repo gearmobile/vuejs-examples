@@ -1,4 +1,4 @@
-# stocker-trader
+# stock-trader
 
 > A Vue.js project
 

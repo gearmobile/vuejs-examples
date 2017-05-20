@@ -1,32 +1,29 @@
 <template lang="pug">
   #app.container
     .row
-      .col-md-12
+      .col-md-8.col-md-2
         app-nav
     .row
-      .col-md-12
+      .col-md-8.col-md-2
         router-view
 </template>
 
 <script>
-  import Nav from './components/navigation.vue'
+  import appNav from './components/navigation.vue'
 
   export default {
     name: 'app',
     components: {
-      appNav: Nav
-    },
-    created () {
-      this.$store.dispatch('setStocks')
+      appNav
     }
   }
 </script>
 
-<style lang="scss">
+<style>
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin-top: 3rem;
+    margin-top: 60px;
   }
 </style>
