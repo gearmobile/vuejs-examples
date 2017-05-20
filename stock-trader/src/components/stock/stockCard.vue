@@ -40,6 +40,7 @@
           quantity: this.quantity
         }
         this.sendOrder(order)
+        this.quantity = null
       }
     }
   }
