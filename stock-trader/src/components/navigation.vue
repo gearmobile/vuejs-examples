@@ -1,14 +1,20 @@
 <template lang="pug">
   nav.navbar.navbar-default
-    .container
+    .container-fluid
       .navbar-header
-        a.navbar-brand( href="/" ) Stocker Trader
-      .navbar-collapse.collapse
+        router-link.navbar-brand( tag='a', to='/' ) Stocker Trader
+      .collapse.navbar-collapse
         ul.nav.navbar-nav
-          router-link( to="/portfolio", tag="li", activeClass="active" ): a( href="#" ) portfolio
-          router-link( to="/stock", tag="li", activeClass="active" ): a( href="#" ) stock
+          router-link( tag='li', to='/portfolio', activeClass='active' ): a( href='#' ) Portfolio
+          router-link( tag='li', to='/stock', activeClass='active' ): a( href='#' ) Stock
         ul.nav.navbar-nav.navbar-right
-          router-link( to="/about", tag="li", activeClass="active" ): a( href="#" ) about
+          li: a(href='#') End Day
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Save & Load 
+              span.caret
+            ul.dropdown-menu
+              li: a(href='#') Save
+              li: a(href='#') Load
 </template>
 
 <script>

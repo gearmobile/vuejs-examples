@@ -1,20 +1,29 @@
 <template lang="pug">
   #app.container
     .row
-      .col-md-8.col-md-2
+      .col-md-10.col-md-offset-1
         app-nav
     .row
-      .col-md-8.col-md-2
+      .col-md-10.col-md-offset-1
         router-view
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   import appNav from './components/navigation.vue'
 
   export default {
     name: 'app',
     components: {
       appNav
+    },
+    methods: {
+      ...mapActions({
+        initStock: 'initStocks'
+      })
+    },
+    created () {
+      this.initStock()
     }
   }
 </script>
