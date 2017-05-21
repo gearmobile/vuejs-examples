@@ -10,16 +10,31 @@
         ul.nav.navbar-nav.navbar-right
           li: a(href='#') End Day
           li.dropdown
-            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Save & Load 
+            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false', @click="onShow()") Save & Load 
               span.caret
-            ul.dropdown-menu
+            ul.dropdown-menu( :style="{ display: isShow }" )
               li: a(href='#') Save
               li: a(href='#') Load
 </template>
 
 <script>
 export default {
-  name: 'navigation'
+  name: 'navigation',
+  data () {
+    return {
+      toggle: false
+    }
+  },
+  computed: {
+    isShow () {
+      return this.toggle ? 'block' : 'none'
+    }
+  },
+  methods: {
+    onShow () {
+      this.toggle = !this.toggle
+    }
+  }
 }
 </script>
 
