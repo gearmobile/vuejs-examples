@@ -22,7 +22,7 @@ const mutations = {
   },
   'SELL_STOCKS' (state, payload) {
     const record = state.stocks.find(element => { return element.name === payload.name })
-    if (record.quantity >= payload.quantity) {
+    if (record.quantity > payload.quantity) {
       record.quantity -= payload.quantity
     } else {
       state.stocks.splice(state.stocks.indexOf(payload), 1)
