@@ -1,7 +1,7 @@
 <template lang="pug">
   .row
     .col-md-12
-      .well.well-lg Total Funds: ${{ funds }}
+      .well.well-lg #[strong Total Funds:] ${{ funds }}
     stock-card( v-for="(item, index) in stocks", :key="index", :stockPortfolioCard="item" )
 </template>
 
