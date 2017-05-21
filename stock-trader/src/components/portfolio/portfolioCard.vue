@@ -4,9 +4,7 @@
       .panel-heading
         h3.panel-title #[strong {{ stockPortfolioCard.name }}]
           = ' '
-          small ( Price: ${{ stockPortfolioCard.price }} )
-          = ' '
-          small ( Total Quantity: {{ stockPortfolioCard.quantity }} )
+          small ( Price: ${{ stockPortfolioCard.price }} | Quantity: {{ stockPortfolioCard.quantity }} )
           p.pull-right #[strong Total Summ:] ${{ stockPortfolioCard.price * stockPortfolioCard.quantity }}
       .panel-body
         form.form-inline

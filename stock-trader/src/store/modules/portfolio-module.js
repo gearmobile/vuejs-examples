@@ -1,3 +1,6 @@
+// import currState from '../../data/storage.json'
+// const currState = null
+
 const state = {
   stocks: [],
   funds: 10000
@@ -25,7 +28,11 @@ const mutations = {
       state.stocks.splice(state.stocks.indexOf(payload), 1)
     }
     state.funds += payload.price * payload.quantity
-  }
+  },
+  'SAVE_STOCKS' (state, currState) {
+    currState = JSON.stringify(state)
+  },
+  'LOAD_STOCKS' (state) {}
 }
 
 const actions = {
@@ -34,6 +41,12 @@ const actions = {
   },
   sellStocks ({ commit }, payload) {
     commit('SELL_STOCKS', payload)
+  },
+  saveStocks ({ commit }) {
+    commit('SAVE_STOCKS')
+  },
+  loadStocks ({ commit }) {
+    commit('LOAD_STOCKS')
   }
 }
 

@@ -18,24 +18,30 @@
 </template>
 
 <script>
-export default {
-  name: 'navigation',
-  data () {
-    return {
-      toggle: false
-    }
-  },
-  computed: {
-    isShow () {
-      return this.toggle ? 'block' : 'none'
-    }
-  },
-  methods: {
-    onShow () {
-      this.toggle = !this.toggle
+  import { mapActions } from 'vuex'
+
+  export default {
+    name: 'navigation',
+    data () {
+      return {
+        toggle: false
+      }
+    },
+    computed: {
+      isShow () {
+        return this.toggle ? 'block' : 'none'
+      }
+    },
+    methods: {
+      ...mapActions({
+        saveState: 'saveStocks',
+        loadState: 'loadStocks'
+      }),
+      onShow () {
+        this.toggle = !this.toggle
+      }
     }
   }
-}
 </script>
 
 <style scoped>
