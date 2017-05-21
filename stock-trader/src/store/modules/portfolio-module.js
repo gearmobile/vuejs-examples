@@ -1,5 +1,4 @@
-// import currState from '../../data/storage.json'
-// const currState = null
+// import axios from 'axios'
 
 const state = {
   stocks: [],
@@ -29,10 +28,10 @@ const mutations = {
     }
     state.funds += payload.price * payload.quantity
   },
-  'SAVE_STOCKS' (state, currState) {
-    currState = JSON.stringify(state)
-  },
-  'LOAD_STOCKS' (state) {}
+  'SET_PORTFOLIO' (state, payload) {
+    state.stocks = payload.stocks
+    state.funds = payload.funds ? payload.funds : []
+  }
 }
 
 const actions = {
@@ -41,12 +40,6 @@ const actions = {
   },
   sellStocks ({ commit }, payload) {
     commit('SELL_STOCKS', payload)
-  },
-  saveStocks ({ commit }) {
-    commit('SAVE_STOCKS')
-  },
-  loadStocks ({ commit }) {
-    commit('LOAD_STOCKS')
   }
 }
 

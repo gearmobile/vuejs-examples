@@ -1,11 +1,11 @@
 <template lang="pug">
-  .col-md-4
+  .col-md-6
     .panel.panel-default
       .panel-heading
         h3.panel-title #[strong {{ stockPortfolioCard.name }}]
           = ' '
           small ( Price: ${{ stockPortfolioCard.price }} | Quantity: {{ stockPortfolioCard.quantity }} )
-          p.pull-right #[strong Total Summ:] ${{ stockPortfolioCard.price * stockPortfolioCard.quantity }}
+          p.pull-right #[strong Total Sum:] ${{ stockPortfolioCard.price * stockPortfolioCard.quantity }}
       .panel-body
         form.form-inline
           .form-group

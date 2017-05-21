@@ -13,8 +13,8 @@
             a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false', @click="onShow()") Save & Load 
               span.caret
             ul.dropdown-menu( :style="{ display: isShow }" )
-              li: a(href='#') Save
-              li: a(href='#') Load
+              li: a( href='#', @click="onSave()" ) Save
+              li: a( href='#', @click="onLoad()" ) Load
           li: a( href="#" ) #[strong Funds: {{ funds | divider }}]
 </template>
 
@@ -30,7 +30,9 @@
     },
     computed: {
       ...mapGetters({
-        funds: 'getFunds'
+        funds: 'getFunds',
+        portfolioStocks: 'getPortfolioStocks',
+        originalStocks: 'getStocks'
       }),
       isShow () {
         return this.toggle ? 'block' : 'none'
@@ -38,15 +40,25 @@
     },
     methods: {
       ...mapActions({
-        saveState: 'saveStocks',
-        loadState: 'loadStocks',
-        randomStocks: 'randomizeStocks'
+        randomStocks: 'randomizeStocks',
+        loadRemoteState: 'loadData'
       }),
       onShow () {
         this.toggle = !this.toggle
       },
       onEnd () {
         this.randomStocks()
+      },
+      onLoad () {
+        this.loadRemoteState()
+      },
+      onSave () {
+        const data = {
+          funds: this.funds,
+          portfolioStocks: this.portfolioStocks,
+          originalStocks: this.originalStocks
+        }
+        this.$http.put('stocks.json', data)
       }
     }
   }
