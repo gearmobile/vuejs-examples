@@ -5,7 +5,8 @@
         app-nav
     .row
       .col-md-10.col-md-offset-1
-        router-view
+        transition( name="slide", mode="out-in", :enter-active-class="enterClass", :leave-active-class="leaveClass" )
+          router-view
 </template>
 
 <script>
@@ -14,6 +15,13 @@
 
   export default {
     name: 'app',
+    data () {
+      return {
+        status: true,
+        enterClass: 'animated fadeIn',
+        leaveClass: 'animated fadeOut'
+      }
+    },
     components: {
       appNav
     },
@@ -34,5 +42,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-top: 60px;
+  }
+  #app .animated {
+    -webkit-animation-duration: .4s;
+    animation-duration: .4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
   }
 </style>

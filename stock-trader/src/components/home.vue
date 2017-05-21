@@ -6,7 +6,7 @@
         p You may #[strong Save] or #[strong Load] your Data
         p Click on #[strong End Day] button to begin a new Day!
         hr
-        h3 #[strong Your Funds: ${{ funds | divider }}]
+        h3 #[strong Your Funds: {{ funds | divider }}]
 </template>
 
 <script>
@@ -14,11 +14,6 @@
 
   export default {
     name: 'home',
-    filters: {
-      divider (value) {
-        return parseInt(value).toLocaleString('ru-RU')
-      }
-    },
     computed: {
       ...mapGetters({
         funds: 'getFunds'

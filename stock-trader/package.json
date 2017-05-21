@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "node-sass": "^4.5.3",
     "pug": "^2.0.0-rc.1",
     "pug-loader": "^2.3.0",
