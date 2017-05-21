@@ -1,8 +1,6 @@
 <template lang="pug">
   .row
-    //- .col-md-12
-    //-   .well.well-lg #[strong Total Funds:] ${{ funds }}
-    stock-card( v-for="(item, index) in stocks", :key="index", :stockPortfolioCard="item" )
+    stock-card( v-for="(stock, index) in stocks", :key="index", :stockPortfolioCard="stock" )
 </template>
 
 <script>
@@ -22,7 +20,3 @@
     }
   }
 </script>
-
-<style scoped>
-  /**/
-</style>

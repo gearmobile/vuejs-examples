@@ -1,5 +1,3 @@
-// import axios from 'axios'
-
 const state = {
   stocks: [],
   funds: 10000
