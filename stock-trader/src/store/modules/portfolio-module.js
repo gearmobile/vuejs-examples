@@ -24,6 +24,7 @@ const mutations = {
     } else {
       state.stocks.splice(state.stocks.indexOf(payload), 1)
     }
+    state.funds += payload.price * payload.quantity
   }
 }
 

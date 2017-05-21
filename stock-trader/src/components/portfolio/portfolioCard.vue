@@ -5,11 +5,13 @@
         h3.panel-title #[strong {{ stockPortfolioCard.name }}]
           = ' '
           small ( Price: ${{ stockPortfolioCard.price }} )
+          = ' '
+          small ( Total Quantity: {{ stockPortfolioCard.quantity }} )
           p.pull-right #[strong Total Summ:] ${{ stockPortfolioCard.price * stockPortfolioCard.quantity }}
       .panel-body
         form.form-inline
           .form-group
-            input.form-control( type='number', placeholder='Quantity', v-model.trim.number="stockPortfolioCard.quantity" )
+            input.form-control( type='number', placeholder='Quantity', v-model.trim.number="quantity" )
           button.btn.btn-default.pull-right( type='button', @click="onSell()" ) Sell
 </template>
 
@@ -18,6 +20,11 @@
 
   export default {
     name: 'portfolioCard',
+    data () {
+      return {
+        quantity: null
+      }
+    },
     props: {
       stockPortfolioCard: {
         type: Object,
@@ -32,9 +39,10 @@
         const record = {
           name: this.stockPortfolioCard.name,
           price: this.stockPortfolioCard.price,
-          quantity: this.stockPortfolioCard.quantity
+          quantity: this.quantity
         }
         this.sellStock(record)
+        this.quantity = null
       }
     }
   }
