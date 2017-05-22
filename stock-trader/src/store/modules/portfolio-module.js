@@ -1,33 +1,33 @@
 const state = {
-  stocks: [],
+  portfolioStocks: [],
   funds: 10000
 }
 
 const mutations = {
   'BUY_STOCKS' (state, payload) {
-    const record = state.stocks.find(element => { return element.name === payload.name })
+    const record = state.portfolioStocks.find(element => element.name === payload.name)
     if (record) {
       record.quantity += payload.quantity
     } else {
-      state.stocks.push({
+      state.portfolioStocks.push({
+        id: payload.id,
         name: payload.name,
-        price: payload.price,
         quantity: payload.quantity
       })
     }
     state.funds -= payload.price * payload.quantity
   },
   'SELL_STOCKS' (state, payload) {
-    const record = state.stocks.find(element => { return element.name === payload.name })
+    const record = state.portfolioStocks.find(element => element.name === payload.name)
     if (record.quantity > payload.quantity) {
       record.quantity -= payload.quantity
     } else {
-      state.stocks.splice(state.stocks.indexOf(payload), 1)
+      state.portfolioStocks.splice(state.portfolioStocks.indexOf(payload), 1)
     }
     state.funds += payload.price * payload.quantity
   },
   'SET_PORTFOLIO' (state, payload) {
-    state.stocks = payload.stocks
+    state.portfolioStocks = payload.stocks
     state.funds = payload.funds ? payload.funds : []
   }
 }
@@ -42,8 +42,18 @@ const actions = {
 }
 
 const getters = {
-  getPortfolioStocks (state) {
-    return state.stocks
+  getPortfolioStocks (state, getters) {
+    const currentStocks = state.portfolioStocks
+    const originalStocks = getters.getStocks
+    return currentStocks.map(el => {
+      const object = originalStocks.find(item => item.id === el.id)
+      return {
+        id: el.id,
+        name: el.name,
+        quantity: el.quantity,
+        price: object.price
+      }
+    })
   },
   getFunds (state) {
     return state.funds

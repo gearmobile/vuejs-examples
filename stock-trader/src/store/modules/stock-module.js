@@ -4,6 +4,12 @@ const state = {
   stocks: []
 }
 
+const getters = {
+  getStocks (state) {
+    return state.stocks
+  }
+}
+
 const mutations = {
   'SET_STOCKS' (state, payload) {
     state.stocks = payload
@@ -21,12 +27,6 @@ const actions = {
   },
   randomizeStocks ({ commit }) {
     commit('RANDOMIZE_STOCKS')
-  }
-}
-
-const getters = {
-  getStocks (state) {
-    return state.stocks
   }
 }
 

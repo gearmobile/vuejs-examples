@@ -1,6 +1,6 @@
 <template lang="pug">
   .row
-    stock-card( v-for="(stock, index) in stocks", :key="index", :stockPortfolioCard="stock" )
+    stock-card( v-for="(stockPortfolio, indexPortfolio) in stocksPortfolio", :key="indexPortfolio", :stockPortfolioCard="stockPortfolio" )
 </template>
 
 <script>
@@ -11,8 +11,7 @@
     name: 'portfolioPage',
     computed: {
       ...mapGetters({
-        stocks: 'getPortfolioStocks',
-        funds: 'getFunds'
+        stocksPortfolio: 'getPortfolioStocks'
       })
     },
     components: {
