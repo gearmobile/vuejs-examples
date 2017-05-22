@@ -8,12 +8,12 @@
       .panel-body
         form.form-inline
           .form-group
-            input.form-control( type='number', placeholder='Quantity', v-model.trim.number="quantity" )
-          button.btn.btn-default.pull-right( type='button', @click="onSend()", :disabled="isDisabled" ) Buy
+            input.form-control( type='number', placeholder='Quantity', v-model.trim.number="quantity", :class="{ warning: unsifficientFunds }" )
+          button.btn.btn-default.pull-right( type='button', @click="onSend()", :disabled="isDisabled" ) {{ buyOrNot }}
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     name: 'stockCard',
@@ -29,8 +29,17 @@
       }
     },
     computed: {
+      ...mapGetters({
+        commonFunds: 'getFunds'
+      }),
+      unsifficientFunds () {
+        return this.quantity * this.stockCard.price > this.commonFunds
+      },
       isDisabled () {
-        return this.quantity <= 0 || !Number.isInteger(this.quantity)
+        return this.unsifficientFunds || this.quantity <= 0 || !Number.isInteger(this.quantity)
+      },
+      buyOrNot () {
+        return this.unsifficientFunds ? 'Unsufficient Funds' : 'Buy'
       }
     },
     methods: {
@@ -52,5 +61,7 @@
 </script>
 
 <style scoped>
-  /**/
+  .warning {
+    border: 1px solid red;
+  }
 </style>
