@@ -9,8 +9,8 @@
       .panel-body
         form.form-inline
           .form-group
-            input.form-control( type='number', placeholder='Quantity', v-model.trim.number="quantity" )
-          button.btn.btn-default.pull-right( type='button', @click="onSell()" ) Sell
+            input.form-control( type='number', placeholder='Quantity', v-model.trim.number="quantity", :class="{ warning: unsufficientQuantity }" )
+          button.btn.btn-default.pull-right( type='button', @click="onSell()", :disabled="unsufficientQuantity || lessOrNotNumber" ) {{ sellOrNot }}
 </template>
 
 <script>
@@ -20,13 +20,24 @@
     name: 'portfolioCard',
     data () {
       return {
-        quantity: null
+        quantity: 0
       }
     },
     props: {
       stockPortfolioCard: {
         type: Object,
         default: null
+      }
+    },
+    computed: {
+      unsufficientQuantity () {
+        return this.quantity > this.stockPortfolioCard.quantity
+      },
+      lessOrNotNumber () {
+        return this.quantity <= 0 || !Number.isInteger(this.quantity)
+      },
+      sellOrNot () {
+        return this.unsufficientQuantity ? 'Not Enough Stocks' : 'Sell'
       }
     },
     methods: {
@@ -45,3 +56,10 @@
     }
   }
 </script>
+
+<style scoped>
+  .warning {
+    border: 1px solid red;
+  }
+</style>
+
