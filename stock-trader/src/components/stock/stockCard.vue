@@ -9,7 +9,7 @@
         form.form-inline
           .form-group
             input.form-control( type='number', placeholder='Quantity', v-model.trim.number="quantity" )
-          button.btn.btn-default.pull-right( type='button', @click="onSend()" ) Buy
+          button.btn.btn-default.pull-right( type='button', @click="onSend()", :disabled="isDisabled" ) Buy
 </template>
 
 <script>
@@ -26,6 +26,11 @@
       stockCard: {
         type: Object,
         default: null
+      }
+    },
+    computed: {
+      isDisabled () {
+        return this.quantity <= 0 || !Number.isInteger(this.quantity)
       }
     },
     methods: {
