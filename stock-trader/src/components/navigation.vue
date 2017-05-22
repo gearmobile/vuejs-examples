@@ -9,10 +9,10 @@
           router-link( tag='li', to='/stock', activeClass='active' ): a( href='#' ) Stock
         ul.nav.navbar-nav.navbar-right
           li: a( href='#', @click="onEnd()" ) End Day
-          li.dropdown
-            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false', @click="onShow()") Save & Load 
+          li.dropdown( :class="{ open: isToggle }", @click="onShow()" )
+            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Save &amp; Load 
               span.caret
-            ul.dropdown-menu( :style="{ display: isShow }" )
+            ul.dropdown-menu
               li: a( href='#', @click="onSave()" ) Save
               li: a( href='#', @click="onLoad()" ) Load
           li: a( href="#" ) #[strong Funds: {{ funds | divider }}]
@@ -25,7 +25,7 @@
     name: 'navigation',
     data () {
       return {
-        toggle: false
+        isToggle: false
       }
     },
     computed: {
@@ -33,10 +33,7 @@
         funds: 'getFunds',
         portfolioStocks: 'getPortfolioStocks',
         originalStocks: 'getStocks'
-      }),
-      isShow () {
-        return this.toggle ? 'block' : 'none'
-      }
+      })
     },
     methods: {
       ...mapActions({
@@ -44,7 +41,7 @@
         loadRemoteState: 'loadData'
       }),
       onShow () {
-        this.toggle = !this.toggle
+        this.isToggle = !this.isToggle
       },
       onEnd () {
         this.randomStocks()
