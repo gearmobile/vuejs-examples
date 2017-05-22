@@ -3,19 +3,18 @@
     .container-fluid
       .navbar-header
         router-link.navbar-brand( tag='a', to='/' ) Stocker Trader
-      .collapse.navbar-collapse
-        ul.nav.navbar-nav
-          router-link( tag='li', to='/portfolio', activeClass='active' ): a( href='#' ) Portfolio
-          router-link( tag='li', to='/stock', activeClass='active' ): a( href='#' ) Stock
-        ul.nav.navbar-nav.navbar-right
-          li: a( href='#', @click="onEnd()" ) End Day
-          li.dropdown( :class="{ open: isToggle }", @click="onShow()" )
-            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Save &amp; Load 
-              span.caret
-            ul.dropdown-menu
-              li: a( href='#', @click="onSave()" ) Save
-              li: a( href='#', @click="onLoad()" ) Load
-          li: a( href="#" ) #[strong Funds: {{ funds | divider }}]
+      ul.nav.navbar-nav
+        router-link( tag='li', to='/portfolio', activeClass='active' ): a( href='#' ) Portfolio
+        router-link( tag='li', to='/stock', activeClass='active' ): a( href='#' ) Stock
+      ul.nav.navbar-nav.navbar-right
+        li: a( href='#', @click="onEnd()" ) End Day
+        li.dropdown( :class="{ open: isToggle }", @click="onShow()" )
+          a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Save &amp; Load 
+            span.caret
+          ul.dropdown-menu
+            li: a( href='#', @click="onSave()" ) Save
+            li: a( href='#', @click="onLoad()" ) Load
+        li: a( href="#" ) #[strong Funds: {{ funds | divider }}]
 </template>
 
 <script>
