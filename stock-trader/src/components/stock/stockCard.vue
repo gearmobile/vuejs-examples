@@ -1,5 +1,5 @@
 <template lang="pug">
-  .col-md-4
+  .col-md-6
     .panel.panel-default
       .panel-heading
         h3.panel-title #[strong {{ stockCard.name }}]
