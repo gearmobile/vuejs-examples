@@ -16,6 +16,7 @@
     // OUTPUT SECTION
     .well
       app-card( v-for="(note, index) in notes", :key="index", :note="note" )
+
 </template>
 
 <script>
