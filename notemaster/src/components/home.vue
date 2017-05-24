@@ -36,18 +36,21 @@
     },
     methods: {
       onSendData () {
-        this.notes.push({
-          title: this.note.title,
-          date: this.onDate(),
-          body: this.note.body
-        })
-        this.clearForm(this.note)
-      },
-      onDate () {
-        const date = new Date()
-        return date.toLocaleString('en-US')
+        if (!this.note.title || !this.note.body) {
+          alert('Please fill both fields!')
+        } else {
+          this.notes.push({
+            title: this.note.title,
+            date: this.onDate(),
+            body: this.note.body
+          })
+          this.clearForm(this.note)
+        }
       },
       // HELPER FUNCTIONS
+      onDate () {
+        return new Date(Date.now()).toLocaleString('en-US')
+      },
       onDelete (value) {
         this.notes.splice(this.notes.indexOf(value), 1)
       },
