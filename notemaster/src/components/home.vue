@@ -6,15 +6,15 @@
     form
       .form-group
         label( for="title" ) Note Title
-        input.form-control( type="text", id="title", v-model.trim="note.title" )
+        input.form-control( type="text", id="title", v-model.trim="note.title", autofocus, required )
       .form-group
         label( for="text" ) Note Text
-        textarea.form-control( id="text", rows="5", v-model.trim="note.body" )
+        textarea.form-control( id="text", rows="5", v-model.trim="note.body", required )
       .form-group
         button.btn.btn-primary( type="button", @click="onSendData()" ) Submit
 
     // OUTPUT SECTION
-    .well
+    .row
       app-card( v-for="(note, index) in notes", :key="index", :note="note" )
 
 </template>

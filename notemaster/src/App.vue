@@ -1,6 +1,6 @@
 <template lang="pug">
   #app.container
-    .col-md-10.col-md-offset-1
+    .col-md-12
       app-home
 </template>
 

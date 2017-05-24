@@ -1,9 +1,12 @@
 <template lang="pug">
-  .alert.alert-info.box
-    span.glyphicon.glyphicon-remove.box__button( @click="onClose()" )
-    h3.text-capitalize {{ note.title }}
-    small {{ note.date }}
-    p {{ note.body }}
+  .col-sm-6
+    .card-deck
+      .card.card-outline-secondary
+        a.close.box__button( @click="onClose()" ) &times;
+        .card-block
+          h4.card-title.text-capitalize {{ note.title }}
+          h6.card-subtitle.text-muted.mb-2 {{ note.date }}
+          p.card-text {{ note.body }}
 </template>
 
 <script>
@@ -25,11 +28,12 @@
 </script>
 
 <style scoped>
-  .box__button {
-    float: right;
-    cursor: pointer;
+  .card {
+    margin-bottom: 1.6rem;
   }
-  .box__button:hover {
-    color: firebrick;
+  .box__button {
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 4px;
   }
 </style>
