@@ -1,5 +1,5 @@
 <template lang="pug">
-  .card
+  .card.card-outline-info
     .card-block
       h4.card-title {{ character.name }}
       p.card-text
