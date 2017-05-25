@@ -2,7 +2,6 @@
   #home.person
     h1.display-4.text-capitalize.person__title generate your team
     button.btn.btn-primary( type="button", @click="fetchPersons(6)" ) Fetch Persons
-    button.btn.btn-primary( type="button", @click="fetchPerson()" ) Fetch New Person
     .row
       .card-columns.person__row
         app-card( v-for="(person, index) in persons", :key="index", :character="person", @onSelect="onUpdate($event)" )
