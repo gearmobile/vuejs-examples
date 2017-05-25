@@ -21,6 +21,11 @@
       }
     },
     methods: {
+      clearArray (array) {
+        for (let i = array.length; i > 0; i -= 1) {
+          array.pop()
+        }
+      },
       counter () {
         axios.get(baseURL)
           .then(response => {
@@ -34,6 +39,7 @@
         return Math.floor(Math.random() * this.count) + 1
       },
       fetchPersons (quantity) {
+        this.clearArray(this.persons)
         for (let i = 0; i < quantity; i += 1) {
           axios.get(baseURL + this.randomID())
             .then(response => {
