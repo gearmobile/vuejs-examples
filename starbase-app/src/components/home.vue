@@ -2,6 +2,7 @@
   #home.person
     h1.display-4.text-capitalize.person__title generate your team
     button.btn.btn-primary( type="button", @click="fetchPersons(6)" ) Fetch Persons
+    button.btn.btn-primary( type="button", @click="fetchPerson()" ) Fetch New Person
     .row
       .card-columns.person__row
         app-card( v-for="(person, index) in persons", :key="index", :character="person", @onSelect="onUpdate($event)" )
@@ -18,13 +19,16 @@
       return {
         count: null,
         persons: [],
-        currPerson: null
+        currPerson: null,
+        newPerson: null
       }
     },
     methods: {
       onUpdate ($event) {
         this.currPerson = $event
         this.persons.splice(this.persons.indexOf(this.currPerson), 1)
+        this.fetchPerson()
+        this.persons.push(this.newPerson)
       },
       clearArray (array) {
         for (let i = array.length; i > 0; i -= 1) {
@@ -61,7 +65,7 @@
       fetchPerson () {
         axios.get(baseURL + this.randomID())
           .then(response => {
-            return response.data
+            this.newPerson = response.data
           })
           .catch(error => {
             console.log(error)
