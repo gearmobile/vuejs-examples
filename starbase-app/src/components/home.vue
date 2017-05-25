@@ -4,7 +4,7 @@
     button.btn.btn-primary( type="button", @click="fetchPersons(6)" ) Fetch Persons
     .row
       .card-columns.person__row
-        app-card( v-for="(person, index) in persons", :key="index", :character="person" )
+        app-card( v-for="(person, index) in persons", :key="index", :character="person", @onSelect="onUpdate($event)" )
 </template>
 
 <script>
@@ -17,10 +17,15 @@
     data () {
       return {
         count: null,
-        persons: []
+        persons: [],
+        currPerson: null
       }
     },
     methods: {
+      onUpdate ($event) {
+        this.currPerson = $event
+        this.persons.splice(this.persons.indexOf(this.currPerson), 1)
+      },
       clearArray (array) {
         for (let i = array.length; i > 0; i -= 1) {
           array.pop()
@@ -38,19 +43,32 @@
       randomID () {
         return Math.floor(Math.random() * this.count) + 1
       },
+      fillArray () {
+        axios.get(baseURL + this.randomID())
+          .then(response => {
+            this.persons.push(response.data)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      },
       fetchPersons (quantity) {
         this.clearArray(this.persons)
         for (let i = 0; i < quantity; i += 1) {
-          axios.get(baseURL + this.randomID())
-            .then(response => {
-              this.persons.push(response.data)
-            })
-            .catch(error => {
-              console.log(error)
-            })
+          this.fillArray()
         }
+      },
+      fetchPerson () {
+        axios.get(baseURL + this.randomID())
+          .then(response => {
+            return response.data
+          })
+          .catch(error => {
+            console.log(error)
+          })
       }
     },
+    // CREATED HOOK
     created () {
       this.counter()
     },
