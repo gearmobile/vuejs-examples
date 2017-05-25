@@ -1,11 +1,10 @@
 <template lang="pug">
-  #home
-    h1.display-4.text-capitalize generate your team
-    button.btn.btn-primary( type="button", @click="fetchPersons(3)" ) fetch data
+  #home.person
+    h1.display-4.text-capitalize.person__title generate your team
+    button.btn.btn-primary( type="button", @click="fetchPersons(6)" ) Fetch Persons
     .row
-      .col-sm-6
-        .card-group
-          app-card( v-for="(person, index) in persons", :key="index", :character="person" )
+      .card-columns.person__row
+        app-card( v-for="(person, index) in persons", :key="index", :character="person" )
 </template>
 
 <script>
@@ -17,9 +16,7 @@
     name: 'home',
     data () {
       return {
-        quantity: 6,
         count: null,
-        ids: [],
         persons: []
       }
     },
@@ -60,5 +57,11 @@
 <style scoped>
   button {
     cursor: pointer;
+  }
+  .person__title {
+    margin-bottom: 1rem;
+  }
+  .person__row {
+    padding-top: 2rem;
   }
 </style>
