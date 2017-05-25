@@ -26,9 +26,8 @@
     methods: {
       onUpdate ($event) {
         this.currPerson = $event
-        this.persons.splice(this.persons.indexOf(this.currPerson), 1)
         this.fetchPerson()
-        this.persons.push(this.newPerson)
+        this.persons.splice(this.persons.indexOf(this.currPerson), 1, this.newPerson)
       },
       clearArray (array) {
         for (let i = array.length; i > 0; i -= 1) {
