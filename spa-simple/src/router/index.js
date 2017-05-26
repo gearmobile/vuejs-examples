@@ -5,6 +5,7 @@ import Brands from '@/components/brands'
 import Contacts from '@/components/contacts'
 import Projects from '@/components/projects'
 import Blog from '@/components/blog'
+import Post from '@/components/post'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/blog',
       name: 'Blog',
       component: Blog
+    },
+    {
+      path: '/post/:id',
+      name: 'Post',
+      component: Post
     }
   ]
 })

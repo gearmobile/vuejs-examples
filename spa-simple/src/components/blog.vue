@@ -4,6 +4,7 @@
       h4.article-title {{ post.title }}
       img.article-image( :src="post.image", alt="post.title" )
       p.article-body {{ post.body }}
+      router-link.article-link( tag="a", :to="{ name: 'Post', params: { id: index } }" ) read more
 </template>
 
 <script>
@@ -13,11 +14,6 @@
     name: 'blog',
     firebase: {
       posts
-    },
-    data () {
-      return {
-        msg: 'blog'
-      }
     }
   }
 </script>
