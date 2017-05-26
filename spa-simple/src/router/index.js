@@ -4,6 +4,7 @@ import Home from '@/components/home'
 import Brands from '@/components/brands'
 import Contacts from '@/components/contacts'
 import Projects from '@/components/projects'
+import Blog from '@/components/blog'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/projects',
       name: 'Projects',
       component: Projects
+    },
+    {
+      path: '/blog',
+      name: 'Blog',
+      component: Blog
     }
   ]
 })
