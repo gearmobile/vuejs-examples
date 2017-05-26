@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.blog
+  section.section.blog
     article.blog__post( v-for="(post, index) in posts", :key="index" )
       img.blog__image( :src="post.image", alt="post.title" )
       h3.blog__title {{ post.title }}
@@ -73,7 +73,7 @@
       text-decoration: none;
 
       &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba( 255, 255, 255, .1 );
       }
     }
   }

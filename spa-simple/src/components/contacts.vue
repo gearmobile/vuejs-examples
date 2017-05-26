@@ -1,6 +1,6 @@
 <template lang="pug">
-  #contacts
-    p {{ msg }}
+  section.section.contacts
+    h2.section__title {{ msg }}
 </template>
 
 <script>
@@ -14,6 +14,8 @@
   }
 </script>
 
-<style scoped>
-  /**/
+<style lang="scss" scoped>
+  .contacts {
+    background-color: rgba( 126, 102, 241, 1 );
+  }
 </style>

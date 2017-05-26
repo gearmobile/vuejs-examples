@@ -1,6 +1,6 @@
 <template lang="pug">
-  #brands
-    p {{ msg }}
+  section.section.brands
+    h2.section__title {{ msg }}
 </template>
 
 <script>
@@ -14,6 +14,8 @@
   }
 </script>
 
-<style scoped>
-  /**/
+<style lang="scss" scoped>
+  .brands {
+    background-color: rgba( 75, 192, 226, 1 ); 
+  }
 </style>
