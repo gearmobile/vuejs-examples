@@ -10,13 +10,5 @@ const config = {
 }
 
 const posts = firebase.initializeApp(config).database().ref('posts')
-// const users = firebase.initializeApp(config).database().ref('users')
-// const dogs = firebase.initializeApp(config).database().ref('dogs')
-// const cats = firebase.initializeApp(config).database().ref('cats')
 
 export default posts
-
-// export posts
-// export users
-// export dogs
-// export cats

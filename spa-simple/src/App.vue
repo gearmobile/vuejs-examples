@@ -16,39 +16,20 @@
 </script>
 
 <style lang="scss">
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    padding-bottom: 80px;
-  }
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-  img {
-    max-width: 100%;
-  }
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin-top: 60px;
   }
   .section {
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     &__title {
-      font-size: 10rem;
+      font-size: 6rem;
       color: black;
-      display: block;
-      width: 960px;
       text-transform: capitalize;
     }
   }
