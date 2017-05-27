@@ -3,7 +3,8 @@
     h3.post__title {{ post.title }}
     img.post__image( :src="post.image", alt="post.title" )
     p.post__body {{ post.body }}
-    router-link.post__link( tag="a", to="/blog" ) back to blog
+    .post__control
+      router-link.post__link( tag="a", to="/blog" ) back to blog
 </template>
 
 <script>
@@ -55,19 +56,17 @@
       max-width: 640px;
     }
 
+    &__control {
+      text-align: center;
+    }
+
     &__link {
-      height: 48px;
+      padding: .6rem 3rem .8rem;
       border: 1px solid rgba( blue, .5 );
       border-radius: 4px;
       color: rgba( blue, .5 );
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 46px;
-      display: block;
+      display: inline-block;
       z-index: 2;
-      padding: 0 48px;
-      text-align: center;
-      text-decoration: none;
 
       &:hover {
         background-color: rgba( blue, .1);

@@ -2,7 +2,7 @@
   nav.nav.has-shadow
     .nav-left
       a.nav-item
-        img( src="http://bulma.io/images/bulma-logo.png", alt="SPA" )
+        p.nav-header #[strong SPA Simple]
     .nav-right
       router-link.nav-item( to="/", tag="a", active-class="is-active", exact ) home
       router-link.nav-item( to="/brands", tag="a", active-class="is-active" ) brands
@@ -21,6 +21,10 @@
   .nav {
     position: fixed;
     width: 100%;
+  }
+  .nav-header {
+    font-size: 1.4rem;
+    color: teal;
   }
   .nav-item {
     text-transform: capitalize;

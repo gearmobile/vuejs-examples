@@ -37,20 +37,22 @@
 
   .blog__title {
     font-size: 2rem;
-    margin: 0 0 1rem;
+    margin: 0 0 1.4rem;
     color: rgba( black, .8 );
   }
 
   .blog__link {
-    border: 1px solid #fff;
+    border: .1rem solid rgba( red, .4 );
     border-radius: 4px;
-    color: #fff;
+    color: rgba( red, .4 );
     display: inline-block;
     padding: .6rem 3rem .8rem;
     text-decoration: none;
 
     &:hover {
-      background-color: rgba( 255, 255, 255, .4 );
+      background-color: rgba( 255, 255, 255, .6 );
+      color: rgba( 0, 0, 0, .6 );
+      border-color: rgba( 0,0,0, .2 )
     }
   }
 </style>
