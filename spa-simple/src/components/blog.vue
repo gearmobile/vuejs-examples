@@ -20,39 +20,47 @@
 </script>
 
 <style lang="scss" scoped>
-  .blog__post {
-    height: calc( 100vh / 2);
-    position: relative;
-  }
+  .blog {
 
-  .blog__media {
-    width: 100%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    text-align: center;
-  }
+    &__image {
+      background-clip: content-box
+    }
 
-  .blog__title {
-    font-size: 2rem;
-    margin: 0 0 1.4rem;
-    color: rgba( black, .8 );
-  }
+    &__post {
+      height: calc( 100vh / 2);
+      position: relative;
+    }
 
-  .blog__link {
-    border: .1rem solid rgba( red, .4 );
-    border-radius: 4px;
-    color: rgba( red, .4 );
-    display: inline-block;
-    padding: .6rem 3rem .8rem;
-    text-decoration: none;
+    &__media {
+      width: 100%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-align: center;
+    }
 
-    &:hover {
-      background-color: rgba( 255, 255, 255, .6 );
-      color: rgba( 0, 0, 0, .6 );
-      border-color: rgba( 0,0,0, .2 )
+    &__title {
+      font-size: 2rem;
+      margin: 0 0 1.4rem;
+      color: rgba( black, .8 );
+    }
+
+    &__link {
+      border: .1rem solid rgba( red, .4 );
+      border-radius: 4px;
+      color: rgba( red, .4 );
+      display: inline-block;
+      padding: .6rem 3rem .8rem;
+      text-decoration: none;
+
+      &:hover {
+        background-color: rgba( 255, 255, 255, .6 );
+        color: rgba( 0, 0, 0, .6 );
+        border-color: rgba( 0,0,0, .2 )
+      }
+
     }
   }
 </style>
