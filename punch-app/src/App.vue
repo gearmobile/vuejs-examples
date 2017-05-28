@@ -2,6 +2,10 @@
   .container
     .row
       .col-md-12
+        h1.page-header.text-center.text-capitalize
+          | little punch game
+    .row
+      .col-md-12
         app-home
 </template>
 

@@ -4,7 +4,7 @@
   .punch
     
     // PUNCH HEADER
-    header.punch__header( :style="{ 'background-image': '../assets/bag-burst.png' }" )
+    header.punch__header( :class="{ 'game-over': gameOver }" )
     
     // PUNCH MAIN
     main.punch__main
@@ -15,50 +15,55 @@
     // PUNCH FOOTER
     footer.punch__footer
       .punch__control
-        button.btn.btn-default.punch__button( type="button", @click="onPunch()", v-if="!finished" ) punch
-        button.btn.btn-default.punch__button( type="button", @click="onReset()" ) reset
+        button.btn.btn-primary.btn-lg.punch__button( type="button", @click="onPunch()", v-if="!finished" ) punch bag!
+        button.btn.btn-danger.btn-lg.punch__button( type="button", @click="onReset()", v-if="finished" ) reset game?
 
 </template>
 
 <script>
-export default {
-  name: 'home',
-  data () {
-    return {
-      health: 100,
-      finished: false
-    }
-  },
-  methods: {
-    randomPunch () {
-      return Math.floor(Math.random() * 10) + 1
-    },
-    onPunch  () {
-      const result = this.health - this.randomPunch()
-      if (result <= 0) {
-        this.health = 0
-        this.finished = true
-      } else {
-        this.health = result
+  const DAMAGE_LEVEL = 10
+
+  export default {
+    name: 'home',
+    data () {
+      return {
+        health: 100,
+        finished: false
       }
     },
-    onReset () {
-      this.health = 100
-      this.finished = false
-    }
-  },
-  computed: {
-    oneThird () {
-      return this.health >= (100 / 3) * 2
+    methods: {
+      randomPunch (value) {
+        return Math.floor(Math.random() * value) + 1
+      },
+      onPunch  () {
+        const result = this.health - this.randomPunch(DAMAGE_LEVEL)
+        if (result <= 0) {
+          this.health = 0
+          this.finished = true
+        } else {
+          this.health = result
+        }
+      },
+      onReset () {
+        this.health = 100
+        this.finished = false
+      }
     },
-    twoThird () {
-      return this.health <= (100 / 3) * 2
-    },
-    threeThird () {
-      return this.health <= (100 / 3) * 1
+    computed: {
+      gameOver () {
+        return this.health === 0
+      },
+      oneThird () {
+        return this.health >= (100 / 3) * 2
+      },
+      twoThird () {
+        return this.health <= (100 / 3) * 2
+      },
+      threeThird () {
+        return this.health <= (100 / 3) * 1
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>

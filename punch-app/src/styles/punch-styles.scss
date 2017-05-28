@@ -10,6 +10,10 @@
     background-size: 80%;
   }
 
+  .game-over {
+    background-image: url( '../assets/bag-burst.png' )
+  }
+
   .first-half {
     color: white;
   }
@@ -19,15 +23,15 @@
   }
 
   .punch-one-third {
-    background-color: green;
+    background-color: #009688;
   }
 
   .punch-two-third {
-    background-color: yellow;
+    background-color: #ffc107;
   }
 
   .punch-three-third {
-    background-color: crimson;
+    background-color: #f50057;
   }
 
   &__main {
