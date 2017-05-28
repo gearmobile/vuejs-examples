@@ -1,0 +1,70 @@
+.punch {
+
+  &__header {
+    height: 500px;
+    width: 200px;
+    margin: 0 auto;
+    background-image: url( '../assets/bag.png' );
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 80%;
+  }
+
+  .first-half {
+    color: white;
+  }
+
+  .second-half {
+    color: black;
+  }
+
+  .punch-one-third {
+    background-color: green;
+  }
+
+  .punch-two-third {
+    background-color: yellow;
+  }
+
+  .punch-three-third {
+    background-color: crimson;
+  }
+
+  &__main {
+    padding: 2rem 0;
+  }
+
+  &__progress {
+    max-width: 800px;
+    margin: 0 auto;
+    border: .2rem solid #000;
+    border-radius: .2rem;
+    position: relative;
+  }
+
+  &__inner {
+    height: 4rem;
+  }
+
+  &__text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 1.8rem;
+  }
+
+  &__footer {
+    padding: 1rem 0;
+  }
+
+  &__control {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__button {
+    margin: 0 1rem;
+    text-transform: capitalize;
+  }
+}

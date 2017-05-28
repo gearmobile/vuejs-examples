@@ -4,7 +4,7 @@
   .punch
     
     // PUNCH HEADER
-    header.punch__header
+    header.punch__header( :style="{ 'background-image': '../assets/bag-burst.png' }" )
     
     // PUNCH MAIN
     main.punch__main
@@ -34,10 +34,12 @@ export default {
       return Math.floor(Math.random() * 10) + 1
     },
     onPunch  () {
-      if (this.health > 0) {
-        this.health -= this.randomPunch()
-      } else {
+      const result = this.health - this.randomPunch()
+      if (result <= 0) {
+        this.health = 0
         this.finished = true
+      } else {
+        this.health = result
       }
     },
     onReset () {
@@ -60,58 +62,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .punch {
-
-    .first-half {
-      color: white;
-    }
-
-    .second-half {
-      color: black;
-    }
-
-    .punch-one-third {
-      background-color: green;
-    }
-
-    .punch-two-third {
-      background-color: yellow;
-    }
-
-    .punch-three-third {
-      background-color: red;
-    }
-
-    &__progress {
-      border: .2rem solid #000;
-      border-radius: .2rem;
-      position: relative;
-    }
-
-    &__inner {
-      height: 4rem;
-    }
-
-    &__text {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-      font-size: 1.8rem;
-    }
-
-    &__footer {
-      padding: 1rem 0;
-    }
-
-    &__control {
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    &__button {
-      margin: 0 1rem;
-      text-transform: capitalize;
-    }
-  }
+  @import '../styles/punch-styles.scss'
 </style>
