@@ -10,7 +10,7 @@
     main.punch__main
       .punch__progress
         .punch__inner( :style="{ width: health + '%' }", :class="{ 'punch-one-third': oneThird, 'punch-two-third': twoThird, 'punch-three-third': threeThird }" )
-        .punch__text( :class="{ 'first-half': oneThird, 'second-half': twoThird }" ) {{ health }}
+        .punch__text( :class="{ 'first-half': oneThird, 'second-half': twoThird }" ) health bag: {{ health }}%
     
     // PUNCH FOOTER
     footer.punch__footer
