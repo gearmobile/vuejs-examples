@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">2</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">bad48231-abe9-407c-8e72-a5f9dc69bf35</dc:identifier>
+        <dc:title>Learning Vue.js 2</dc:title>
+        <dc:creator opf:file-as="Filipova, Olga" opf:role="aut">Olga Filipova</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (2.55.0) [http://calibre-ebook.com]</dc:contributor>
+        <dc:date>2016-12-12T23:00:00+00:00</dc:date>
+        <dc:publisher>Packt Publishing</dc:publisher>
+        <dc:identifier opf:scheme="MOBI-ASIN">9597f585-18a4-4f7d-9c6b-c21225c989d4</dc:identifier>
+        <dc:language>eng</dc:language>
+        <dc:subject>vuejs</dc:subject>
+        <meta content="{&quot;Olga Filipova&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="8" name="calibre:rating"/>
+        <meta content="2017-05-26T16:38:10.020914+00:00" name="calibre:timestamp"/>
+        <meta content="Learning Vue.js 2" name="calibre:title_sort"/>
+    </metadata>
+    <guide>
+        <reference href="cover.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>
