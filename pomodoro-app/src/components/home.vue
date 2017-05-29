@@ -13,6 +13,9 @@
     main.well.pomodoro__body
       .pomodoro__timer
         span {{ minuteOutput }} : {{ secondOutput }}
+    // footer
+    .well.pomodoro__footer( :class="{'hidden': pomodoroState === 'work'}" )
+      img.pomodoro__image( :src="getImage", alt="Cat" )
 </template>
 
 <script>
@@ -25,7 +28,7 @@
     STOPPED: 'stopped',
     PAUSED: 'paused'
   }
-  const WORKING_TIME = 25
+  const WORKING_TIME = 1
   const REST_TIME = 5
 
   export default {
@@ -56,6 +59,9 @@
       },
       title () {
         return this.pomodoroState === POMODORO_STATES.WORK ? 'Work' : 'Rest'
+      },
+      getImage () {
+        return 'http://thecatapi.com/api/images/get?type=jpg&size=med&ts=' + this.timeStamp
       }
     },
     methods: {
@@ -76,6 +82,10 @@
         this.second = 0
       },
       onRun () {
+        // update time every ten seconds
+        if (this.second % 10 === 0) {
+          this.timeStamp = new Date().getTime()
+        }
         // COUNT SECONDS
         if (this.second !== 0) {
           this.second -= 1
@@ -118,5 +128,6 @@
     &__title {
       margin-top: 0;
     }
+
   }
 </style>
