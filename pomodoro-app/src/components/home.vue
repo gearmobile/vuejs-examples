@@ -4,10 +4,8 @@
     header.pomodoro__header
       h2.pomodoro__caption
         span pomodoro
-        button( type="button", @click="onStart()" )
-          i.glyphicon.glyphicon-play
-        button( type="button", @click="onStop()" )
-          i.glyphicon.glyphicon-stop
+        button( type="button", @click="onClick()" )
+          i.glyphicon( :class="showIcon" )
     // body
     main.well.pomodoro__body
       .pomodoro__timer
@@ -16,7 +14,7 @@
 
 <script>
   // const WORKING_TIME = 25
-  const REST_TIME = 5
+  // const REST_TIME = 5
   // const POMODORO_STATES = {
   //   work: 'work',
   //   rest: 'rest'
@@ -27,30 +25,46 @@
     data () {
       return {
         minute: 0,
-        second: 0
+        second: 0,
+        run: false
+      }
+    },
+    computed: {
+      showIcon () {
+        return !this.run ? 'glyphicon-play' : 'glyphicon-stop'
       }
     },
     methods: {
-      onStop () {
-        clearInterval(this.interval)
-      },
-      playMinutes () {
-        if (this.minute <= REST_TIME) {
-          this.minute += 1
-        } else {
-          return false
-        }
-      },
-      playSeconds () {
+      runSeconds () {
         if (this.second < 10) {
           this.second += 1
         } else {
-          this.playMinutes()
           this.second = 0
+          this.runMinutes()
         }
       },
+      runMinutes () {
+        if (this.minute < 2) {
+          this.minute += 1
+        } else {
+          this.onStop()
+        }
+      },
+      onClick () {
+        if (!this.run) {
+          this.onStart()
+        } else {
+          this.onStop()
+        }
+        this.run = !this.run
+      },
       onStart () {
-        this.interval = setInterval(this.playSeconds, 1000)
+        this.runCount = setInterval(this.runSeconds, 1000)
+      },
+      onStop () {
+        clearInterval(this.runCount)
+        this.minute = 0
+        this.second = 0
       }
     }
   }
