@@ -4,67 +4,97 @@
     header.pomodoro__header
       h2.pomodoro__caption
         span pomodoro
-        button( type="button", @click="onClick()" )
-          i.glyphicon( :class="showIcon" )
+        button( type="button", @click="onStart()", :disabled="state === 'started'" ): i.glyphicon.glyphicon-play
+        button( type="button", @click="onPause()", :disabled="state !== 'started'" ): i.glyphicon.glyphicon-pause
+        button( type="button", @click="onStop()", :disabled="state !== 'started' && state !== 'paused'" ): i.glyphicon.glyphicon-stop
+    // pomodoro state
+    h3.pomodoro__title {{ title }}
     // body
     main.well.pomodoro__body
       .pomodoro__timer
-        span {{ minute }} : {{ second }}
+        span {{ minuteOutput }} : {{ secondOutput }}
 </template>
 
 <script>
-  // const WORKING_TIME = 25
-  // const REST_TIME = 5
-  // const POMODORO_STATES = {
-  //   work: 'work',
-  //   rest: 'rest'
-  // }
+  const POMODORO_STATES = {
+    WORK: 'work',
+    REST: 'rest'
+  }
+  const STATES = {
+    STARTED: 'started',
+    STOPPED: 'stopped',
+    PAUSED: 'paused'
+  }
+  const WORKING_TIME = 25
+  const REST_TIME = 5
 
   export default {
     name: 'home',
     data () {
       return {
-        minute: 0,
+        state: STATES.STOPPED,
+        minute: WORKING_TIME,
         second: 0,
-        run: false
+        pomodoroState: POMODORO_STATES.WORK,
+        timeStamp: 0
       }
     },
     computed: {
-      showIcon () {
-        return !this.run ? 'glyphicon-play' : 'glyphicon-stop'
+      minuteOutput () {
+        if (this.minute < 10) {
+          return '0' + this.minute
+        } else {
+          return this.minute
+        }
+      },
+      secondOutput () {
+        if (this.second < 10) {
+          return '0' + this.second
+        } else {
+          return this.second
+        }
+      },
+      title () {
+        return this.pomodoroState === POMODORO_STATES.WORK ? 'Work' : 'Rest'
       }
     },
     methods: {
-      runSeconds () {
-        if (this.second < 10) {
-          this.second += 1
-        } else {
-          this.second = 0
-          this.runMinutes()
-        }
-      },
-      runMinutes () {
-        if (this.minute < 2) {
-          this.minute += 1
-        } else {
-          this.onStop()
-        }
-      },
-      onClick () {
-        if (!this.run) {
-          this.onStart()
-        } else {
-          this.onStop()
-        }
-        this.run = !this.run
-      },
       onStart () {
-        this.runCount = setInterval(this.runSeconds, 1000)
+        this.state = STATES.STARTED
+        this.onRun()
+        this.interval = setInterval(this.onRun, 1000)
+      },
+      onPause () {
+        this.state = STATES.PAUSED
+        clearInterval(this.interval)
       },
       onStop () {
-        clearInterval(this.runCount)
-        this.minute = 0
+        this.state = STATES.STOPPED
+        clearInterval(this.interval)
+        this.pomodoroState = POMODORO_STATES.WORK
+        this.minute = WORKING_TIME
         this.second = 0
+      },
+      onRun () {
+        // COUNT SECONDS
+        if (this.second !== 0) {
+          this.second -= 1
+          return
+        }
+        // COUNT MINUTES
+        if (this.minute !== 0) {
+          this.minute -= 1
+          this.second = 59
+          return
+        }
+        // TOOGLE STATES OF THE TIMER
+        this.pomodoroState = this.pomodoroState === POMODORO_STATES.WORK ? POMODORO_STATES.REST : POMODORO_STATES.WORK
+        // TOGGLE TIME PERIOD
+        if (this.pomodoroState === POMODORO_STATES.WORK) {
+          this.minute = WORKING_TIME
+        } else {
+          this.minute = REST_TIME
+        }
       }
     }
   }
@@ -83,6 +113,10 @@
       & span {
         margin-right: 2rem;
       }
+    }
+
+    &__title {
+      margin-top: 0;
     }
   }
 </style>
