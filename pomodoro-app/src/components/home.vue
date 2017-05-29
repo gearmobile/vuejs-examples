@@ -1,15 +1,15 @@
 <template lang="pug">
   .pomodoro
-    // header
+    // HEADER
     header.pomodoro__header
       h2.pomodoro__caption
         span pomodoro
         button( type="button", @click="onStart()", :disabled="state === 'started'" ): i.glyphicon.glyphicon-play
         button( type="button", @click="onPause()", :disabled="state !== 'started'" ): i.glyphicon.glyphicon-pause
         button( type="button", @click="onStop()", :disabled="state !== 'started' && state !== 'paused'" ): i.glyphicon.glyphicon-stop
-    // pomodoro state
+    // POMODORO STATE
     h3.pomodoro__title {{ title }}
-    // body
+    // BODY
     main.well.pomodoro__body
       .pomodoro__timer
         span {{ minuteOutput }} : {{ secondOutput }}

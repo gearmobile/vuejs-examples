@@ -6,6 +6,7 @@ import App from './App'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+// http://thecatapi.com/docs.html
 new Vue({
   el: '#app',
   template: '<App/>',
