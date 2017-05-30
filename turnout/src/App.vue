@@ -1,6 +1,8 @@
 <template lang="pug">
-  #app
-    router-view
+  #app.container
+    .row
+      .col-md-12
+        router-view
 </template>
 
 <script>
