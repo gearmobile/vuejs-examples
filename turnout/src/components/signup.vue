@@ -1,13 +1,13 @@
 <template lang="pug">
   .form-inline.text-center
-    h3.text-capitalize sign in
+    h3.text-capitalize sign up
     .form-group
       input.form-control( type="email", placeholder="Email", v-model="email" )
       input.form-control( type="password", placeholder="Password", v-model="password" )
-      button.btn.btn-primary( type="button", @click="signIn()" ) Sign In
+      button.btn.btn-primary( type="button", @click="signUp()" ) Sign Up
       br
       br
-      router-link( tag="a", to="/signup" ) Not a user? Sign up
+      router-link( tag="a", to="/signin" ) Already a user? Sign in
       p {{ error.message }}
 </template>
 
@@ -26,8 +26,8 @@
       }
     },
     methods: {
-      signIn () {
-        firebaseApp.auth().signInWithEmailAndPassword(this.email, this.password)
+      signUp () {
+        firebaseApp.auth().createUserWithEmailAndPassword(this.email, this.password)
           .catch(error => {
             this.error = error
           })
