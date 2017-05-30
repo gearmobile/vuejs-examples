@@ -17,7 +17,7 @@ firebaseApp.auth().onAuthStateChanged(user => {
     store.dispatch('signIn', user)
     router.push({ name: 'Dashboard' })
   } else {
-    // router.replace({ name: 'Signin' }) TODO replace by
+    router.replace({ name: 'Signin' })
   }
 })
 

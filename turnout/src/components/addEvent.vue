@@ -1,6 +1,6 @@
 <template lang="pug">
   #addevent
-    h4 Add an Event <input type="checkbox" v-model="isShow">
+    h4.text-center Add an Event <input type="checkbox" v-model="isShow">
     form.form( v-if="isShow" )
       .form-group
         label.text-capitalize( for="title" ) title
@@ -14,10 +14,8 @@
       .form-group
         label.text-capitalize( for="location" ) location
         input.form-control( type="text", id="location", v-model="event.location" )
-      //- .form-group
-      //-   label( for="email" ) email
-      //-   input.form-control( type="email", id="email", v-model="event.email" )
-      button.btn.btn-primary.btn-sm.text-capitalize( type="button", @click="addEvent()" ) add event
+      .form-group.text-center
+        button.btn.btn-primary.btn-sm.text-capitalize( type="button", @click="addEvent()" ) add event
 </template>
 
 <script>
@@ -38,9 +36,15 @@
       }
     },
     methods: {
+      clearForm (value) {
+        for (let key in value) {
+          value[key] = ''
+        }
+      },
       addEvent () {
         this.event.email = this.$store.state.user.email
         eventRef.push(this.event)
+        this.clearForm(this.event)
       }
     }
   }
