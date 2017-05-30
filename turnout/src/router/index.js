@@ -11,21 +11,21 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'Home',
-    //   component: Home
-    // },
+    {
+      path: '/',
+      name: 'Signin',
+      component: Signin
+    },
     {
       path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard
     },
-    {
-      path: '/signin',
-      name: 'Signin',
-      component: Signin
-    },
+    // {
+    //   path: '/signin',
+    //   name: 'Signin',
+    //   component: Signin
+    // },
     {
       path: '/signup',
       name: 'Signup',
