@@ -14,7 +14,7 @@
     props: ['track'],
     methods: {
       onSelect () {
-        eventBus.$emit('selectItem', this.track.id)
+        eventBus.$emit('selectItem', this.track)
       }
     }
   }

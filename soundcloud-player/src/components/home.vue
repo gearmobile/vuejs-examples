@@ -10,8 +10,9 @@
           .form-group
             h3.text-center.text-capitalize track information
             input.form-control( type="text", v-model="search", placeholder="type here and click submit request" )
-          .form-group.text-center
+          .form-group.text-center.player__control
             button.btn.btn-primary.text-capitalize( type="button", @click="getTracks()" ) submit request
+            button.btn.btn-primary.text-capitalize( type="button", @click="clearTracks()" ) reset request
     
     // OUTPUT SECTION
     .row( v-if="tracks" )
@@ -28,11 +29,11 @@
       .col-md-8.col-md-offset-2
         h3.text-center.text-capitalize player controls
         .button-group.text-center.player__control
-          button.btn.btn-primary.text-uppercase( type="button" ) previous
+          button.btn.btn-primary.text-uppercase( type="button", @click="onPrevious()" ) previous
           button.btn.btn-primary.text-uppercase( type="button", @click="onPause()" ) pause
           button.btn.btn-primary.text-uppercase( type="button", @click="onPlay()" ) play
           button.btn.btn-primary.text-uppercase( type="button", @click="onStop()" ) stop
-          button.btn.btn-primary.text-uppercase( type="button" ) next
+          button.btn.btn-primary.text-uppercase( type="button", @click="onNext()" ) next
 </template>
 
 <script>
@@ -48,10 +49,11 @@
     name: 'home',
     data () {
       return {
-        pageSize: 10,
+        pageSize: 5,
         tracks: [],
-        search: '',
+        search: null,
         currTrack: null,
+        currID: null,
         volume: 50
       }
     },
@@ -59,6 +61,10 @@
       appPlaylist: Playlist
     },
     methods: {
+      clearTracks () {
+        this.tracks = []
+        this.search = null
+      },
       getTracks () {
         const searchConfig = {
           q: this.search,
@@ -70,11 +76,14 @@
             this.search = ''
           })
       },
-      onInit (value) {
+      getTrack (value) {
         SC.stream('/tracks/' + value)
           .then(response => {
             this.currTrack = response
           })
+      },
+      getIndex (arr, obj) {
+        this.currID = arr.indexOf(obj)
       },
       onPlay () {
         this.currTrack.play()
@@ -86,13 +95,28 @@
         this.currTrack.pause()
         this.currTrack.seek(0)
       },
+      onNext () {
+        let nextTrack = this.currID += 1
+        if (nextTrack >= this.tracks.length) {
+          nextTrack = 0
+        }
+        this.getTrack(this.tracks[nextTrack].id)
+      },
+      onPrevious () {
+        let prevTrack = this.currID -= 1
+        if (prevTrack < 0) {
+          prevTrack = this.tracks.length - 1
+        }
+        this.getTrack(this.tracks[prevTrack].id)
+      },
       changeVolume () {
         this.currTrack.setVolume(this.volume / 100)
       }
     },
     created () {
       eventBus.$on('selectItem', data => {
-        this.onInit(data)
+        this.getTrack(data.id)
+        this.getIndex(this.tracks, data)
       })
     }
   }
