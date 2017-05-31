@@ -1,13 +1,18 @@
 <template lang="pug">
-  #app.container
+  .container
     .row
       .col-md-12
-        router-view
+        app-home
 </template>
 
 <script>
+  import Home from './components/home'
+
   export default {
-    name: 'app'
+    name: 'app',
+    components: {
+      appHome: Home
+    }
   }
 </script>
 
