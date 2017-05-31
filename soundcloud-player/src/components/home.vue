@@ -9,7 +9,7 @@
         form
           .form-group
             h3.text-center.text-capitalize track information
-            input.form-control( type="text", v-model="search", placeholder="type here and click submit request" )
+            input.form-control( type="text", v-model="search", placeholder="type here and click submit request", required )
           .form-group.text-center.player__control
             button.btn.btn-primary.text-capitalize( type="button", @click="getTracks()" ) submit request
             button.btn.btn-primary.text-capitalize( type="button", @click="clearTracks()" ) reset request
