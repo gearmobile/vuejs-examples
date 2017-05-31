@@ -9,15 +9,17 @@
         form
           .form-group
             h3.text-center.text-capitalize track information
-            input.form-control( type="text", placeholder="type here and click submit request" )
+            input.form-control( type="text", v-model="search", placeholder="type here and click submit request" )
           .form-group.text-center
             button.btn.btn-primary.text-capitalize( type="button", @click="getTracks()" ) submit request
     
     // OUTPUT SECTION
     .row
       .col-md-8.col-md-offset-2
-        ul.list-unstyled
-          li
+        ul.list-group.list-group-flush( v-for="(track, index) in tracks", :key="index" )
+          li.list-group-item #[strong Track Title:] {{ track.title }}
+          li.list-group-item #[strong Genre:] {{ track.genre }}
+          li.list-group-item #[strong Release Year:] {{ track.release_year }}
 </template>
 
 <script>
@@ -25,24 +27,25 @@
 
   SC.initialize({
     client_id: 'g79oUOmfBbcXJfZpFUVuqjR28Uu9O8TN'
-    // redirect_uri: 'http://example.com/callback'
   })
   export default {
     name: 'home',
     data () {
       return {
-        pageSize: 100
+        pageSize: 10,
+        tracks: [],
+        search: ''
       }
     },
     methods: {
       getTracks () {
-        SC.get('/tracks', {
-          q: 'buskers',
-          // license: 'cc-by-sa',
+        const searchConfig = {
+          q: this.search,
           limit: this.pageSize
-        })
-        .then(function (tracks) {
-          console.log(tracks)
+        }
+        SC.get('/tracks', searchConfig)
+        .then(response => {
+          this.tracks = response
         })
       }
     }
