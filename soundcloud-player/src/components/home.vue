@@ -110,6 +110,9 @@
         this.getTrack(this.tracks[prevTrack].id)
       },
       changeVolume () {
+        if (!this.currTrack) {
+          return
+        }
         this.currTrack.setVolume(this.volume / 100)
       }
     },
@@ -123,6 +126,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @import './styles/range.css';
+
   .player {
 
     &__control {
