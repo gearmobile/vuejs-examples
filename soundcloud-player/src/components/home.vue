@@ -1,7 +1,7 @@
 <template lang="pug">
-  #home
+  .player
     h1.page-header.text-center.text-capitalize soundcloud player
-    p.text-center.text-uppercase get any request: name, song, title
+    h4.text-center.text-uppercase get any request: name, song, title
     
     // INPUT SECTION
     .row
@@ -20,6 +20,22 @@
           li.list-group-item #[strong Track Title:] {{ track.title }}
           li.list-group-item #[strong Genre:] {{ track.genre }}
           li.list-group-item #[strong Release Year:] {{ track.release_year }}
+
+    // CONTROLS
+    .row
+      .col-md-6.col-md-offset-3
+        h3.text-center.text-capitalize player volume
+        .form-group
+          input( type="range", min="0", max="100", step="2", value="80" )
+    .row
+      .col-md-8.col-md-offset-2
+        h3.text-center.text-capitalize player controls
+        .button-group.text-center.player__control
+          button.btn.btn-primary.text-uppercase( type="button" ) previous
+          button.btn.btn-primary.text-uppercase( type="button" ) pause
+          button.btn.btn-primary.text-uppercase( type="button" ) play
+          button.btn.btn-primary.text-uppercase( type="button" ) stop
+          button.btn.btn-primary.text-uppercase( type="button" ) next
 </template>
 
 <script>
@@ -46,6 +62,7 @@
         SC.get('/tracks', searchConfig)
         .then(response => {
           this.tracks = response
+          this.search = ''
         })
       }
     }
@@ -53,5 +70,15 @@
 </script>
 
 <style lang="scss" scoped>
-  /**/
+  .player {
+
+    &__control {
+      padding: .8rem 0;
+
+      & button {
+        margin-right: .2rem;
+        margin-left: .2rem;
+      }
+    }
+  }
 </style>
