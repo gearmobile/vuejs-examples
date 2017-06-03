@@ -3,10 +3,10 @@
     h1.page-header.text-center.text-capitalize soundcloud player
     h4.text-center.text-uppercase get any request: name, song, title and etc
     
-    // INPUT SECTION
+    // SEARCH SECTION
     .row
       .col-md-8.col-md-offset-2
-        form
+        form( @submit.prevent="getTracks()" )
           .form-group
             h3.text-center.text-capitalize track information
             input.form-control( type="text", v-model="search", placeholder="type here and click submit request", required )
@@ -54,6 +54,7 @@
         search: null,
         currTrack: null,
         currTrackID: null,
+        // currTrackTitle: null,
         volume: 50
       }
     },
@@ -103,19 +104,13 @@
       },
       // NEXT SOUNDTRACK
       onNext () {
-        let nextTrack = this.currTrackID += 1
-        if (nextTrack >= this.tracks.length) {
-          nextTrack = 0
-        }
-        this.getTrack(this.tracks[nextTrack].id)
+        this.currTrackID = (this.currTrackID + 1 >= this.tracks.length) ? 0 : this.currTrackID + 1
+        this.getTrack(this.tracks[this.currTrackID].id)
       },
       // PREVIOUS SOUNDTRACK
       onPrevious () {
-        let prevTrack = this.currTrackID -= 1
-        if (prevTrack < 0) {
-          prevTrack = this.tracks.length - 1
-        }
-        this.getTrack(this.tracks[prevTrack].id)
+        this.currTrackID = (this.currTrackID - 1 < 0) ? this.tracks.length - 1 : this.currTrackID - 1
+        this.getTrack(this.tracks[this.currTrackID].id)
       },
       // ENCREASE\DECREASE SOUNDTRACK VOLUME
       changeVolume () {
