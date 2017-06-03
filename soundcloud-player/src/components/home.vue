@@ -91,18 +91,14 @@
       },
       // PLAY SOUNDTRACK
       onPlay (value) {
-        // this.currTrack.play()
         value.play()
       },
       // PAUSE SOUNDTRACK
       onPause (value) {
-        // this.currTrack.pause()
         value.pause()
       },
       // STOP SOUNDTRACK
       onStop (value) {
-        // this.currTrack.pause()
-        // this.currTrack.seek(0)
         value.pause()
         value.seek(0)
       },
@@ -110,14 +106,11 @@
       onNext () {
         this.currTrackID = (this.currTrackID + 1 >= this.tracks.length) ? 0 : this.currTrackID + 1
         this.getTrack(this.tracks[this.currTrackID].id)
-        // this.onStop(this.currTrack)
-        // this.onPlay(this.currTrack)
       },
       // PREVIOUS SOUNDTRACK
       onPrevious () {
         this.currTrackID = (this.currTrackID - 1 < 0) ? this.tracks.length - 1 : this.currTrackID - 1
         this.getTrack(this.tracks[this.currTrackID].id)
-        this.onPlay()
       },
       // ENCREASE\DECREASE SOUNDTRACK VOLUME
       changeVolume () {
