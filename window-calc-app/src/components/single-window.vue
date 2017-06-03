@@ -28,7 +28,7 @@
       h3 Тип открывания окна
       .well( style="height: 600px" )
         vue-ver-slider.vertical-slider( ref="sliderVer", direction="vertical", height="300", width="3", min="1000", max="1650", interval="10", v-model="valueHeight" )
-        vue-hor-slider.horizontal-slider( ref="sliderHor", min="400", max="1400", interval="10", height="3", width="90%", v-model="valueWidth" )
+        vue-hor-slider.horizontal-slider( ref="sliderHor", tooltip-dir="bottom", min="400", max="1400", interval="10", height="3", width="90%", v-model="valueWidth" )
 </template>
 
 <script>
@@ -53,9 +53,9 @@
   .vertical-slider {
     display: inline-block;
     height: 300px;
-    margin-left: 1%;
+    margin-left: 5%;
   }
   .horizontal-slider {
-    margin-left: 5%;
+    margin-left: 8%;
   }
 </style>
