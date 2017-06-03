@@ -6,15 +6,20 @@
     .row
       .col-md-12
         router-view
+    .row
+      .col-md-12
+        app-output
 </template>
 
 <script>
   import Navigation from './components/navigation.vue'
+  import Result from './components/result-output.vue'
 
   export default {
     name: 'app',
     components: {
-      appNav: Navigation
+      appNav: Navigation,
+      appOutput: Result
     }
   }
 </script>
