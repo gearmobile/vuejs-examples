@@ -1,5 +1,9 @@
 <template lang="pug">
-  .container
+  #app.container
+    .row
+      .col-md-8.col-md-offset-2
+        figure.logo
+          img.logo__image( src="./assets/full-sc.jpg" )
     .row
       .col-md-12
         app-home
@@ -22,5 +26,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-top: 60px;
+
+    & .logo__image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
   }
 </style>
