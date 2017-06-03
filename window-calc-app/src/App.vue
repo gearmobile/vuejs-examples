@@ -4,7 +4,8 @@
       .col-md-12
         app-nav
     .row
-      router-view
+      .col-md-12
+        router-view
 </template>
 
 <script>
