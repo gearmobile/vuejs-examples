@@ -1,7 +1,7 @@
 <template lang="pug">
   .player
     h1.page-header.text-center.text-capitalize soundcloud player
-    h4.text-center.text-uppercase get any request: name, song, title
+    h4.text-center.text-uppercase get any request: name, song, title and etc
     
     // INPUT SECTION
     .row
@@ -22,7 +22,7 @@
     // CONTROLS
     .row
       .col-md-6.col-md-offset-3
-        h3.text-center.text-capitalize player volume
+        h3.text-center.text-capitalize player volume - {{ volume }}%
         .form-group
           input( type="range", min="0", max="100", step="2", v-model="volume", @input="changeVolume()" )
     .row
@@ -53,7 +53,7 @@
         tracks: [],
         search: null,
         currTrack: null,
-        currID: null,
+        currTrackID: null,
         volume: 50
       }
     },
@@ -65,6 +65,7 @@
         this.tracks = []
         this.search = null
       },
+      // GET LIST OF TRACKS
       getTracks () {
         const searchConfig = {
           q: this.search,
@@ -76,39 +77,47 @@
             this.search = ''
           })
       },
+      // GET CURRENT TRACK TO PLAY
       getTrack (value) {
         SC.stream('/tracks/' + value)
           .then(response => {
             this.currTrack = response
           })
       },
+      // GET CURRENT TRACK ID TO PLAY
       getIndex (arr, obj) {
-        this.currID = arr.indexOf(obj)
+        this.currTrackID = arr.indexOf(obj)
       },
+      // PLAY SOUNDTRACK
       onPlay () {
         this.currTrack.play()
       },
+      // PAUSE SOUNDTRACK
       onPause () {
         this.currTrack.pause()
       },
+      // STOP SOUNDTRACK
       onStop () {
         this.currTrack.pause()
         this.currTrack.seek(0)
       },
+      // NEXT SOUNDTRACK
       onNext () {
-        let nextTrack = this.currID += 1
+        let nextTrack = this.currTrackID += 1
         if (nextTrack >= this.tracks.length) {
           nextTrack = 0
         }
         this.getTrack(this.tracks[nextTrack].id)
       },
+      // PREVIOUS SOUNDTRACK
       onPrevious () {
-        let prevTrack = this.currID -= 1
+        let prevTrack = this.currTrackID -= 1
         if (prevTrack < 0) {
           prevTrack = this.tracks.length - 1
         }
         this.getTrack(this.tracks[prevTrack].id)
       },
+      // ENCREASE\DECREASE SOUNDTRACK VOLUME
       changeVolume () {
         if (!this.currTrack) {
           return
