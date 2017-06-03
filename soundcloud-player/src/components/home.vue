@@ -30,9 +30,9 @@
         h3.text-center.text-capitalize player controls
         .button-group.text-center.player__control
           button.btn.btn-primary.text-uppercase( type="button", @click="onPrevious()" ) previous
-          button.btn.btn-primary.text-uppercase( type="button", @click="onPause()" ) pause
-          button.btn.btn-primary.text-uppercase( type="button", @click="onPlay()" ) play
-          button.btn.btn-primary.text-uppercase( type="button", @click="onStop()" ) stop
+          button.btn.btn-primary.text-uppercase( type="button", @click="onPause(currTrack)" ) pause
+          button.btn.btn-primary.text-uppercase( type="button", @click="onPlay(currTrack)" ) play
+          button.btn.btn-primary.text-uppercase( type="button", @click="onStop(currTrack)" ) stop
           button.btn.btn-primary.text-uppercase( type="button", @click="onNext()" ) next
 </template>
 
@@ -90,27 +90,34 @@
         this.currTrackID = arr.indexOf(obj)
       },
       // PLAY SOUNDTRACK
-      onPlay () {
-        this.currTrack.play()
+      onPlay (value) {
+        // this.currTrack.play()
+        value.play()
       },
       // PAUSE SOUNDTRACK
-      onPause () {
-        this.currTrack.pause()
+      onPause (value) {
+        // this.currTrack.pause()
+        value.pause()
       },
       // STOP SOUNDTRACK
-      onStop () {
-        this.currTrack.pause()
-        this.currTrack.seek(0)
+      onStop (value) {
+        // this.currTrack.pause()
+        // this.currTrack.seek(0)
+        value.pause()
+        value.seek(0)
       },
       // NEXT SOUNDTRACK
       onNext () {
         this.currTrackID = (this.currTrackID + 1 >= this.tracks.length) ? 0 : this.currTrackID + 1
         this.getTrack(this.tracks[this.currTrackID].id)
+        // this.onStop(this.currTrack)
+        // this.onPlay(this.currTrack)
       },
       // PREVIOUS SOUNDTRACK
       onPrevious () {
         this.currTrackID = (this.currTrackID - 1 < 0) ? this.tracks.length - 1 : this.currTrackID - 1
         this.getTrack(this.tracks[this.currTrackID].id)
+        this.onPlay()
       },
       // ENCREASE\DECREASE SOUNDTRACK VOLUME
       changeVolume () {
