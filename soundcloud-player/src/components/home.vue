@@ -54,7 +54,6 @@
         search: null,
         currTrack: null,
         currTrackID: null,
-        // currTrackTitle: null,
         volume: 50
       }
     },
