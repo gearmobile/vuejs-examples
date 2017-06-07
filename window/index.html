@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <title>Window Calculator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="page-header">Размеры глухаря</h2>
+          
+          <!-- INPUT WINDOW DIMENTIONS -->
+          <section>
+            <div class="form-group">
+              <label for="height">Window Height
+              <input class="form-control" id="height" type="text" placeholder="height window">
+            </div>
+            <div class="form-group">
+              <label for="width">Window Width
+              <input class="form-control" id="width" type="text" placeholder="width window">
+            </div>
+          </section>
+
+          <!-- PROFILE -->
+          <section class="form-group">
+            <h3 class="page-header">Профиль:</h3>
+            <select class="form-control" id="profile">
+              <option selected value="100"> Aluplast 2000
+              <option value="105"> Aluplast 3000
+              <option value="110"> Aluplast 4000
+              <option value="115"> Aluplast 5000
+            </select>
+          </section>
+
+          <!-- PACKET -->
+          <section class="form-group">
+            <h3 class="page-header">Стелопакет</h3>
+            <select class="form-control" id="packet">
+              <option selected value="1000"> СП-Вератек
+              <option value="1100"> СП-Штадур
+              <option value="1200"> Стекл 3М2
+              <option value="1300"> Стекл 4М2
+              <option value="1400"> Стекл 5М2
+            </select>
+          </section>
+
+          <div class="form-group">
+            <button class="btn btn-default" id="calculate" type="button">Calculate</button>
+            <button class="btn btn-default" id="test" type="button">Test</button>
+          </div>
+        
+        </div><!-- col-md -->
+
+        <div class="col-md-6">
+
+          <!--OUTPUT SECTION-->
+          <div class="form-group" id="output">
+            <h2 class="page-header">Результаты:</h2>
+            <p>Рама, м: <span id="rama"></span></p>
+            <p>Стеклопакет, кв м: <span id="packet"></span></p>
+            <p>Стоимость изделия, руб: <span id="productCost"></span></p>
+            <p>Стоимость монтажных работ, руб: <span id="workCost"></span></p>
+            <p>Общая стоимость, руб: <span id="totalCost"></span></p>
+          </div>
+
+        </div><!-- col-md -->
+        
+      </div><!-- row -->
+      
+    </div><!-- container -->
+
+    <!-- SCRIPTS -->
+    <script src="./formulas.js"></script>
+		<script>
+			
+      // -----------------
+			const ramaOutput = document.querySelector('#rama')
+			const packetOutput = document.querySelector('#packet')
+			const productCostOutput = document.querySelector('#productCost')
+			const workCostOutput = document.querySelector('#workCost')
+			const totalCostOutput = document.querySelector('#totalCost')
+			
+      // -----------------
+			const btnCalculate = document.querySelector('#calculate')
+			// -----------------
+			
+      function runCalc () {
+				// -----------------
+				const heightWindow = document.querySelector('#height').value
+				const widthWindow = document.querySelector('#width').value
+				const profileWidth = document.querySelector('#profile').value
+				// const packetCost = document.querySelector('#packet').value
+				// -----------------
+				const lengthRama = ramaLength(heightWindow, widthWindow)
+				const areaPacket = packetArea(heightWindow, widthWindow, profileWidth)
+				// const productCost = productCost(ramaLength, packetArea, ramaCost, packetCost)
+				// -----------------
+				ramaOutput.innerHTML = lengthRama
+				packetOutput.innerHTML = areaPacket
+				// productCostOutput.innerHTML = productCost
+			}
+
+      function Test () {
+				const profileWidth = parseInt(document.querySelector('#profile').value)
+        console.log(profileWidth)
+      }
+			
+      // -----------------
+			btnCalculate.addEventListener('click', runCalc, false)
+      document.querySelector('#test').addEventListener('click', Test, false)
+		</script>
+  </body>
+</html>
