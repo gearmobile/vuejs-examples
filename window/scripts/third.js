@@ -9,7 +9,10 @@ const app = new Vue({
       percent: 10,
       type: 'tetro',
       furnitura1: 2000,
-      furnitura2: 3000
+      furnitura2: 3000,
+      montageCost: 1000,
+      sill: 1300,
+      slope: 1000
     },
     profiles: [
       { title: 'Profile 1', price: 1000, furnitura: 500 },

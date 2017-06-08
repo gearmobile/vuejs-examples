@@ -14,7 +14,7 @@
           <h2 class="page-header">Одинарное окно</h2>
           
           <!-- INPUT WINDOW DIMENTIONS -->
-          <section>
+          <section class="well">
             <h3 class="page-header">Размеры окна:</h3>
             <div class="form-group">
               <label for="height">Window Height
@@ -27,16 +27,16 @@
           </section>
 
           <!-- TYPE WINDOW -->
-          <section>
+          <section class="well">
             <h3 class="page-header">Тип окна:</h3>
             <div class="row">
               <div class="col-md-6">
                 <h4 class="page-header">Выберите тип окна:</h4>
-                  <div class="radio">
-                    <label for="primo"><input id="primo" name="type" type="radio" value="primo" v-model="window.type">Глухое окно</label>
-                    <label for="secondo"><input id="secondo" name="type" type="radio" value="secondo" v-model="window.type">Поворотное окно</label>
-                    <label for="tetro"><input id="tetro" name="type" type="radio" value="tetro" v-model="window.type">Поворотно-откидное окно</label>
-                  </div>
+                <div class="radio">
+                  <label for="primo"><input id="primo" name="type" type="radio" value="primo" v-model="window.type">Глухое окно</label>
+                  <label for="secondo"><input id="secondo" name="type" type="radio" value="secondo" v-model="window.type">Поворотное окно</label>
+                  <label for="tetro"><input id="tetro" name="type" type="radio" value="tetro" v-model="window.type">Поворотно-откидное окно</label>
+                </div>
               </div>
               <div class="col-md-6">
                 <h4 class="page-header">Предпросмотр:</h4>
@@ -44,8 +44,40 @@
             </div>
           </section>
 
+          <!-- ADDITIONS -->
+          <section class="well">
+            <h3 class="page-header">Дополнительно:</h3>
+            <div class="checkbox">
+              <label class="checkbox-inline" for="uno">
+                <input id="uno" type="checkbox" value="uno"> Монтаж
+                <p class="text-muted">{{ window.montageCost }} руб</p>
+              </label>
+            </div>
+            <div class="checkbox">
+              <label class="checkbox-inline" for="uno">
+                <input id="duo" type="checkbox" value="duo"> Подоконник
+                <p class="text-muted">{{ window.sill }}</p>
+              </label>
+            </div>
+            <div class="checkbox">
+              <label class="checkbox-inline" for="uno">
+                <input id="tre" type="checkbox" value="tre"> Откосы
+                <p class="text-muted">{{ window.slope }}</p>
+              </label>
+            </div>
+              <!--<label class="checkbox-inline" for="uno">
+                <input id="duo" type="checkbox" value="duo"> Подоконник
+                <p>{{ window.sill }}</p>
+              </label>
+              <label class="checkbox-inline" for="uno">
+                <input id="tre" type="checkbox" value="tre"> Откосы
+                <p>{{ window.slope }}</p>
+              </label>-->
+            <!--</div>-->
+          </section>
+
           <!-- PROFILE -->
-          <section class="form-group">
+          <section class="form-group well">
             <h3 class="page-header">Профиль:</h3>
             <select class="form-control" v-model="window.profilePrice">
               <option v-for="(profile, index) in profiles" :key="index" :value="profile.price"> {{ profile.title }}
@@ -53,14 +85,14 @@
           </section>
 
           <!-- PACKET -->
-          <section class="form-group">
+          <section class="form-group well">
             <h3 class="page-header">Стеклопакет</h3>
             <select class="form-control" v-model="window.packetPrice">
               <option v-for="(packet, index) in packets" :key="index" :value="packet.price"> {{ packet.title }}
             </select>
           </section>
 
-          <div class="form-group">
+          <div class="form-group well">
             <button class="btn btn-default" type="button" @click="onCalc()">Calculate</button>
           </div>
         
