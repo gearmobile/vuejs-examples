@@ -8,7 +8,8 @@ const app = new Vue({
       thickness: 100,
       percent: 10,
       type: 'tetro',
-      furnitura: 2000
+      furnitura1: 2000,
+      furnitura2: 3000
     },
     profiles: [
       { title: 'Profile 1', price: 1000, furnitura: 500 },
@@ -82,14 +83,39 @@ const app = new Vue({
         this.output.area = this.packetArea(this.window.height - this.window.thickness * 2, this.window.width - this.window.thickness * 2, this.window.thickness)
         this.output.windowCost = this.productCost(this.output.profile, this.output.area, this.window.profilePrice, this.window.packetPrice)
         this.output.workCost = this.workCost(this.output.windowCost, this.window.percent)
-        this.output.totalCost = this.commonCost(this.output.windowCost, this.output.workCost) + this.window.furnitura
+        this.output.totalCost = this.commonCost(this.output.windowCost, this.output.workCost) + this.window.furnitura1
+        this.clearForm()
+    },
+    thirdWindow () {
+        this.output.profileOuter = this.profileOuterLength(this.window.height, this.window.width)
+        this.output.profileInner = this.profileInnerLength(this.window.height, this.window.width, this.window.thickness)
+        this.output.profile = parseInt(this.output.profileOuter) + parseInt(this.output.profileInner)
+        this.output.area = this.packetArea(this.window.height - this.window.thickness * 2, this.window.width - this.window.thickness * 2, this.window.thickness)
+        this.output.windowCost = this.productCost(this.output.profile, this.output.area, this.window.profilePrice, this.window.packetPrice)
+        this.output.workCost = this.workCost(this.output.windowCost, this.window.percent)
+        this.output.totalCost = this.commonCost(this.output.windowCost, this.output.workCost) + this.window.furnitura2
         this.clearForm()
     },
     onCalc () {
       if (!this.window.width && !this.window.height) {
         alert('error')
-      } else {
-        this.secondWindow()
+        return
+      }
+      switch (this.window.type) {
+        case 'primo':
+          this.simpleWindow()
+          console.log('case PRIMO fired')
+          break
+        case 'secondo':
+          this.secondWindow()
+          console.log('case SECONDO fired')
+          break
+        case 'tetro':
+          this.thirdWindow()
+          console.log('case TETRO fired')
+          break
+        default:
+          break
       }
     }
   }
