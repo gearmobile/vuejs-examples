@@ -1,15 +1,23 @@
 
 
-// ОБЩАЯ ДЛИНА РАМЫ ГЛУХАРЯ
-function ramaLength (height, width) {
+// ОБЩАЯ ДЛИНА РАМЫ
+function profileLength (height, width) {
 	const totalLength = ((parseInt(width) + parseInt(height)) * 2) / 1000
 	return totalLength
 }
 
+// ОБЩАЯ ДЛИНА СТВОРКИ
+function stvorkaLength (height, width, rama) {
+	const h = height - rama * 2
+	const w = width - rama * 2
+	const l = (w + h) * 2
+	return l
+}
+
 // ПЛОЩАДЬ СТЕКЛОПАКЕТА
-function packetArea (height, width, rama) {
-	const packetHeight = parseInt(height) - parseInt(rama) * 2
-	const packetWidth = parseInt(width) - parseInt(rama) * 2
+function packetArea (height, width, profile) {
+	const packetHeight = parseInt(height) - parseInt(profile) * 2
+	const packetWidth = parseInt(width) - parseInt(profile) * 2
 	const packetArea = (packetWidth * packetHeight) / 1000000
 	return packetArea
 }
