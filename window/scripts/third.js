@@ -1,18 +1,35 @@
 const app = new Vue({
   data: {
     window: {
-      width: null,
-      height: null,
-      profilePrice: 1000,
-      packetPrice: 600,
-      thickness: 100,
+      dimentions: {
+        width: null,
+        height: null
+      },
+      profile: {
+        price: 1000,
+        thickness: 100
+      },
+      packet: {
+        price: 600
+      },
       percent: 10,
-      type: 'tetro',
-      furnitura1: 2000,
-      furnitura2: 3000,
-      montageCost: 1000,
-      sill: 1300,
-      slope: 1000
+      type: 'tilt',
+      furnitura: {
+        tilt: 2000,
+        turn: 3000
+      },
+      checked: [],
+      additions: {
+        montage: {
+          price: 1000
+        },
+        slope: {
+          price: 1000
+        },
+        sill: {
+          price: 1000
+        }
+      }
     },
     profiles: [
       { title: 'Profile 1', price: 1000, furnitura: 500 },
@@ -27,13 +44,17 @@ const app = new Vue({
       { title: 'Packet 4', price: 900 }
     ],
     output: {
-      profile: null,
-      profileOuter: null,
-      profileInner: null,
       area: null,
-      windowCost: null,
-      workCost: null,
-      totalCost: null
+      profile: {
+        total: null,
+        outer: null,
+        inner: null
+      },
+      cost: {
+        window: null,
+        work: null,
+        total: null
+      }
     }
   },
   methods: {
@@ -68,54 +89,51 @@ const app = new Vue({
       return costCommon
     },
     clearForm () {
-      this.window.width = null
-      this.window.height = null
+      this.window.dimentions.width = null
+      this.window.dimentions.height = null
     },
     simpleWindow () {
-      this.output.profile = this.profileOuterLength(this.window.height, this.window.width)
-      this.output.area = this.packetArea(this.window.height, this.window.width, this.window.thickness)
-      this.output.windowCost = this.productCost(this.output.profile, this.output.area, this.window.profilePrice, this.window.packetPrice)
-      this.output.workCost = this.workCost(this.output.windowCost, this.window.percent)
-      this.output.totalCost = this.commonCost(this.output.windowCost, this.output.workCost)
+      this.output.profile.total = this.profileOuterLength(this.window.dimentions.height, this.window.dimentions.width)
+      this.output.area = this.packetArea(this.window.dimentions.height, this.window.dimentions.width, this.window.profile.thickness)
+      this.output.cost.window = this.productCost(this.output.profile, this.output.area, this.window.profile.price, this.window.packet.price)
+      this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
+      this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.window)
       this.clearForm()
     },
     secondWindow () {
-        this.output.profileOuter = this.profileOuterLength(this.window.height, this.window.width)
-        this.output.profileInner = this.profileInnerLength(this.window.height, this.window.width, this.window.thickness)
-        this.output.profile = parseInt(this.output.profileOuter) + parseInt(this.output.profileInner)
-        this.output.area = this.packetArea(this.window.height - this.window.thickness * 2, this.window.width - this.window.thickness * 2, this.window.thickness)
-        this.output.windowCost = this.productCost(this.output.profile, this.output.area, this.window.profilePrice, this.window.packetPrice)
-        this.output.workCost = this.workCost(this.output.windowCost, this.window.percent)
-        this.output.totalCost = this.commonCost(this.output.windowCost, this.output.workCost) + this.window.furnitura1
+        this.output.profile.outer = this.profileOuterLength(this.window.dimentions.height, this.window.dimentions.width)
+        this.output.profile.inner = this.profileInnerLength(this.window.dimentions.height, this.window.dimentions.width, this.window.profile.thickness)
+        this.output.profile.total = parseInt(this.output.profile.outer) + parseInt(this.output.profile.inner)
+        this.output.area = this.packetArea(this.window.dimentions.height - this.window.profile.thickness * 2, this.window.dimentions.width - this.window.profile.thickness * 2, this.window.profile.thickness)
+        this.output.cost.window = this.productCost(this.output.profile.total, this.output.area, this.window.profile.price, this.window.packet.price)
+        this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
+        this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.work) + this.window.furnitura.turn
         this.clearForm()
     },
     thirdWindow () {
-        this.output.profileOuter = this.profileOuterLength(this.window.height, this.window.width)
-        this.output.profileInner = this.profileInnerLength(this.window.height, this.window.width, this.window.thickness)
-        this.output.profile = parseInt(this.output.profileOuter) + parseInt(this.output.profileInner)
-        this.output.area = this.packetArea(this.window.height - this.window.thickness * 2, this.window.width - this.window.thickness * 2, this.window.thickness)
-        this.output.windowCost = this.productCost(this.output.profile, this.output.area, this.window.profilePrice, this.window.packetPrice)
-        this.output.workCost = this.workCost(this.output.windowCost, this.window.percent)
-        this.output.totalCost = this.commonCost(this.output.windowCost, this.output.workCost) + this.window.furnitura2
+        this.output.profile.outer = this.profileOuterLength(this.window.dimentions.height, this.window.dimentions.width)
+        this.output.profile.inner = this.profileInnerLength(this.window.dimentions.height, this.window.dimentions.width, this.window.profile.thickness)
+        this.output.profile.total = parseInt(this.output.profile.outer) + parseInt(this.output.profile.inner)
+        this.output.area = this.packetArea(this.window.dimentions.height - this.window.profile.thickness * 2, this.window.dimentions.width - this.window.profile.thickness * 2, this.window.profile.thickness)
+        this.output.cost.window = this.productCost(this.output.profile.total, this.output.area, this.window.profile.price, this.window.packet.price)
+        this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
+        this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.work) + this.window.furnitura.titl
         this.clearForm()
     },
     onCalc () {
-      if (!this.window.width && !this.window.height) {
+      if (!this.window.dimentions.width && !this.window.dimentions.height) {
         alert('error')
         return
       }
       switch (this.window.type) {
-        case 'primo':
+        case 'simple':
           this.simpleWindow()
-          console.log('case PRIMO fired')
           break
-        case 'secondo':
+        case 'turn':
           this.secondWindow()
-          console.log('case SECONDO fired')
           break
-        case 'tetro':
+        case 'tilt':
           this.thirdWindow()
-          console.log('case TETRO fired')
           break
         default:
           break
@@ -123,4 +141,5 @@ const app = new Vue({
     }
   }
 });
+
 app.$mount('#app');

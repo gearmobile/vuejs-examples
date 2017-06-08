@@ -33,9 +33,15 @@
               <div class="col-md-6">
                 <h4 class="page-header">Выберите тип окна:</h4>
                 <div class="radio">
-                  <label for="primo"><input id="primo" name="type" type="radio" value="primo" v-model="window.type">Глухое окно</label>
-                  <label for="secondo"><input id="secondo" name="type" type="radio" value="secondo" v-model="window.type">Поворотное окно</label>
-                  <label for="tetro"><input id="tetro" name="type" type="radio" value="tetro" v-model="window.type">Поворотно-откидное окно</label>
+                  <label for="primo">
+                    <input id="primo" name="type" type="radio" value="simple" v-model="window.type"> Глухое окно
+                  </label>
+                  <label for="secondo">
+                    <input id="secondo" name="type" type="radio" value="turn" v-model="window.type"> Поворотное окно
+                  </label>
+                  <label for="tetro">
+                    <input id="tetro" name="type" type="radio" value="tilt" v-model="window.type"> Поворотно-откидное окно
+                  </label>
                 </div>
               </div>
               <div class="col-md-6">
@@ -44,50 +50,41 @@
             </div>
           </section>
 
+          <!-- PROFILE -->
+          <section class="form-group well">
+            <h3 class="page-header">Профиль:</h3>
+            <ul class="list-group">
+              <li class="list-group-item" v-for="(profile, index) in profiles" :key="index">{{ profile.title }}</li>
+            </ul>
+          </section>
+
           <!-- ADDITIONS -->
           <section class="well">
             <h3 class="page-header">Дополнительно:</h3>
             <div class="checkbox">
               <label class="checkbox-inline" for="uno">
-                <input id="uno" type="checkbox" value="uno"> Монтаж
-                <p class="text-muted">{{ window.montageCost }} руб</p>
+                <input id="uno" type="checkbox" value="montage" v-model="window.checked"> Монтаж
+                <p class="text-muted">{{ window.additions.montage.price }} руб</p>
               </label>
             </div>
             <div class="checkbox">
-              <label class="checkbox-inline" for="uno">
-                <input id="duo" type="checkbox" value="duo"> Подоконник
-                <p class="text-muted">{{ window.sill }}</p>
+              <label class="checkbox-inline" for="duo">
+                <input id="duo" type="checkbox" value="sill" v-model="window.checked"> Подоконник
+                <p class="text-muted">{{ window.additions.sill.price }} руб</p>
               </label>
             </div>
             <div class="checkbox">
-              <label class="checkbox-inline" for="uno">
-                <input id="tre" type="checkbox" value="tre"> Откосы
-                <p class="text-muted">{{ window.slope }}</p>
+              <label class="checkbox-inline" for="tre">
+                <input id="tre" type="checkbox" value="slope" v-model="window.checked"> Откосы
+                <p class="text-muted">{{ window.additions.slope.price }} руб</p>
               </label>
             </div>
-              <!--<label class="checkbox-inline" for="uno">
-                <input id="duo" type="checkbox" value="duo"> Подоконник
-                <p>{{ window.sill }}</p>
-              </label>
-              <label class="checkbox-inline" for="uno">
-                <input id="tre" type="checkbox" value="tre"> Откосы
-                <p>{{ window.slope }}</p>
-              </label>-->
-            <!--</div>-->
-          </section>
-
-          <!-- PROFILE -->
-          <section class="form-group well">
-            <h3 class="page-header">Профиль:</h3>
-            <select class="form-control" v-model="window.profilePrice">
-              <option v-for="(profile, index) in profiles" :key="index" :value="profile.price"> {{ profile.title }}
-            </select>
           </section>
 
           <!-- PACKET -->
           <section class="form-group well">
             <h3 class="page-header">Стеклопакет</h3>
-            <select class="form-control" v-model="window.packetPrice">
+            <select class="form-control" v-model="window.packet.price">
               <option v-for="(packet, index) in packets" :key="index" :value="packet.price"> {{ packet.title }}
             </select>
           </section>
@@ -104,11 +101,11 @@
           <div class="form-group" id="output">
             <h2 class="page-header">Результаты:</h2>
             <ul class="list-group">
-              <li class="list-group-item">Рама: {{ output.profile }} м</li>
+              <li class="list-group-item">Рама: {{ output.profile.total }} м</li>
               <li class="list-group-item">Стеклопакет: {{ output.area }} кв. м</li>
-              <li class="list-group-item">Стоимость изделия: {{ output.windowCost }} руб</li>
-              <li class="list-group-item">Стоимость монтажных работ: {{ output.workCost }} руб</li>
-              <li class="list-group-item">Общая стоимость: {{ output.totalCost }} руб</li>
+              <li class="list-group-item">Стоимость изделия: {{ output.cost.window }} руб</li>
+              <li class="list-group-item">Стоимость монтажных работ: {{ output.cost.work }} руб</li>
+              <li class="list-group-item">Общая стоимость: {{ output.cost.total }} руб</li>
             </ul>
           </div>
 
