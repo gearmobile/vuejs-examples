@@ -4,112 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/styles.css">
     <title>Window Calculator</title>
   </head>
   <body>
-    <div id="app" class="container">
+    
+    <div id="app" class="container window">
       <div class="row">
-        <div class="col-md-6">
-          <h2 class="page-header">Одинарное окно</h2>
-          
-          <!-- INPUT WINDOW DIMENTIONS -->
-          <section class="well">
-            <h3 class="page-header">Размеры окна:</h3>
-            <div class="form-group">
-              <label for="height">Window Height
-              <input class="form-control" id="height" type="text" placeholder="height window" v-model.trim="window.height">
-            </div>
-            <div class="form-group">
-              <label for="width">Window Width
-              <input class="form-control" id="width" type="text" placeholder="width window" v-model.trim="window.width">
-            </div>
-          </section>
-
-          <!-- TYPE WINDOW -->
-          <section class="well">
-            <h3 class="page-header">Тип окна:</h3>
-            <div class="row">
-              <div class="col-md-6">
-                <h4 class="page-header">Выберите тип окна:</h4>
-                <div class="radio">
-                  <label for="primo">
-                    <input id="primo" name="type" type="radio" value="simple" v-model="window.type"> Глухое окно
-                  </label>
-                  <label for="secondo">
-                    <input id="secondo" name="type" type="radio" value="turn" v-model="window.type"> Поворотное окно
-                  </label>
-                  <label for="tetro">
-                    <input id="tetro" name="type" type="radio" value="tilt" v-model="window.type"> Поворотно-откидное окно
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <h4 class="page-header">Предпросмотр:</h4>
-              </div>
-            </div>
-          </section>
-
-          <!-- PROFILE -->
-          <section class="form-group well">
-            <h3 class="page-header">Профиль:</h3>
-            <ul class="list-group">
-              <li class="list-group-item" v-for="(profile, index) in profiles" :key="index">{{ profile.title }}</li>
-            </ul>
-          </section>
-
-          <!-- ADDITIONS -->
-          <section class="well">
-            <h3 class="page-header">Дополнительно:</h3>
-            <div class="checkbox">
-              <label class="checkbox-inline" for="uno">
-                <input id="uno" type="checkbox" value="montage" v-model="window.checked"> Монтаж
-                <p class="text-muted">{{ window.additions.montage.price }} руб</p>
-              </label>
-            </div>
-            <div class="checkbox">
-              <label class="checkbox-inline" for="duo">
-                <input id="duo" type="checkbox" value="sill" v-model="window.checked"> Подоконник
-                <p class="text-muted">{{ window.additions.sill.price }} руб</p>
-              </label>
-            </div>
-            <div class="checkbox">
-              <label class="checkbox-inline" for="tre">
-                <input id="tre" type="checkbox" value="slope" v-model="window.checked"> Откосы
-                <p class="text-muted">{{ window.additions.slope.price }} руб</p>
-              </label>
-            </div>
-          </section>
-
-          <!-- PACKET -->
-          <section class="form-group well">
-            <h3 class="page-header">Стеклопакет</h3>
-            <select class="form-control" v-model="window.packet.price">
-              <option v-for="(packet, index) in packets" :key="index" :value="packet.price"> {{ packet.title }}
-            </select>
-          </section>
-
-          <div class="form-group well">
-            <button class="btn btn-default" type="button" @click="onCalc()">Calculate</button>
-          </div>
+        <h2 class="page-header">Одинарное окно</h2>
         
-        </div><!-- col-md -->
-
-        <div class="col-md-6">
-
-          <!--OUTPUT SECTION-->
-          <div class="form-group" id="output">
-            <h2 class="page-header">Результаты:</h2>
-            <ul class="list-group">
-              <li class="list-group-item">Рама: {{ output.profile.total }} м</li>
-              <li class="list-group-item">Стеклопакет: {{ output.area }} кв. м</li>
-              <li class="list-group-item">Стоимость изделия: {{ output.cost.window }} руб</li>
-              <li class="list-group-item">Стоимость монтажных работ: {{ output.cost.work }} руб</li>
-              <li class="list-group-item">Общая стоимость: {{ output.cost.total }} руб</li>
-            </ul>
+        <!-- INPUT WINDOW DIMENTIONS -->
+        <section class="well">
+          <h3 class="page-header">Размеры окна:</h3>
+          <div class="form-group">
+            <label class="window__label"> Window Height: <span>{{ window.dimentions.height }}мм</span>
+            <input class="window__input" min="600" max="1600" step="10" type="range" v-model.trim="window.dimentions.height">
           </div>
+          <div class="form-group">
+            <label class="window__label"> Window Width: <span>{{ window.dimentions.width }}мм</span>
+            <input class="window__input" min="400" max="1400" step="10" type="range" v-model.trim="window.dimentions.width">
+          </div>
+        </section>
 
-        </div><!-- col-md -->
+        <!-- TYPE WINDOW -->
+        <section class="well">
+          <h3 class="page-header">Тип окна:</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <h4 class="page-header">Выберите тип окна:</h4>
+              <div class="radio">
+                <label for="primo">
+                  <input id="primo" name="type" type="radio" value="simple" v-model="window.type"> Глухое окно
+                </label>
+              </div>
+              <div class="radio">
+                <label for="secondo">
+                  <input id="secondo" name="type" type="radio" value="turn" v-model="window.type"> Поворотное окно
+                </label>
+              </div>
+              <div class="radio">
+                <label for="tetro">
+                  <input id="tetro" name="type" type="radio" value="tilt" v-model="window.type"> Поворотно-откидное окно
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h4 class="page-header">Предпросмотр:</h4>
+              <figure class="picture">
+                <img class="picture__inner" :src="imagePath" alt="Window">
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- PROFILE -->
+        <section class="form-group well">
+          <h3 class="page-header">Профиль:</h3>
+          <ul class="list-group">
+            <li class="list-group-item" v-for="(profile, index) in profiles" :key="index">{{ profile.title }}</li>
+          </ul>
+        </section>
+
+        <!-- ADDITIONS -->
+        <section class="well">
+          <h3 class="page-header">Дополнительно:</h3>
+          <div class="checkbox">
+            <label class="checkbox-inline" for="uno">
+              <input id="uno" type="checkbox" value="montage" v-model="window.checked"> Монтаж
+              <p class="text-muted">{{ montageCost | roundDown }} руб</p>
+            </label>
+          </div>
+          <div class="checkbox">
+            <label class="checkbox-inline" for="duo">
+              <input id="duo" type="checkbox" value="sill" v-model="window.checked"> Подоконник
+              <p class="text-muted">{{ sillCost | roundDown }} руб</p>
+            </label>
+          </div>
+          <div class="checkbox">
+            <label class="checkbox-inline" for="tre">
+              <input id="tre" type="checkbox" value="slope" v-model="window.checked"> Откосы
+              <p class="text-muted">{{ slopeCost | roundDown }} руб</p>
+            </label>
+          </div>
+        </section>
+
+        <!-- PACKET -->
+        <section class="form-group well">
+          <h3 class="page-header">Стеклопакет</h3>
+          <select class="form-control" v-model="window.packet.price">
+            <option v-for="(packet, index) in packets" :key="index" :value="packet.price"> {{ packet.title }}
+          </select>
+        </section>
+
+        <div class="form-group well">
+          <button class="btn btn-default" type="button" @click="onCalc()">Calculate</button>
+        </div>
+
+        <!--OUTPUT SECTION-->
+        <div class="form-group" id="output">
+          <h2 class="page-header">Результаты:</h2>
+          <ul class="list-group">
+            <li class="list-group-item">Рама: {{ output.profile.total }} м</li>
+            <li class="list-group-item">Стеклопакет: {{ output.area }} кв. м</li>
+            <li class="list-group-item">Стоимость изделия: {{ output.cost.window }} руб</li>
+            <li class="list-group-item">Стоимость монтажных работ: {{ output.cost.work }} руб</li>
+            <li class="list-group-item">Общая стоимость: {{ output.cost.total }} руб</li>
+          </ul>
+        </div>
         
       </div><!-- row -->
       
