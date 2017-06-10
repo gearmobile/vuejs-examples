@@ -2,7 +2,7 @@ const app = new Vue({
   data: {
     state: {
       profile: 'Стандарт',
-      window: 'tilt'
+      window: 'simple'
     },
     // CURRENT WINDOW
     // ---------------------
@@ -156,7 +156,7 @@ const app = new Vue({
       return value ? value / 1000 : null
     },
     doubleDivider (value) {
-      return value ? value / 1000000 : null
+      return value ? value / 100000 : null
     },
     roundDown (value) {
       return value ? Math.round(value) : null
@@ -227,13 +227,14 @@ const app = new Vue({
       const costWork = (parseInt(totalSum) * parseInt(percent)) / 100
       return costWork
     },
-    commonCost (costProduct, costWork, costAddittions) {
-      const costCommon = parseInt(costProduct) + parseInt(costWork) + parseInt(costAddittions)
+    commonCost (costProduct, costWork, costAddittions) { // TODO не работает общая сумма
+      const costCommon = (costAddittions === null) ? parseInt(costProduct) + parseInt(costWork) : parseInt(costProduct) + parseInt(costWork) + parseInt(costAddittions)
       return costCommon
     },
     simpleWindow () {
       this.output.profile.total = this.profileOuterLength(this.window.dimentions.height, this.window.dimentions.width)
       this.output.area = this.packetArea(this.window.dimentions.height, this.window.dimentions.width, this.window.profile.thickness)
+      //
       this.output.cost.window = this.productCost(this.output.profile.total, this.output.area, this.window.profile.price, this.window.packet.price)
       this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
       this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.work, this.output.cost.additional)
@@ -252,6 +253,7 @@ const app = new Vue({
         this.output.profile.inner = this.profileInnerLength(this.window.dimentions.height, this.window.dimentions.width, this.window.profile.thickness)
         this.output.profile.total = parseInt(this.output.profile.outer) + parseInt(this.output.profile.inner)
         this.output.area = this.packetArea(this.window.dimentions.height - this.window.profile.thickness * 2, this.window.dimentions.width - this.window.profile.thickness * 2, this.window.profile.thickness)
+        //
         this.output.cost.window = this.productCost(this.output.profile.total, this.output.area, this.window.profile.price, this.window.packet.price)
         this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
         this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.work) + this.window.furnitura.titl

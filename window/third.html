@@ -117,9 +117,9 @@
           <ul class="list-group">
             <li class="list-group-item">Рама: {{ output.profile.total | singleDivider }} м</li>
             <li class="list-group-item">Стеклопакет: {{ output.area | doubleDivider }} кв. м</li>
-            <li class="list-group-item">Стоимость изделия: {{ output.cost.window }} руб</li>
-            <li class="list-group-item">Стоимость монтажных работ: {{ output.cost.work }} руб</li>
-            <li class="list-group-item">Общая стоимость: {{ output.cost.total }} руб</li>
+            <li class="list-group-item">Стоимость изделия: {{ output.cost.window | doubleDivider }} руб</li>
+            <li class="list-group-item">Стоимость монтажных работ: {{ output.cost.work | doubleDivider }} руб</li>
+            <li class="list-group-item">Общая стоимость: {{ output.cost.total | doubleDivider }} руб</li>
           </ul>
         </div>
         
