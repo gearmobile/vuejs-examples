@@ -11,6 +11,14 @@ const app = new Vue({
         width: 1400,
         height: 1200
       },
+      sizes: {
+        minH: 1000,
+        maxH: 1650,
+        stepH: 10,
+        minW: 400,
+        maxW: 1400,
+        stepW: 10
+      },
       profile: {
         price: 1000,
         thickness: 100

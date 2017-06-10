@@ -19,11 +19,11 @@
           <h3 class="page-header">Размеры окна:</h3>
           <div class="form-group">
             <label class="window__label"> Window Height: <span>{{ window.dimentions.height }}мм</span>
-            <input class="window__input" min="1000" max="1650" step="10" type="range" v-model.trim="window.dimentions.height">
+            <input class="window__input" :min="window.sizes.minH" :max="window.sizes.maxH" :step="window.sizes.stepH" type="range" v-model.trim="window.dimentions.height">
           </div>
           <div class="form-group">
             <label class="window__label"> Window Width: <span>{{ window.dimentions.width }}мм</span>
-            <input class="window__input" min="400" max="1400" step="10" type="range" v-model.trim="window.dimentions.width">
+            <input class="window__input" :min="window.sizes.minW" :max="window.sizes.maxW" :step="window.sizes.stepW" type="range" v-model.trim="window.dimentions.width">
           </div>
         </section>
 
