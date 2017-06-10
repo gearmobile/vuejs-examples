@@ -61,13 +61,18 @@
               <transition>
                 <footer class="item__content bg-info" v-if="profile.show">
                   <h4>{{ profile.details.type }}</h4>
-                  <ul>
-                    <li>Стеклопакет: {{ profile.details.packet }}</li>
-                    <li>Формула: {{ profile.details.formula }}</li>
-                    <li>Фурнитура: {{ profile.details.furnitura }}</li>
-                    <li>Базовый цвет: {{ profile.details.color }}</li>
-                    <li>Уплотнитель: {{ profile.details.sealer }}</li>
-                  </ul>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <ul>
+                        <li>Стеклопакет: {{ profile.details.packet }}</li>
+                        <li>Формула: {{ profile.details.formula }}</li>
+                        <li>Фурнитура: {{ profile.details.furnitura }}</li>
+                        <li>Базовый цвет: {{ profile.details.color }}</li>
+                        <li>Уплотнитель: {{ profile.details.sealer }}</li>
+                      </ul>
+                    </div>
+                    <div class="col-xs-6"></div>
+                  </div>
                 </footer>
               </transition>
             </label>
@@ -97,6 +102,7 @@
           </div>
         </section>
 
+        <!-- SUBMIT SECTION -->
         <div class="form-group well">
           <button class="btn btn-default" type="button" @click="onCalc()">Calculate</button>
         </div>
