@@ -2,8 +2,8 @@ const app = new Vue({
   data: {
     window: {
       dimentions: {
-        width: 1000,
-        height: 1000
+        width: 1400,
+        height: 1200
       },
       profile: {
         price: 1000,
@@ -27,15 +27,63 @@ const app = new Vue({
           price: 193
         },
         sill: {
-          price: 1600
+          price: 1191
         }
       }
     },
     profiles: [
-      { title: 'Profile 1', price: 1000, furnitura: 500 },
-      { title: 'Profile 2', price: 1100, furnitura: 600 },
-      { title: 'Profile 3', price: 1200, furnitura: 700 },
-      { title: 'Profile 4', price: 1300, furnitura: 800 }
+      {
+        title: 'Стандарт',
+        textColor: 'text-muted',
+        type: 'Rehau Blitz',
+        packet: '32мм, 2 камеры',
+        formula: '4x10x4x10x4',
+        furnitura: 'Siegenia-Aubi, Favorit',
+        color: 'белый',
+        sealer: 'черный',
+        show: false,
+        price: 1000,
+        furnitura: 500
+      },
+      {
+        title: 'Комфорт',
+        textColor: 'text-primary',
+        type: 'Rehau Delight',
+        packet: '32мм, 2 камеры',
+        formula: '4x10x4x10x4',
+        furnitura: 'Siegenia-Aubi, Favorit',
+        color: 'белый',
+        sealer: 'черный',
+        show: false,
+        price: 1100,
+        furnitura: 600
+      },
+      { 
+        title: 'Премиум',
+        textColor: 'text-success',
+        type: 'Rehau Brilliant',
+        packet: '32мм, 2 камеры',
+        formula: '4x10x4x10x4',
+        furnitura: 'Siegenia-Aubi, Favorit',
+        color: 'белый',
+        sealer: 'черный',
+        show: false,
+        price: 1200,
+        furnitura: 700
+      },
+      {
+        title: 'Эксклюзив',
+        textColor: 'text-danger',
+        type: 'Rehau Geneo',
+        packet: '32мм, 2 камеры',
+        formula: '4x10x4x10x4',
+        furnitura: 'Siegenia-Aubi, Favorit',
+        color: 'белый',
+        sealer: 'черный',
+        show: false,
+        price: 1300,
+        furnitura: 800
+      }
     ],
     packets: [
       { title: 'Packet 1', price: 600 },
@@ -66,7 +114,7 @@ const app = new Vue({
       return value / 1000000
     },
     roundDown (value) {
-      return Math.round(value).toLocaleString() // TODO добавить разделитель тысячных долей
+      return Math.round(value)
     },
   },
   computed: {

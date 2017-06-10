@@ -19,7 +19,7 @@
           <h3 class="page-header">Размеры окна:</h3>
           <div class="form-group">
             <label class="window__label"> Window Height: <span>{{ window.dimentions.height }}мм</span>
-            <input class="window__input" min="600" max="1600" step="10" type="range" v-model.trim="window.dimentions.height">
+            <input class="window__input" min="1000" max="1650" step="10" type="range" v-model.trim="window.dimentions.height">
           </div>
           <div class="form-group">
             <label class="window__label"> Window Width: <span>{{ window.dimentions.width }}мм</span>
@@ -62,7 +62,24 @@
         <section class="form-group well">
           <h3 class="page-header">Профиль:</h3>
           <ul class="list-group">
-            <li class="list-group-item" v-for="(profile, index) in profiles" :key="index">{{ profile.title }}</li>
+            <li class="item list-group-item text-capitalize" v-for="(profile, index) in profiles" :key="index">
+              <header class="item__wrapper clearfix" @click="profile.show = !profile.show">
+                <h4 class="item__title text-capitalize pull-left" :class="profile.textColor">{{ profile.title }}</h4>
+                <label class="item__label pull-right" for="">{{ profile.type }}</label>
+              </header>
+              <transition name="showMe">
+                <footer class="item__content bg-info" v-if="profile.show">
+                  <h5>{{ profile.type }}</h5>
+                  <ul>
+                    <li>Стеклопакет: {{ profile.packet }}</li>
+                    <li>Формула: {{ profile.formula }}</li>
+                    <li>Фурнитура: {{ profile.furnitura }}</li>
+                    <li>Базовый цвет: {{ profile.color }}</li>
+                    <li>Уплотнитель: {{ profile.sealer }}</li>
+                  </ul>
+                </footer>
+              </transition>
+            </li>
           </ul>
         </section>
 
@@ -72,19 +89,19 @@
           <div class="checkbox">
             <label class="checkbox-inline" for="uno">
               <input id="uno" type="checkbox" value="montage" v-model="window.checked"> Монтаж
-              <p class="text-muted">{{ montageCost | roundDown }} руб</p>
+              <p class="text-muted">+{{ montageCost | roundDown }} руб</p>
             </label>
           </div>
           <div class="checkbox">
             <label class="checkbox-inline" for="duo">
               <input id="duo" type="checkbox" value="sill" v-model="window.checked"> Подоконник
-              <p class="text-muted">{{ sillCost | roundDown }} руб</p>
+              <p class="text-muted">+{{ sillCost | roundDown }} руб</p>
             </label>
           </div>
           <div class="checkbox">
             <label class="checkbox-inline" for="tre">
               <input id="tre" type="checkbox" value="slope" v-model="window.checked"> Откосы
-              <p class="text-muted">{{ slopeCost | roundDown }} руб</p>
+              <p class="text-muted">+{{ slopeCost | roundDown }} руб</p>
             </label>
           </div>
         </section>
@@ -103,7 +120,7 @@
 
         <!--OUTPUT SECTION-->
         <div class="form-group" id="output">
-          <h2 class="page-header">Результаты:</h2>
+          <h3 class="page-header">Итоговая стоимость выбранного окна и дополнительных опций:</h3>
           <ul class="list-group">
             <li class="list-group-item">Рама: {{ output.profile.total }} м</li>
             <li class="list-group-item">Стеклопакет: {{ output.area }} кв. м</li>

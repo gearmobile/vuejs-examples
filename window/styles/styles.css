@@ -18,3 +18,31 @@
   margin-left: 10%;
   margin-top: 10px;
 }
+
+#app .window__profile {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#app .item__wrapper {
+  cursor: pointer;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+#app .item__wrapper:hover {
+  background-color: #eee;
+}
+
+#app .item__title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#app .item__label {
+  margin-bottom: 0;
+}
+
+#app .item__content {
+  padding: 2rem 1rem;
+}
