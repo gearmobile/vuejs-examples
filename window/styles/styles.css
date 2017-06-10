@@ -41,6 +41,10 @@
   margin-bottom: 0;
 }
 
+#app .item__subtitle {
+  /*margin-top: 0;*/
+}
+
 #app .item__label {
   margin-bottom: 0;
   margin-top: 0;

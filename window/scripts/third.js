@@ -22,18 +22,15 @@ const app = new Vue({
       types: [
         { 
           title: 'simple',
-          name: 'Глухое окно',
-          preview: './images/doggy-01.jpg'
+          name: 'Глухое окно'
         },
         {
           title: 'turn',
-          name: 'Поворотное окно',
-          preview: './images/doggy-01.jpg'
+          name: 'Поворотное окно'
         },
         { 
           title: 'tilt',
-          name: 'Поворотно-откидное окно',
-          preview: './images/doggy-04.jpg'
+          name: 'Поворотно-откидное окно'
         }
       ],
       furnitura: {
@@ -71,6 +68,7 @@ const app = new Vue({
           furnitura: 500,
           packet: 500
         },
+        preview: './images/doggy-01.jpg',
         show: true
       },
       {
@@ -88,6 +86,7 @@ const app = new Vue({
           furnitura: 600,
           packet: 600
         },
+        preview: './images/doggy-02.jpg',
         show: false
       },
       { 
@@ -105,6 +104,7 @@ const app = new Vue({
           furnitura: 700,
           packet: 700
         },
+        preview: './images/doggy-04.jpg',
         show: false
       },
       {
@@ -122,6 +122,7 @@ const app = new Vue({
           furnitura: 800,
           packet: 800
         },
+        preview: './images/doggy-05.jpg',
         show: false
       },
     ],

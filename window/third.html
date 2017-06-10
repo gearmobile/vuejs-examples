@@ -60,7 +60,7 @@
               </header>
               <transition>
                 <footer class="item__content bg-info" v-if="profile.show">
-                  <h4>{{ profile.details.type }}</h4>
+                  <h4 class="item__subtitle">{{ profile.details.type }}</h4>
                   <div class="row">
                     <div class="col-xs-6">
                       <ul>
@@ -71,7 +71,11 @@
                         <li>Уплотнитель: {{ profile.details.sealer }}</li>
                       </ul>
                     </div>
-                    <div class="col-xs-6"></div>
+                    <div class="col-xs-6">
+                      <figure>
+                        <img class="img-responsive img-thumbnail" :src="profile.preview" :alt="profile.title">
+                      </figure>
+                    </div>
                   </div>
                 </footer>
               </transition>
