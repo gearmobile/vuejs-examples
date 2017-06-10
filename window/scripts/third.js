@@ -271,7 +271,7 @@ const app = new Vue({
       }
     },
     selectCalc () {
-      switch (this.window.type) {
+      switch (this.state.window) {
         case 'simple':
           this.simpleWindow()
           break
