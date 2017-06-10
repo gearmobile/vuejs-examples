@@ -22,15 +22,18 @@ const app = new Vue({
       types: [
         { 
           title: 'simple',
-          name: 'Глухое окно'
+          name: 'Глухое окно',
+          preview: './images/doggy-01.jpg'
         },
         {
           title: 'turn',
-          name: 'Поворотное окно'
+          name: 'Поворотное окно',
+          preview: './images/doggy-01.jpg'
         },
         { 
           title: 'tilt',
-          name: 'Поворотно-откидное окно'
+          name: 'Поворотно-откидное окно',
+          preview: './images/doggy-04.jpg'
         }
       ],
       furnitura: {
@@ -153,7 +156,7 @@ const app = new Vue({
   computed: {
     imagePath () {
       let path = null
-      switch (this.window.type) {
+      switch (this.state.window) {
         case 'simple':
           path = './images/doggy-01.jpg'
           break
