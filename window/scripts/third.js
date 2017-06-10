@@ -66,8 +66,8 @@ const app = new Vue({
       return value / 1000000
     },
     roundDown (value) {
-      return Math.round(value) // TODO добавить разделитель тысячных долей
-    }
+      return Math.round(value).toLocaleString() // TODO добавить разделитель тысячных долей
+    },
   },
   computed: {
     imagePath () {
