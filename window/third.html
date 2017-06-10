@@ -33,24 +33,14 @@
           <div class="row">
             <div class="col-md-6">
               <h4 class="page-header">Выберите тип окна:</h4>
-              <div class="radio">
-                <label for="primo">
-                  <input id="primo" name="type" type="radio" value="simple" v-model="window.type"> Глухое окно
-                </label>
-              </div>
-              <div class="radio">
-                <label for="secondo">
-                  <input id="secondo" name="type" type="radio" value="turn" v-model="window.type"> Поворотное окно
-                </label>
-              </div>
-              <div class="radio">
-                <label for="tetro">
-                  <input id="tetro" name="type" type="radio" value="tilt" v-model="window.type"> Поворотно-откидное окно
+              <div class="radio" v-for="(type, index) in window.types">
+                <label :for="type.title">
+                  <input :id="type.title" name="type" type="radio" :value="type.title" v-model="state.window"> {{ type.name }}
                 </label>
               </div>
             </div>
             <div class="col-md-6">
-              <h4 class="page-header">Предпросмотр:</h4>
+              <h4 class="page-header">Предпросмотр типа окна:</h4>
               <figure class="picture">
                 <img class="picture__inner" :src="imagePath" alt="Window">
               </figure>
@@ -58,25 +48,25 @@
           </div>
         </section>
 
-        <!-- PROFILE -->
+        <!-- PROFILES -->
         <section class="form-group well">
           <h3 class="page-header">Профиль:</h3>
-          <div class="checkbox">
+          <div class="radio">
             <label class="item list-group-item text-capitalize" v-for="(profile, index) in profiles" :key="index">
-              <input type="checkbox">
-              <header class="item__wrapper clearfix" @click="profile.show = !profile.show">
-                <h4 class="item__title text-capitalize pull-left" :class="profile.textColor">{{ profile.title }}</h4>
-                <label class="item__label pull-right" for="">{{ profile.type }}</label>
+              <input type="radio" :value="profile.title" name="check-profile" v-model="state.profile">
+              <header class="item__wrapper" @click="profile.show = !profile.show">
+                <h4 class="item__title text-capitalize">{{ profile.title }}</h4>
+                <h3 class="item__label">{{ profile.details.type }}</h3>
               </header>
-              <transition name="showMe">
+              <transition>
                 <footer class="item__content bg-info" v-if="profile.show">
-                  <h5>{{ profile.type }}</h5>
+                  <h4>{{ profile.details.type }}</h4>
                   <ul>
-                    <li>Стеклопакет: {{ profile.packet }}</li>
-                    <li>Формула: {{ profile.formula }}</li>
-                    <li>Фурнитура: {{ profile.furnitura }}</li>
-                    <li>Базовый цвет: {{ profile.color }}</li>
-                    <li>Уплотнитель: {{ profile.sealer }}</li>
+                    <li>Стеклопакет: {{ profile.details.packet }}</li>
+                    <li>Формула: {{ profile.details.formula }}</li>
+                    <li>Фурнитура: {{ profile.details.furnitura }}</li>
+                    <li>Базовый цвет: {{ profile.details.color }}</li>
+                    <li>Уплотнитель: {{ profile.details.sealer }}</li>
                   </ul>
                 </footer>
               </transition>
@@ -105,14 +95,6 @@
               <p class="text-muted">+{{ slopeCost | roundDown }} руб</p>
             </label>
           </div>
-        </section>
-
-        <!-- PACKET -->
-        <section class="form-group well">
-          <h3 class="page-header">Стеклопакет</h3>
-          <select class="form-control" v-model="window.packet.price">
-            <option v-for="(packet, index) in packets" :key="index" :value="packet.price"> {{ packet.title }}
-          </select>
         </section>
 
         <div class="form-group well">

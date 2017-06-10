@@ -1,5 +1,11 @@
 const app = new Vue({
   data: {
+    state: {
+      profile: 'Стандарт',
+      window: 'tilt'
+    },
+    // CURRENT WINDOW
+    // ---------------------
     window: {
       dimentions: {
         width: 1400,
@@ -13,7 +19,20 @@ const app = new Vue({
         price: 600
       },
       percent: 10,
-      type: 'tilt',
+      types: [
+        { 
+          title: 'simple',
+          name: 'Глухое окно'
+        },
+        {
+          title: 'turn',
+          name: 'Поворотное окно'
+        },
+        { 
+          title: 'tilt',
+          name: 'Поворотно-откидное окно'
+        }
+      ],
       furnitura: {
         tilt: 2000,
         turn: 3000
@@ -31,66 +50,80 @@ const app = new Vue({
         }
       }
     },
+    // PROFILES
+    // ---------------------
     profiles: [
       {
         title: 'Стандарт',
-        textColor: 'text-muted',
-        type: 'Rehau Blitz',
-        packet: '32мм, 2 камеры',
-        formula: '4x10x4x10x4',
-        furnitura: 'Siegenia-Aubi, Favorit',
-        color: 'белый',
-        sealer: 'черный',
-        show: false,
-        price: 1000,
-        furnitura: 500
+        details: {
+          type: 'Rehau Blitz',
+          packet: '32мм, 2 камеры',
+          formula: '4x10x4x10x4',
+          furnitura: 'Siegenia-Aubi, Favorit',
+          color: 'белый',
+          sealer: 'черный',
+        },
+        price: {
+          profile: 1000,
+          furnitura: 500,
+          packet: 500
+        },
+        show: true
       },
       {
         title: 'Комфорт',
-        textColor: 'text-primary',
-        type: 'Rehau Delight',
-        packet: '32мм, 2 камеры',
-        formula: '4x10x4x10x4',
-        furnitura: 'Siegenia-Aubi, Favorit',
-        color: 'белый',
-        sealer: 'черный',
-        show: false,
-        price: 1100,
-        furnitura: 600
+        details: {
+          type: 'Rehau Delight',
+          packet: '32мм, 2 камеры',
+          formula: '4x10x4x10x4',
+          furnitura: 'Siegenia-Aubi, Favorit',
+          color: 'белый',
+          sealer: 'черный',
+        },
+        price: {
+          profile: 1100,
+          furnitura: 600,
+          packet: 600
+        },
+        show: false
       },
       { 
         title: 'Премиум',
-        textColor: 'text-success',
-        type: 'Rehau Brilliant',
-        packet: '32мм, 2 камеры',
-        formula: '4x10x4x10x4',
-        furnitura: 'Siegenia-Aubi, Favorit',
-        color: 'белый',
-        sealer: 'черный',
-        show: false,
-        price: 1200,
-        furnitura: 700
+        details: {
+          type: 'Rehau Brilliant',
+          packet: '32мм, 2 камеры',
+          formula: '4x10x4x10x4',
+          furnitura: 'Siegenia-Aubi, Favorit',
+          color: 'белый',
+          sealer: 'черный',
+        },
+        price: {
+          profile: 1200,
+          furnitura: 700,
+          packet: 700
+        },
+        show: false
       },
       {
         title: 'Эксклюзив',
-        textColor: 'text-danger',
-        type: 'Rehau Geneo',
-        packet: '32мм, 2 камеры',
-        formula: '4x10x4x10x4',
-        furnitura: 'Siegenia-Aubi, Favorit',
-        color: 'белый',
-        sealer: 'черный',
-        show: false,
-        price: 1300,
-        furnitura: 800
-      }
+        details: {
+          type: 'Rehau Geneo',
+          packet: '32мм, 2 камеры',
+          formula: '4x10x4x10x4',
+          furnitura: 'Siegenia-Aubi, Favorit',
+          color: 'белый',
+          sealer: 'черный',
+        },
+        price: {
+          profile: 1300,
+          furnitura: 800,
+          packet: 800
+        },
+        show: false
+      },
     ],
-    packets: [
-      { title: 'Packet 1', price: 600 },
-      { title: 'Packet 2', price: 700 },
-      { title: 'Packet 3', price: 800 },
-      { title: 'Packet 4', price: 900 }
-    ],
+    // OUTPUT
+    // ---------------------
     output: {
       area: null,
       profile: {
@@ -136,13 +169,17 @@ const app = new Vue({
       return path
     },
     // CALC MONTAGE COST
+    // --------------------------
     montageCost () {
       return (this.profileOuterLength(this.window.dimentions.height, this.window.dimentions.width) / 1000) * this.window.additions.montage.price
     },
+    // CALC SILL COST
+    // --------------------------
     sillCost () {
       return (this.window.dimentions.width / 1000) * this.window.additions.sill.price
     },
     // CALC SLOP COST
+    // --------------------------
     slopeCost () {
       return (this.profileQuater(this.window.dimentions.height, this.window.dimentions.width) / 1000) * this.window.additions.slope.price
     }
@@ -182,20 +219,14 @@ const app = new Vue({
       const costCommon = parseInt(costProduct) + parseInt(costWork) + parseInt(costAddittions)
       return costCommon
     },
-    clearForm () {
-      this.window.dimentions.width = null
-      this.window.dimentions.height = null
-    },
     simpleWindow () {
       this.output.profile.total = this.profileOuterLength(this.window.dimentions.height, this.window.dimentions.width)
       this.output.area = this.packetArea(this.window.dimentions.height, this.window.dimentions.width, this.window.profile.thickness)
-      // price calculate
       this.output.cost.window = this.productCost(this.output.profile.total, this.output.area, this.window.profile.price, this.window.packet.price)
       this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
       this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.work, this.output.cost.additional)
-      // this.clearForm()
     },
-    secondWindow () {
+    turnWindow () {
         this.output.profile.outer = this.profileOuterLength(this.window.dimentions.height, this.window.dimentions.width)
         this.output.profile.inner = this.profileInnerLength(this.window.dimentions.height, this.window.dimentions.width, this.window.profile.thickness)
         this.output.profile.total = parseInt(this.output.profile.outer) + parseInt(this.output.profile.inner)
@@ -203,9 +234,8 @@ const app = new Vue({
         this.output.cost.window = this.productCost(this.output.profile.total, this.output.area, this.window.profile.price, this.window.packet.price)
         this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
         this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.work) + this.window.furnitura.turn
-        // this.clearForm()
     },
-    thirdWindow () {
+    tiltWindow () {
         this.output.profile.outer = this.profileOuterLength(this.window.dimentions.height, this.window.dimentions.width)
         this.output.profile.inner = this.profileInnerLength(this.window.dimentions.height, this.window.dimentions.width, this.window.profile.thickness)
         this.output.profile.total = parseInt(this.output.profile.outer) + parseInt(this.output.profile.inner)
@@ -213,7 +243,6 @@ const app = new Vue({
         this.output.cost.window = this.productCost(this.output.profile.total, this.output.area, this.window.profile.price, this.window.packet.price)
         this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
         this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.work) + this.window.furnitura.titl
-        // this.clearForm()
     },
     checkAdditions () {
       const arr = this.window.checked
@@ -235,22 +264,16 @@ const app = new Vue({
           this.simpleWindow()
           break
         case 'turn':
-          this.secondWindow()
+          this.turnWindow()
           break
         case 'tilt':
-          this.thirdWindow()
+          this.tiltWindow()
           break
         default:
           break
       }
     },
     onCalc () {
-      // check if fields are empty
-      if (!this.window.dimentions.width || !this.window.dimentions.height) {
-        alert('error')
-        return
-      }
-      // if fields are not empty
       this.checkAdditions()
       this.selectCalc()
     }
