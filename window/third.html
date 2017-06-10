@@ -61,8 +61,9 @@
         <!-- PROFILE -->
         <section class="form-group well">
           <h3 class="page-header">Профиль:</h3>
-          <ul class="list-group">
-            <li class="item list-group-item text-capitalize" v-for="(profile, index) in profiles" :key="index">
+          <div class="checkbox">
+            <label class="item list-group-item text-capitalize" v-for="(profile, index) in profiles" :key="index">
+              <input type="checkbox">
               <header class="item__wrapper clearfix" @click="profile.show = !profile.show">
                 <h4 class="item__title text-capitalize pull-left" :class="profile.textColor">{{ profile.title }}</h4>
                 <label class="item__label pull-right" for="">{{ profile.type }}</label>
@@ -79,8 +80,8 @@
                   </ul>
                 </footer>
               </transition>
-            </li>
-          </ul>
+            </label>
+          </div>
         </section>
 
         <!-- ADDITIONS -->
@@ -122,8 +123,8 @@
         <div class="form-group" id="output">
           <h3 class="page-header">Итоговая стоимость выбранного окна и дополнительных опций:</h3>
           <ul class="list-group">
-            <li class="list-group-item">Рама: {{ output.profile.total }} м</li>
-            <li class="list-group-item">Стеклопакет: {{ output.area }} кв. м</li>
+            <li class="list-group-item">Рама: {{ output.profile.total | singleDivider }}м</li>
+            <li class="list-group-item">Стеклопакет: {{ output.area | doubleDivider }}кв. м</li>
             <li class="list-group-item">Стоимость изделия: {{ output.cost.window }} руб</li>
             <li class="list-group-item">Стоимость монтажных работ: {{ output.cost.work }} руб</li>
             <li class="list-group-item">Общая стоимость: {{ output.cost.total }} руб</li>

@@ -108,13 +108,13 @@ const app = new Vue({
   },
   filters: {
     singleDivider (value) {
-      return value / 1000
+      return value ? value / 1000 : null
     },
     doubleDivider (value) {
-      return value / 1000000
+      return value ? value / 1000000 : null
     },
     roundDown (value) {
-      return Math.round(value)
+      return value ? Math.round(value) : null
     },
   },
   computed: {
@@ -193,7 +193,7 @@ const app = new Vue({
       this.output.cost.window = this.productCost(this.output.profile.total, this.output.area, this.window.profile.price, this.window.packet.price)
       this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
       this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.work, this.output.cost.additional)
-      this.clearForm()
+      // this.clearForm()
     },
     secondWindow () {
         this.output.profile.outer = this.profileOuterLength(this.window.dimentions.height, this.window.dimentions.width)
@@ -203,7 +203,7 @@ const app = new Vue({
         this.output.cost.window = this.productCost(this.output.profile.total, this.output.area, this.window.profile.price, this.window.packet.price)
         this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
         this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.work) + this.window.furnitura.turn
-        this.clearForm()
+        // this.clearForm()
     },
     thirdWindow () {
         this.output.profile.outer = this.profileOuterLength(this.window.dimentions.height, this.window.dimentions.width)
@@ -213,7 +213,7 @@ const app = new Vue({
         this.output.cost.window = this.productCost(this.output.profile.total, this.output.area, this.window.profile.price, this.window.packet.price)
         this.output.cost.work = this.workCost(this.output.cost.window, this.window.percent)
         this.output.cost.total = this.commonCost(this.output.cost.window, this.output.cost.work) + this.window.furnitura.titl
-        this.clearForm()
+        // this.clearForm()
     },
     checkAdditions () {
       const arr = this.window.checked
