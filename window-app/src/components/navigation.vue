@@ -8,15 +8,12 @@
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href='#') Project name
+        a.navbar-brand(href='#') Window Calculator
       #navbar.collapse.navbar-collapse( :class="{ 'in': show }" )
         ul.nav.navbar-nav
-          li.active
-            a(href='#') Home
-          li
-            a(href='#about') About
-          li
-            a(href='#contact') Contact
+          router-link( tag="li", to="/", active-class="active", exact ): a(href="#") Single Window
+          router-link( tag="li", to="/doublewindow", active-class="active" ): a(href="#") Double Window
+          router-link( tag="li", to="/triplewindow", active-class="active" ): a(href="#") Triple Window
 </template>
 
 <script>
