@@ -6,7 +6,8 @@ Vue.use(Vuex)
 const state = {
   checked: {
     window: 'tilt',
-    profile: 'Стандарт'
+    profile: 'Стандарт',
+    additions: []
   },
   singleWindow: {
     dimentions: {
@@ -109,7 +110,32 @@ const state = {
       preview: './assets/doggy-05.jpg',
       show: false
     }
-  ]
+  ],
+  additions: {
+    montage: {
+      price: 386
+    },
+    slope: {
+      price: 193
+    },
+    sill: {
+      price: 1191
+    }
+  },
+  output: {
+    area: null,
+    profile: {
+      total: null,
+      outer: null,
+      inner: null
+    },
+    cost: {
+      window: null,
+      work: null,
+      total: null,
+      additional: null
+    }
+  }
 }
 
 const getters = {
@@ -159,6 +185,15 @@ const getters = {
   },
   getProfiles (state) {
     return state.profiles
+  },
+  montageCost (state) {
+    return (((state.singleWindow.sizes.height + state.singleWindow.sizes.width) * 2) / 1000) * state.additions.montage.price
+  },
+  sillCost (state) {
+    return (state.singleWindow.sizes.width / 1000) * state.additions.sill.price
+  },
+  slopeCost (state) {
+    return ((state.singleWindow.sizes.height * 2 + state.singleWindow.sizes.width) / 1000) * state.additions.slope.price
   }
 }
 
@@ -174,10 +209,10 @@ const mutations = {
   },
   'UPDATE_WINDOW_PROFILE' (state, payload) {
     state.checked.profile = payload
+  },
+  'UPDATE_ADDITIONS' (state, payload) {
+    state.checked.additions.push(payload)
   }
-  // 'TOGGLE_SHOW_PROFILE' (state) {
-  //   state.profiles.show = !state.profiles.show
-  // }
 }
 
 const actions = {
@@ -192,6 +227,9 @@ const actions = {
   },
   updateWindowProfile ({ commit }, payload) {
     commit('UPDATE_WINDOW_PROFILE', payload)
+  },
+  updateAdditions ({ commit }, payload) {
+    commit('UPDATE_ADDITIONS', payload)
   }
 }
 

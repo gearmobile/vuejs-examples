@@ -60,19 +60,19 @@
       h3.page-header Дополнительно:
       .checkbox
         label.checkbox-inline(for='uno')
-          input#uno(type='checkbox', value='montage', v-model='window.checked')
+          input#uno(type='checkbox', value='montage', v-model='additionsType')
           |  Монтаж
-          p.text-muted +{{ montageCost | roundDown }} руб
+          p.text-muted +{{ costMontage | roundDown }} руб
       .checkbox
         label.checkbox-inline(for='duo')
-          input#duo(type='checkbox', value='sill', v-model='window.checked')
+          input#duo(type='checkbox', value='sill', v-model='additionsType')
           |  Подоконник
-          p.text-muted +{{ sillCost | roundDown }} руб
+          p.text-muted +{{ costSill | roundDown }} руб
       .checkbox
         label.checkbox-inline(for='tre')
-          input#tre(type='checkbox', value='slope', v-model='window.checked')
+          input#tre(type='checkbox', value='slope', v-model='additionsType')
           |  Откосы
-          p.text-muted +{{ slopeCost | roundDown }} руб
+          p.text-muted +{{ costSlope | roundDown }} руб
 
 
 </template>
@@ -94,7 +94,10 @@
         stepW: 'stepWidth',
         types: 'windowTypes',
         previewWindow: 'windowPreview',
-        profiles: 'getProfiles'
+        profiles: 'getProfiles',
+        costMontage: 'montageCost',
+        costSill: 'sillCost',
+        costSlope: 'slopeCost'
       }),
       height: {
         get () {
@@ -127,6 +130,9 @@
         set (value) {
           this.$store.dispatch('updateWindowProfile', value)
         }
+      },
+      additionsType: {
+        set (value) { this.$store.dispatch('updateAdditions', value) }
       }
     },
     methods: {

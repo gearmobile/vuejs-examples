@@ -7,6 +7,18 @@ import store from './store/index'
 
 Vue.config.productionTip = false
 
+Vue.filter('singleDivider', (value) => {
+  return value ? value / 1000 : null
+})
+
+Vue.filter('doubleDivider', (value) => {
+  return value ? value / 100000 : null
+})
+
+Vue.filter('roundDown', (value) => {
+  return value ? Math.round(value) : null
+})
+
 /* eslint-disable no-new */
 new Vue({
   router,
