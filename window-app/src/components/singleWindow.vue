@@ -1,10 +1,19 @@
 <template lang="pug">
   #single
-    .form-group
-      p {{ counter }}
-    .form-group
-      button.btn.btn-primary( type="button", @click="onUp()" ) incr
-      button.btn.btn-primary( type="button", @click="onDown()" ) decr
+    h2.page-header Одинарное окно
+    section.well
+      h3.page-header Размеры окна:
+      .form-group
+        label
+          | Window Height: 
+          span {{ heightWindow }}мм
+          input(:min='minH', :max='maxH', :step='stepH', type='range', v-model='height')
+      .form-group
+        label
+          | Window Width: 
+          span {{ widthWindow }}мм
+          input(:min='minW', :max='maxW', :step='stepW', type='range', v-model='width')
+
 
 </template>
 
@@ -15,18 +24,41 @@
     name: 'singleWindow',
     data () {
       return {
-        msg: 'single window'
+        // msg: 'single window'
       }
     },
     computed: {
       ...mapGetters({
-        counter: 'getCount'
-      })
+        heightWindow: 'windowHeight',
+        widthWindow: 'windowWidth',
+        minH: 'minHeight',
+        maxH: 'maxHeight',
+        stepH: 'stepHeight',
+        minW: 'minWidth',
+        maxW: 'maxWidth',
+        stepW: 'stepWidth'
+      }),
+      height: {
+        get () {
+          return this.$store.state.singleWindow.sizes.height
+        },
+        set (value) {
+          this.$store.dispatch('updateHeight', value)
+        }
+      },
+      width: {
+        get () {
+          return this.$store.state.singleWindow.sizes.width
+        },
+        set (value) {
+          this.$store.dispatch('updateWidth', value)
+        }
+      }
     },
     methods: {
       ...mapActions({
-        onUp: 'increase',
-        onDown: 'decrease'
+        // onUp: 'increase',
+        // onDown: 'decrease'
       })
     }
   }
