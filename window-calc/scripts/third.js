@@ -194,9 +194,20 @@ const app = new Vue({
     // --------------------------
     slopeCost () {
       return (this.profileQuater(this.window.dimentions.height, this.window.dimentions.width) / 1000) * this.window.additions.slope.price
+    },
+    // test
+    giveMeCount () {
+      return this.$store.getters.getCount
     }
   },
   methods: {
+    // test
+    onUp () {
+      this.$store.dispatch('onIncrement')
+    },
+    onDown () {
+      this.$store.dispatch('onDecrement')
+    },
     profileQuater (height, width) {
       const totalLength = parseInt(height) * 2 + parseInt(width)
       return totalLength

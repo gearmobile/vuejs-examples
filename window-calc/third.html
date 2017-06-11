@@ -124,11 +124,21 @@
         </div>
         
       </div><!-- row -->
+
+      <div class="row">
+        <div class="col-md-12">
+          <p>count is: {{ giveMeCount }}</p>
+          <button class="btn btn-primary" @click="onUp()">inc</button>
+          <button class="btn btn-primary" @click="onDown()">dec</button>
+        </div>
+      </div>
       
     </div><!-- container -->
 
     <!-- SCRIPTS -->
     <script src="./scripts/vue.js"></script>
+    <script src="./scripts/vuex@2.3.1.js"></script>
+    <script src="./scripts/store/index.js"></script>
     <script src="./scripts/third.js"></script>
   </body>
 </html>
