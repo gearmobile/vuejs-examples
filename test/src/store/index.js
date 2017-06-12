@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
 Vue.use(Vuex)
 
 const state = {
   bool: true,
-  array: ['bar']
+  array: ['bar'],
+  imagePath: './assets/logo.png'
 }
 
 const mutations = {
@@ -31,6 +33,9 @@ const getters = {
   },
   getArray (state) {
     return state.array
+  },
+  getImage (state) {
+    return state.imagePath
   }
 }
 
