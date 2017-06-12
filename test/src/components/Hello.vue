@@ -21,6 +21,21 @@
         | true
       p value: {{ vuexBool }}
 
+    // COMPUTED PROPERTY WITH GET/SET, ARRAY VALUE
+    h2
+      | computed property with get/set, array value (
+      em setter never called
+      | )
+    form
+      label
+        input(type='checkbox', value='foo', v-model='vuexArr')
+        | foo
+      label
+        input(type='checkbox', value='bar', v-model='vuexArr')
+        | bar
+      p value: {{ vuexArr }}
+
+
 
 </template>
 
@@ -36,16 +51,22 @@
     },
     computed: {
       ...mapGetters({
-        boolGet: 'getBool'
+        boolGet: 'getBool',
+        arrayGet: 'getArray'
       }),
       vuexBool: {
         get () { return this.boolGet },
         set (value) { this.boolSet(value) }
+      },
+      vuexArr: {
+        get () { return this.arrayGet },
+        set (value) { this.arraySet(value) }
       }
     },
     methods: {
       ...mapActions({
-        boolSet: 'setBool'
+        boolSet: 'setBool',
+        arraySet: 'setArray'
       })
     }
   }
