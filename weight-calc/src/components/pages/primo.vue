@@ -19,46 +19,66 @@
             p Просто подставлять значения в этих ячейках и смотреть результат в "Масса блина".
         .row
           .auto
-            p Толщина листа, {{ thickness }}мм
+            p Толщина листа, {{ input.list.value }}мм
           .auto
-            q-range( min="10", max="50", step="1", label, class="teal", v-model="thickness" )
+            q-range( :min="input.list.min", :max="input.list.max", :step="input.list.step", :value="input.list.value", v-model="input.list.value", label, class="primary" )
         .row
           .auto
-            p Внешний диаметр, {{ diameter.outer }}мм
+            p Внешний диаметр, {{ input.diameter.outer.value }}мм
           .auto
-            q-range( min="10", max="500", step="1", label, class="teal", v-model="diameter.outer" )
+            q-range( :min="input.diameter.outer.min", :max="input.diameter.outer.max", :step="input.diameter.outer.step", :value="input.diameter.outer.value", v-model="input.diameter.outer.value", label, class="teal" )
         .row
           .auto
-            p Внутренний диаметр, {{ diameter.inner }}мм
+            p Внутренний диаметр, {{ input.diameter.inner.value }}мм
           .auto
-            q-range( min="10", max="500", step="1", label, class="teal", v-model="diameter.inner" )
+            q-range( :min="input.diameter.inner.min", :max="input.diameter.inner.max", :step="input.diameter.inner.step", :value="input.diameter.inner.value", v-model="input.diameter.inner.value", label, class="teal" )
         .row
           .auto
-            p Масса блина, {{ weight | toWeight }}
+            p Масса блина, {{ output.weight | Round }}
           .auto
             button.primary( @click="onCalc()" ) calculate
 
 </template>
 
 <script>
-  const MASSA = 7.9
   export default {
     data () {
       return {
-        thickness: 20,
-        weight: null,
-        diameter: {
-          outer: 200,
-          inner: 10
+        input: {
+          list: {
+            min: 10,
+            max: 50,
+            step: 1,
+            value: 20
+          },
+          diameter: {
+            outer: {
+              min: 30,
+              max: 500,
+              step: 1,
+              value: 200
+            },
+            inner: {
+              min: 26,
+              max: 30,
+              step: 1,
+              value: 28
+            }
+          }
+        },
+        output: {
+          weight: null,
+          solidity: 7.85
         }
       }
     },
     methods: {
       onCalc () {
-        const volumeOuter = Math.PI * Math.pow((this.diameter.outer / 2), 2) * this.thickness
-        const volumeInner = Math.PI * Math.pow((this.diameter.inner / 2), 2) * this.thickness
-        const result = (volumeOuter - volumeInner) * MASSA
-        this.weight = result
+        const volumeOuter = Math.PI * Math.pow((this.input.diameter.outer.value / 2), 2) * this.input.list.value
+        const volumeInner = Math.PI * Math.pow((this.input.diameter.inner.value / 2), 2) * this.input.list.value
+        const result = (volumeOuter - volumeInner) * this.output.solidity
+        this.output.weight = result
+        // this.output.weight = volumeInner
       }
     }
   }

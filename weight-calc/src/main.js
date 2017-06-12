@@ -10,8 +10,8 @@ import Vue from 'vue'
 import Quasar from 'quasar'
 import router from './router'
 
-Vue.filter('toWeight', (value) => {
-  return value ? value / 1000000 : null
+Vue.filter('Round', (value) => {
+  return value ? (value / 1000000).toFixed(2) : null
 })
 
 Vue.use(Quasar) // Install Quasar Framework
