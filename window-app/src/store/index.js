@@ -194,6 +194,9 @@ const getters = {
   },
   slopeCost (state) {
     return ((state.singleWindow.sizes.height * 2 + state.singleWindow.sizes.width) / 1000) * state.additions.slope.price
+  },
+  getAdditions (state) {
+    return state.checked.additions
   }
 }
 

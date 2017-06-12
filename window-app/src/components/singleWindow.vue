@@ -60,17 +60,17 @@
       h3.page-header Дополнительно:
       .checkbox
         label.checkbox-inline(for='uno')
-          input#uno(type='checkbox', value='montage', v-model='additionsType')
+          input#uno(type='checkbox', value='montage', v-model='addition')
           |  Монтаж
           p.text-muted +{{ costMontage | roundDown }} руб
       .checkbox
         label.checkbox-inline(for='duo')
-          input#duo(type='checkbox', value='sill', v-model='additionsType')
+          input#duo(type='checkbox', value='sill', v-model='addition')
           |  Подоконник
           p.text-muted +{{ costSill | roundDown }} руб
       .checkbox
         label.checkbox-inline(for='tre')
-          input#tre(type='checkbox', value='slope', v-model='additionsType')
+          input#tre(type='checkbox', value='slope', v-model='addition')
           |  Откосы
           p.text-muted +{{ costSlope | roundDown }} руб
 
@@ -97,7 +97,8 @@
         profiles: 'getProfiles',
         costMontage: 'montageCost',
         costSill: 'sillCost',
-        costSlope: 'slopeCost'
+        costSlope: 'slopeCost',
+        additionsGet: 'getAdditions'
       }),
       height: {
         get () { return this.$store.state.singleWindow.sizes.height },
@@ -115,15 +116,14 @@
         get () { return this.$store.state.checked.profile },
         set (value) { this.$store.dispatch('updateWindowProfile', value) }
       },
-      additionsType: {
-        get () { this.$store.state.checked.additions },
-        set (value) { this.$store.dispatch('updateAdditions', value) }
+      addition: {
+        get () { return this.additionsGet },
+        set (value) { this.additionsUpdate(value) }
       }
     },
     methods: {
       ...mapActions({
-        // onUp: 'increase',
-        // onDown: 'decrease'
+        additionsUpdate: 'updateAdditions'
       })
     }
   }
