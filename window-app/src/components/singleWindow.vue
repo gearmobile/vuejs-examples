@@ -74,6 +74,19 @@
           |  Откосы
           p.text-muted +{{ costSlope | roundDown }} руб
 
+    // SUBMIT SECTION
+    .form-group.well
+      button.btn.btn-default(type='button', @click='onCalc()') Calculate
+
+    // OUTPUT SECTION
+    #output.form-group
+      h3.page-header Итоговая стоимость выбранного окна и дополнительных опций:
+      ul.list-group
+        li.list-group-item Рама: {{ output.profile.total | singleDivider }} м
+        li.list-group-item Стеклопакет: {{ output.area | doubleDivider }} кв. м
+        li.list-group-item Стоимость изделия: {{ output.cost.window | doubleDivider }} руб
+        li.list-group-item Стоимость монтажных работ: {{ output.cost.work | doubleDivider }} руб
+        li.list-group-item Общая стоимость: {{ output.cost.total | doubleDivider }} руб
 
 </template>
 
@@ -130,7 +143,10 @@
         widthUpdate: 'updateWidth',
         heightUpdate: 'updateHeight',
         additionsUpdate: 'updateAdditions'
-      })
+      }),
+      onCalc () {
+        //
+      }
     }
   }
 </script>
