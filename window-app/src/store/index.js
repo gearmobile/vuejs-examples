@@ -4,11 +4,6 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  checked: {
-    window: 'tilt',
-    profile: 'Стандарт',
-    additions: []
-  },
   singleWindow: {
     dimentions: {
       minHeight: 1000,
@@ -135,6 +130,11 @@ const state = {
       total: null,
       additional: null
     }
+  },
+  checked: {
+    window: 'tilt',
+    profile: 'Стандарт',
+    additions: []
   }
 }
 
@@ -211,7 +211,7 @@ const mutations = {
     state.checked.profile = payload
   },
   'UPDATE_ADDITIONS' (state, payload) {
-    state.checked.additions.push(payload)
+    state.checked.additions = payload
   }
 }
 
