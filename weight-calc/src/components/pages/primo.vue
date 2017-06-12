@@ -19,22 +19,22 @@
             p Просто подставлять значения в этих ячейках и смотреть результат в "Масса блина".
         .row
           .auto
-            p Толщина листа, {{ input.list.value }}мм
+            p Толщина листа: {{ input.list.value }}мм
           .auto
             q-range( :min="input.list.min", :max="input.list.max", :step="input.list.step", :value="input.list.value", v-model="input.list.value", label, class="primary" )
         .row
           .auto
-            p Внешний диаметр, {{ input.diameter.outer.value }}мм
+            p Внешний диаметр: {{ input.diameter.outer.value }}мм
           .auto
             q-range( :min="input.diameter.outer.min", :max="input.diameter.outer.max", :step="input.diameter.outer.step", :value="input.diameter.outer.value", v-model="input.diameter.outer.value", label, class="teal" )
         .row
           .auto
-            p Внутренний диаметр, {{ input.diameter.inner.value }}мм
+            p Внутренний диаметр: {{ input.diameter.inner.value }}мм
           .auto
             q-range( :min="input.diameter.inner.min", :max="input.diameter.inner.max", :step="input.diameter.inner.step", :value="input.diameter.inner.value", v-model="input.diameter.inner.value", label, class="teal" )
         .row
           .auto
-            p Масса блина, {{ output.weight | Round }}
+            p Масса блина: {{ output.weight | Round }}
           .auto
             button.primary( @click="onCalc()" ) calculate
 
@@ -78,7 +78,6 @@
         const volumeInner = Math.PI * Math.pow((this.input.diameter.inner.value / 2), 2) * this.input.list.value
         const result = (volumeOuter - volumeInner) * this.output.solidity
         this.output.weight = result
-        // this.output.weight = volumeInner
       }
     }
   }
