@@ -21,22 +21,20 @@
           .auto
             p Толщина листа: #[strong {{ input.list.value }}мм]
           .auto
-            q-range( :min="input.list.min", :max="input.list.max", :step="input.list.step", :value="input.list.value", v-model="input.list.value", label, class="primary" )
+            q-range( :min="input.list.min", :max="input.list.max", :step="input.list.step", :value="input.list.value", v-model="input.list.value", label, class="primary", @input="onCalc()" )
         .row
           .auto
             p Внешний диаметр: #[strong {{ input.diameter.outer.value }}мм]
           .auto
-            q-range( :min="input.diameter.outer.min", :max="input.diameter.outer.max", :step="input.diameter.outer.step", :value="input.diameter.outer.value", v-model="input.diameter.outer.value", label, class="secondary" )
+            q-range( :min="input.diameter.outer.min", :max="input.diameter.outer.max", :step="input.diameter.outer.step", :value="input.diameter.outer.value", v-model="input.diameter.outer.value", label, class="secondary", @input="onCalc()" )
         .row
           .auto
             p Внутренний диаметр: #[strong {{ input.diameter.inner.value }}мм]
           .auto
-            q-range( :min="input.diameter.inner.min", :max="input.diameter.inner.max", :step="input.diameter.inner.step", :value="input.diameter.inner.value", v-model="input.diameter.inner.value", label, class="tertiary" )
+            q-range( :min="input.diameter.inner.min", :max="input.diameter.inner.max", :step="input.diameter.inner.step", :value="input.diameter.inner.value", v-model="input.diameter.inner.value", label, class="tertiary", @input="onCalc()" )
         .row
           .auto
             p Масса блина: #[strong {{ output.weight | Round }}]
-          .auto
-            button.primary( @click="onCalc()" ) calculate
 
 </template>
 
