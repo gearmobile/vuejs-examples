@@ -100,38 +100,23 @@
         costSlope: 'slopeCost'
       }),
       height: {
-        get () {
-          return this.$store.state.singleWindow.sizes.height
-        },
-        set (value) {
-          this.$store.dispatch('updateHeight', value)
-        }
+        get () { return this.$store.state.singleWindow.sizes.height },
+        set (value) { this.$store.dispatch('updateHeight', value) }
       },
       width: {
-        get () {
-          return this.$store.state.singleWindow.sizes.width
-        },
-        set (value) {
-          this.$store.dispatch('updateWidth', value)
-        }
+        get () { return this.$store.state.singleWindow.sizes.width },
+        set (value) { this.$store.dispatch('updateWidth', value) }
       },
       window: {
-        get () {
-          return this.$store.state.checked.window
-        },
-        set (value) {
-          this.$store.dispatch('updateWindowType', value)
-        }
+        get () { return this.$store.state.checked.window },
+        set (value) { this.$store.dispatch('updateWindowType', value) }
       },
       profileType: {
-        get () {
-          return this.$store.state.checked.profile
-        },
-        set (value) {
-          this.$store.dispatch('updateWindowProfile', value)
-        }
+        get () { return this.$store.state.checked.profile },
+        set (value) { this.$store.dispatch('updateWindowProfile', value) }
       },
       additionsType: {
+        get () { this.$store.state.checked.additions },
         set (value) { this.$store.dispatch('updateAdditions', value) }
       }
     },
