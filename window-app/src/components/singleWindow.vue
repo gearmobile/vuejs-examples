@@ -98,23 +98,25 @@
         costMontage: 'montageCost',
         costSill: 'sillCost',
         costSlope: 'slopeCost',
-        additionsGet: 'getAdditions'
+        additionsGet: 'getAdditions',
+        checkedWindowGet: 'getCheckedWindow',
+        checkedProfileGet: 'getCheckedProfile'
       }),
       height: {
-        get () { return this.$store.state.singleWindow.sizes.height },
-        set (value) { this.$store.dispatch('updateHeight', value) }
+        get () { return this.heightWindow },
+        set (value) { this.heightUpdate(value) }
       },
       width: {
-        get () { return this.$store.state.singleWindow.sizes.width },
-        set (value) { this.$store.dispatch('updateWidth', value) }
+        get () { return this.widthWindow },
+        set (value) { this.widthUpdate(value) }
       },
       window: {
-        get () { return this.$store.state.checked.window },
-        set (value) { this.$store.dispatch('updateWindowType', value) }
+        get () { return this.checkedWindowGet },
+        set (value) { this.windowTypeUpdate(value) }
       },
       profileType: {
-        get () { return this.$store.state.checked.profile },
-        set (value) { this.$store.dispatch('updateWindowProfile', value) }
+        get () { return this.checkedProfileGet },
+        set (value) { this.windowProfileUpdate(value) }
       },
       addition: {
         get () { return this.additionsGet },
@@ -123,6 +125,10 @@
     },
     methods: {
       ...mapActions({
+        windowProfileUpdate: 'updateWindowProfile',
+        windowTypeUpdate: 'updateWindowType',
+        widthUpdate: 'updateWidth',
+        heightUpdate: 'updateHeight',
         additionsUpdate: 'updateAdditions'
       })
     }

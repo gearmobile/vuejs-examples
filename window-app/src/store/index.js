@@ -197,6 +197,12 @@ const getters = {
   },
   getAdditions (state) {
     return state.checked.additions
+  },
+  getCheckedWindow (state) {
+    return state.checked.window
+  },
+  getCheckedProfile (state) {
+    return state.checked.profile
   }
 }
 
