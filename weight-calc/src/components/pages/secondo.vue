@@ -17,7 +17,7 @@
           .auto
             h5.text-center Табличка для расчета массы квадратного блина для гантели (можно и штанги)
             p.text-center То есть, вместо круга (как обычно) для гантели можно применять и квадраты. Конечно, вид и удобство использования будет не то, но вдруг кому понадобиться.
-            p.text-center Подбирать массу блина с помощью значений "Толщина листа", "Ширина листа", "Внутренний диаметр".
+            p.text-center Подбирать массу блина с помощью значений "Толщина листа", "Ширина блина", "Внутренний диаметр".
         
         .row
           .auto
@@ -39,7 +39,7 @@
         
         .row
           .auto
-            p Масса блина: #[strong {{ output.weight }}]
+            p Масса блина: #[strong {{ output.weight | Round }}]
 
 </template>
 
@@ -77,12 +77,9 @@
     },
     methods: {
       onCalc () {
-        const volumeSquare = (this.input.list.width.value * 2) * this.input.list.thickness.value
-        // console.log(volumeSquare)
+        const volumeSquare = this.input.list.width.value * this.input.list.width.value * this.input.list.thickness.value
         const volumeCylinder = Math.PI * this.input.list.diameter.value * this.input.list.thickness.value
-        // console.log(volumeCylinder)
         const result = (volumeSquare - volumeCylinder) * this.output.solidity
-        // console.log(result)
         this.output.weight = result
       }
     },

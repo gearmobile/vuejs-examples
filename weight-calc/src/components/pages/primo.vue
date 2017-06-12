@@ -4,7 +4,7 @@
 
     // header
     .toolbar( slot="navigation" )
-      q-toolbar-title Weight calculate
+      q-toolbar-title Weight Сalculate
 
     // navigation
     q-tabs( slot='navigation' )
