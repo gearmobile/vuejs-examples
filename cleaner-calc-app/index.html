@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="./styles/bootstrap.min.css">-->
+    <link rel="stylesheet" href="./styles/bootstrap-paper.min.css">
     <link rel="stylesheet" href="./styles/app.css">
     <title>Cleaner Calculator</title>
   </head>
@@ -12,17 +13,17 @@
 
     <div id="app" class="container calc">
 
-      <!-- main row -->
+      <!-- MAIN ROW -->
       <div class="row">
         
-        <!-- centering block -->
+        <!-- CENTERING BLOCK -->
         <div class="col-md-10 col-md-offset-1">
 
-          <!-- section main -->
+          <!-- SECTION MAIN -->
           <section class="main">
             <h3 class="page-header text-center">Расчет стоимости</h3>
             
-            <!--first-->
+            <!--FIRST-->
             <div class="row calc__row">
               <div class="col-md-6 text-center">
                 <div class="text-center well" style="display: flex">
@@ -40,44 +41,42 @@
               </div>
             </div>
             
-            <!--second-->
+            <!--SECOND-->
             <div class="row calc__row">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="text-center well">
-                    <label for="remont">
-                      <input id="remont" type="checkbox">
-                      после ремонта
-                    </label>
-                  </div>
+              <div class="col-md-4">
+                <div class="text-center well">
+                  <label for="remont">
+                    <input id="remont" type="checkbox">
+                    после ремонта
+                  </label>
                 </div>
-                <div class="col-md-4">
-                  <div class="text-center well">
-                    <label for="general">
-                      <input id="general" type="checkbox">
-                      генеральная
-                    </label>
-                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="text-center well">
+                  <label for="general">
+                    <input id="general" type="checkbox">
+                    генеральная
+                  </label>
                 </div>
-                <div class="col-md-4">
-                  <div class="text-center well">
-                    <label for="express">
-                      <input id="express" type="checkbox">
-                      экспресс
-                    </label>
-                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="text-center well">
+                  <label for="express">
+                    <input id="express" type="checkbox">
+                    экспресс
+                  </label>
                 </div>
               </div>
             </div>
             
-            <!--third-->
+            <!-- THIRD -->
             <div class="row calc__row">
               <div class="col-md-12 text-center">
                 <div class="text-center well">разовая уборка</div>
               </div>
             </div>
           
-            <!--fourth-->
+            <!-- FOURTH -->
             <div class="row">
               <div class="col-md-4">
                 <div class="text-center well">
