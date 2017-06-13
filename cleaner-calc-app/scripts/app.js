@@ -16,7 +16,7 @@ const app = new Vue({
     },
     window: {
       value: 0,
-      price: 1000,
+      price: 200,
       min: 0,
       max: 25,
       step: 5
@@ -101,7 +101,11 @@ const app = new Vue({
         step: 1
       }
     }
+    // cost: {}
   },
+  // --------------------
+  // COMPUTED
+  // --------------------
   computed: {
     // ROOM
     roomStateDecrease () {
@@ -193,6 +197,46 @@ const app = new Vue({
     },
     addtimeStateIncrease () {
       return this.additional.addtime.value === this.additional.addtime.max ? true : false
+    },
+    // RESULT
+    result () {
+      const total = [this.room, this.bathroom].reduce((sum, c) => sum + c.value * c.price, 0)
+      return total
+    }
+  },
+  // ---------------------
+  // FILTERS
+  // ---------------------
+  filters: {
+    hours (value) {
+      // 0 - 30 - 1 - 1.5 - 2 - 2.5 - 3
+      let result = null
+      switch (value) {
+        case 0:
+          result = 0
+          break
+        case 30:
+          result = 30
+          break
+        case 60:
+          result = 1
+          break
+        case 90:
+          result = 1.5
+          break
+        case 120:
+          result = 2
+          break
+        case 150:
+          result = 2.5
+          break
+        case 180:
+          result = 3
+          break
+        default:
+          result = 0
+      }
+      return result
     }
   },
   // ---------------------
