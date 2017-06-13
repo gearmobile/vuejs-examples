@@ -1,0 +1,22 @@
+.calc__row {
+  margin-bottom: 10px;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.wrapper__item {
+  flex-basis: 135px;
+  height: 165px;
+}
+
+.promo {
+  margin: 40px 0;
+}

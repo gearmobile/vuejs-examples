@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/app.css">
+    <title>Cleaner Calculator</title>
+  </head>
+  <body>
+
+    <div id="app" class="container calc">
+
+      <!-- main row -->
+      <div class="row">
+        
+        <!-- centering block -->
+        <div class="col-md-10 col-md-offset-1">
+
+          <!-- section main -->
+          <section class="main">
+            <h3 class="page-header text-center">Расчет стоимости</h3>
+            
+            <!--first-->
+            <div class="row calc__row">
+              <div class="col-md-6 text-center">
+                <div class="text-center well" style="display: flex">
+                  <button class="btn btn-default" @click="decreaseRoom()" :disabled="roomStateDecrease">-</button>
+                  <input class="form-control text-center" type="text" v-model="room.value">
+                  <button class="btn btn-default" @click="increaseRoom()" :disabled="roomStateIncrease">+</button>
+                </div>
+              </div>
+              <div class="col-md-6 text-center">
+                <div class="text-center well" style="display: flex">
+                  <button class="btn btn-default" @click="decreaseBathroom()" :disabled="bathroomStateDecrease">-</button>
+                  <input class="form-control text-center" type="text" v-model="bathroom.value">
+                  <button class="btn btn-default" @click="increaseBathroom()" :disabled="bathroomStateIncrease">+</button>
+                </div>
+              </div>
+            </div>
+            
+            <!--second-->
+            <div class="row calc__row">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="text-center well">
+                    <label for="remont">
+                      <input id="remont" type="checkbox">
+                      после ремонта
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="text-center well">
+                    <label for="general">
+                      <input id="general" type="checkbox">
+                      генеральная
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="text-center well">
+                    <label for="express">
+                      <input id="express" type="checkbox">
+                      экспресс
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!--third-->
+            <div class="row calc__row">
+              <div class="col-md-12 text-center">
+                <div class="text-center well">разовая уборка</div>
+              </div>
+            </div>
+          
+            <!--fourth-->
+            <div class="row">
+              <div class="col-md-4">
+                <div class="text-center well">
+                  <p>1 раз в месяц</p>
+                  <small>со скидкой <strong>{{ discount.first }}%</strong></small>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="text-center well">
+                  <p>1 раз в 2 недели</p>
+                  <small>со скидкой <strong>{{ discount.second }}%</strong></small>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="text-center well">
+                  <p>1 раз в неделю</p>
+                  <small>со скидкой <strong>{{ discount.third }}%</strong></small>
+                </div>
+              </div>
+            </div>
+
+          </section><!-- section main end -->
+
+          <!-- SECTION ADDITIONAL -->
+          <section class="additional">
+            <h3 class="page-header text-center">Дополнительно</h3>
+            
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text-center well">Только до <strong>31 июля</strong> помоем <strong>пять</strong> окон за <strong>1 000 рублей</strong></div>
+              </div>
+            </div>
+            
+            <!-- WINDOW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text-center well" style="display: flex">
+                  <button class="btn btn-default" @click="decreaseWindow()" :disabled="windowStateDecrease">-</button>
+                  <input class="form-control text-center" type="text" v-model="window.value">
+                  <button class="btn btn-default" @click="increaseWindow()" :disabled="windowStateIncrease">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ADDITIONALS -->
+            <section>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="text-center well">
+                    <h5>Холодильник</h5>
+                    <div class="well" style="display: flex">
+                      <button type="button" class="btn btn-default" @click="decreaseFridger()" :disabled="fridgerStateDecrease">-</button>
+                      <input class="form-control text-center" type="text" v-model="additional.fridger.value">
+                      <button type="button" class="btn btn-default" @click="increaseFridger()" :disabled="fridgerStateIncrease">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="text-center well">
+                    <h5>Духовка</h5>
+                    <div class="well" style="display: flex">
+                      <button type="button" class="btn btn-default" @click="decreaseDuhovka()" :disabled="duhovkaStateDecrease">-</button>
+                      <input class="form-control text-center" type="text" v-model="additional.duhovka.value">
+                      <button type="button" class="btn btn-default" @click="increaseDuhovka()" :disabled="duhovkaStateIncrease">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="text-center well">
+                    <h5>Микроволновка</h5>
+                    <div class="well" style="display: flex">
+                      <button type="button" class="btn btn-default" @click="decreaseMicrowaver()" :disabled="microwaverStateDecrease">-</button>
+                      <input class="form-control text-center" type="text" v-model="additional.microwaver.value">
+                      <button type="button" class="btn btn-default" @click="increaseMicrowaver()" :disabled="microwaverStateIncrease">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="text-center well">
+                    <h5>Кухонные шкафы</h5>
+                    <div class="well" style="display: flex">
+                      <button type="button" class="btn btn-default" @click="decreaseShkaf()" :disabled="shkafStateDecrease">-</button>
+                      <input class="form-control text-center" type="text" v-model="additional.shkaf.value">
+                      <button type="button" class="btn btn-default" @click="increaseShkaf()" :disabled="shkafStateIncrease">+</button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- row end -->
+
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="text-center well">
+                    <h5>Посуда</h5>
+                    <div class="well" style="display: flex">
+                      <button type="button" class="btn btn-default" @click="decreaseDishes()" :disabled="dishesState">-</button>
+                      <input class="form-control text-center" type="text" v-model="additional.dishes.value">
+                      <button type="button" class="btn btn-default" @click="increaseDishes()">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="text-center well">
+                    <h5>Глажка</h5>
+                    <div class="well" style="display: flex">
+                      <button type="button" class="btn btn-default" @click="decreaseGlajka()" :disabled="glajkaState">-</button>
+                      <input class="form-control text-center" type="text" v-model="additional.glajka.value">
+                      <button type="button" class="btn btn-default" @click="increaseGlajka()">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="text-center well">
+                    <h5>Окна</h5>
+                    <div class="well" style="display: flex">
+                      <button type="button" class="btn btn-default" @click="decreaseWindows()" :disabled="windowsStateDecrease">-</button>
+                      <input class="form-control text-center" type="text" v-model="additional.windows.value">
+                      <button type="button" class="btn btn-default" @click="increaseWindows()" :disabled="windowsStateIncrease">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="text-center well">
+                    <h5>Балкон</h5>
+                    <div class="well" style="display: flex">
+                      <button type="button" class="btn btn-default" @click="decreaseBalcon()" :disabled="balconStateDecrease">-</button>
+                      <input class="form-control text-center" type="text" v-model="additional.balcon.value">
+                      <button type="button" class="btn btn-default" @click="increaseBalcon()" :disabled="balconStateIncrease">+</button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- row end -->
+
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="text-center well">
+                    <h5>Гардеробная</h5>
+                    <div class="well" style="display: flex">
+                      <button type="button" class="btn btn-default" @click="decreaseGarderob()" :disabled="garderobStateDecrease">-</button>
+                      <input class="form-control text-center" type="text" v-model="additional.garderob.value">
+                      <button type="button" class="btn btn-default" @click="increaseGarderob()" :disabled="garderobStateIncrease">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="text-center well">
+                    <h5>Доп. время</h5>
+                    <div class="well" style="display: flex">
+                      <button type="button" class="btn btn-default" @click="decreaseAddtime()" :disabled="addtimeStateDecrease">-</button>
+                      <input class="form-control text-center" type="text" v-model="additional.addtime.value">
+                      <button type="button" class="btn btn-default" @click="increaseAddtime()" :disabled="addtimeStateIncrease">+</button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- row end -->
+
+            </section><!-- additionals end -->
+
+            <section class="text-center">
+              <p>К вам приедет <em>1 специалист</em> со всеми необходимыми средствами и приборами.</p>
+              <p>1 комната, 1 ванная. Уборка займет <em>3 часа</em>. Приедем в удобное для вас время. <a href="#">Что входит в уборку</a></p>
+            </section>
+
+            <section class="text-center promo">
+              <form action="#" class="form-inline" style="margin-bottom: 40px">
+                <input class="form-control" type="text" placeholder="у меня есть промокод">
+                <button class="btn btn-default" type="button">Применить</button>
+              </form>
+              <div class="row" style="margin-bottom: 40px">
+                <div class="col-md-6 col-md-offset-3 clearfix">
+                  <p class="pull-left">К оплате:</p>
+                  <p class="pull-right">1 980 р.</p>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary">Заказать уборку</button>
+              </div>
+            </section>
+
+          </section><!-- section additional end -->
+
+        </div><!-- centering block end -->
+      
+      </div><!-- main row end -->
+    
+    </div><!-- container -->
+
+    <!-- SCRIPTS -->
+    <script src="./scripts/vue.js"></script>
+    <!--<script src="./scripts/bootstrap.min.js"></script>-->
+    <script src="./scripts/app.js"></script>
+  </body>
+</html>
