@@ -34,137 +34,160 @@ const app = new Vue({
         value: 0,
         price: 300,
         min: 0,
-        max: 5
+        max: 5,
+        step: 1
       },
       duhovka: {
         value: 0,
         price: 400,
         min: 0,
-        max: 5
+        max: 5,
+        step: 1
       },
       microwaver: {
         value: 0,
-        price: 200
+        price: 200,
+        min: 0,
+        max: 5,
+        step: 1
       },
       shkaf: {
         value: 0,
         price: 600,
         min: 0,
-        max: 10
+        max: 10,
+        step: 1
       },
       dishes: {
         value: 0,
-        price: 200
+        price: 200,
+        min: 0,
+        max: 180,
+        step: 30
       },
       glajka: {
         value: 0,
-        price: 400
+        price: 400,
+        min: 0,
+        max: 5,
+        step: 1
       },
       windows: {
         value: 0,
         price: 200,
         min: 0,
-        max: 30
+        max: 30,
+        step: 1
       },
       balcon: {
         value: 0,
         price: 300,
         min: 0,
-        max: 5
+        max: 5,
+        step: 1
       },
       garderob: {
         value: 0,
         price: 400,
         min: 0,
-        max: 5
+        max: 5,
+        step: 1
       },
       addtime: {
         value: 0,
         price: 100,
         min: 0,
-        max: 5
+        max: 5,
+        step: 1
       }
     }
   },
   computed: {
-    // room
+    // ROOM
     roomStateDecrease () {
       return this.room.value === this.room.min ? true : false
     },
     roomStateIncrease () {
       return this.room.value === this.room.max ? true : false
     },
-    // bathroom
+    // BATHROOM
     bathroomStateDecrease () {
       return this.bathroom.value === this.bathroom.min ? true : false
     },
     bathroomStateIncrease () {
       return this.bathroom.value === this.bathroom.max ? true : false
     },
-    // window
+    // WINDOW
     windowStateDecrease () {
       return this.window.value === this.window.min ? true : false
     },
     windowStateIncrease () {
       return this.window.value === this.window.max ? true : false
     },
-    // fridger
+    // FRIDGER
     fridgerStateDecrease () {
       return this.additional.fridger.value === this.additional.fridger.min ? true : false
     },
     fridgerStateIncrease () {
       return this.additional.fridger.value === this.additional.fridger.max ? true : false
     },
-    // duhovka
+    // DUHOVKA
     duhovkaStateDecrease () {
       return this.additional.duhovka.value === this.additional.duhovka.min ? true : false
     },
     duhovkaStateIncrease () {
       return this.additional.duhovka.value === this.additional.duhovka.max ? true : false
     },
-    // microwave
+    // MICROWAVE
     microwaverStateDecrease () {
-      return this.additional.microwaver.value === 0 ? true : false
+      return this.additional.microwaver.value === this.additional.microwaver.min ? true : false
     },
     microwaverStateIncrease () {
-      return this.additional.microwaver.value === 5 ? true : false
+      return this.additional.microwaver.value === this.additional.microwaver.max ? true : false
     },
-    // shkaf
+    // SHKAF
     shkafStateDecrease () {
       return this.additional.shkaf.value === this.additional.shkaf.min ? true : false
     },
     shkafStateIncrease () {
       return this.additional.shkaf.value === this.additional.shkaf.max ? true : false
     },
-    // dishes
-    dishesState () {
-      return this.additional.dishes.value === 0 ? true : false
+    // DISHES
+    dishesStateDecrease () {
+      return this.additional.dishes.value === this.additional.dishes.min ? true : false
     },
-    glajkaState () {
-      return this.additional.glajka.value === 0 ? true : false
+    dishesStateIncrease () {
+      return this.additional.dishes.value === this.additional.dishes.max ? true : false
     },
-    // windows
+    // GLAJKA
+    glajkaStateDecrease () {
+      return this.additional.glajka.value === this.additional.glajka.min ? true : false
+    },
+    glajkaStateIncrease () {
+      return this.additional.glajka.value === this.additional.glajka.max ? true : false
+    },
+    // WINDOWS
     windowsStateDecrease () {
       return this.additional.windows.value === this.additional.windows.min ? true : false
     },
     windowsStateIncrease () {
       return this.additional.windows.value === this.additional.windows.max ? true : false
     },
-    // balcon
+    // BALCON
     balconStateDecrease () {
       return this.additional.balcon.value === this.additional.balcon.min ? true : false
     },
     balconStateIncrease () {
       return this.additional.balcon.value === this.additional.balcon.max ? true : false
     },
-    // garderob
+    // GARDEROB
     garderobStateDecrease () {
       return this.additional.garderob.value === this.additional.garderob.min ? true : false
     },
     garderobStateIncrease () {
       return this.additional.garderob.value === this.additional.garderob.max ? true : false
     },
-    // addtime
+    // ADDTIME
     addtimeStateDecrease () {
       return this.additional.addtime.value === this.additional.addtime.min ? true : false
     },
@@ -206,106 +229,106 @@ const app = new Vue({
       }
       this.window.value -= this.window.step
     },
-    // fridger
+    // FRIDGER
     increaseFridger () {
-      this.additional.fridger.value += 1
+      this.additional.fridger.value += this.additional.fridger.step
     },
     decreaseFridger () {
-      if (this.additional.fridger.value === 0) {
+      if (this.additional.fridger.value === this.additional.fridger.min) {
         return
       }
-      this.additional.fridger.value -= 1
+      this.additional.fridger.value -= this.additional.fridger.step
     },
-    // duhovka
+    // DUHOVKA
     increaseDuhovka () {
-      this.additional.duhovka.value += 1
+      this.additional.duhovka.value += this.additional.duhovka.step
     },
     decreaseDuhovka () {
-      if (this.additional.duhovka.value === 0) {
+      if (this.additional.duhovka.value === this.additional.duhovka.min) {
         return
       }
-      this.additional.duhovka.value -= 1
+      this.additional.duhovka.value -= this.additional.duhovka.step
     },
-    // microwaver
+    // MICROWAVER
     increaseMicrowaver () {
-      this.additional.microwaver.value += 1
+      this.additional.microwaver.value += this.additional.microwaver.step
     },
     decreaseMicrowaver () {
-      if (this.additional.microwaver.value === 0) {
+      if (this.additional.microwaver.value === this.additional.microwaver.min) {
         return
       }
-      this.additional.microwaver.value -= 1
+      this.additional.microwaver.value -= this.additional.microwaver.step
     },
-    // shkaf
+    // SHKAF
     increaseShkaf () {
-      this.additional.shkaf.value += 1
+      this.additional.shkaf.value += this.additional.shkaf.step
     },
     decreaseShkaf () {
-      if (this.additional.shkaf.value === 0) {
+      if (this.additional.shkaf.value === this.additional.shkaf.min) {
         return
       }
-      this.additional.shkaf.value -= 1
+      this.additional.shkaf.value -= this.additional.shkaf.step
     },
-    // dishes
+    // DISHES
     increaseDishes () {
       // 0 - 30 - 1 - 1.5 - 2 - 2.5 - 3
-      this.additional.dishes.value += 1
+      this.additional.dishes.value += this.additional.dishes.step
     },
     decreaseDishes () {
-      if (this.additional.dishes.value === 0) {
+      if (this.additional.dishes.value === this.additional.dishes.min) {
         return
       }
-      this.additional.dishes.value -= 1
+      this.additional.dishes.value -= this.additional.dishes.step
     },
-    // glajka
+    // GLAJKA
     increaseGlajka () {
-      this.additional.glajka.value += 1
+      this.additional.glajka.value += this.additional.glajka.step
     },
     decreaseGlajka () {
-      if (this.additional.glajka.value === 0) {
+      if (this.additional.glajka.value === this.additional.glajka.min) {
         return
       }
-      this.additional.glajka.value -= 1
+      this.additional.glajka.value -= this.additional.glajka.step
     },
-    // windows
+    // WINDOWS
     increaseWindows () {
-      this.additional.windows.value += 1
+      this.additional.windows.value += this.additional.windows.step
     },
     decreaseWindows () {
-      if (this.additional.windows.value === 0) {
+      if (this.additional.windows.value === this.additional.windows.min) {
         return
       }
-      this.additional.windows.value -= 1
+      this.additional.windows.value -= this.additional.windows.step
     },
-    // balcon
+    // BALCON
     increaseBalcon () {
-      this.additional.balcon.value += 1
+      this.additional.balcon.value += this.additional.balcon.step
     },
     decreaseBalcon () {
-      if (this.additional.balcon.value === 0) {
+      if (this.additional.balcon.value === this.additional.balcon.min) {
         return
       }
-      this.additional.balcon.value -= 1
+      this.additional.balcon.value -= this.additional.balcon.step
     },
-    // garderob
+    // GARDEROB
     increaseGarderob () {
-      this.additional.garderob.value += 1
+      this.additional.garderob.value += this.additional.garderob.step
     },
     decreaseGarderob () {
-      if (this.additional.garderob.value === 0) {
+      if (this.additional.garderob.value === this.additional.garderob.min) {
         return
       }
-      this.additional.garderob.value -= 1
+      this.additional.garderob.value -= this.additional.garderob.step
     },
-    // addtime
+    // ADDTIME
     increaseAddtime () {
-      this.additional.addtime.value += 1
+      this.additional.addtime.value += this.additional.addtime.step
     },
     decreaseAddtime () {
-      if (this.additional.addtime.value === 0) {
+      if (this.additional.addtime.value === this.additional.addtime.min) {
         return
       }
-      this.additional.addtime.value -= 1
+      this.additional.addtime.value -= this.additional.addtime.step
     }
   }
 });

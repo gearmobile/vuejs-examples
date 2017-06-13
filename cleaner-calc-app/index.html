@@ -44,24 +44,24 @@
             <!--SECOND-->
             <div class="row calc__row">
               <div class="col-md-4">
-                <div class="text-center well">
-                  <label for="remont">
+                <div class="text-center well calc__envelop">
+                  <label class="calc__label" for="remont">
                     <input id="remont" type="checkbox">
                     после ремонта
                   </label>
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="text-center well">
-                  <label for="general">
+                <div class="text-center well calc__envelop">
+                  <label class="calc__label" for="general">
                     <input id="general" type="checkbox">
                     генеральная
                   </label>
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="text-center well">
-                  <label for="express">
+                <div class="text-center well calc__envelop">
+                  <label class="calc__label" for="express">
                     <input id="express" type="checkbox">
                     экспресс
                   </label>
@@ -171,9 +171,9 @@
                   <div class="text-center well">
                     <h5>Посуда</h5>
                     <div class="well" style="display: flex">
-                      <button type="button" class="btn btn-default" @click="decreaseDishes()" :disabled="dishesState">-</button>
+                      <button type="button" class="btn btn-default" @click="decreaseDishes()" :disabled="dishesStateDecrease">-</button>
                       <input class="form-control text-center" type="text" v-model="additional.dishes.value">
-                      <button type="button" class="btn btn-default" @click="increaseDishes()">+</button>
+                      <button type="button" class="btn btn-default" @click="increaseDishes()" :disabled="dishesStateIncrease">+</button>
                     </div>
                   </div>
                 </div>
@@ -181,9 +181,9 @@
                   <div class="text-center well">
                     <h5>Глажка</h5>
                     <div class="well" style="display: flex">
-                      <button type="button" class="btn btn-default" @click="decreaseGlajka()" :disabled="glajkaState">-</button>
+                      <button type="button" class="btn btn-default" @click="decreaseGlajka()" :disabled="glajkaStateDecrease">-</button>
                       <input class="form-control text-center" type="text" v-model="additional.glajka.value">
-                      <button type="button" class="btn btn-default" @click="increaseGlajka()">+</button>
+                      <button type="button" class="btn btn-default" @click="increaseGlajka()" :disabled="glajkaStateIncrease">+</button>
                     </div>
                   </div>
                 </div>
