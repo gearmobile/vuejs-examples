@@ -101,7 +101,6 @@ const app = new Vue({
         step: 1
       }
     }
-    // cost: {}
   },
   // --------------------
   // COMPUTED
@@ -200,7 +199,7 @@ const app = new Vue({
     },
     // RESULT
     result () {
-      const total = [this.room, this.bathroom].reduce((sum, c) => sum + c.value * c.price, 0)
+      const total = [this.room, this.bathroom, this.window].reduce((sum, c) => sum + c.value * c.price, 0)
       return total
     }
   },
