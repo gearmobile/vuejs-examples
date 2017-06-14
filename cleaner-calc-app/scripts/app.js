@@ -5,14 +5,16 @@ const app = new Vue({
       price: 1000,
       min: 1,
       max: 12,
-      step: 1
+      step: 1,
+      time: 30
     },
     bathroom: {
       value: 1,
       price: 1200,
       min: 1,
       max: 5,
-      step: 1
+      step: 1,
+      time: 30
     },
     window: {
       value: 0,
@@ -77,7 +79,8 @@ const app = new Vue({
         price: 200,
         min: 0,
         max: 30,
-        step: 1
+        step: 1,
+        time: 15
       },
       balcon: {
         value: 0,
@@ -91,14 +94,16 @@ const app = new Vue({
         price: 400,
         min: 0,
         max: 5,
-        step: 1
+        step: 1,
+        time: 30
       },
       addtime: {
         value: 0,
         price: 100,
         min: 0,
         max: 5,
-        step: 1
+        step: 1,
+        time: 30
       }
     },
     promo: {
@@ -262,6 +267,9 @@ const app = new Vue({
           result = 0
       }
       return result
+    },
+    locate (value) {
+      return value + ' р.'
     }
   },
   // ---------------------
