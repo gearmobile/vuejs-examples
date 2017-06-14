@@ -23,9 +23,6 @@ const app = new Vue({
       max: 25,
       step: 5
     },
-    clearing: {
-      //
-    },
     discount: {
       first: {
         value: 10,
