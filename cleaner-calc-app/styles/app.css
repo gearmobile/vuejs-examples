@@ -40,3 +40,7 @@
 #single {
   cursor: pointer;
 }
+
+.highlight {
+  color: #03aebc;
+}

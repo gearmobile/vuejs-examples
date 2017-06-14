@@ -90,7 +90,7 @@
             </div>
           
             <!-- FOURTH -->
-            <div class="row">
+            <div v-if="checked !== 'remont'" class="row">
               <div class="col-md-4">
                 <div class="text-center well">
                   <p>1 раз в месяц</p>
@@ -330,14 +330,23 @@
 
             </section><!-- additionals end -->
 
+            <!-- RESPONSE SECTION -->
             <section class="text-center">
-              <p>К вам приедет <em>1 специалист</em> со всеми необходимыми средствами и приборами.</p>
-              <p>1 комната, 1 ванная. Уборка займет <em>3 часа</em>. Приедем в удобное для вас время. <a href="#">Что входит в уборку</a></p>
+              <!--remont section-->
+              <article id="text-remont" v-if="checked === 'remont'">
+                <p>К вам приедут <span class="highlight">2 специалиста</span> со всеми необходимыми средствами и приборами.</p>
+                <p>Уборкa после ремонта, 1 комната, 1 ванная. Уборка займет <span class="highlight">4 часа 15 минут.</span></p>
+              </article>
+
+              <p>Приедем в удобное для вас время. <a class="highlight" href="#">Что входит в уборку</a></p>
+
+              <!--<p>К вам приедет <em>1 специалист</em> со всеми необходимыми средствами и приборами.</p>-->
+              <!--<p>1 комната, 1 ванная. Уборка займет <em>3 часа</em>. Приедем в удобное для вас время. <a href="#">Что входит в уборку</a></p>-->
             </section>
 
             <section class="text-center">
               <!-- section promocode -->
-              <div v-if="checked === 'single'" id="promo" style="display: flex; width: 60%; margin-left: 20%; margin-top: 40px">
+              <div id="promo" style="display: flex; width: 60%; margin-left: 20%; margin-top: 40px">
                 <input id="promocode" class="form-control" type="text" placeholder="у меня есть промокод">
                 <button class="btn btn-default" type="button" @click="onPromo()" :disabled="promo.disabled">Применить</button>
                 <p v-if="promo.error" class="error" style="color: red; margin-top: 0; margin-bottom: 0;">Вы ввели неправильный промокод</p>
