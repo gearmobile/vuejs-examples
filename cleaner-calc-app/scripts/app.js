@@ -269,7 +269,7 @@ const app = new Vue({
       return result
     },
     locate (value) {
-      return value + ' р.'
+      return value.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', maximumSignificantDigits: 4 })
     }
   },
   // ---------------------

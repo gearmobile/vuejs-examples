@@ -332,10 +332,17 @@
 
             <!-- RESPONSE SECTION -->
             <section class="text-center">
-              <!--remont section-->
+              
+              <!-- REMONT SECTION -->
               <article id="text-remont" v-if="checked === 'remont'">
                 <p>К вам приедут <span class="highlight">2 специалиста</span> со всеми необходимыми средствами и приборами.</p>
                 <p>Уборкa после ремонта, 1 комната, 1 ванная. Уборка займет <span class="highlight">4 часа 15 минут.</span></p>
+              </article>
+
+              <!-- GENERAL SECTION -->
+              <article id="text-general" v-if="checked === 'general'">
+                <p>К вам приедут <span class="highlight">2 специалиста</span> со всеми необходимыми средствами и приборами.</p>
+                <p>Генеральная уборка, {{ room.value }} комната, {{ bathroom.value }} ванная. Уборка займет <span class="highlight">4 часа 15 минут.</span></p>
               </article>
 
               <p>Приедем в удобное для вас время. <a class="highlight" href="#">Что входит в уборку</a></p>
