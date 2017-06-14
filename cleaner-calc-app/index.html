@@ -89,27 +89,27 @@
               </label>
             </div>
           
-            <!-- FOURTH -->
-            <div v-if="checked !== 'remont'" class="row">
+            <!-- DISCOUNT SECTION -->
+            <div v-if="checked === 'single' || checked === 'general'" class="row">
               <div class="col-md-4">
                 <div class="text-center well">
                   <p>1 раз в месяц</p>
-                  <small>со скидкой <strong>{{ discount.first }}%</strong></small>
+                  <small>со скидкой <strong>{{ discount.first | addPercent }}</strong></small>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="text-center well">
                   <p>1 раз в 2 недели</p>
-                  <small>со скидкой <strong>{{ discount.second }}%</strong></small>
+                  <small>со скидкой <strong>{{ discount.second | addPercent }}</strong></small>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="text-center well">
                   <p>1 раз в неделю</p>
-                  <small>со скидкой <strong>{{ discount.third }}%</strong></small>
+                  <small>со скидкой <strong>{{ discount.third | addPercent }}</strong></small>
                 </div>
               </div>
-            </div>
+            </div><!-- END DISCOUNT SECTION -->
 
           </section><!-- section main end -->
 
@@ -215,10 +215,10 @@
                   </div>
                 </div>
               </div>
-            </section><!-- end generak block -->
+            </section><!-- end general block -->
             
             <!--COMMON-->
-            <section v-if="checked === 'single'">
+            <section v-if="checked === 'single' || checked === 'express'">
               <div class="row" style="display: flex; justify-content: center">
                 <div class="col-md-3">
                   <div class="text-center well">
@@ -345,6 +345,11 @@
                 <p>Генеральная уборка, {{ room.value }} комната, {{ bathroom.value }} ванная. Уборка займет <span class="highlight">4 часа 15 минут.</span></p>
               </article>
 
+              <!-- EXPRESS SECTION -->
+              <article id="text-express" v-if="checked === 'express'">
+                <p>К вам приедет <span class="highlight">1 специалист</span> со всеми необходимыми средствами и приборами.</p>
+              </article>
+
               <p>Приедем в удобное для вас время. <a class="highlight" href="#">Что входит в уборку</a></p>
 
               <!--<p>К вам приедет <em>1 специалист</em> со всеми необходимыми средствами и приборами.</p>-->
@@ -352,13 +357,14 @@
             </section>
 
             <section class="text-center">
-              <!-- section promocode -->
-              <div id="promo" style="display: flex; width: 60%; margin-left: 20%; margin-top: 40px">
+              
+              <!-- SECTION PROMOCODE -->
+              <div v-if="checked !== 'express'" id="promo" style="display: flex; width: 60%; margin-left: 20%; margin-top: 40px">
                 <input id="promocode" class="form-control" type="text" placeholder="у меня есть промокод">
                 <button class="btn btn-default" type="button" @click="onPromo()" :disabled="promo.disabled">Применить</button>
                 <p v-if="promo.error" class="error" style="color: red; margin-top: 0; margin-bottom: 0;">Вы ввели неправильный промокод</p>
-              </div>
-              <!-- end section promocode -->
+              </div><!-- end section promocode -->
+              
               <div class="row" style="margin-bottom: 40px; margin-top: 40px;">
                 <div class="col-md-6 col-md-offset-3 clearfix" style="font-weight: 700; font-size: 36px; color: #03aebc">
                   <p class="pull-left">К оплате:</p>

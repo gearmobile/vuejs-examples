@@ -270,6 +270,9 @@ const app = new Vue({
     },
     locate (value) {
       return value.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', maximumSignificantDigits: 4 })
+    },
+    addPercent (value) {
+      return value + '%'
     }
   },
   // ---------------------
