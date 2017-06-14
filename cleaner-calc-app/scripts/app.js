@@ -27,9 +27,18 @@ const app = new Vue({
       //
     },
     discount: {
-      first: 10,
-      second: 15,
-      third: 20
+      first: {
+        value: 10,
+        state: false
+      },
+      second: {
+        value: 15,
+        state: false
+      },
+      third: {
+        value: 20,
+        state: false
+      }
     },
     additional: {
       fridger: {
@@ -279,6 +288,23 @@ const app = new Vue({
   // METHODS
   // ---------------------
   methods: {
+    clearObj () {
+      for (let key in this.discount) {
+        this.discount[key].state = false
+      }
+    },
+    onDiscountFirst () {
+      this.clearObj()
+      this.discount.first.state = this.discount.first.state ? false : true
+    },
+    onDiscountSecond () {
+      this.clearObj()
+      this.discount.second.state = this.discount.second.state ? false : true
+    },
+    onDiscountThird () {
+      this.clearObj()
+      this.discount.third.state = this.discount.third.state ? false : true
+    },
     promoShow () {
       this.promo.show = this.promo.show ? false : true
       this.single.state = this.single.state ? false : true

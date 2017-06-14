@@ -44,3 +44,7 @@
 .highlight {
   color: #03aebc;
 }
+
+.bg-highlight {
+  background-color: rgba(3,174,188,.1);
+}

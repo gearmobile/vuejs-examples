@@ -92,21 +92,21 @@
             <!-- DISCOUNT SECTION -->
             <div v-if="checked === 'single' || checked === 'general'" class="row">
               <div class="col-md-4">
-                <div class="text-center well">
-                  <p>1 раз в месяц</p>
-                  <small>со скидкой <strong>{{ discount.first | addPercent }}</strong></small>
+                <div class="text-center well" style="cursor: pointer" @click="onDiscountFirst()" :class="{ 'bg-highlight': discount.first.state }">
+                  <h5 class="highlight" style="font-weight: 700; margin-bottom: 5px">1 раз в месяц</h5>
+                  <p style="font-size: 20px; margin-bottom: 0;">со скидкой <strong>{{ discount.first.value | addPercent }}</strong></p>
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="text-center well">
-                  <p>1 раз в 2 недели</p>
-                  <small>со скидкой <strong>{{ discount.second | addPercent }}</strong></small>
+                <div class="text-center well" style="cursor: pointer" @click="onDiscountSecond()" :class="{ 'bg-highlight': discount.second.state }">
+                  <h5 class="highlight" style="font-weight: 700; margin-bottom: 5px">1 раз в 2 недели</h5>
+                  <p style="font-size: 20px; margin-bottom: 0">со скидкой <strong>{{ discount.second.value | addPercent }}</strong></p>
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="text-center well">
-                  <p>1 раз в неделю</p>
-                  <small>со скидкой <strong>{{ discount.third | addPercent }}</strong></small>
+                <div class="text-center well" style="cursor: pointer" @click="onDiscountThird()" :class="{ 'bg-highlight': discount.third.state }">
+                  <h5 class="highlight" style="font-weight: 700; margin-bottom: 5px">1 раз в неделю</h5>
+                  <p style="font-size: 20px; margin-bottom: 0">со скидкой <strong>{{ discount.third.value | addPercent }}</strong></p>
                 </div>
               </div>
             </div><!-- END DISCOUNT SECTION -->
