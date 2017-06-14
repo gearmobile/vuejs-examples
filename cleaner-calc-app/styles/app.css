@@ -36,3 +36,7 @@
 .calc__label:hover {
   background-color: rgba(3,174,188,.3);
 }
+
+#single {
+  cursor: pointer;
+}

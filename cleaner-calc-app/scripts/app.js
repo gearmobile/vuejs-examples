@@ -100,7 +100,16 @@ const app = new Vue({
         max: 5,
         step: 1
       }
-    }
+    },
+    promo: {
+      state: false,
+      code: 123,
+      discount: 10,
+      disabled: false,
+      error: false,
+      show: true
+    },
+    checked: 'single'
   },
   // --------------------
   // COMPUTED
@@ -199,7 +208,24 @@ const app = new Vue({
     },
     // RESULT
     result () {
-      const total = [this.room, this.bathroom, this.window].reduce((sum, c) => sum + c.value * c.price, 0)
+      let total = [
+        this.room,
+        this.bathroom,
+        this.window,
+        this.additional.fridger,
+        this.additional.duhovka,
+        this.additional.microwaver,
+        this.additional.shkaf,
+        this.additional.dishes,
+        this.additional.glajka,
+        this.additional.windows,
+        this.additional.balcon,
+        this.additional.garderob,
+        this.additional.addtime
+      ].reduce((sum, c) => sum + c.value * c.price, 0)
+      if (this.promo.state) {
+        total = total - (total * this.promo.discount) / 100
+      }
       return total
     }
   },
@@ -242,6 +268,22 @@ const app = new Vue({
   // METHODS
   // ---------------------
   methods: {
+    promoShow () {
+      this.promo.show = this.promo.show ? false : true
+      this.single.state = this.single.state ? false : true
+    },
+    // PROMO CODE
+    onPromo () {
+      const value = parseInt(document.getElementById('promocode').value)
+      if (value === this.promo.code) {
+        this.promo.state = true
+        document.getElementById('promocode').value = null
+        this.promo.disabled = true
+        this.promo.error = false
+      } else {
+        this.promo.error = true
+      }
+    },
     // ROOM
     increaseRoom () {
       this.room.value += this.room.step
