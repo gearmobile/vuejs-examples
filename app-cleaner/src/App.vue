@@ -10,7 +10,7 @@
     // ADDITIONAL SECTION
     .row
       .col-md-10.col-md-offset-1
-        //- app-additional
+        app-additional
     
     // ORDER SECTION
     .row

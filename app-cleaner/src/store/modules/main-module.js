@@ -149,5 +149,3 @@ export default {
   mutations,
   actions
 }
-
-// export default store

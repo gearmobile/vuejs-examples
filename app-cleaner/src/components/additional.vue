@@ -1,17 +1,11 @@
 <template lang="pug">
 
-  section
+  .additional
   
     h3.page-header.text-center Дополнительно
 
-    // ADD SECTION
-    section.add( v-if="clearing !== 'repair'" )
-      .text-center.well.add__panel
-        | Только до #[strong 31 июля] помоем #[strong пять] окон за #[strong 1 000 рублей]
-      .text-center.well.add__input
-        button.btn.btn-default( @click="decreaseWindow()", :disabled="windowStateDecrease" ) -
-        input.form-control.text-center( type="text", v-model="window.value" )
-        button.btn.btn-default( @click="increaseWindow()", :disabled="windowStateIncrease" ) +
+    // ACTION SECTION
+    app-action
 
     // ADDITIONAL SECTIONS
 
@@ -144,18 +138,15 @@
 </template>
 
 <script>
+  import Action from './action.vue'
+
   export default {
     name: 'additional',
+    components: {
+      appAction: Action
+    },
     data () {
       return {
-        window: {
-          value: 0,
-          price: 200,
-          min: 0,
-          max: 25,
-          step: 5,
-          time: 30
-        },
         fridge: {
           value: 0,
           price: 300,
@@ -239,15 +230,6 @@
       }
     },
     methods: {
-      increaseWindow () {
-        this.window.value += this.window.step
-      },
-      decreaseWindow () {
-        if (this.window.value === this.window.min) {
-          return
-        }
-        this.window.value -= this.window.step
-      },
       increaseFridge () {
         this.fridge.value += this.fridge.step
       },
@@ -341,12 +323,6 @@
       }
     },
     computed: {
-      windowStateDecrease () {
-        return this.window.value === this.window.min
-      },
-      windowStateIncrease () {
-        return this.window.value === this.window.max
-      },
       fridgeStateDecrease () {
         return this.fridge.value === this.fridge.min
       },
@@ -412,18 +388,6 @@
 </script>
 
 <style lang="scss" scoped>
-
-  .add {
-
-    &__panel {
-      background-color: #f6d9dd;
-      color: #950d2a;
-    }
-
-    &__input {
-      display: flex;
-    }
-  }
 
   .additional {
 
