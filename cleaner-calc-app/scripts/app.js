@@ -126,6 +126,10 @@ const app = new Vue({
   // COMPUTED
   // --------------------
   computed: {
+    showDiscountCal () {
+      const check = this.discount.first.state || this.discount.second.state || this.discount.third.state
+      return check
+    },
     showCommon () {
       const check = this.discount.first.state || this.discount.second.state || this.discount.third.state
       return !check
