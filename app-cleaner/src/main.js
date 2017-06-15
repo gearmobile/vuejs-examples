@@ -5,6 +5,14 @@ import App from './App'
 
 Vue.config.productionTip = false
 
+Vue.filter('addPercent', value => value + '%')
+Vue.filter('locate', value => {
+  if (value === null) {
+    return
+  }
+  return value.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', maximumSignificantDigits: 4 })
+})
+
 /* eslint-disable no-new */
 new Vue({
   template: '<App/>',
