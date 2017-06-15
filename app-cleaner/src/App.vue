@@ -1,4 +1,5 @@
 <template lang="pug">
+  
   #app.container
     
     // MAIN SECTION
@@ -15,6 +16,7 @@
     .row
       .col-md-10.col-md-offset-1
         app-order
+        
 </template>
 
 <script>
