@@ -10,7 +10,7 @@
     // ADDITIONAL SECTION
     .row
       .col-md-10.col-md-offset-1
-        app-additional
+        //- app-additional
     
     // ORDER SECTION
     .row
@@ -40,5 +40,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-top: 60px;
+    background-color: #ddd;
   }
 </style>

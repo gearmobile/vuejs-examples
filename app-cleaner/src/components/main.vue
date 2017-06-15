@@ -1,23 +1,29 @@
 <template lang="pug">
   
+  // MAIN
   .main
     
-    
-    h3.page-header.text-center Расчет стоимости
+    // CALCULATE COST
     .row
+      h3.page-header.text-center
+        | Расчет стоимости
+      
       .col-md-6.text-center
         .text-center.well.main__row
-          button.btn.btn-default( @click="decreaseRoom()", :disabled="roomStateDecrease" ) -
-          input.form-control.text-center( type="text", v-model="room.value" )
-          button.btn.btn-default( @click="increaseRoom()", :disabled="roomStateIncrease" ) +
+          button.btn.btn-default( @click="decreaseRoom", :disabled="roomStateDecrease" ) -
+          input.form-control.text-center( type="text", v-model="getRoomValue" )
+          button.btn.btn-default( @click="increaseRoom", :disabled="roomStateIncrease" ) +
+      
       .col-md-6.text-center
         .text-center.well.main__row
-          button.btn.btn-default( @click="decreaseBathroom()" :disabled="bathroomStateDecrease" ) -
-          input.form-control.text-center( type="text", v-model="bathroom.value" )
-          button.btn.btn-default( @click="increaseBathroom()" :disabled="bathroomStateIncrease" ) +
+          button.btn.btn-default( @click="decreaseBathroom" :disabled="bathroomStateDecrease" ) -
+          input.form-control.text-center( type="text", v-model="getBathroomValue" )
+          button.btn.btn-default( @click="increaseBathroom" :disabled="bathroomStateIncrease" ) +
     
-    h4.page-header.text-center.text-capitalize разовая уборка
+    // SINGLE CLEARING
     .row
+      h4.page-header.text-center
+        | Разовая уборка
       .col-md-4
         .text-center.well.main__wrapper
           label.main__label( for="repair" )
@@ -33,6 +39,8 @@
           label.main__label( for="express" )
             input( id="express", name="type", type="radio", value="express", v-model="clearing" )
             | экспресс
+    
+    // SINGLE SECTION
     .row
       .col-md-12
         .text-center.well.main__wrapper
@@ -40,49 +48,37 @@
             input( id="single", name="type", type="radio", value="single", v-model="clearing" )
             | разовая уборка
 
-    .row
-      h4.page-header.text-center.text-capitalize периодичная уборка
+    // DISCOUNT SECTION
+    .row( v-if="showDiscountBlock" )
+      h4.page-header.text-center
+        | Периодичная уборка
       .col-md-4
-        .text-center.well.main__thumb( @click="onDiscountFirst()", :class="{ 'wrapper__active': discount.first.state }" )
+        .text-center.well.main__thumb( @click="onDiscountFirst", :class="{ 'main__active': getDiscountFirstState }" )
           h5.main__highlight
-          | 1 раз в месяц
+            | 1 раз в месяц
           p.main__discount
-          | со скидкой #[strong {{ discount.first.value | addPercent }}]
+            | со скидкой #[strong {{ getdDiscountFirstValue | addPercent }}]
       .col-md-4
-        .text-center.well.main__thumb( @click="onDiscountSecond()", :class="{ 'wrapper__active': discount.second.state }" )
+        .text-center.well.main__thumb( @click="onDiscountSecond", :class="{ 'main__active': getDiscountSecondState }" )
           h5.main__highlight
-          | 1 раз в 2 недели
+            | 1 раз в 2 недели
           p.main__discount
-          | со скидкой #[strong {{ discount.second.value | addPercent }}]
+            | со скидкой #[strong {{ getDiscountSecondValue | addPercent }}]
       .col-md-4
-        .text-center.well.main__thumb( @click="onDiscountThird()", :class="{ 'wrapper__active': discount.third.state }" )
+        .text-center.well.main__thumb( @click="onDiscountThird", :class="{ 'main__active': getDiscountThirdState }" )
           h5.main__highlight
-          | 1 раз в неделю
+            | 1 раз в неделю
           p.main__discount
-          | со скидкой #[strong {{ discount.third.value | addPercent }}]
+            | со скидкой #[strong {{ getDiscountThirdValue | addPercent }}]
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex'
+
   export default {
     name: 'main',
     data () {
       return {
-        room: {
-          value: 1,
-          price: 1000,
-          min: 1,
-          max: 12,
-          step: 1,
-          time: 30
-        },
-        bathroom: {
-          value: 1,
-          price: 1200,
-          min: 1,
-          max: 5,
-          step: 1,
-          time: 30
-        },
         discount: {
           first: {
             value: 10,
@@ -96,63 +92,48 @@
             value: 20,
             state: false
           }
-        },
-        clearing: 'single'
+        }
       }
     },
     computed: {
-      roomStateDecrease () {
-        return this.room.value === this.room.min
-      },
-      roomStateIncrease () {
-        return this.room.value === this.room.max
-      },
-      bathroomStateDecrease () {
-        return this.bathroom.value === this.bathroom.min
-      },
-      bathroomStateIncrease () {
-        return this.bathroom.value === this.bathroom.max
+      ...mapGetters([
+        'getRoomValue',
+        'roomStateDecrease',
+        'roomStateIncrease',
+        'getBathroomValue',
+        'bathroomStateDecrease',
+        'bathroomStateIncrease',
+        'getClearingValue',
+        'getdDiscountFirstValue',
+        'getDiscountSecondValue',
+        'getDiscountThirdValue',
+        'getDiscountFirstState',
+        'getDiscountSecondState',
+        'getDiscountThirdState',
+        'showDiscountBlock'
+      ]),
+      clearing: {
+        get () { return this.getClearingValue },
+        set (value) { this.setClearingValue(value) }
       }
     },
     methods: {
-      increaseRoom () {
-        this.room.value += this.room.step
-      },
-      decreaseRoom () {
-        if (this.room.value === this.room.min) {
-          return
-        }
-        this.room.value -= this.room.step
-      },
-      increaseBathroom () {
-        this.bathroom.value += this.bathroom.step
-      },
-      decreaseBathroom () {
-        if (this.bathroom.value === this.bathroom.min) {
-          return
-        }
-        this.bathroom.value -= this.bathroom.step
-      },
-      onDiscountFirst () {
-        this.discount.second.state = false
-        this.discount.third.state = false
-        this.discount.first.state = !this.discount.first.state
-      },
-      onDiscountSecond () {
-        this.discount.first.state = false
-        this.discount.third.state = false
-        this.discount.second.state = !this.discount.second.state
-      },
-      onDiscountThird () {
-        this.discount.first.state = false
-        this.discount.second.state = false
-        this.discount.third.state = !this.discount.third.state
-      }
+      ...mapActions([
+        'increaseRoom',
+        'decreaseRoom',
+        'increaseBathroom',
+        'decreaseBathroom',
+        'setClearingValue',
+        'onDiscountFirst',
+        'onDiscountSecond',
+        'onDiscountThird'
+      ])
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  
   .main {
 
     &__row {
@@ -193,5 +174,7 @@
       font-size: 20px;
       margin-bottom: 0;
     }
+
   }
+
 </style>
