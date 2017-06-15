@@ -106,18 +106,6 @@
                 </div>
               </div>
             </div><!-- END DISCOUNT SECTION -->
-            <div class="row">
-              <div class="col-md-12">
-                <ul>
-                  <li class="text-capitalize"><strong>{{ showCommon }}</strong></li>
-                </ul>
-              </div>
-              <div class="col-md-12">
-                <div v-if="showCommon" class="well">
-                  <p>container</p>
-                </div>
-              </div>
-            </div>
 
           </section><!-- section main end -->
 
@@ -367,11 +355,13 @@
             <section class="text-center">
               
               <!-- SECTION PROMOCODE -->
-              <div v-if="showCommon" id="promo" style="display: flex; width: 60%; margin-left: 20%; margin-top: 40px">
-                <input id="promocode" class="form-control" type="text" placeholder="у меня есть промокод">
-                <button class="btn btn-default" type="button" @click="onPromo()" :disabled="promo.disabled">Применить</button>
-                <p v-if="promo.error" class="error" style="color: red; margin-top: 0; margin-bottom: 0;">Вы ввели неправильный промокод</p>
-              </div><!-- end section promocode -->
+              <section v-if="showExpress" id="wrapper">
+                <div v-if="showCommon" id="promo" style="display: flex; width: 60%; margin-left: 20%; margin-top: 40px">
+                  <input id="promocode" class="form-control" type="text" placeholder="у меня есть промокод">
+                  <button class="btn btn-default" type="button" @click="onPromo()" :disabled="promo.disabled">Применить</button>
+                  <p v-if="promo.error" class="error" style="color: red; margin-top: 0; margin-bottom: 0;">Вы ввели неправильный промокод</p>
+                </div><!-- end section promocode -->
+              </section>
               
               <div class="row" style="margin-bottom: 40px; margin-top: 40px;">
                 <div class="col-md-6 col-md-offset-3 clearfix" style="font-weight: 700; font-size: 36px; color: #03aebc">

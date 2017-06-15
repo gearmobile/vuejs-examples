@@ -129,10 +129,9 @@ const app = new Vue({
     showCommon () {
       const check = this.discount.first.state || this.discount.second.state || this.discount.third.state
       return !check
-      // return !(this.discount.first.state || this.discount.second.state || this.discount.third.state)
     },
     showExpress () {
-      this.checked !== 'express'
+      return this.checked !== 'express'
     },
     // ROOM
     roomStateDecrease () {
