@@ -1,5 +1,16 @@
 <template lang="pug">
   #app.container
+    
+    // MAIN SECTION
+    .row
+      .col-md-10.col-md-offset-1
+        app-main
+    
+    // ADDITIONAL SECTION
+    .row
+      .col-md-10.col-md-offset-1
+        app-additional
+    
     // ORDER SECTION
     .row
       .col-md-10.col-md-offset-1
@@ -7,11 +18,15 @@
 </template>
 
 <script>
+  import Main from './components/main.vue'
+  import Additional from './components/additional.vue'
   import Order from './components/order.vue'
 
   export default {
     name: 'app',
     components: {
+      appMain: Main,
+      appAdditional: Additional,
       appOrder: Order
     }
   }

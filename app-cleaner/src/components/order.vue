@@ -1,5 +1,5 @@
 <template lang="pug">
-  .order
+  .order( v-if="show" )
     h2.page-header.text-center Заказ на уборку
     .row
       
@@ -52,12 +52,17 @@
           p К оплате:1 980 р.
         // section continue
         section
-          button( type="button" ) продолжить
+          button.btn.btn-primary.btn-lg( type="button" ) продолжить
 </template>
 
 <script>
 export default {
-  name: 'primo'
+  name: 'primo',
+  data () {
+    return {
+      show: false
+    }
+  }
 }
 </script>
 
