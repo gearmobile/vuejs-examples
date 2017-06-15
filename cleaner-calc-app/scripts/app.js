@@ -245,6 +245,22 @@ const app = new Vue({
         total = total - (total * this.promo.discount) / 100
       }
       return total
+    },
+    resultDiscount () {
+      let discountValue = null
+      if (this.discount.first.state) {
+        discountValue = (this.result * this.discount.first.value) / 100
+      }
+      if (this.discount.second.state) {
+        discountValue = (this.result * this.discount.second.value) / 100
+      }
+      if (this.discount.third.state) {
+        discountValue = (this.result * this.discount.third.value) / 100
+      }
+      return discountValue
+    },
+    totalSum () {
+      return this.result + this.resultDiscount
     }
   },
   // ---------------------
@@ -282,6 +298,9 @@ const app = new Vue({
       return result
     },
     locate (value) {
+      if (value === null) {
+        return
+      }
       return value.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', maximumSignificantDigits: 4 })
     },
     addPercent (value) {

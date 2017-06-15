@@ -353,6 +353,21 @@
             </section>
 
             <section class="text-center">
+
+              <section id="discount-calculation">
+                <div class="col-md-6 col-md-offset-3 clearfix">
+                  <p class="pull-left">Общая сумма:</p>
+                  <p class="pull-right">{{ result | locate }}</p>
+                </div>
+                <div class="col-md-6 col-md-offset-3 clearfix">
+                  <p class="pull-left">Сумма скидки:</p>
+                  <p class="pull-right">{{ resultDiscount | locate }}</p>
+                </div>
+                <div class="col-md-6 col-md-offset-3 clearfix" style="font-weight: 700; font-size: 36px; color: #03aebc">
+                  <p class="pull-left">Итого сумма:</p>
+                  <p class="pull-right">{{ totalSum | locate }}</p>
+                </div>
+              </section>
               
               <!-- SECTION PROMOCODE -->
               <section v-if="showExpress" id="wrapper">
