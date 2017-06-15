@@ -285,21 +285,19 @@ const app = new Vue({
   // METHODS
   // ---------------------
   methods: {
-    clearObj () {
-      for (let key in this.discount) {
-        this.discount[key].state = false
-      }
-    },
     onDiscountFirst () {
-      this.clearObj()
+      this.discount.second.state = false
+      this.discount.third.state = false
       this.discount.first.state = this.discount.first.state ? false : true
     },
     onDiscountSecond () {
-      this.clearObj()
+      this.discount.first.state = false
+      this.discount.third.state = false
       this.discount.second.state = this.discount.second.state ? false : true
     },
     onDiscountThird () {
-      this.clearObj()
+      this.discount.first.state = false
+      this.discount.second.state = false
       this.discount.third.state = this.discount.third.state ? false : true
     },
     promoShow () {
