@@ -126,20 +126,13 @@ const app = new Vue({
   // COMPUTED
   // --------------------
   computed: {
-    showDiscountFirst () {
-      return this.discount.first.state
-    },
-    showDiscountSecond () {
-      return this.discount.second.state
-    },
-    showDiscountThird () {
-      return this.discount.third.state
-    },
-    // showCommon () {
-    //   return !this.showDiscountFirst || !this.showDiscountSecond || !this.showDiscountThird
-    // },
     showCommon () {
-      return this.discount.first.state || this.discount.second.state || this.discount.third.state
+      const check = this.discount.first.state || this.discount.second.state || this.discount.third.state
+      return !check
+      // return !(this.discount.first.state || this.discount.second.state || this.discount.third.state)
+    },
+    showExpress () {
+      this.checked !== 'express'
     },
     // ROOM
     roomStateDecrease () {
