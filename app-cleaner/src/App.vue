@@ -10,12 +10,12 @@
     // ADDITIONAL SECTION
     .row
       .col-md-10.col-md-offset-1
-        app-additional
+        //- app-additional
     
     // ORDER SECTION
     .row
       .col-md-10.col-md-offset-1
-        app-order
+        //- app-order
         
 </template>
 
@@ -23,6 +23,7 @@
   import Main from './components/main.vue'
   import Additional from './components/additional.vue'
   import Order from './components/order.vue'
+  import { mapActions } from 'vuex'
 
   export default {
     name: 'app',
@@ -30,6 +31,14 @@
       appMain: Main,
       appAdditional: Additional,
       appOrder: Order
+    },
+    methods: {
+      ...mapActions({
+        initItems: 'initItems'
+      })
+    },
+    created () {
+      this.initItems()
     }
   }
 </script>

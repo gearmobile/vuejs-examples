@@ -7,19 +7,8 @@
     .row
       h3.page-header.text-center
         | Расчет стоимости
-      
-      .col-md-6.text-center
-        .text-center.well.main__row
-          button.btn.btn-default( @click="decreaseRoom", :disabled="roomStateDecrease" ) -
-          input.form-control.text-center( type="text", v-model="getRoomValue" )
-          button.btn.btn-default( @click="increaseRoom", :disabled="roomStateIncrease" ) +
-      
-      .col-md-6.text-center
-        .text-center.well.main__row
-          button.btn.btn-default( @click="decreaseBathroom" :disabled="bathroomStateDecrease" ) -
-          input.form-control.text-center( type="text", v-model="getBathroomValue" )
-          button.btn.btn-default( @click="increaseBathroom" :disabled="bathroomStateIncrease" ) +
-    
+      input-field( v-for="(item, index) in items", :key="index", :point="item" )
+
     // SINGLE CLEARING
     .row
       h4.page-header.text-center
@@ -39,8 +28,6 @@
           label.main__label( for="express" )
             input( id="express", name="type", type="radio", value="express", v-model="clearing" )
             | экспресс
-    
-    // SINGLE SECTION
     .row
       .col-md-12
         .text-center.well.main__wrapper
@@ -49,31 +36,32 @@
             | разовая уборка
 
     // DISCOUNT SECTION
-    .row( v-if="showDiscountBlock" )
+    .row( v-if="clearing === 'single' || clearing === 'general'" )
       h4.page-header.text-center
         | Периодичная уборка
       .col-md-4
-        .text-center.well.main__thumb( @click="onDiscountFirst", :class="{ 'main__active': getDiscountFirstState }" )
+        .text-center.well.main__thumb( @click="onDiscountFirst", :class="{ 'main__active': discount.first.state }" )
           h5.main__highlight
             | 1 раз в месяц
           p.main__discount
-            | со скидкой #[strong {{ getdDiscountFirstValue | addPercent }}]
+            | со скидкой #[strong {{ discount.first.value | addPercent }}]
       .col-md-4
-        .text-center.well.main__thumb( @click="onDiscountSecond", :class="{ 'main__active': getDiscountSecondState }" )
+        .text-center.well.main__thumb( @click="onDiscountSecond", :class="{ 'main__active': discount.second.state }" )
           h5.main__highlight
             | 1 раз в 2 недели
           p.main__discount
-            | со скидкой #[strong {{ getDiscountSecondValue | addPercent }}]
+            | со скидкой #[strong {{ discount.second.value | addPercent }}]
       .col-md-4
-        .text-center.well.main__thumb( @click="onDiscountThird", :class="{ 'main__active': getDiscountThirdState }" )
+        .text-center.well.main__thumb( @click="onDiscountThird", :class="{ 'main__active': discount.third.state }" )
           h5.main__highlight
             | 1 раз в неделю
           p.main__discount
-            | со скидкой #[strong {{ getDiscountThirdValue | addPercent }}]
+            | со скидкой #[strong {{ discount.third.value | addPercent }}]
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapGetters } from 'vuex'
+  import inputField from './parts/input.vue'
 
   export default {
     name: 'main',
@@ -92,42 +80,34 @@
             value: 20,
             state: false
           }
-        }
+        },
+        clearing: 'single'
       }
     },
     computed: {
-      ...mapGetters([
-        'getRoomValue',
-        'roomStateDecrease',
-        'roomStateIncrease',
-        'getBathroomValue',
-        'bathroomStateDecrease',
-        'bathroomStateIncrease',
-        'getClearingValue',
-        'getdDiscountFirstValue',
-        'getDiscountSecondValue',
-        'getDiscountThirdValue',
-        'getDiscountFirstState',
-        'getDiscountSecondState',
-        'getDiscountThirdState',
-        'showDiscountBlock'
-      ]),
-      clearing: {
-        get () { return this.getClearingValue },
-        set (value) { this.setClearingValue(value) }
-      }
+      ...mapGetters({
+        items: 'getData'
+      })
     },
     methods: {
-      ...mapActions([
-        'increaseRoom',
-        'decreaseRoom',
-        'increaseBathroom',
-        'decreaseBathroom',
-        'setClearingValue',
-        'onDiscountFirst',
-        'onDiscountSecond',
-        'onDiscountThird'
-      ])
+      onDiscountFirst () {
+        this.discount.second.state = false
+        this.discount.third.state = false
+        this.discount.first.state = !this.discount.first.state
+      },
+      onDiscountSecond () {
+        this.discount.first.state = false
+        this.discount.third.state = false
+        this.discount.second.state = !this.discount.second.state
+      },
+      onDiscountThird () {
+        this.discount.first.state = false
+        this.discount.second.state = false
+        this.discount.third.state = !this.discount.third.state
+      }
+    },
+    components: {
+      inputField
     }
   }
 </script>
