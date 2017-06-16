@@ -7,11 +7,6 @@
       .col-md-10.col-md-offset-1
         app-main
     
-    // ADDITIONAL SECTION
-    .row
-      .col-md-10.col-md-offset-1
-        //- app-additional
-    
     // ORDER SECTION
     .row
       .col-md-10.col-md-offset-1
@@ -21,7 +16,6 @@
 
 <script>
   import Main from './components/main.vue'
-  import Additional from './components/additional.vue'
   import Order from './components/order.vue'
   import { mapActions } from 'vuex'
 
@@ -29,16 +23,23 @@
     name: 'app',
     components: {
       appMain: Main,
-      appAdditional: Additional,
       appOrder: Order
     },
     methods: {
       ...mapActions({
-        initItems: 'initItems'
+        initItems: 'initItems',
+        cardsInit: 'initCards',
+        generalsInit: 'initGenerals',
+        repairsInit: 'initRepairs',
+        promosInit: 'initPromos'
       })
     },
     created () {
       this.initItems()
+      this.cardsInit()
+      this.generalsInit()
+      this.repairsInit()
+      this.promosInit()
     }
   }
 </script>

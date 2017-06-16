@@ -3,13 +3,13 @@
   // MAIN
   .main
     
-    // CALCULATE COST
+    // INPUT BLOCK
     .row
       h3.page-header.text-center
         | Расчет стоимости
-      input-field( v-for="(item, index) in items", :key="index", :point="item" )
+      app-input( v-for="(item, index) in items", :key="index", :point="item" )
 
-    // SINGLE CLEARING
+    // CLEARING BLOCK
     .row
       h4.page-header.text-center
         | Разовая уборка
@@ -35,7 +35,7 @@
             input( id="single", name="type", type="radio", value="single", v-model="clearing" )
             | разовая уборка
 
-    // DISCOUNT SECTION
+    // DISCOUNT BLOCK
     .row( v-if="clearing === 'single' || clearing === 'general'" )
       h4.page-header.text-center
         | Периодичная уборка
@@ -57,11 +57,34 @@
             | 1 раз в неделю
           p.main__discount
             | со скидкой #[strong {{ discount.third.value | addPercent }}]
+
+    h3.page-header.text-center Дополнительно
+    
+    // PROMOTION SECTION
+    .main__line( v-if="clearing !== 'repair'" )
+      app-promo( v-for="(promo, index) in promos", :key="index", :promo="promo" )
+
+    // REPAIR BLOCK
+    .main__line( v-if="clearing === 'repair'" )
+      app-cards( v-for="(card, index) in repairs", :key="index", :card="card" )
+
+
+    // GENERAL BLOCK
+    .main__line( v-if="clearing === 'general'" )
+      app-cards( v-for="(card, index) in generals", :key="index", :card="card" )
+
+
+    // COMMON BLOCK
+    .main__line( v-if="clearing === 'single' || clearing === 'express'" )
+      app-cards( v-for="(card, index) in cards", :key="index", :card="card" )
+
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import inputField from './parts/input.vue'
+  import Input from './parts/input.vue'
+  import Cards from './parts/card.vue'
+  import Promo from './parts/promo.vue'
 
   export default {
     name: 'main',
@@ -82,11 +105,23 @@
           }
         },
         clearing: 'single'
+        // action: {
+        //   value: 0,
+        //   price: 200,
+        //   min: 0,
+        //   max: 25,
+        //   step: 5,
+        //   time: 30
+        // }
       }
     },
     computed: {
       ...mapGetters({
-        items: 'getData'
+        items: 'getData',
+        cards: 'getCards',
+        generals: 'getGenerals',
+        repairs: 'getRepairs',
+        promos: 'getPromos'
       })
     },
     methods: {
@@ -107,7 +142,9 @@
       }
     },
     components: {
-      inputField
+      appInput: Input,
+      appCards: Cards,
+      appPromo: Promo
     }
   }
 </script>
@@ -118,6 +155,12 @@
 
     &__row {
       display: flex;
+    }
+
+    &__line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     &__wrapper {
