@@ -3,9 +3,9 @@
     .well.card__wrapper
       h6 {{ card.title }}
       .card__item
-        button.btn.btn-default( type="button" ) -
+        button.btn.btn-default( type="button", @click="removeOrder()", :disabled="decreaseState" ) -
         input.form-control.text-center( type="text", v-model="card.value" )
-        button.btn.btn-default( type="button", @click="addOrder()" ) +
+        button.btn.btn-default( type="button", @click="addOrder()", :disabled="increaseState" ) +
 </template>
 
 <script>
@@ -19,30 +19,50 @@
         default: null
       }
     },
+    computed: {
+      increaseState () {
+        return this.card.value === this.card.max
+      },
+      decreaseState () {
+        return this.card.value === this.card.min
+      }
+    },
     methods: {
       ...mapActions({
         orderAdd: 'addOrder',
         orderDelete: 'deleteOrder'
       }),
-      addOrder () {
-        const order = {
-          name: this.card.name,
-          price: this.card.price,
-          value: this.card.value,
-          time: this.card.time,
-          title: this.card.title
+      increase () {
+        this.card.value += this.card.step
+      },
+      decrease () {
+        if (this.card.value === this.card.min) {
+          return
         }
-        this.orderAdd(order)
+        this.card.value -= this.card.step
+      },
+      addOrder () {
+        this.increase()
+        // const order = {
+        //   name: this.card.name,
+        //   price: this.card.price,
+        //   // value: this.card.value,
+        //   time: this.card.time,
+        //   title: this.card.title,
+        //   quantity: this.card.value
+        // }
+        // this.orderAdd(order)
       },
       removeOrder () {
-        const order = {
-          name: this.card.name,
-          price: this.card.price,
-          value: this.card.value,
-          time: this.card.time,
-          title: this.card.title
-        }
-        this.orderDelete(order)
+        this.decrease()
+        // const order = {
+        //   name: this.card.name,
+        //   price: this.card.price,
+        //   value: this.card.value,
+        //   time: this.card.time,
+        //   title: this.card.title
+        // }
+        // this.orderDelete(order)
       }
     }
   }
