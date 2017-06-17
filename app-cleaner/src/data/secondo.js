@@ -7,7 +7,10 @@ export default [
     min: 0,
     max: 5,
     step: 1,
-    time: 30
+    time: 30,
+    singular: 'штука',
+    few: 'штуки',
+    plural: 'штук'
   },
   {
     name: 'oven',
@@ -17,7 +20,10 @@ export default [
     min: 0,
     max: 5,
     step: 1,
-    time: 30
+    time: 30,
+    singular: 'штука',
+    few: 'штуки',
+    plural: 'штук'
   },
   {
     name: 'microwave',
@@ -27,7 +33,10 @@ export default [
     min: 0,
     max: 5,
     step: 1,
-    time: 30
+    time: 30,
+    singular: 'штука',
+    few: 'штуки',
+    plural: 'штук'
   },
   {
     name: 'wardrobe',
@@ -37,7 +46,10 @@ export default [
     min: 0,
     max: 10,
     step: 1,
-    time: 30
+    time: 30,
+    singular: 'штука',
+    few: 'штуки',
+    plural: 'штук'
   },
   {
     name: 'crockery',
@@ -47,7 +59,10 @@ export default [
     min: 0,
     max: 180,
     step: 30,
-    time: 30
+    time: 30,
+    singular: '',
+    few: '',
+    plural: ''
   },
   {
     name: 'ironing',
@@ -57,7 +72,10 @@ export default [
     min: 0,
     max: 5,
     step: 1,
-    time: 30
+    time: 30,
+    singular: 'час',
+    few: 'часа',
+    plural: 'часов'
   },
   {
     name: 'pane',
@@ -67,7 +85,10 @@ export default [
     min: 0,
     max: 30,
     step: 1,
-    time: 15
+    time: 15,
+    singular: 'окно',
+    few: 'окна',
+    plural: 'окон'
   },
   {
     name: 'balcony',
@@ -77,7 +98,10 @@ export default [
     min: 0,
     max: 5,
     step: 1,
-    time: 30
+    time: 30,
+    singular: 'штука',
+    few: 'штуки',
+    plural: 'штук'
   },
   {
     name: 'wardrobe',
@@ -87,7 +111,10 @@ export default [
     min: 0,
     max: 5,
     step: 1,
-    time: 30
+    time: 30,
+    singular: 'штука',
+    few: 'штуки',
+    plural: 'штук'
   },
   {
     name: 'addtime',
@@ -97,6 +124,9 @@ export default [
     min: 0,
     max: 5,
     step: 1,
-    time: 30
+    time: 30,
+    singular: 'час',
+    few: 'часа',
+    plural: 'часов'
   }
 ]

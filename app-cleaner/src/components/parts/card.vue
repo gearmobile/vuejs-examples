@@ -35,7 +35,7 @@
           if (this.card.name === 'crockery') {
             return this.$options.filters.time(this.card.value)
           } else {
-            return this.card.value
+            return this.card.value + ' ' + this.getNoun(this.card.value, this.card.singular, this.card.few, this.card.plural)
           }
         }
       }

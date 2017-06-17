@@ -12,28 +12,28 @@ export default {
     let result = null
     switch (value) {
       case 0:
-        result = 0
+        result = 0 + ' минут'
         break
       case 30:
-        result = 30
+        result = 30 + ' минут'
         break
       case 60:
-        result = 1
+        result = 1 + ' час'
         break
       case 90:
-        result = 1.5
+        result = 1.5 + ' часа'
         break
       case 120:
-        result = 2
+        result = 2 + ' часа'
         break
       case 150:
-        result = 2.5
+        result = 2.5 + ' часа'
         break
       case 180:
-        result = 3
+        result = 3 + ' часа'
         break
       default:
-        result = 0
+        result = 0 + ' минут'
     }
     return result
   }
