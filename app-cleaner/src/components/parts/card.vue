@@ -4,7 +4,7 @@
       h6 {{ card.title }}
       .card__item
         button.btn.btn-default( type="button", @click="removeOrder()", :disabled="decreaseState" ) -
-        input.form-control.text-center( type="text", v-model="card.value" )
+        input.form-control.text-center( type="text", v-model="output" )
         button.btn.btn-default( type="button", @click="addOrder()", :disabled="increaseState" ) +
 </template>
 
@@ -25,6 +25,15 @@
       },
       decreaseState () {
         return this.card.value === this.card.min || !Number.isInteger(this.card.value)
+      },
+      output: {
+        get () {
+          if (this.card.name === 'crockery') {
+            return this.$options.filters.time(this.card.value)
+          } else {
+            return this.card.value
+          }
+        }
       }
     },
     methods: {
