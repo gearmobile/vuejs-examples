@@ -4,7 +4,7 @@
       h6.card__title {{ card.title }}
       .card__item
         button.btn.btn-default( type="button", @click="removeOrder()", :disabled="decreaseState" ) -
-        input.form-control.text-center( type="text", v-model="output" )
+        input.form-control.text-center( type="text", :name="card.name", v-model="output" )
         button.btn.btn-default( type="button", @click="addOrder()", :disabled="increaseState" ) +
 </template>
 
