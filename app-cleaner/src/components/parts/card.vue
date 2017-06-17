@@ -1,7 +1,7 @@
 <template lang="pug">
   .card.col-md-3
     .well.card__wrapper
-      h6 {{ card.title }}
+      h6.card__title {{ card.title }}
       .card__item
         button.btn.btn-default( type="button", @click="removeOrder()", :disabled="decreaseState" ) -
         input.form-control.text-center( type="text", v-model="output" )
@@ -83,6 +83,11 @@
 <style lang="scss" scoped>
   .card {
     text-align: center;
+
+    &__title {
+      font-weight: 700;
+      font-size: 16px;
+    }
     
     &__wrapper {
       min-height: 160px;

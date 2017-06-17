@@ -6,7 +6,10 @@ export default [
     min: 1,
     max: 12,
     step: 1,
-    time: 30
+    time: 30,
+    singular: '',
+    few: '',
+    plural: ''
   },
   {
     name: 'bathroom',
@@ -15,6 +18,9 @@ export default [
     min: 1,
     max: 5,
     step: 1,
-    time: 30
+    time: 30,
+    singular: '',
+    few: '',
+    plural: ''
   }
 ]

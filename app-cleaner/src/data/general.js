@@ -7,7 +7,10 @@ export default [
     min: 0,
     max: 5,
     step: 1,
-    time: 30
+    time: 30,
+    singular: 'час',
+    few: 'часа',
+    plural: 'часов'
   },
   {
     name: 'pane',
@@ -17,7 +20,10 @@ export default [
     min: 0,
     max: 30,
     step: 1,
-    time: 15
+    time: 15,
+    singular: 'окно',
+    few: 'окна',
+    plural: 'окон'
   },
   {
     name: 'wardrobe',
@@ -27,6 +33,9 @@ export default [
     min: 0,
     max: 5,
     step: 1,
-    time: 30
+    time: 30,
+    singular: 'штука',
+    few: 'штуки',
+    plural: 'штук'
   }
 ]
