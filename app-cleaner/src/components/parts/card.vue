@@ -9,6 +9,8 @@
 </template>
 
 <script>
+  import Mixins from '../../mixins/mixin.js'
+  import filters from '../../filters/filters.js'
   import { mapActions } from 'vuex'
 
   export default {
@@ -19,6 +21,8 @@
         default: null
       }
     },
+    mixins: [Mixins],
+    filters,
     computed: {
       increaseState () {
         return this.card.value === this.card.max || !Number.isInteger(this.card.value)

@@ -81,6 +81,7 @@
 </template>
 
 <script>
+  import filters from '../filters/filters.js'
   import { mapGetters } from 'vuex'
   import Input from './parts/input.vue'
   import Cards from './parts/card.vue'
@@ -107,6 +108,7 @@
         clearing: 'single'
       }
     },
+    filters,
     computed: {
       ...mapGetters({
         items: 'getData',
