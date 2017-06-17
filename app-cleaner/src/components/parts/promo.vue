@@ -31,6 +31,7 @@
 
   .promo {
     text-align: center;
+    width: 100%;
 
     &__panel {
       background-color: #f6d9dd;

@@ -7,8 +7,8 @@ export default [
     max: 25,
     step: 5,
     time: 30,
-    singular: '',
-    few: '',
-    plural: ''
+    singular: 'штук',
+    few: 'штук',
+    plural: 'штук'
   }
 ]
