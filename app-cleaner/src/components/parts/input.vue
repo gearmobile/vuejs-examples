@@ -1,9 +1,9 @@
 <template lang="pug">
   .col-md-6.text-center
     .text-center.well.input__row
-      button.btn.btn-default( @click="onRemove()", :disabled="decreaseState" ) -
+      button.btn.btn-default( @click="removeOrder()", :disabled="decreaseState" ) -
       input.form-control.text-center( type="text", :name="point.name", v-model="output" )
-      button.btn.btn-default( @click="onAdd()", :disabled="increaseState" ) +
+      button.btn.btn-default( @click="addOrder()", :disabled="increaseState" ) +
 </template>
 
 <script>
@@ -46,7 +46,7 @@
         }
         this.point.value -= this.point.step
       },
-      onAdd () {
+      addOrder () {
         this.increase()
         const order = {
           name: this.point.name,
@@ -57,7 +57,7 @@
         }
         this.orderAdd(order)
       },
-      onRemove () {
+      removeOrder () {
         this.decrease()
         const order = {
           name: this.point.name,
@@ -68,6 +68,16 @@
         }
         this.orderDelete(order)
       }
+    },
+    created () {
+      const order = {
+        name: this.point.name,
+        price: this.point.price,
+        time: this.point.time,
+        title: this.point.title,
+        quantity: this.point.step
+      }
+      this.orderAdd(order)
     }
   }
 </script>
