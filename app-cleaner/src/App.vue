@@ -31,7 +31,9 @@
         cardsInit: 'initCards',
         generalsInit: 'initGenerals',
         repairsInit: 'initRepairs',
-        promosInit: 'initPromos'
+        promosInit: 'initPromos',
+        promocodeInit: 'initPromocode',
+        discountInit: 'initDiscount'
       })
     },
     created () {
@@ -40,6 +42,8 @@
       this.generalsInit()
       this.repairsInit()
       this.promosInit()
+      this.promocodeInit()
+      this.discountInit()
     }
   }
 </script>

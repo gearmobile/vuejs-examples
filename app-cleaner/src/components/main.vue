@@ -78,6 +78,24 @@
     .main__line( v-if="clearing === 'single' || clearing === 'express'" )
       app-cards( v-for="(card, index) in cards", :key="index", :card="card" )
 
+    // SECTION PROMOCODE
+    template( v-if="clearing !== 'express'" )
+      .row.promocode.well( v-if="showCommon" )
+        .promocode__row
+          input.form-control( type="text", placeholder="у меня есть промокод" )
+          button.btn.btn-default( type="button" )
+            | Применить
+        p.promocode__error
+          | Вы ввели неправильный промокод
+
+    // SECTION TOTAL
+    .row.total( v-if="showCommon" )
+      .col-md-6.col-md-offset-3.clearfix.total__inner
+        p.pull-left
+          | К оплате:
+        p.pull-right
+          | {{ totalResult | locate }}
+
 </template>
 
 <script>
@@ -115,8 +133,13 @@
         cards: 'getCards',
         generals: 'getGenerals',
         repairs: 'getRepairs',
-        promos: 'getPromos'
-      })
+        promos: 'getPromos',
+        totalResult: 'getResult'
+      }),
+      showCommon () {
+        const check = this.discount.first.state || this.discount.second.state || this.discount.third.state
+        return !check
+      }
     },
     methods: {
       onDiscountFirst () {
@@ -190,6 +213,34 @@
     &__discount {
       font-size: 20px;
       margin-bottom: 0;
+    }
+
+    & .total {
+      margin-bottom: 40px;
+      margin-top: 40px;
+
+      &__inner {
+        font-weight: 700;
+        font-size: 36px;
+        color: #03aebc;
+      }
+    }
+
+    & .promocode {
+      width: 80%;
+      margin-left: 10%;
+      margin-top: 40px;
+
+      &__row {
+        display: flex;
+      }
+
+      &__error {
+        color: red;
+        margin-top: 10px;
+        margin-bottom: 0;
+        font-style: italic;
+      }
     }
 
   }
