@@ -21,10 +21,10 @@
     },
     computed: {
       increaseState () {
-        return this.card.value === this.card.max
+        return this.card.value === this.card.max || !Number.isInteger(this.card.value)
       },
       decreaseState () {
-        return this.card.value === this.card.min
+        return this.card.value === this.card.min || !Number.isInteger(this.card.value)
       }
     },
     methods: {
@@ -43,26 +43,25 @@
       },
       addOrder () {
         this.increase()
-        // const order = {
-        //   name: this.card.name,
-        //   price: this.card.price,
-        //   // value: this.card.value,
-        //   time: this.card.time,
-        //   title: this.card.title,
-        //   quantity: this.card.value
-        // }
-        // this.orderAdd(order)
+        const order = {
+          name: this.card.name,
+          price: this.card.price,
+          time: this.card.time,
+          title: this.card.title,
+          quantity: this.card.step
+        }
+        this.orderAdd(order)
       },
       removeOrder () {
         this.decrease()
-        // const order = {
-        //   name: this.card.name,
-        //   price: this.card.price,
-        //   value: this.card.value,
-        //   time: this.card.time,
-        //   title: this.card.title
-        // }
-        // this.orderDelete(order)
+        const order = {
+          name: this.card.name,
+          price: this.card.price,
+          time: this.card.time,
+          title: this.card.title,
+          quantity: this.card.step
+        }
+        this.orderDelete(order)
       }
     }
   }

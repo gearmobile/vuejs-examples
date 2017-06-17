@@ -6,15 +6,15 @@ const mutations = {
   'ADD_ORDER' (state, payload) {
     const record = state.order.find(element => element.name === payload.name)
     if (record) {
-      record.value += payload.value
+      record.quantity += payload.quantity
     } else {
       state.order.push(payload)
     }
   },
   'DELETE_ORDER' (state, payload) {
     const record = state.order.find(element => element.name === payload.name)
-    if (record.value > payload.value) {
-      record.value -= payload.value
+    if (record.quantity > payload.quantity) {
+      record.quantity -= payload.quantity
     } else {
       state.order.splice(state.order.indexOf(payload), 1)
     }
