@@ -1,6 +1,7 @@
 export default [
   {
     name: 'promotion',
+    title: 'окна',
     value: 0,
     price: 200,
     min: 0,
