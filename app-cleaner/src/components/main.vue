@@ -89,16 +89,16 @@
           | Вы ввели неправильный промокод
 
     // DISCOUNT SECTION
-    .row( v-if="showDiscount" )
+    .row.well.discount( v-if="showDiscount" )
       .col-md-6.col-md-offset-3.clearfix
-        p.pull-left Общая сумма:
-        p.pull-right {{ totalResult | locate }}
+        p.pull-left.discount__primo Общая сумма:
+        p.pull-right.discount__primo--sum {{ totalResult | locate }}
       .col-md-6.col-md-offset-3.clearfix
-        p.pull-left Сумма скидки:
-        p.pull-right {{ resultDiscount | locate }}
+        p.pull-left.discount__secondo Сумма скидки:
+        p.pull-right.discount__secondo--sum {{ resultDiscount | locate }}
       .col-md-6.col-md-offset-3.clearfix
-        p.pull-left Итого сумма:
-        p.pull-right {{ totalSum | locate }}
+        p.pull-left.discount__tetro Итого сумма:
+        p.pull-right.discount__tetro--sum {{ totalSum | locate }}
 
     // SECTION TOTAL
     .row.total( v-if="showCommon" )
@@ -272,6 +272,42 @@
         margin-top: 10px;
         margin-bottom: 0;
         font-style: italic;
+      }
+    }
+
+    // DISCOUNT SECTION
+
+    & .discount {
+      color: #03aebc;
+      padding: 20px 0;
+
+      &__primo {
+        font-size: 22px;
+
+        &--sum {
+          font-weight: 700;
+          font-size: 24px;
+        }
+      }
+
+      &__secondo {
+        font-size: 20px;
+
+        &--sum {
+          font-weight: 700;
+          font-size: 22px;
+        }
+      }
+
+      &__tetro {
+        font-size: 26px;
+        margin-bottom: 0;
+
+        &--sum {
+          font-weight: 700;
+          font-size: 28px;
+          margin-bottom: 0;
+        }
       }
     }
 
