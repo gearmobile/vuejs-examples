@@ -32,7 +32,6 @@
         generalsInit: 'initGenerals',
         repairsInit: 'initRepairs',
         promosInit: 'initPromos'
-        // promocodeInit: 'initPromocode'
       })
     },
     created () {
@@ -41,7 +40,6 @@
       this.generalsInit()
       this.repairsInit()
       this.promosInit()
-      // this.promocodeInit()
     }
   }
 </script>

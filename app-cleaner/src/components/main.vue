@@ -83,7 +83,7 @@
       .row.promocode.well( v-if="showCommon" )
         .promocode__row
           input.form-control( type="text", v-model.trim.number="promocode.value" )
-          button.btn.btn-default( type="button", @click="onPromo", :disabled="promocode.disabled" )
+          button.btn.btn-default( type="button", @click="onPromo()", :disabled="promocode.disabled" )
             | Применить
         p.promocode__error( v-if="promocode.error" )
           | Вы ввели неправильный промокод

@@ -39,7 +39,7 @@ export default [
     plural: 'штук'
   },
   {
-    name: 'wardrobe',
+    name: 'kitchen',
     title: 'Кухонные шкафы',
     value: 0,
     price: 600,

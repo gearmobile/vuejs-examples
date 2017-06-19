@@ -1,8 +1,6 @@
-// import promocode from '../../data/promocode'
 
 const state = {
   order: []
-  // promocode: null
 }
 
 const mutations = {
@@ -22,9 +20,6 @@ const mutations = {
       state.order.splice(state.order.indexOf(payload), 1)
     }
   }
-  // 'SET_PROMOCODE' (state, payload) {
-  //   state.promocode = payload
-  // }
 }
 
 const actions = {
@@ -34,17 +29,11 @@ const actions = {
   deleteOrder ({ commit }, payload) {
     commit('DELETE_ORDER', payload)
   }
-  // initPromocode ({ commit }) {
-  //   commit('SET_PROMOCODE', promocode)
-  // }
 }
 
 const getters = {
   getResult (state) {
     let total = state.order.reduce((sum, c) => sum + c.quantity * c.price, 0)
-    // if (state.promocode.status) {
-    //   total = total - (total * state.promo.percent) / 100
-    // }
     return total
   }
 }

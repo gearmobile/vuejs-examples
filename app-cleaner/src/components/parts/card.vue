@@ -2,6 +2,7 @@
   .card.col-md-3
     .well.card__wrapper
       h6.card__title {{ card.title }}
+      img( :src="imagePath", :alt="card.title" )
       .card__item
         button.btn.btn-default( type="button", @click="removeOrder()", :disabled="decreaseState" ) -
         input.form-control.text-center( type="text", :name="card.name", v-model="output" )
@@ -38,6 +39,9 @@
             return this.card.value + ' ' + this.getNoun(this.card.value, this.card.singular, this.card.few, this.card.plural)
           }
         }
+      },
+      imagePath () {
+        return require('../../assets/' + this.card.name + '.png')
       }
     },
     methods: {
