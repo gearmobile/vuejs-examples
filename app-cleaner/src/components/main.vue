@@ -88,6 +88,18 @@
         p.promocode__error
           | Вы ввели неправильный промокод
 
+    // DISCOUNT SECTION
+    .row( v-if="showDiscount" )
+      .col-md-6.col-md-offset-3.clearfix
+        p.pull-left Общая сумма:
+        p.pull-right {{ totalResult | locate }}
+      .col-md-6.col-md-offset-3.clearfix
+        p.pull-left Сумма скидки:
+        p.pull-right {{ resultDiscount | locate }}
+      .col-md-6.col-md-offset-3.clearfix
+        p.pull-left Итого сумма:
+        p.pull-right {{ totalSum | locate }}
+
     // SECTION TOTAL
     .row.total( v-if="showCommon" )
       .col-md-6.col-md-offset-3.clearfix.total__inner
@@ -139,6 +151,26 @@
       showCommon () {
         const check = this.discount.first.state || this.discount.second.state || this.discount.third.state
         return !check
+      },
+      showDiscount () {
+        const check = this.discount.first.state || this.discount.second.state || this.discount.third.state
+        return check
+      },
+      resultDiscount () {
+        let result = null
+        if (this.discount.first.state) {
+          result = (this.totalResult * this.discount.first.value) / 100
+        }
+        if (this.discount.second.state) {
+          result = (this.totalResult * this.discount.second.value) / 100
+        }
+        if (this.discount.third.state) {
+          result = (this.totalResult * this.discount.third.value) / 100
+        }
+        return result
+      },
+      totalSum () {
+        return this.totalResult - this.resultDiscount
       }
     },
     methods: {
