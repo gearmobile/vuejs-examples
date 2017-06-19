@@ -2,7 +2,8 @@
   .card.col-md-3
     .well.card__wrapper
       h6.card__title {{ card.title }}
-      img( :src="imagePath", :alt="card.title" )
+      figure.card__image
+        img( :src="imagePath", :alt="card.title" )
       .card__item
         button.btn.btn-default( type="button", @click="removeOrder()", :disabled="decreaseState" ) -
         input.form-control.text-center( type="text", :name="card.name", v-model="output" )
@@ -91,6 +92,11 @@
     &__title {
       font-weight: 700;
       font-size: 16px;
+    }
+
+    &__image {
+      margin-bottom: 20px;
+      margin-top: 20px;
     }
     
     &__wrapper {
