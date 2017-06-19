@@ -101,12 +101,16 @@
         p.pull-right.discount__tetro--sum {{ totalSum | locate }}
 
     // SECTION TOTAL
-    .row.total( v-if="showCommon" )
-      .col-md-6.col-md-offset-3.clearfix.total__inner
-        p.pull-left
-          | К оплате:
-        p.pull-right
-          | {{ getTotal | locate }}
+    .total( v-if="showCommon" )
+      p.total__title
+        | К оплате:
+      p.total__sum
+        | {{ getTotal | locate }}
+
+    // ORDER SECTION
+    .row.order
+      .col-md-6.col-md-offset-3
+        button.btn.btn-primary.btn-lg.order__button( type="button" ) Заказать уборку
 
 </template>
 
@@ -281,16 +285,31 @@
       margin-bottom: 0;
     }
 
+    // TOTAL SECTION
+
     & .total {
-      margin-bottom: 40px;
+      display: flex;
+      width: 80%;
+      margin-left: 10%;
+      justify-content: space-between;
+      align-items: center;
       margin-top: 40px;
 
-      &__inner {
+      &__title, &__sum {
         font-weight: 700;
-        font-size: 36px;
         color: #03aebc;
       }
+
+      &__title {
+        font-size: 36px;
+      }
+
+      &__sum {
+        font-size: 38px;
+      }
     }
+
+    // PROMOCODE SECTION
 
     & .promocode {
       width: 80%;
@@ -342,6 +361,18 @@
           font-size: 28px;
           margin-bottom: 0;
         }
+      }
+    }
+
+    // ORDER SECTION
+
+    & .order {
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      &__button {
+        width: 60%;
+        margin-left: 20%;
       }
     }
 
