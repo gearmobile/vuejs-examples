@@ -82,17 +82,17 @@
     template( v-if="clearing !== 'express'" )
       .row.promocode.well( v-if="showCommon" )
         .promocode__row
-          input.form-control( type="text", placeholder="у меня есть промокод" )
-          button.btn.btn-default( type="button" )
+          input.form-control( type="text", v-model.trim.number="promocode.value" )
+          button.btn.btn-default( type="button", @click="onPromo", :disabled="promocode.disabled" )
             | Применить
-        p.promocode__error
+        p.promocode__error( v-if="promocode.error" )
           | Вы ввели неправильный промокод
 
     // DISCOUNT SECTION
     .row.well.discount( v-if="showDiscount" )
       .col-md-6.col-md-offset-3.clearfix
         p.pull-left.discount__primo Общая сумма:
-        p.pull-right.discount__primo--sum {{ totalResult | locate }}
+        p.pull-right.discount__primo--sum {{ getTotal | locate }}
       .col-md-6.col-md-offset-3.clearfix
         p.pull-left.discount__secondo Сумма скидки:
         p.pull-right.discount__secondo--sum {{ resultDiscount | locate }}
@@ -106,7 +106,7 @@
         p.pull-left
           | К оплате:
         p.pull-right
-          | {{ totalResult | locate }}
+          | {{ getTotal | locate }}
 
 </template>
 
@@ -135,6 +135,15 @@
             state: false
           }
         },
+        promocode: {
+          status: false,
+          value: 'У меня есть промокод',
+          code: 123,
+          percent: 10,
+          disabled: false,
+          error: false,
+          show: true
+        },
         clearing: 'single'
       }
     },
@@ -156,21 +165,36 @@
         const check = this.discount.first.state || this.discount.second.state || this.discount.third.state
         return check
       },
+      // CHECK PROMOCODE
+      promoSum () {
+        if (this.promocode.status) {
+          const total = this.totalResult * this.promocode.percent / 100
+          return total
+        } else {
+          return null
+        }
+      },
+      // GET TOTAL SUM
+      getTotal () {
+        return this.totalResult - this.promoSum
+      },
+      // GET DISCOUNT SUM
       resultDiscount () {
         let result = null
         if (this.discount.first.state) {
-          result = (this.totalResult * this.discount.first.value) / 100
+          result = (this.getTotal * this.discount.first.value) / 100
         }
         if (this.discount.second.state) {
-          result = (this.totalResult * this.discount.second.value) / 100
+          result = (this.getTotal * this.discount.second.value) / 100
         }
         if (this.discount.third.state) {
-          result = (this.totalResult * this.discount.third.value) / 100
+          result = (this.getTotal * this.discount.third.value) / 100
         }
         return result
       },
+      // GET TOTAL SUM
       totalSum () {
-        return this.totalResult - this.resultDiscount
+        return this.getTotal - this.resultDiscount
       }
     },
     methods: {
@@ -188,6 +212,16 @@
         this.discount.first.state = false
         this.discount.second.state = false
         this.discount.third.state = !this.discount.third.state
+      },
+      onPromo () {
+        if (this.promocode.value === this.promocode.code) {
+          this.promocode.status = true
+          this.promocode.disabled = true
+          this.promocode.error = false
+          this.promocode.value = 'Промокод успешно активирован'
+        } else {
+          this.promocode.error = true
+        }
       }
     },
     components: {

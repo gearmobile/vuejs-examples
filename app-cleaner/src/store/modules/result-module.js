@@ -1,10 +1,8 @@
-import promocode from '../../data/promocode'
-// import discount from '../../data/discount'
+// import promocode from '../../data/promocode'
 
 const state = {
-  order: [],
-  promocode: null
-  // discount: null
+  order: []
+  // promocode: null
 }
 
 const mutations = {
@@ -23,12 +21,9 @@ const mutations = {
     } else {
       state.order.splice(state.order.indexOf(payload), 1)
     }
-  },
-  'SET_PROMOCODE' (state, payload) {
-    state.promocode = payload
   }
-  // 'SET_DISCOUNT' (state, payload) {
-  //   state.discount = payload
+  // 'SET_PROMOCODE' (state, payload) {
+  //   state.promocode = payload
   // }
 }
 
@@ -38,32 +33,18 @@ const actions = {
   },
   deleteOrder ({ commit }, payload) {
     commit('DELETE_ORDER', payload)
-  },
-  initPromocode ({ commit }) {
-    commit('SET_PROMOCODE', promocode)
   }
-  // initDiscount ({ commit }) {
-  //   commit('SET_DISCOUNT', discount)
+  // initPromocode ({ commit }) {
+  //   commit('SET_PROMOCODE', promocode)
   // }
 }
 
 const getters = {
   getResult (state) {
     let total = state.order.reduce((sum, c) => sum + c.quantity * c.price, 0)
-    if (state.promocode.status) {
-      total = total - (total * state.promo.discount) / 100
-    }
-    // let discount = null
-    // if (state.discount[0].status) {
-    //   discount = (total * state.discount[0].value) / 100
+    // if (state.promocode.status) {
+    //   total = total - (total * state.promo.percent) / 100
     // }
-    // if (state.discount[1].status) {
-    //   discount = (total * state.discount[1].value) / 100
-    // }
-    // if (state.discount[2].status) {
-    //   discount = (total * state.discount[2].value) / 100
-    // }
-    // const result = total + discount
     return total
   }
 }
