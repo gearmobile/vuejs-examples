@@ -31,7 +31,8 @@
         cardsInit: 'initCards',
         generalsInit: 'initGenerals',
         repairsInit: 'initRepairs',
-        promosInit: 'initPromos'
+        promosInit: 'initPromos',
+        metroInit: 'initMetros'
       })
     },
     created () {
@@ -40,6 +41,7 @@
       this.generalsInit()
       this.repairsInit()
       this.promosInit()
+      this.metroInit()
     }
   }
 </script>

@@ -53,10 +53,12 @@
         // section metro
         section.order__section.well
           h5.order__title Метро
-          select.form-control
-          label
-            input( type="checkbox" )
-            | у меня нет пылесоса
+          select.form-control( v-model="customer.metro" )
+            option( v-for="(metro, index) in metros", :key="index", :value="metro.value" ) {{ metro.title }}
+          .order__wrapper
+            label
+              input( type="checkbox", v-model="customer.hoover" )
+              | у меня нет пылесоса
 
         // section comments
         section.order__section.well
@@ -98,13 +100,16 @@
           street: null,
           entrance: null,
           floor: null,
-          doorphone: null
+          doorphone: null,
+          metro: 'zero',
+          hoover: false
         }
       }
     },
     computed: {
       ...mapGetters({
-        orderShow: 'getOrder'
+        orderShow: 'getOrder',
+        metros: 'getMetros'
       })
     }
   }
@@ -128,6 +133,10 @@
 
     &__label {
       text-transform: capitalize;
+    }
+
+    &__wrapper {
+      padding-top: 30px;
     }
   }
 </style>
