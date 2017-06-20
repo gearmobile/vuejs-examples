@@ -12,10 +12,10 @@
         section.order__section.well
           h5.order__title Контактные данные
           .form-group
-            label.order__label( for="phone" ) phone
+            label.order__label( for="phone" ) телефон
             input.form-control( id="phone", name="phone", type="tel", v-model="customer.phone" )
           .form-group
-            label.order__label( for="name" ) name
+            label.order__label( for="name" ) имя
             input.form-control( id="name", anme="name", type="text", v-model="customer.name" )
           .form-group
             label.order__label( for="email" ) email
@@ -77,24 +77,25 @@
 
         // section sum
         section.order__section.well
-          p К оплате:1 980 р.
+          //- p {{ getTotal | locate }}
 
         // section continue
         section.order__section
-          button.btn.btn-primary.btn-lg( type="button" ) продолжить
+          button.btn.btn-primary.order__button( type="button", @click="onOrder()" ) продолжить
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
+  import filters from '../filters/filters.js'
 
   export default {
     name: 'order',
     data () {
       return {
         customer: {
-          phone: 'Телефон',
-          name: 'Имя',
-          email: 'Email',
+          phone: '',
+          name: '',
+          email: '',
           date: null,
           time: null,
           street: null,
@@ -107,11 +108,20 @@
         }
       }
     },
+    filters,
     computed: {
       ...mapGetters({
         orderShow: 'getOrder',
         metros: 'getMetros'
       })
+    },
+    methods: {
+      ...mapActions({
+        customerSet: 'setCustomer'
+      }),
+      onOrder () {
+        this.customerSet(this.customer)
+      }
     }
   }
 </script>
@@ -138,6 +148,10 @@
 
     &__wrapper {
       padding-top: 30px;
+    }
+
+    &__button {
+      width: 100%;
     }
   }
 </style>

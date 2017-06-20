@@ -2,7 +2,8 @@ import metros from '../../data/metros.json'
 
 const state = {
   showOrder: false,
-  metros: []
+  metros: [],
+  customer: {}
 }
 
 const mutations = {
@@ -11,6 +12,9 @@ const mutations = {
   },
   'SET_METROS' (state, payload) {
     state.metros = payload
+  },
+  'SET_CUSTOMER' (state, payload) {
+    state.customer = payload
   }
 }
 
@@ -20,6 +24,9 @@ const actions = {
   },
   initMetros ({ commit }) {
     commit('SET_METROS', metros)
+  },
+  setCustomer ({ commit }, payload) {
+    commit('SET_CUSTOMER', payload)
   }
 }
 
