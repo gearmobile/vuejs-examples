@@ -1,14 +1,70 @@
 <template lang="pug">
-  .col-md-4
-    .text-center.well.main__thumb
+  .discount.col-md-4
+    .discount__thumb.well( :value="discount.name", v-model="status", @click="onActive($event)" )
+      h5.discount__title
+        | {{ discount.title }}
+      p.discount__body
+        | со скидкой #[strong {{ discount.value | addPercent }}]
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex'
+  import filters from '../../filters/filters.js'
+  // :class="{ 'discount__active': discount.status }",
+
   export default {
-    
+    name: 'discount',
+    filters,
+    props: {
+      discount: {
+        type: Object,
+        default: null
+      }
+    },
+    methods: {
+      ...mapActions({
+        discountStatusSet: 'setDiscountStatus'
+      }),
+      onActive (event) {
+        console.info(event.target)
+        // this.discountStatusSet($event.target.value)
+      }
+    },
+    computed: {
+      ...mapGetters({
+        discountStatus: 'getDiscountStatus'
+      }),
+      status: {
+        get () { return this.discountStatus }
+        // set (value) { this.discountStatusSet(value) }
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
 
+  .discount {
+
+    &__title {
+      color: #03aebc;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    &__thumb {
+      cursor: pointer;
+      text-align: center;
+    }
+
+    &__active {
+      background-color: rgba( 3,174,188, .1 );
+    }
+
+    &__body {
+      font-size: 20px;
+      margin-bottom: 0;
+    }
+
+  }
 </style>

@@ -1,20 +1,20 @@
 export default [
   {
-    name: 'first',
+    name: 'oneMonth',
     title: '1 раз в месяц',
-    value: 10,
-    state: false
+    value: 10
+    // status: false
   },
   {
-    name: 'second',
+    name: 'twoWeek',
     title: '1 раз в 2 недели',
-    value: 15,
-    state: false
+    value: 15
+    // status: false
   },
   {
-    name: 'third',
+    name: 'oneWeek',
     title: '1 раз в неделю',
-    value: 20,
-    state: false
+    value: 20
+    // status: false
   }
 ]

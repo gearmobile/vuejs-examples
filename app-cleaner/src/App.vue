@@ -32,7 +32,8 @@
         generalsInit: 'initGenerals',
         repairsInit: 'initRepairs',
         promosInit: 'initPromos',
-        metroInit: 'initMetros'
+        metroInit: 'initMetros',
+        discountInit: 'initDiscount'
       })
     },
     created () {
@@ -42,6 +43,7 @@
       this.repairsInit()
       this.promosInit()
       this.metroInit()
+      this.discountInit()
     }
   }
 </script>

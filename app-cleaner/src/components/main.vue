@@ -39,24 +39,7 @@
     .row( v-if="clearing === 'single' || clearing === 'general'" )
       h4.page-header.text-center
         | Периодичная уборка
-      .col-md-4
-        .text-center.well.main__thumb( @click="onDiscountFirst", :class="{ 'main__active': discount.first.state }" )
-          h5.main__highlight
-            | 1 раз в месяц
-          p.main__discount
-            | со скидкой #[strong {{ discount.first.value | addPercent }}]
-      .col-md-4
-        .text-center.well.main__thumb( @click="onDiscountSecond", :class="{ 'main__active': discount.second.state }" )
-          h5.main__highlight
-            | 1 раз в 2 недели
-          p.main__discount
-            | со скидкой #[strong {{ discount.second.value | addPercent }}]
-      .col-md-4
-        .text-center.well.main__thumb( @click="onDiscountThird", :class="{ 'main__active': discount.third.state }" )
-          h5.main__highlight
-            | 1 раз в неделю
-          p.main__discount
-            | со скидкой #[strong {{ discount.third.value | addPercent }}]
+      app-discount( v-for="(discount, index) in discounts", :key="index", :discount="discount" )
 
     h3.page-header.text-center Дополнительно
     
@@ -68,11 +51,9 @@
     .main__line( v-if="clearing === 'repair'" )
       app-cards( v-for="(card, index) in repairs", :key="index", :card="card" )
 
-
     // GENERAL BLOCK
     .main__line( v-if="clearing === 'general'" )
       app-cards( v-for="(card, index) in generals", :key="index", :card="card" )
-
 
     // COMMON BLOCK
     .main__line( v-if="clearing === 'single' || clearing === 'express'" )
@@ -80,7 +61,7 @@
 
     // SECTION PROMOCODE
     template( v-if="clearing !== 'express'" )
-      .row.promocode.well( v-if="showCommon" )
+      .row.promocode.well( v-if="commonShow" )
         .promocode__row
           input.form-control( type="text", v-model.trim.number="promocode.value" )
           button.btn.btn-default( type="button", @click="onPromo()", :disabled="promocode.disabled" )
@@ -89,7 +70,7 @@
           | Вы ввели неправильный промокод
 
     // DISCOUNT SECTION
-    .row.well.discount( v-if="showDiscount" )
+    .row.well.discount( v-if="discountShow" )
       .col-md-6.col-md-offset-3.clearfix
         p.pull-left.discount__primo Общая сумма:
         p.pull-right.discount__primo--sum {{ getTotal | locate }}
@@ -101,7 +82,7 @@
         p.pull-right.discount__tetro--sum {{ totalSum | locate }}
 
     // SECTION TOTAL
-    .total( v-if="showCommon" )
+    .total( v-if="commonShow" )
       p.total__title
         | К оплате:
       p.total__sum
@@ -120,25 +101,12 @@
   import Input from './parts/input.vue'
   import Cards from './parts/card.vue'
   import Promo from './parts/promo.vue'
+  import Discount from './parts/discount.vue'
 
   export default {
     name: 'main',
     data () {
       return {
-        discount: {
-          first: {
-            value: 10,
-            state: false
-          },
-          second: {
-            value: 15,
-            state: false
-          },
-          third: {
-            value: 20,
-            state: false
-          }
-        },
         promocode: {
           status: false,
           value: 'У меня есть промокод',
@@ -159,16 +127,11 @@
         generals: 'getGenerals',
         repairs: 'getRepairs',
         promos: 'getPromos',
+        discounts: 'getDiscount',
+        commonShow: 'showCommon',
+        discountShow: 'showDiscount',
         totalResult: 'getResult'
       }),
-      showCommon () {
-        const check = this.discount.first.state || this.discount.second.state || this.discount.third.state
-        return !check
-      },
-      showDiscount () {
-        const check = this.discount.first.state || this.discount.second.state || this.discount.third.state
-        return check
-      },
       // CHECK PROMOCODE
       promoSum () {
         if (this.promocode.status) {
@@ -182,20 +145,6 @@
       getTotal () {
         return this.totalResult - this.promoSum
       },
-      // GET DISCOUNT SUM
-      resultDiscount () {
-        let result = null
-        if (this.discount.first.state) {
-          result = (this.getTotal * this.discount.first.value) / 100
-        }
-        if (this.discount.second.state) {
-          result = (this.getTotal * this.discount.second.value) / 100
-        }
-        if (this.discount.third.state) {
-          result = (this.getTotal * this.discount.third.value) / 100
-        }
-        return result
-      },
       // GET TOTAL SUM
       totalSum () {
         return this.getTotal - this.resultDiscount
@@ -205,21 +154,6 @@
       ...mapActions({
         orderShow: 'showOrder'
       }),
-      onDiscountFirst () {
-        this.discount.second.state = false
-        this.discount.third.state = false
-        this.discount.first.state = !this.discount.first.state
-      },
-      onDiscountSecond () {
-        this.discount.first.state = false
-        this.discount.third.state = false
-        this.discount.second.state = !this.discount.second.state
-      },
-      onDiscountThird () {
-        this.discount.first.state = false
-        this.discount.second.state = false
-        this.discount.third.state = !this.discount.third.state
-      },
       onPromo () {
         if (this.promocode.value === this.promocode.code) {
           this.promocode.status = true
@@ -234,7 +168,8 @@
     components: {
       appInput: Input,
       appCards: Cards,
-      appPromo: Promo
+      appPromo: Promo,
+      appDiscount: Discount
     }
   }
 </script>
@@ -267,25 +202,6 @@
       &:hover {
         background-color: rgba( 3,174,188, .3 );
       }
-    }
-
-    &__thumb {
-      cursor: pointer;
-    }
-
-    &__highlight {
-      color: #03aebc;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }
-
-    &__active {
-      background-color: rgba( 3,174,188, .1 );
-    }
-
-    &__discount {
-      font-size: 20px;
-      margin-bottom: 0;
     }
 
     // TOTAL SECTION
