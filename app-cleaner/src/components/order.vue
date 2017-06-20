@@ -13,13 +13,13 @@
           h5.order__title Контактные данные
           .form-group
             label( for="phone" ) Phone
-            input.form-control( id="phone", name="phone", type="tel", placeholder="телефон" )
+            input.form-control( id="phone", name="phone", type="tel", v-model="customer.phone" )
           .form-group
             label( for="name" ) Name
-            input.form-control( id="name", anme="name", type="text", placeholder="имя" )
+            input.form-control( id="name", anme="name", type="text", v-model="customer.name" )
           .form-group
             label( for="email" ) Email
-            input.form-control( id="email", name="email", type="email", placeholder="email" )
+            input.form-control( id="email", name="email", type="email", v-model="customer.email" )
 
         // section date
         section.order__section.well
@@ -75,7 +75,11 @@
     name: 'order',
     data () {
       return {
-        // show: false
+        customer: {
+          phone: 'Телефон',
+          name: 'Имя',
+          email: 'Email'
+        }
       }
     },
     computed: {
