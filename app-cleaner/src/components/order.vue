@@ -63,7 +63,7 @@
         // section comments
         section.order__section.well
           h5.order__title Комментарии и пожелания
-          textarea.form-control( rows="4" )
+          textarea.form-control( rows="4", v-model="customer.comments" )
 
       // COLUMN SECONDARY
       .col-md-4
@@ -76,7 +76,7 @@
           p один специалист
 
         // section sum
-        section.order__section
+        section.order__section.well
           p К оплате:1 980 р.
 
         // section continue
@@ -102,7 +102,8 @@
           floor: null,
           doorphone: null,
           metro: 'zero',
-          hoover: false
+          hoover: false,
+          comments: ''
         }
       }
     },
