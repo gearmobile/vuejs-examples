@@ -24,9 +24,15 @@
         // section date
         section.order__section.well
           h5.order__title Дата и время
-          .form-group
-            select.form-control
-            select.form-control
+          .row
+            .col-md-6
+              .form-group
+                label( for="date" ) Дата
+                input.form-control( id="date", name="date", type="date", v-model="customer.date" )
+            .col-md-6
+              .form-group
+                label( for="time" ) Время
+                input.form-control( id="time", name="time", type="time", v-model="customer.time" )
 
         // section address
         section.order__section.well
@@ -78,7 +84,9 @@
         customer: {
           phone: 'Телефон',
           name: 'Имя',
-          email: 'Email'
+          email: 'Email',
+          date: null,
+          time: null
         }
       }
     },
