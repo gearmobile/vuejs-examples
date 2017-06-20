@@ -1,57 +1,70 @@
 <template lang="pug">
+  
   .order( v-if="orderShow" )
     h2.page-header.text-center Заказ на уборку
+    
     .row
       
-      // column primary
+      // COLUMN PRIMARY
       .col-md-8
+
         // section contacts
-        section
-          h5 Контактные данные
+        section.order__section.well
+          h5.order__title Контактные данные
           .form-group
-            input.form-control( type="phone", placeholder="телефон" )
+            label( for="phone" ) Phone
+            input.form-control( id="phone", name="phone", type="tel", placeholder="телефон" )
           .form-group
-            input.form-control( type="text", placeholder="имя" )
+            label( for="name" ) Name
+            input.form-control( id="name", anme="name", type="text", placeholder="имя" )
           .form-group
-            input.form-control( type="email", placeholder="email" )
+            label( for="email" ) Email
+            input.form-control( id="email", name="email", type="email", placeholder="email" )
+
         // section date
-        section
-          h5 Дата и время
+        section.order__section.well
+          h5.order__title Дата и время
           .form-group
             select.form-control
             select.form-control
+
         // section address
-        section
-          h5 Адрес
+        section.order__section.well
+          h5.order__title Адрес
           input.form-control( type="text", placeholder="улица, дом, номер квартиры" )
           input.form-control( type="text", placeholder="подъезд" )
           input.form-control( type="text", placeholder="этаж" )
           input.form-control( type="text", placeholder="домофон" )
+
         // section metro
-        section
-          h5 Метро
+        section.order__section.well
+          h5.order__title Метро
           select.form-control
           label
             input( type="checkbox" )
             | у меня нет пылесоса
+
         // section comments
-        section
-          h5 Комментарии и пожелания
+        section.order__section.well
+          h5.order__title Комментарии и пожелания
           textarea.form-control( rows="4" )
 
-      // column secondary
+      // COLUMN SECONDARY
       .col-md-4
+
         // section conclusion
-        section.well
+        section.well.order__section
           p Уборка 1-комнатной квартиры с 1 ванной комнатой
           p Уборка займет 3 часа.
-          h5 К вам приедет
+          h5.order__title К вам приедет
           p один специалист
+
         // section sum
-        section
+        section.order__section
           p К оплате:1 980 р.
+
         // section continue
-        section
+        section.order__section
           button.btn.btn-primary.btn-lg( type="button" ) продолжить
 </template>
 
@@ -73,6 +86,20 @@
   }
 </script>
 
-<style scoped>
-  /**/
+<style lang="scss" scoped>
+
+  .order {
+
+    &__section {
+      margin-bottom: 40px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__title {
+      margin-bottom: 30px;
+    }
+  }
 </style>
