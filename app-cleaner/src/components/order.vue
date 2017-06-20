@@ -12,13 +12,13 @@
         section.order__section.well
           h5.order__title Контактные данные
           .form-group
-            label( for="phone" ) Phone
+            label.order__label( for="phone" ) phone
             input.form-control( id="phone", name="phone", type="tel", v-model="customer.phone" )
           .form-group
-            label( for="name" ) Name
+            label.order__label( for="name" ) name
             input.form-control( id="name", anme="name", type="text", v-model="customer.name" )
           .form-group
-            label( for="email" ) Email
+            label.order__label( for="email" ) email
             input.form-control( id="email", name="email", type="email", v-model="customer.email" )
 
         // section date
@@ -27,20 +27,28 @@
           .row
             .col-md-6
               .form-group
-                label( for="date" ) Дата
+                label.order__label( for="date" ) дата
                 input.form-control( id="date", name="date", type="date", v-model="customer.date" )
             .col-md-6
               .form-group
-                label( for="time" ) Время
+                label.order__label( for="time" ) время
                 input.form-control( id="time", name="time", type="time", v-model="customer.time" )
 
         // section address
         section.order__section.well
           h5.order__title Адрес
-          input.form-control( type="text", placeholder="улица, дом, номер квартиры" )
-          input.form-control( type="text", placeholder="подъезд" )
-          input.form-control( type="text", placeholder="этаж" )
-          input.form-control( type="text", placeholder="домофон" )
+          .form-group
+            label.order__label( for="street" ) улица, дом, номер квартиры
+            input.form-control( id="street", name="street", type="text", v-model="customer.street" )
+          .form-group
+            label.order__label( for="entrance" ) подъезд
+            input.form-control( id="entrance", name="entrance", type="number", v-model="customer.entrance" )
+          .form-group
+            label.order__label( for="floor" ) этаж
+            input.form-control( id="floor", name="floor", type="number", v-model="customer.floor" )
+          .form-group
+            label.order__label( for="doorphone" ) домофон
+            input.form-control( id="doorphone", name="doorphone", type="number", v-model="customer.doorphone" )
 
         // section metro
         section.order__section.well
@@ -86,7 +94,11 @@
           name: 'Имя',
           email: 'Email',
           date: null,
-          time: null
+          time: null,
+          street: null,
+          entrance: null,
+          floor: null,
+          doorphone: null
         }
       }
     },
@@ -112,6 +124,10 @@
 
     &__title {
       margin-bottom: 30px;
+    }
+
+    &__label {
+      text-transform: capitalize;
     }
   }
 </style>
