@@ -67,7 +67,7 @@
       .col-md-4
 
         // section conclusion
-        section.well.order__section
+        section.order__section.well
           p Уборка 1-комнатной квартиры с 1 ванной комнатой
           p Уборка займет 3 часа.
           h5.order__title К вам приедет
