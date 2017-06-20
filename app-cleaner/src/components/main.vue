@@ -110,13 +110,13 @@
     // ORDER SECTION
     .row.order
       .col-md-6.col-md-offset-3
-        button.btn.btn-primary.btn-lg.order__button( type="button" ) Заказать уборку
+        button.btn.btn-primary.btn-lg.order__button( type="button", @click="orderShow()" ) Заказать уборку
 
 </template>
 
 <script>
   import filters from '../filters/filters.js'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import Input from './parts/input.vue'
   import Cards from './parts/card.vue'
   import Promo from './parts/promo.vue'
@@ -202,6 +202,9 @@
       }
     },
     methods: {
+      ...mapActions({
+        orderShow: 'showOrder'
+      }),
       onDiscountFirst () {
         this.discount.second.state = false
         this.discount.third.state = false

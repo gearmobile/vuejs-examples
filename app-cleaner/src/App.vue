@@ -10,7 +10,7 @@
     // ORDER SECTION
     .row
       .col-md-10.col-md-offset-1
-        //- app-order
+        app-order
         
 </template>
 

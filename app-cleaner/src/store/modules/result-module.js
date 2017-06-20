@@ -1,6 +1,7 @@
 
 const state = {
-  order: []
+  order: [],
+  showOrder: false
 }
 
 const mutations = {
@@ -19,6 +20,9 @@ const mutations = {
     } else {
       state.order.splice(state.order.indexOf(payload), 1)
     }
+  },
+  'SHOW_ORDER' (state) {
+    state.showOrder = !state.showOrder
   }
 }
 
@@ -28,6 +32,9 @@ const actions = {
   },
   deleteOrder ({ commit }, payload) {
     commit('DELETE_ORDER', payload)
+  },
+  showOrder ({ commit }) {
+    commit('SHOW_ORDER')
   }
 }
 
@@ -35,6 +42,9 @@ const getters = {
   getResult (state) {
     let total = state.order.reduce((sum, c) => sum + c.quantity * c.price, 0)
     return total
+  },
+  getOrder (state) {
+    return state.showOrder
   }
 }
 

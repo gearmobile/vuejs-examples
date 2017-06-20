@@ -1,5 +1,5 @@
 <template lang="pug">
-  .order( v-if="show" )
+  .order( v-if="orderShow" )
     h2.page-header.text-center Заказ на уборку
     .row
       
@@ -56,14 +56,21 @@
 </template>
 
 <script>
-export default {
-  name: 'primo',
-  data () {
-    return {
-      show: false
+  import { mapGetters } from 'vuex'
+
+  export default {
+    name: 'order',
+    data () {
+      return {
+        // show: false
+      }
+    },
+    computed: {
+      ...mapGetters({
+        orderShow: 'getOrder'
+      })
     }
   }
-}
 </script>
 
 <style scoped>
