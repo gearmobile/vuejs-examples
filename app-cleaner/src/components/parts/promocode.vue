@@ -1,5 +1,7 @@
 <template lang="pug">
   .row.well.promocode
+    h2.promocode__title.text-center.page-header
+      | У меня есть промокод
     .promocode__row
       input.form-control( type="text", v-model="code" )
       button.btn.btn-default( type="button", @click="onPromo()", :disabled="status" )
@@ -48,6 +50,11 @@
     width: 80%;
     margin-left: 10%;
     margin-top: 40px;
+
+    &__title {
+      font-size: 26px;
+      margin-bottom: 30px;
+    }
 
     &__row {
       display: flex;

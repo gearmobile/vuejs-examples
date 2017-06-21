@@ -73,31 +73,25 @@ const actions = {
 }
 
 const getters = {
-  // second argument 'getters'
+  getResult (state) {
+    let total = state.order.reduce((sum, c) => sum + c.quantity * c.price, 0)
+    return total
+  },
   getPromoSum (state, getters) {
-    let total = getters.getResult; // <--
+    let total = getters.getResult
     if (state.promocode.status) {
       const promo = total - total * state.promocode.percent / 100
       return promo
     }
   },
-  getDiscountSum (state) {
+  getDiscountSum (state, getters) {
+    const total = getters.getResult
     for (let i = 0; i < state.discount.length; i += 1) {
       if (state.discount[i].name === state.discountStatus) {
         const discount = total * state.discount[i].value / 100
         return discount
       }
     }
-  },
-  getPromoSum (state) {
-    if (state.promocode.status) {
-      const promo = total - total * state.promocode.percent / 100
-      return promo
-    }
-  },
-  getResult (state) {
-    let total = state.order.reduce((sum, c) => sum + c.quantity * c.price, 0)
-    return total
   },
   getDiscount (state) {
     return state.discount

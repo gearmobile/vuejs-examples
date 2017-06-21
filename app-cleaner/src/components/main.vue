@@ -67,7 +67,7 @@
     //- .row.well.discount( v-if="discountShow" )
     //-   .col-md-6.col-md-offset-3.clearfix
     //-     p.pull-left.discount__primo Общая сумма:
-    //-     p.pull-right.discount__primo--sum {{ getTotal | locate }}
+    //-     p.pull-right.discount__primo--sum {{ commonSum | locate }}
     //-   .col-md-6.col-md-offset-3.clearfix
     //-     p.pull-left.discount__secondo Сумма скидки:
     //-     p.pull-right.discount__secondo--sum {{ resultDiscount | locate }}
@@ -80,7 +80,7 @@
       p.total__title
         | К оплате:
       p.total__sum
-        | {{ totalResult | locate }}
+        | {{ commonSum | locate }}
 
     // ORDER SECTION
     .row.order
@@ -117,7 +117,7 @@
         commonShow: 'showCommon',
         discountShow: 'showDiscount',
         promocode: 'getPromocode',
-        totalResult: 'getResult'
+        commonSum: 'getResult'
       })
     },
     methods: {
