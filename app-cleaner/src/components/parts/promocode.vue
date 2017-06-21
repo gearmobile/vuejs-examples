@@ -1,10 +1,10 @@
 <template lang="pug">
   .row.well.promocode
     .promocode__row
-      input.form-control#value( type="text" )
-      button.btn.btn-default( type="button", @click="onPromo()", :disabled="promocode.disabled" )
+      input.form-control( type="text", v-model="code" )
+      button.btn.btn-default( type="button", @click="onPromo()", :disabled="promoStatus" )
         | Применить
-    p.promocode__error( v-if="promocode.error" )
+    p.promocode__error( v-if="promoError" )
       | Вы ввели неправильный промокод
 </template>
 
@@ -13,6 +13,11 @@
 
   export default {
     name: 'promocode',
+    data () {
+      return {
+        code: null
+      }
+    },
     props: {
       promocode: {
         type: Object,
@@ -21,20 +26,17 @@
     },
     computed: {
       ...mapGetters({
-        promoValue: 'getPromoValue'
+        promoValue: 'getPromoValue',
+        promoStatus: 'getPromoStatus',
+        promoError: 'getPromoError'
       })
-      // code: {
-      //   get () { return this.promoValue }
-      //   // set (value) { this.promoValueSet(value) }
-      // }
     },
     methods: {
       ...mapActions({
         promoValueSet: 'setPromoValue'
       }),
       onPromo () {
-        const value = document.getElementById('value').value
-        this.promoValueSet(value)
+        this.promoValueSet(this.code)
       }
     }
   }

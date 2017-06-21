@@ -36,12 +36,14 @@ const mutations = {
   },
   'SET_PROMO_VALUE' (state, payload) {
     state.promocode.value = payload
+  },
+  'CHECK_PROMO' (state) {
+    if (parseInt(state.promocode.value) === state.promocode.check) {
+      state.promocode.status = true
+    } else {
+      state.promocode.error = true
+    }
   }
-  // 'CHECK_PROMO' (state) {
-  //   if (state.promocode.value === state.promocode.check) {
-  //     this.promocode.status = true
-  //   }
-  // }
 }
 
 const actions = {
@@ -76,7 +78,7 @@ const getters = {
       }
     }
     // check promocode
-    if (parseInt(state.promocode.value) === state.promocode.check) {
+    if (state.promocode.status) {
       total -= total * state.promocode.percent / 100
     }
     // get result
@@ -99,8 +101,11 @@ const getters = {
   getPromocode (state) {
     return state.promocode
   },
-  getPromoValue (state) {
-    return state.promocode.value
+  getPromoStatus (state) {
+    return state.promocode.status
+  },
+  getPromoError (state) {
+    return state.promocode.error
   }
 }
 

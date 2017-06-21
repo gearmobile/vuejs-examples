@@ -3,6 +3,7 @@ export default {
   value: null,
   check: 123,
   percent: 12,
-  // status: false,
+  status: false,
+  error: false,
   show: true
 }
