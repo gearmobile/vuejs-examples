@@ -39,16 +39,6 @@
     .row( v-if="clearing === 'single' || clearing === 'general'" )
       h4.page-header.text-center
         | Периодичная уборка
-      //- .row
-      //- .col-md-4( style="background-color: #eee" )
-      //-   .inner( style="background-color: #aaa" )
-      //-     h4.text-center lorem ipsum dolor est
-      //- .col-md-4( style="background-color: #eee" )
-      //-   .inner( style="background-color: #aaa" )
-      //-     h4.text-center lorem ipsum dolor est
-      //- .col-md-4( style="background-color: #eee" )
-      //-   .inner( style="background-color: #aaa" )
-      //-     h4.text-center lorem ipsum dolor est
       app-discount( v-for="(discount, index) in discounts", :key="index", :discount="discount" )
 
     h3.page-header.text-center Дополнительно
@@ -71,32 +61,26 @@
 
     // SECTION PROMOCODE
     template( v-if="clearing !== 'express'" )
-      .row.promocode.well( v-if="commonShow" )
-        .promocode__row
-          input.form-control( type="text", v-model.trim.number="promocode.value" )
-          button.btn.btn-default( type="button", @click="onPromo()", :disabled="promocode.disabled" )
-            | Применить
-        p.promocode__error( v-if="promocode.error" )
-          | Вы ввели неправильный промокод
+      app-promocode( v-if="commonShow", :promocode="promocode" )
 
     // DISCOUNT SECTION
-    .row.well.discount( v-if="discountShow" )
-      .col-md-6.col-md-offset-3.clearfix
-        p.pull-left.discount__primo Общая сумма:
-        p.pull-right.discount__primo--sum {{ getTotal | locate }}
-      .col-md-6.col-md-offset-3.clearfix
-        p.pull-left.discount__secondo Сумма скидки:
-        p.pull-right.discount__secondo--sum {{ resultDiscount | locate }}
-      .col-md-6.col-md-offset-3.clearfix
-        p.pull-left.discount__tetro Итого сумма:
-        p.pull-right.discount__tetro--sum {{ totalSum | locate }}
+    //- .row.well.discount( v-if="discountShow" )
+    //-   .col-md-6.col-md-offset-3.clearfix
+    //-     p.pull-left.discount__primo Общая сумма:
+    //-     p.pull-right.discount__primo--sum {{ getTotal | locate }}
+    //-   .col-md-6.col-md-offset-3.clearfix
+    //-     p.pull-left.discount__secondo Сумма скидки:
+    //-     p.pull-right.discount__secondo--sum {{ resultDiscount | locate }}
+    //-   .col-md-6.col-md-offset-3.clearfix
+    //-     p.pull-left.discount__tetro Итого сумма:
+    //-     p.pull-right.discount__tetro--sum {{ totalSum | locate }}
 
     // SECTION TOTAL
     .total( v-if="commonShow" )
       p.total__title
         | К оплате:
       p.total__sum
-        | {{ getTotal | locate }}
+        | {{ totalResult | locate }}
 
     // ORDER SECTION
     .row.order
@@ -112,20 +96,12 @@
   import Cards from './parts/card.vue'
   import Promo from './parts/promo.vue'
   import Discount from './parts/discount.vue'
+  import Promocode from './parts/promocode.vue'
 
   export default {
     name: 'main',
     data () {
       return {
-        promocode: {
-          status: false,
-          value: 'У меня есть промокод',
-          code: 123,
-          percent: 10,
-          disabled: false,
-          error: false,
-          show: true
-        },
         clearing: 'single'
       }
     },
@@ -140,46 +116,21 @@
         discounts: 'getDiscount',
         commonShow: 'showCommon',
         discountShow: 'showDiscount',
+        promocode: 'getPromocode',
         totalResult: 'getResult'
-      }),
-      // CHECK PROMOCODE
-      promoSum () {
-        if (this.promocode.status) {
-          const total = this.totalResult * this.promocode.percent / 100
-          return total
-        } else {
-          return null
-        }
-      },
-      // GET TOTAL SUM
-      getTotal () {
-        return this.totalResult - this.promoSum
-      },
-      // GET TOTAL SUM
-      totalSum () {
-        return this.getTotal - this.resultDiscount
-      }
+      })
     },
     methods: {
       ...mapActions({
         orderShow: 'showOrder'
-      }),
-      onPromo () {
-        if (this.promocode.value === this.promocode.code) {
-          this.promocode.status = true
-          this.promocode.disabled = true
-          this.promocode.error = false
-          this.promocode.value = 'Промокод успешно активирован'
-        } else {
-          this.promocode.error = true
-        }
-      }
+      })
     },
     components: {
       appInput: Input,
       appCards: Cards,
       appPromo: Promo,
-      appDiscount: Discount
+      appDiscount: Discount,
+      appPromocode: Promocode
     }
   }
 </script>
@@ -235,25 +186,6 @@
 
       &__sum {
         font-size: 38px;
-      }
-    }
-
-    // PROMOCODE SECTION
-
-    & .promocode {
-      width: 80%;
-      margin-left: 10%;
-      margin-top: 40px;
-
-      &__row {
-        display: flex;
-      }
-
-      &__error {
-        color: red;
-        margin-top: 10px;
-        margin-bottom: 0;
-        font-style: italic;
       }
     }
 

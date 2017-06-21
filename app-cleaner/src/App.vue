@@ -33,7 +33,8 @@
         repairsInit: 'initRepairs',
         promosInit: 'initPromos',
         metroInit: 'initMetros',
-        discountInit: 'initDiscount'
+        discountInit: 'initDiscount',
+        promocodeInit: 'initPromocode'
       })
     },
     created () {
@@ -44,6 +45,7 @@
       this.promosInit()
       this.metroInit()
       this.discountInit()
+      this.promocodeInit()
     }
   }
 </script>
