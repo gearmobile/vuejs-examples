@@ -8,6 +8,12 @@ const state = {
   discountStatus: null
 }
 
+// const getters = {
+//   allTransactions(state, getters) {
+//     //
+//   }
+// }
+
 const mutations = {
   'ADD_ORDER' (state, payload) {
     const record = state.order.find(element => element.name === payload.name)
@@ -67,20 +73,30 @@ const actions = {
 }
 
 const getters = {
-  getResult (state) {
-    // get total sum
-    let total = state.order.reduce((sum, c) => sum + c.quantity * c.price, 0)
-    // check discount
+  // second argument 'getters'
+  getPromoSum (state, getters) {
+    let total = getters.getResult; // <--
+    if (state.promocode.status) {
+      const promo = total - total * state.promocode.percent / 100
+      return promo
+    }
+  },
+  getDiscountSum (state) {
     for (let i = 0; i < state.discount.length; i += 1) {
       if (state.discount[i].name === state.discountStatus) {
-        total - (total * state.discount[i].value) / 100
+        const discount = total * state.discount[i].value / 100
+        return discount
       }
     }
-    // check promocode
+  },
+  getPromoSum (state) {
     if (state.promocode.status) {
-      total -= total * state.promocode.percent / 100
+      const promo = total - total * state.promocode.percent / 100
+      return promo
     }
-    // get result
+  },
+  getResult (state) {
+    let total = state.order.reduce((sum, c) => sum + c.quantity * c.price, 0)
     return total
   },
   getDiscount (state) {
