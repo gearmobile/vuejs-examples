@@ -1,6 +1,6 @@
 <template lang="pug">
   .discount.col-md-4
-    .discount__thumb.well( :value="discount.name", v-model="status", @click="onActive()" )
+    .discount__thumb.well( :value="discount.name", :class="{ 'discount__active': discount.name === active }", @click="onActive()" )
       h5.discount__title
         | {{ discount.title }}
       p.discount__body
@@ -33,7 +33,7 @@
       ...mapGetters({
         discountStatus: 'getDiscountStatus'
       }),
-      status: {
+      active: {
         get () { return this.discountStatus }
         // set (value) { this.discountStatusSet(value) }
       }
