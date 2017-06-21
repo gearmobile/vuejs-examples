@@ -1,9 +1,9 @@
 <template lang="pug">
-  .col-md-4.discount
-    .discount__thumb.well( :value="discount.name", :class="{ 'discount__active': discount.name === active }", @click="onActive()" )
-      h5.discount__title
+  .col-md-4
+    .well.inner( :value="discount.name", :class="{ 'inner--active': discount.name === active }", @click="onActive()" )
+      h5.inner__title
         | {{ discount.title }}
-      p.discount__body
+      p.inner__body
         | со скидкой #[strong {{ discount.value | addPercent }}]
 </template>
 
@@ -41,7 +41,9 @@
 
 <style lang="scss" scoped>
 
-  .discount {
+  .inner {
+    cursor: pointer;
+    text-align: center;
 
     &__title {
       color: #03aebc;
@@ -49,12 +51,7 @@
       margin-bottom: 5px;
     }
 
-    &__thumb {
-      cursor: pointer;
-      text-align: center;
-    }
-
-    &__active {
+    &--active {
       background-color: rgba( 3,174,188, .1 );
     }
 
@@ -62,6 +59,6 @@
       font-size: 20px;
       margin-bottom: 0;
     }
-
   }
+
 </style>
