@@ -2,9 +2,9 @@
   .row.well.promocode
     .promocode__row
       input.form-control( type="text", v-model="code" )
-      button.btn.btn-default( type="button", @click="onPromo()", :disabled="promoStatus" )
+      button.btn.btn-default( type="button", @click="onPromo()", :disabled="status" )
         | Применить
-    p.promocode__error( v-if="promoError" )
+    p.promocode__error( v-if="error" )
       | Вы ввели неправильный промокод
 </template>
 
@@ -26,9 +26,8 @@
     },
     computed: {
       ...mapGetters({
-        promoValue: 'getPromoValue',
-        promoStatus: 'getPromoStatus',
-        promoError: 'getPromoError'
+        status: 'getPromoStatus',
+        error: 'getPromoError'
       })
     },
     methods: {
@@ -37,6 +36,7 @@
       }),
       onPromo () {
         this.promoValueSet(this.code)
+        this.code = this.status ? 'Промокод успешно активирован' : 'Ошибка!'
       }
     }
   }
