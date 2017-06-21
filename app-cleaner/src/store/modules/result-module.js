@@ -49,17 +49,12 @@ const actions = {
 const getters = {
   getResult (state) {
     let total = state.order.reduce((sum, c) => sum + c.quantity * c.price, 0)
-    let result = null
-    if (state.discount[0].status) {
-      result = total - (total * state.discount[0].value) / 100
+    for (let i = 0; i < state.discount.length; i += 1) {
+      if (state.discount[i].name === state.discountStatus) {
+        total - (total * state.discount[i].value) / 100
+      }
     }
-    if (state.discount[1].status) {
-      result = total - (total * state.discount[1].value) / 100
-    }
-    if (state.discount[2].status) {
-      result = total - (total * state.discount[1].value) / 100
-    }
-    return result
+    return total
   },
   getDiscount (state) {
     return state.discount

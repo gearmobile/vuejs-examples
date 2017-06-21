@@ -39,6 +39,16 @@
     .row( v-if="clearing === 'single' || clearing === 'general'" )
       h4.page-header.text-center
         | Периодичная уборка
+      //- .row
+      //- .col-md-4( style="background-color: #eee" )
+      //-   .inner( style="background-color: #aaa" )
+      //-     h4.text-center lorem ipsum dolor est
+      //- .col-md-4( style="background-color: #eee" )
+      //-   .inner( style="background-color: #aaa" )
+      //-     h4.text-center lorem ipsum dolor est
+      //- .col-md-4( style="background-color: #eee" )
+      //-   .inner( style="background-color: #aaa" )
+      //-     h4.text-center lorem ipsum dolor est
       app-discount( v-for="(discount, index) in discounts", :key="index", :discount="discount" )
 
     h3.page-header.text-center Дополнительно

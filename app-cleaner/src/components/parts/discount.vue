@@ -1,5 +1,5 @@
 <template lang="pug">
-  .discount.col-md-4
+  .col-md-4.discount
     .discount__thumb.well( :value="discount.name", :class="{ 'discount__active': discount.name === active }", @click="onActive()" )
       h5.discount__title
         | {{ discount.title }}
@@ -10,7 +10,6 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import filters from '../../filters/filters.js'
-  // :class="{ 'discount__active': discount.status }",
 
   export default {
     name: 'discount',
@@ -35,7 +34,6 @@
       }),
       active: {
         get () { return this.discountStatus }
-        // set (value) { this.discountStatusSet(value) }
       }
     }
   }
