@@ -16,6 +16,7 @@
   import { mapGetters } from 'vuex'
 
   export default {
+    name: 'discount-output',
     computed: {
       ...mapGetters({
         common: 'getResult',

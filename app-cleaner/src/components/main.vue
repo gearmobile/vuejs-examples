@@ -68,11 +68,8 @@
       app-discount-output
 
     // SECTION TOTAL
-    .total( v-if="commonShow" )
-      p.total__title
-        | К оплате:
-      p.total__sum
-        | {{ commonSum | locate }}
+    .main__line( v-if="commonShow" )
+      app-total
 
     // ORDER SECTION
     .row.order
@@ -84,12 +81,14 @@
 <script>
   import filters from '../filters/filters.js'
   import { mapGetters, mapActions } from 'vuex'
+  
   import Input from './parts/input.vue'
   import Cards from './parts/card.vue'
   import Promo from './parts/promo.vue'
   import Discount from './parts/discount.vue'
   import Promocode from './parts/promocode.vue'
   import DiscountOutput from './parts/discount-output.vue'
+  import Total from './parts/total.vue'
 
   export default {
     name: 'main',
@@ -109,8 +108,7 @@
         discounts: 'getDiscount',
         commonShow: 'showCommon',
         discountShow: 'showDiscount',
-        promocode: 'getPromocode',
-        commonSum: 'getResult'
+        promocode: 'getPromocode'
       })
     },
     methods: {
@@ -124,7 +122,8 @@
       appPromo: Promo,
       appDiscount: Discount,
       appPromocode: Promocode,
-      appDiscountOutput: DiscountOutput
+      appDiscountOutput: DiscountOutput,
+      appTotal: Total
     }
   }
 </script>
@@ -156,30 +155,6 @@
 
       &:hover {
         background-color: rgba( 3,174,188, .3 );
-      }
-    }
-
-    // TOTAL SECTION
-
-    & .total {
-      display: flex;
-      width: 80%;
-      margin-left: 10%;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 40px;
-
-      &__title, &__sum {
-        font-weight: 700;
-        color: #03aebc;
-      }
-
-      &__title {
-        font-size: 36px;
-      }
-
-      &__sum {
-        font-size: 38px;
       }
     }
 
