@@ -1,6 +1,6 @@
 <template lang="pug">
   .discount.col-md-4
-    .discount__thumb.well( :value="discount.name", v-model="status", @click="onActive($event)" )
+    .discount__thumb.well( :value="discount.name", v-model="status", @click="onActive()" )
       h5.discount__title
         | {{ discount.title }}
       p.discount__body
@@ -25,9 +25,8 @@
       ...mapActions({
         discountStatusSet: 'setDiscountStatus'
       }),
-      onActive (event) {
-        console.info(event.target)
-        // this.discountStatusSet($event.target.value)
+      onActive () {
+        this.discountStatusSet(this.discount.name)
       }
     },
     computed: {
