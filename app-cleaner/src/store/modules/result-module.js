@@ -8,12 +8,6 @@ const state = {
   discountStatus: null
 }
 
-// const getters = {
-//   allTransactions(state, getters) {
-//     //
-//   }
-// }
-
 const mutations = {
   'ADD_ORDER' (state, payload) {
     const record = state.order.find(element => element.name === payload.name)
@@ -93,6 +87,12 @@ const getters = {
       }
     }
   },
+  getTotalDiscountSum (state, getters) {
+    const commonSum = getters.getResult
+    const discountSum = getters.getDiscountSum
+    const result = commonSum - discountSum
+    return result
+  },
   getDiscount (state) {
     return state.discount
   },
@@ -100,12 +100,10 @@ const getters = {
     return state.discountStatus
   },
   showCommon () {
-    const check = state.discount[0].status || state.discount[1].status || state.discount[2].status
-    return !check
+    return !state.discountStatus
   },
   showDiscount () {
-    const check = state.discount[0].status || state.discount[1].status || state.discount[2].status
-    return check
+    return !!state.discountStatus
   },
   getPromocode (state) {
     return state.promocode

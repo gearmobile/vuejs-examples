@@ -64,10 +64,11 @@
       app-promocode( v-if="commonShow", :promocode="promocode" )
 
     // DISCOUNT SECTION
-    //- .row.well.discount( v-if="discountShow" )
-    //-   .col-md-6.col-md-offset-3.clearfix
-    //-     p.pull-left.discount__primo Общая сумма:
-    //-     p.pull-right.discount__primo--sum {{ commonSum | locate }}
+    .row( v-if="discountShow" )
+      app-discount-output
+      //- .col-md-6.col-md-offset-3.clearfix
+      //-   p.pull-left.discount__primo Общая сумма:
+      //-   p.pull-right.discount__primo--sum {{ commonSum | locate }}
     //-   .col-md-6.col-md-offset-3.clearfix
     //-     p.pull-left.discount__secondo Сумма скидки:
     //-     p.pull-right.discount__secondo--sum {{ resultDiscount | locate }}
@@ -97,6 +98,7 @@
   import Promo from './parts/promo.vue'
   import Discount from './parts/discount.vue'
   import Promocode from './parts/promocode.vue'
+  import DiscountOutput from './parts/discount-output.vue'
 
   export default {
     name: 'main',
@@ -130,7 +132,8 @@
       appCards: Cards,
       appPromo: Promo,
       appDiscount: Discount,
-      appPromocode: Promocode
+      appPromocode: Promocode,
+      appDiscountOutput: DiscountOutput
     }
   }
 </script>

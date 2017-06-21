@@ -3,7 +3,6 @@ import cards from '../../data/secondo'
 import generals from '../../data/general'
 import repairs from '../../data/repair'
 import promos from '../../data/promotion'
-// import discount from '../../data/discount'
 
 const state = {
   items: [],
@@ -11,7 +10,6 @@ const state = {
   generals: [],
   repairs: [],
   promos: []
-  // discount: []
 }
 
 const mutations = {
@@ -30,9 +28,6 @@ const mutations = {
   'SET_PROMOS' (state, payload) {
     state.promos = payload
   }
-  // 'SET_DISCOUNT' (state, payload) {
-  //   state.discount = payload
-  // }
 }
 
 const actions = {
@@ -51,9 +46,6 @@ const actions = {
   initPromos ({ commit }) {
     commit('SET_PROMOS', promos)
   }
-  // initDiscount ({ commit }) {
-  //   commit('SET_DISCOUNT', discount)
-  // }
 }
 
 const getters = {
@@ -72,9 +64,6 @@ const getters = {
   getPromos (state) {
     return state.promos
   }
-  // getDiscount (state) {
-  //   return state.discount
-  // }
 }
 
 export default {
