@@ -16,10 +16,13 @@
             input.form-control( id="phone", name="phone", type="tel", v-model="customer.phone" )
           .form-group
             label.order__label( for="name" ) имя
-            input.form-control( id="name", anme="name", type="text", v-model="customer.name" )
+            input.form-control( id="name", name="name", type="text", v-model="customer.name" )
           .form-group
             label.order__label( for="email" ) email
-            input.form-control( id="email", name="email", type="email", v-model="customer.email" )
+            section( :class="{ 'control': true }" )
+              input.form-control( id="email", name="email", type="email", v-model="customer.email", v-validate="'required|email'" )
+              span.help.is-danger(v-show="errors.has('email')") {{ errors.first('email') }}
+
 
         // section date
         section.order__section.well

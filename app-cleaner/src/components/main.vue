@@ -81,7 +81,8 @@
 <script>
   import filters from '../filters/filters.js'
   import { mapGetters, mapActions } from 'vuex'
-  
+  // components
+  // -----------------------
   import Input from './parts/input.vue'
   import Cards from './parts/card.vue'
   import Promo from './parts/promo.vue'
