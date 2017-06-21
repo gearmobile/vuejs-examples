@@ -15,6 +15,7 @@
             label.order__label( for="phone" ) телефон
             input.form-control( id="phone", name="phone", type="tel", v-model="customer.phone" )
           .form-group
+            // http://vee-validate.logaretm.com/examples.html
             label.order__label( for="name" ) имя
             input.form-control( id="name", name="name", type="text", v-model="customer.name" )
           .form-group
