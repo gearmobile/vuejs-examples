@@ -1,14 +1,14 @@
 <template lang="pug">
-  .well.discount
-    .col-md-6.col-md-offset-3.clearfix
-      p.pull-left.discount__primo Общая сумма:
-      p.pull-right.discount__primo--sum {{ common | locate }}
-    .col-md-6.col-md-offset-3.clearfix
-      p.pull-left.discount__secondo Сумма скидки:
-      p.pull-right.discount__secondo--sum {{ discount | locate }}
-    .col-md-6.col-md-offset-3.clearfix
-      p.pull-left.discount__tetro Итого сумма:
-      p.pull-right.discount__tetro--sum {{ total | locate }}
+  .discount
+    ul.discount__row
+      li.discount__primo Общая сумма:
+      li.discount__primo--sum {{ common | locate }}
+    ul.discount__row
+      li.discount__secondo Сумма скидки:
+      li.discount__secondo--sum {{ discount | locate }}
+    ul.discount__row
+      li.discount__tetro Итого сумма:
+      li.discount__tetro--sum {{ total | locate }}
 </template>
 
 <script>
@@ -28,5 +28,47 @@
 </script>
 
 <style lang="scss">
-  //
+
+    .discount {
+      width: 100%;
+      margin: 0 3%;
+      padding: 20px 5% 0;
+      color: #03aebc;
+      background-color: azure;
+
+      &__row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      &__primo {
+        font-size: 22px;
+
+        &--sum {
+          font-weight: 700;
+          font-size: 24px;
+        }
+      }
+
+      &__secondo {
+        font-size: 20px;
+
+        &--sum {
+          font-weight: 700;
+          font-size: 22px;
+        }
+      }
+
+      &__tetro {
+        font-size: 26px;
+
+        &--sum {
+          font-weight: 700;
+          font-size: 28px;
+        }
+      }
+    }
 </style>

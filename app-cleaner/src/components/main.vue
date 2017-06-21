@@ -64,17 +64,8 @@
       app-promocode( v-if="commonShow", :promocode="promocode" )
 
     // DISCOUNT SECTION
-    .row( v-if="discountShow" )
+    .main__line( v-if="discountShow" )
       app-discount-output
-      //- .col-md-6.col-md-offset-3.clearfix
-      //-   p.pull-left.discount__primo Общая сумма:
-      //-   p.pull-right.discount__primo--sum {{ commonSum | locate }}
-    //-   .col-md-6.col-md-offset-3.clearfix
-    //-     p.pull-left.discount__secondo Сумма скидки:
-    //-     p.pull-right.discount__secondo--sum {{ resultDiscount | locate }}
-    //-   .col-md-6.col-md-offset-3.clearfix
-    //-     p.pull-left.discount__tetro Итого сумма:
-    //-     p.pull-right.discount__tetro--sum {{ totalSum | locate }}
 
     // SECTION TOTAL
     .total( v-if="commonShow" )
@@ -189,42 +180,6 @@
 
       &__sum {
         font-size: 38px;
-      }
-    }
-
-    // DISCOUNT SECTION
-
-    & .discount {
-      color: #03aebc;
-      padding: 20px 0;
-
-      &__primo {
-        font-size: 22px;
-
-        &--sum {
-          font-weight: 700;
-          font-size: 24px;
-        }
-      }
-
-      &__secondo {
-        font-size: 20px;
-
-        &--sum {
-          font-weight: 700;
-          font-size: 22px;
-        }
-      }
-
-      &__tetro {
-        font-size: 26px;
-        margin-bottom: 0;
-
-        &--sum {
-          font-weight: 700;
-          font-size: 28px;
-          margin-bottom: 0;
-        }
       }
     }
 
