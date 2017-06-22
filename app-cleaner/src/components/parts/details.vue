@@ -1,11 +1,12 @@
 <template lang="pug">
   .details.well
     p
-      | К вам приедет <span class="acent">{{ workerOutput }}</span> со всеми необходимыми средствами и приборами.
+      | К вам приедет <span class="acent acent--more">{{ workerOutput }}</span> со всеми необходимыми средствами и приборами.
+    ul.details__list
+      li( v-for="(order, index) in orders", :key="index" ) <span class="acent acent--more">{{ order.quantity }}</span> <span class="acent acent--more">{{ order.title }}</span>
     p
-      | 1 комната, 1 ванная. Уборка займет <span class="acent">{{ timeOutput }}</span>. Приедем в удобное для вас время.
-    p
-      | Что входит в уборку
+      | Уборка займет <span class="acent acent--more">{{ timeOutput }}</span>. Приедем в удобное для вас время.
+    p: a.acent(href="#") Что входит в уборку
 </template>
 
 <script>
@@ -17,7 +18,8 @@
     computed: {
       ...mapGetters({
         time: 'getTime',
-        worker: 'getWorkers'
+        worker: 'getWorkers',
+        orders: 'getOrder'
       }),
       timeOutput () {
         return this.time + ' ' + this.getNoun(this.time, 'час', 'часа', 'часов')
@@ -39,6 +41,17 @@
 
     & .acent {
       color: #03aebc;
+
+      &--more {
+        font-weight: 700;
+      }
+    }
+
+    &__list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-left: 0;
+      // text-align: left;
     }
   }
 </style>

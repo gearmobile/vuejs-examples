@@ -85,6 +85,9 @@ const getters = {
     const worker = time > 7 ? 2 : 1
     return worker
   },
+  getOrder (state) {
+    return state.order
+  },
   getPromoSum (state, getters) {
     let total = getters.getResult
     if (state.promocode.status) {
