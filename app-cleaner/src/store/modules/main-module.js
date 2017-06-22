@@ -9,7 +9,7 @@ const state = {
   cards: [],
   generals: [],
   repairs: [],
-  promotion: {}
+  promotion: []
 }
 
 const mutations = {

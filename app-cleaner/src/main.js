@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import VeeValidate from 'vee-validate'
+import '../node_modules/font-awesome/css/font-awesome.css'
 import store from './store/index'
 
 Vue.use(VeeValidate)

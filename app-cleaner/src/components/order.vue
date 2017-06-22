@@ -8,16 +8,17 @@
       // COLUMN PRIMARY
       .col-md-8
 
-        // section contacts
+        // section contacts // http://vee-validate.logaretm.com/examples.html
         section.order__section.well
           h5.order__title Контактные данные
           .form-group
             label.order__label( for="phone" ) телефон
             input.form-control( id="phone", name="phone", type="tel", v-model="customer.phone" )
           .form-group
-            // http://vee-validate.logaretm.com/examples.html
             label.order__label( for="name" ) имя
-            input.form-control( id="name", name="name", type="text", v-model="customer.name" )
+            section( :class="{ 'control': true }" )
+              input.form-control( id="name", name="name", type="text", v-model="customer.name", v-validate="'required|alpha'" )
+              span.help.is-danger(v-show="errors.has('name')") {{ errors.first('name') }}
           .form-group
             label.order__label( for="email" ) email
             section( :class="{ 'control': true }" )

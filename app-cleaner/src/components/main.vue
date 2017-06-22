@@ -131,6 +131,8 @@
 
 <style lang="scss" scoped>
   
+  // MAIN SECTION
+
   .main {
 
     &__row {
