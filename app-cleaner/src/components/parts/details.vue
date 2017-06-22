@@ -1,15 +1,22 @@
 <template lang="pug">
   .details.well
+    
     p
       | К вам приедет <span class="acent acent--more">{{ workerOutput }}</span> со всеми необходимыми средствами и приборами.
+    
     ul.details__list
-      li( v-for="(order, index) in orders", :key="index" ) <span class="acent acent--more">{{ order.quantity }}</span> <span class="acent acent--more">{{ order.title }}</span>
+      li( v-for="(order, index) in orders", :key="index" ) <span class="acent acent--more">{{ orderOutput(order) }}</span>
+    
     p
       | Уборка займет <span class="acent acent--more">{{ timeOutput }}</span>. Приедем в удобное для вас время.
-    p: a.acent(href="#") Что входит в уборку
+    
+    p
+      a.acent(href="#") Что входит в уборку
+      
 </template>
 
 <script>
+  import offers from '../../data/secondo.js'
   import { mapGetters } from 'vuex'
   import mixins from '../../mixins/mixin.js'
 
@@ -19,13 +26,23 @@
       ...mapGetters({
         time: 'getTime',
         worker: 'getWorkers',
-        orders: 'getOrder'
+        orders: 'getOrders'
       }),
       timeOutput () {
         return this.time + ' ' + this.getNoun(this.time, 'час', 'часа', 'часов')
       },
       workerOutput () {
         return this.worker + ' ' + this.getNoun(this.time, 'специалист', 'специалиста', 'специалистов')
+      }
+    },
+    methods: {
+      orderOutput (order) {
+        const sample = offers.find(el => el.name === order.name)
+        if (sample) {
+          return order.quantity
+        } else {
+          console.log('error')
+        }
       }
     },
     mixins: [mixins]
