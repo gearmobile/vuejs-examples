@@ -86,8 +86,8 @@
           p один специалист
 
         // section sum
-        section.order__section.well
-          //- p {{ getTotal | locate }}
+        section.order__section.order__section--total.well
+          app-total
 
         // section continue
         section.order__section
@@ -97,6 +97,7 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import filters from '../filters/filters.js'
+  import Total from './parts/total.vue'
 
   export default {
     name: 'order',
@@ -132,6 +133,9 @@
       onOrder () {
         this.customerSet(this.customer)
       }
+    },
+    components: {
+      appTotal: Total
     }
   }
 </script>
@@ -145,6 +149,13 @@
 
       &:last-child {
         margin-bottom: 0;
+      }
+
+      &--total .total {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        width: 100%;
       }
     }
 

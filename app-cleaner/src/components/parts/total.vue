@@ -21,10 +21,9 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-  .total
-  {
+  .total {
     display: flex;
     width: 80%;
     justify-content: space-between;
