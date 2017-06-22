@@ -6,7 +6,7 @@
         img( :src="imagePath", :alt="card.title" )
       .card__item
         button.btn.btn-default( type="button", @click="removeOrder()", :disabled="decreaseState" ) -
-        input.form-control.text-center( type="text", :name="card.name", v-model="output" )
+        input.form-control.text-center( type="text", :name="card.name", v-model="output", disabled )
         button.btn.btn-default( type="button", @click="addOrder()", :disabled="increaseState" ) +
 </template>
 
