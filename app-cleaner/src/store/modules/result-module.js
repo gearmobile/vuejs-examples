@@ -73,8 +73,17 @@ const actions = {
 
 const getters = {
   getResult (state) {
-    let total = state.order.reduce((sum, c) => sum + c.quantity * c.price, 0)
+    const total = state.order.reduce((sum, c) => sum + c.quantity * c.price, 0)
     return total
+  },
+  getTime (state) {
+    const total = (state.order.reduce((sum, c) => sum + c.time, 0)) / 60
+    return total
+  },
+  getWorkers (state, getters) {
+    const time = getters.getTime
+    const worker = time > 7 ? 2 : 1
+    return worker
   },
   getPromoSum (state, getters) {
     let total = getters.getResult

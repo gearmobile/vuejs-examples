@@ -27,10 +27,10 @@
     filters,
     computed: {
       increaseState () {
-        return this.card.value === this.card.max || !Number.isInteger(this.card.value)
+        return this.card.value === this.card.max
       },
       decreaseState () {
-        return this.card.value === this.card.min || !Number.isInteger(this.card.value)
+        return this.card.value === this.card.min
       },
       output: {
         get () {

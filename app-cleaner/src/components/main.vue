@@ -59,6 +59,10 @@
     .main__line( v-if="clearing === 'single' || clearing === 'express'" )
       app-cards( v-for="(card, index) in cards", :key="index", :card="card" )
 
+    // DETAILS SECTION
+    .main__line
+      app-details
+
     // SECTION PROMOCODE
     template( v-if="clearing !== 'express'" )
       app-promocode( v-if="commonShow", :promocode="promocode" )
@@ -89,6 +93,7 @@
   import Discount from './parts/discount.vue'
   import Promocode from './parts/promocode.vue'
   import DiscountOutput from './parts/discount-output.vue'
+  import Details from './parts/details.vue'
   import Total from './parts/total.vue'
 
   export default {
@@ -124,6 +129,7 @@
       appDiscount: Discount,
       appPromocode: Promocode,
       appDiscountOutput: DiscountOutput,
+      appDetails: Details,
       appTotal: Total
     }
   }

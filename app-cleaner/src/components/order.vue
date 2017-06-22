@@ -151,7 +151,7 @@
         margin-bottom: 0;
       }
 
-      &--total .total {
+      & .total {
         flex-direction: column;
         align-items: center;
         margin: 0;
