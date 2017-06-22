@@ -25,7 +25,8 @@
         discountStatusSet: 'setDiscountStatus'
       }),
       onActive () {
-        this.discountStatusSet(this.discount.name)
+        this.discountStatusSet(this.discount)
+        this.discount.flag = !this.discount.flag
       }
     },
     computed: {
