@@ -11,18 +11,23 @@
         // section contacts // http://vee-validate.logaretm.com/examples.html
         section.order__section.well
           h5.order__title Контактные данные
+          // phone
           .form-group
             label.order__label( for="phone" ) телефон
-            input.form-control( id="phone", name="phone", type="tel", v-model="customer.phone" )
+            p.control
+              input.form-control( :class="{ 'input': true, 'is-danger': errors.has('name') }", v-validate="'required|numeric|max_value:{11}'", data-vv-delay="500", id="phone", name="phone", type="tel", v-model="customer.phone" )
+              span.help.is-danger( v-show="errors.has('phone')" ) {{ errors.first('phone') }}
+          // name
           .form-group
             label.order__label( for="name" ) имя
-            section( :class="{ 'control': true }" )
-              input.form-control( id="name", name="name", type="text", v-model="customer.name", v-validate="'required|alpha'" )
-              span.help.is-danger(v-show="errors.has('name')") {{ errors.first('name') }}
+            p.control
+              input.form-control( :class="{ 'input': true, 'is-danger': errors.has('name') }", id="name", name="name", type="text", data-vv-delay="500", v-model="customer.name", v-validate="'required|alpha'" )
+              span.help.is-danger( v-show="errors.has('name')" ) {{ errors.first('name') }}
+          // email
           .form-group
             label.order__label( for="email" ) email
-            section( :class="{ 'control': true }" )
-              input.form-control( id="email", name="email", type="email", v-model="customer.email", v-validate="'required|email'" )
+            p.control
+              input.form-control( :class="{ 'input': true, 'is-danger': errors.has('email') }", id="email", name="email", type="email", v-model="customer.email", v-validate="'required|email'" )
               span.help.is-danger(v-show="errors.has('email')") {{ errors.first('email') }}
 
 
@@ -158,5 +163,15 @@
     &__button {
       width: 100%;
     }
+
+    & .control {
+      margin-bottom: 0;
+    }
+
+    & .is-danger {
+      color: firebrick;
+      font-style: italic;
+    }
+
   }
 </style>
