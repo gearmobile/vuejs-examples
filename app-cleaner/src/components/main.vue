@@ -45,7 +45,7 @@
     
     // PROMOTION SECTION
     .main__line( v-if="clearing !== 'repair'" )
-      app-promo( v-for="(promo, index) in promos", :key="index", :promo="promo" )
+      app-promotion( :promotion="promotion" )
 
     // REPAIR BLOCK
     .main__line( v-if="clearing === 'repair'" )
@@ -85,7 +85,7 @@
   // -----------------------
   import Input from './parts/input.vue'
   import Cards from './parts/card.vue'
-  import Promo from './parts/promo.vue'
+  import Promotion from './parts/promotion.vue'
   import Discount from './parts/discount.vue'
   import Promocode from './parts/promocode.vue'
   import DiscountOutput from './parts/discount-output.vue'
@@ -105,7 +105,7 @@
         cards: 'getCards',
         generals: 'getGenerals',
         repairs: 'getRepairs',
-        promos: 'getPromos',
+        promotion: 'getPromotion',
         discounts: 'getDiscount',
         commonShow: 'showCommon',
         discountShow: 'showDiscount',
@@ -120,7 +120,7 @@
     components: {
       appInput: Input,
       appCards: Cards,
-      appPromo: Promo,
+      appPromotion: Promotion,
       appDiscount: Discount,
       appPromocode: Promocode,
       appDiscountOutput: DiscountOutput,

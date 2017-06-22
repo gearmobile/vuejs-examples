@@ -31,7 +31,7 @@
         cardsInit: 'initCards',
         generalsInit: 'initGenerals',
         repairsInit: 'initRepairs',
-        promosInit: 'initPromos',
+        promotionInit: 'initPromotion',
         metroInit: 'initMetros',
         discountInit: 'initDiscount',
         promocodeInit: 'initPromocode'
@@ -42,7 +42,7 @@
       this.cardsInit()
       this.generalsInit()
       this.repairsInit()
-      this.promosInit()
+      this.promotionInit()
       this.metroInit()
       this.discountInit()
       this.promocodeInit()

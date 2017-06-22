@@ -2,14 +2,14 @@ import data from '../../data/primo'
 import cards from '../../data/secondo'
 import generals from '../../data/general'
 import repairs from '../../data/repair'
-import promos from '../../data/promotion'
+import promotion from '../../data/promotion'
 
 const state = {
   items: [],
   cards: [],
   generals: [],
   repairs: [],
-  promos: []
+  promotion: {}
 }
 
 const mutations = {
@@ -25,8 +25,8 @@ const mutations = {
   'SET_REPAIRS' (state, payload) {
     state.repairs = payload
   },
-  'SET_PROMOS' (state, payload) {
-    state.promos = payload
+  'SET_PROMOTION' (state, payload) {
+    state.promotion = payload
   }
 }
 
@@ -43,8 +43,8 @@ const actions = {
   initRepairs ({ commit }) {
     commit('SET_REPAIRS', repairs)
   },
-  initPromos ({ commit }) {
-    commit('SET_PROMOS', promos)
+  initPromotion ({ commit }) {
+    commit('SET_PROMOTION', promotion)
   }
 }
 
@@ -61,8 +61,8 @@ const getters = {
   getRepairs (state) {
     return state.repairs
   },
-  getPromos (state) {
-    return state.promos
+  getPromotion (state) {
+    return state.promotion
   }
 }
 

@@ -1,15 +1,13 @@
-export default [
-  {
-    name: 'promotion',
-    title: 'окна',
-    value: 0,
-    price: 200,
-    min: 0,
-    max: 25,
-    step: 5,
-    time: 30,
-    singular: 'штук',
-    few: 'штук',
-    plural: 'штук'
-  }
-]
+export default {
+  name: 'promotion',
+  title: 'окна',
+  value: 0,
+  price: 200,
+  min: 0,
+  max: 25,
+  step: 5,
+  time: 30,
+  singular: 'штук',
+  few: 'штук',
+  plural: 'штук'
+}

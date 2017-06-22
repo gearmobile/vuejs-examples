@@ -1,10 +1,10 @@
 <template lang="pug">
-  .promo
-    .well.promo__panel
+  .promotion
+    .well.promotion__panel
       | Только до #[strong 31 июля] помоем #[strong пять] окон за #[strong 1 000 рублей]
-    .well.promo__input
+    .well.promotion__input
       button.btn.btn-default( type="button", @click="removeOrder()", :disabled="decreaseState" ) -
-      input.form-control.text-center.promo__data( type="text", v-model="output", disabled )
+      input.form-control.promotion__data( type="text", v-model="output", disabled )
       button.btn.btn-default( type="button", @click="addOrder()", :disabled="increaseState" ) +
 </template>
 
@@ -13,24 +13,24 @@
   import mixins from '../../mixins/mixin.js'
 
   export default {
-    name: 'promo',
+    name: 'promotion',
     mixins: [mixins],
     props: {
-      promo: {
+      promotion: {
         type: Object,
         default: null
       }
     },
     computed: {
       increaseState () {
-        return this.promo.value === this.promo.max || !Number.isInteger(this.promo.value)
+        return this.promotion.value === this.promotion.max
       },
       decreaseState () {
-        return this.promo.value === this.promo.min || !Number.isInteger(this.promo.value)
+        return this.promotion.value === this.promotion.min
       },
       output: {
         get () {
-          return this.promo.value + ' ' + this.getNoun(this.promo.value, this.promo.singular, this.promo.few, this.promo.plural)
+          return this.promotion.value + ' ' + this.getNoun(this.promotion.value, this.promotion.singular, this.promotion.few, this.promotion.plural)
         }
       }
     },
@@ -40,33 +40,33 @@
         orderDelete: 'deleteOrder'
       }),
       increase () {
-        this.promo.value += this.promo.step
+        this.promotion.value += this.promotion.step
       },
       decrease () {
-        if (this.promo.value === this.promo.min) {
+        if (this.promotion.value === this.promotion.min) {
           return
         }
-        this.promo.value -= this.promo.step
+        this.promotion.value -= this.promotion.step
       },
       addOrder () {
         this.increase()
         const order = {
-          name: this.promo.name,
-          price: this.promo.price,
-          time: this.promo.time,
-          title: this.promo.title,
-          quantity: this.promo.step
+          name: this.promotion.name,
+          price: this.promotion.price,
+          time: this.promotion.time,
+          title: this.promotion.title,
+          quantity: this.promotion.step
         }
         this.orderAdd(order)
       },
       removeOrder () {
         this.decrease()
         const order = {
-          name: this.promo.name,
-          price: this.promo.price,
-          time: this.promo.time,
-          title: this.promo.title,
-          quantity: this.promo.step
+          name: this.promotion.name,
+          price: this.promotion.price,
+          time: this.promotion.time,
+          title: this.promotion.title,
+          quantity: this.promotion.step
         }
         this.orderDelete(order)
       }
@@ -76,7 +76,7 @@
 
 <style lang="scss" scoped>
 
-  .promo {
+  .promotion {
     text-align: center;
     width: 100%;
 
@@ -93,6 +93,7 @@
 
     &__data {
       color: #950d2a;
+      text-align: center;
     }
   }
   
