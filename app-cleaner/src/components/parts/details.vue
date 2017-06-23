@@ -5,7 +5,7 @@
       | К вам приедет <span class="acent acent--more">{{ workerOutput }}</span> со всеми необходимыми средствами и приборами.
     
     ul.details__list
-      li( v-for="(order, index) in orders", :key="index" ) <span class="acent acent--more">{{ orderOutput(order) }}</span>
+      li( v-for="(order, index) in orders", :key="index" ) <span class="acent acent--more">{{ orderOutput(order) }} {{ order.title }}</span>
     
     p
       | Уборка займет <span class="acent acent--more">{{ timeOutput }}</span>. Приедем в удобное для вас время.
@@ -16,7 +16,6 @@
 </template>
 
 <script>
-  import offers from '../../data/secondo.js'
   import { mapGetters } from 'vuex'
   import mixins from '../../mixins/mixin.js'
 
@@ -37,12 +36,7 @@
     },
     methods: {
       orderOutput (order) {
-        const sample = offers.find(el => el.name === order.name)
-        if (sample) {
-          return order.quantity
-        } else {
-          console.log('error')
-        }
+        return order.quantity
       }
     },
     mixins: [mixins]
@@ -68,7 +62,6 @@
       list-style-type: none;
       padding-left: 0;
       margin-left: 0;
-      // text-align: left;
     }
   }
 </style>

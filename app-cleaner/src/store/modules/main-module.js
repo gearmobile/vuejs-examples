@@ -1,8 +1,4 @@
-import data from '../../data/primo'
-import cards from '../../data/secondo'
-import generals from '../../data/general'
-import repairs from '../../data/repair'
-import promotion from '../../data/promotion'
+import data from '../../data/data.json'
 
 const state = {
   items: [],
@@ -32,19 +28,19 @@ const mutations = {
 
 const actions = {
   initItems ({ commit }) {
-    commit('SET_ITEMS', data)
+    commit('SET_ITEMS', data.primo)
   },
   initCards ({ commit }) {
-    commit('SET_CARDS', cards)
+    commit('SET_CARDS', data.secondo)
   },
   initGenerals ({ commit }) {
-    commit('SET_GENERALS', generals)
+    commit('SET_GENERALS', data.tetro)
   },
   initRepairs ({ commit }) {
-    commit('SET_REPAIRS', repairs)
+    commit('SET_REPAIRS', data.quattro)
   },
   initPromotion ({ commit }) {
-    commit('SET_PROMOTION', promotion)
+    commit('SET_PROMOTION', data.cinque)
   }
 }
 

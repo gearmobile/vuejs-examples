@@ -1,5 +1,4 @@
-import discount from '../../data/discount'
-import promocode from '../../data/promocode'
+import data from '../../data/data.json'
 
 const state = {
   order: [],
@@ -51,20 +50,21 @@ const mutations = {
 }
 
 const actions = {
+  initDiscount ({ commit }) {
+    commit('SET_DISCOUNT', data.sei)
+  },
+  initPromocode ({ commit }) {
+    commit('SET_PROMOCODE', data.sette)
+  },
   addOrder ({ commit }, payload) {
     commit('ADD_ORDER', payload)
   },
   deleteOrder ({ commit }, payload) {
     commit('DELETE_ORDER', payload)
   },
-  initDiscount ({ commit }) {
-    commit('SET_DISCOUNT', discount)
-  },
+
   setDiscountStatus ({ commit }, payload) {
     commit('SET_DISCOUNT_STATUS', payload)
-  },
-  initPromocode ({ commit }) {
-    commit('SET_PROMOCODE', promocode)
   },
   setPromoValue ({ commit }, payload) {
     commit('SET_PROMO_VALUE', payload)

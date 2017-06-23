@@ -67,24 +67,13 @@
           time: this.card.time,
           title: this.card.title,
           quantity: this.card.step
-          // singular: this.card.singular,
-          // few: this.card.few,
-          // plural: this.card.plural
         }
-        // console.log(order)
         this.orderAdd(order)
       },
       removeOrder () {
         this.decrease()
         const order = {
           name: this.card.name
-          // price: this.card.price,
-          // time: this.card.time,
-          // title: this.card.title,
-          // quantity: this.card.step,
-          // singular: this.card.singular,
-          // few: this.card.few,
-          // plural: this.card.plural
         }
         this.orderDelete(order)
       }
