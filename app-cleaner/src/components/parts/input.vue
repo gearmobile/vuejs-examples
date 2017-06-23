@@ -1,34 +1,34 @@
 <template lang="pug">
   .col-md-6.text-center
     .text-center.well.input__row
-      button.btn.btn-default( @click="removeOrder()", :disabled="decreaseState" ) -
-      input.form-control.text-center( type="text", :name="point.name", v-model="output" )
-      button.btn.btn-default( @click="addOrder()", :disabled="increaseState" ) +
+      button.btn.btn-default( @click="removeOrder(order)", :disabled="decreaseState" ) -
+      input.form-control.text-center( type="text", :name="order.name", v-model="output", disabled )
+      button.btn.btn-default( @click="addOrder(order)", :disabled="increaseState" ) +
 </template>
 
 <script>
   import { mapActions } from 'vuex'
-  import Mixins from '../../mixins/mixin.js'
+  import mixins from '../../mixins/mixin.js'
 
   export default {
     name: 'input',
-    mixins: [Mixins],
+    mixins: [mixins],
     props: {
-      point: {
+      order: {
         type: Object,
         default: null
       }
     },
     computed: {
       increaseState () {
-        return this.point.value === this.point.max || !Number.isInteger(this.point.value)
+        return this.order.value === this.order.max
       },
       decreaseState () {
-        return this.point.value === this.point.min || !Number.isInteger(this.point.value)
+        return this.order.value === this.order.min
       },
       output: {
         get () {
-          return this.point.value + ' ' + this.getNoun(this.point.value, this.point.singular, this.point.few, this.point.plural)
+          return this.order.value + ' ' + this.getNoun(this.order.value, this.order.singular, this.order.few, this.order.plural)
         }
       }
     },
@@ -38,55 +38,36 @@
         orderDelete: 'deleteOrder'
       }),
       increase () {
-        this.point.value += this.point.step
+        this.order.value += this.order.step
       },
       decrease () {
-        if (this.point.value === this.point.min) {
+        if (this.order.value === this.order.min) {
           return
         }
-        this.point.value -= this.point.step
+        this.order.value -= this.order.step
       },
-      addOrder () {
+      addOrder (order) {
         this.increase()
-        const order = {
-          name: this.point.name,
-          price: this.point.price,
-          time: this.point.time,
-          title: this.point.title,
-          quantity: this.point.step
-        }
         this.orderAdd(order)
       },
-      removeOrder () {
+      removeOrder (order) {
         this.decrease()
-        const order = {
-          name: this.point.name,
-          price: this.point.price,
-          time: this.point.time,
-          title: this.point.title,
-          quantity: this.point.step
-        }
         this.orderDelete(order)
       }
     },
     created () {
-      const order = {
-        name: this.point.name,
-        price: this.point.price,
-        time: this.point.time,
-        title: this.point.title,
-        quantity: this.point.step
-      }
-      this.orderAdd(order)
+      this.orderAdd(this.order)
     }
   }
 </script>
 
 <style lang="scss" scoped>
+
   .input {
 
     &__row {
       display: flex;
     }
   }
+
 </style>

@@ -11,15 +11,25 @@ const mutations = {
   'ADD_ORDER' (state, payload) {
     const record = state.order.find(element => element.name === payload.name)
     if (record) {
-      record.quantity += payload.quantity
+      record.quantity += payload.step
     } else {
-      state.order.push(payload)
+      const order = {
+        name: payload.name,
+        price: payload.price,
+        time: payload.time,
+        title: payload.title,
+        quantity: payload.step,
+        singular: payload.singular,
+        plural: payload.plural,
+        few: payload.few
+      }
+      state.order.push(order)
     }
   },
   'DELETE_ORDER' (state, payload) {
     const record = state.order.find(element => element.name === payload.name)
-    if (record.quantity > payload.quantity) {
-      record.quantity -= payload.quantity
+    if (record.quantity > payload.step) {
+      record.quantity -= payload.step
     } else {
       state.order.splice(state.order.indexOf(payload), 1)
     }

@@ -1,11 +1,17 @@
 <template lang="pug">
+  
+  // DETAILS
   .details.well
-    
+
+    // DETAILS TITLE    
     h5.details__title.page-header
       | перечень работ
     
+    // DETAILS LIST
     ul.list
-      li( v-for="(order, index) in orders", :key="index" ) <span class="acent acent--more">{{ orderOutput(order) }} {{ order.title }}</span>
+      li( v-for="(order, index) in orders", :key="index" ) <span class="acent acent--more">{{ orderOutput(order) }}</span>
+
+    // DETAILS DESCRIPTION
     p К вам приедет <span class="acent acent--more">{{ workerOutput }}</span> со всеми необходимыми средствами и приборами.
     p Уборка займет <span class="acent acent--more">{{ timeOutput }}</span>. Приедем в удобное для вас время.
     p: a.acent(href="#") Что входит в уборку
@@ -33,7 +39,7 @@
     },
     methods: {
       orderOutput (order) {
-        return order.quantity
+        return order.quantity + ' ' + this.getNoun(order.quantity, order.singular, order.few, order.plural)
       }
     },
     mixins: [mixins]

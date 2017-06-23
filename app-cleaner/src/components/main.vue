@@ -7,7 +7,7 @@
     .row
       h3.page-header.text-center
         | Расчет стоимости
-      app-input( v-for="(item, index) in items", :key="index", :point="item" )
+      app-input( v-for="(item, index) in items", :key="index", :order="item" )
 
     // CLEARING BLOCK
     .row
