@@ -27,19 +27,11 @@ const mutations = {
 }
 
 const actions = {
-  initItems ({ commit }) {
+  initData ({ commit }) {
     commit('SET_ITEMS', data.primo)
-  },
-  initCards ({ commit }) {
     commit('SET_CARDS', data.secondo)
-  },
-  initGenerals ({ commit }) {
     commit('SET_GENERALS', data.tetro)
-  },
-  initRepairs ({ commit }) {
     commit('SET_REPAIRS', data.quattro)
-  },
-  initPromotion ({ commit }) {
     commit('SET_PROMOTION', data.cinque)
   }
 }

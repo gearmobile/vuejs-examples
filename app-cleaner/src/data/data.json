@@ -275,15 +275,13 @@
       }
    },
    "sette": {
-      "promocode": {
-         "name": "promocode",
-         "value": null,
-         "check": 123,
-         "percent": 12,
-         "status": false,
-         "error": false,
-         "show": true
-      }
+      "name": "promocode",
+      "value": null,
+      "check": 123,
+      "percent": 12,
+      "status": false,
+      "error": false,
+      "show": true
    },
    "otto": {}
 }

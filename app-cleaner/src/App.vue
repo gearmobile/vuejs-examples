@@ -27,25 +27,11 @@
     },
     methods: {
       ...mapActions({
-        initItems: 'initItems',
-        cardsInit: 'initCards',
-        generalsInit: 'initGenerals',
-        repairsInit: 'initRepairs',
-        promotionInit: 'initPromotion',
-        metroInit: 'initMetros',
-        discountInit: 'initDiscount',
-        promocodeInit: 'initPromocode'
+        dataInit: 'initData'
       })
     },
     created () {
-      this.initItems()
-      this.cardsInit()
-      this.generalsInit()
-      this.repairsInit()
-      this.promotionInit()
-      this.metroInit()
-      this.discountInit()
-      this.promocodeInit()
+      this.dataInit()
     }
   }
 </script>
