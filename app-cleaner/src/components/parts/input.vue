@@ -1,5 +1,6 @@
 <template lang="pug">
   .col-md-6.text-center
+    h4.page-header.text-capitalize {{ order.title }}
     .text-center.well.input__row
       button.btn.btn-default( @click="removeOrder(order)", :disabled="decreaseState" ) -
       input.form-control.text-center( type="text", :name="order.name", v-model="output", disabled )

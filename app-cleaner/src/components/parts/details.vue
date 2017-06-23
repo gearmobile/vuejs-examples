@@ -9,7 +9,7 @@
     
     // DETAILS LIST
     ul.list
-      li( v-for="(order, index) in orders", :key="index" ) <span class="acent acent--more">{{ orderOutput(order) }}</span>
+      li( v-for="(order, index) in orders", :key="index" ) <span class="acent acent--more">{{ order.title }} - {{ orderOutput(order) }}</span>
 
     // DETAILS DESCRIPTION
     p К вам приедет <span class="acent acent--more">{{ workerOutput }}</span> со всеми необходимыми средствами и приборами.

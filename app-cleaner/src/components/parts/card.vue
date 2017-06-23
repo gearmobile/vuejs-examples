@@ -5,9 +5,9 @@
       figure.card__image
         img( :src="imagePath", :alt="card.title" )
       .card__item
-        button.btn.btn-default( type="button", @click="removeOrder()", :disabled="decreaseState" ) -
+        button.btn.btn-default( type="button", @click="removeOrder(card)", :disabled="decreaseState" ) -
         input.form-control.text-center( type="text", :name="card.name", v-model="output", disabled )
-        button.btn.btn-default( type="button", @click="addOrder()", :disabled="increaseState" ) +
+        button.btn.btn-default( type="button", @click="addOrder(card)", :disabled="increaseState" ) +
 </template>
 
 <script>
@@ -59,22 +59,22 @@
         }
         this.card.value -= this.card.step
       },
-      addOrder () {
+      addOrder (order) {
         this.increase()
-        const order = {
-          name: this.card.name,
-          price: this.card.price,
-          time: this.card.time,
-          title: this.card.title,
-          quantity: this.card.step
-        }
+        // const order = {
+        //   name: this.card.name,
+        //   price: this.card.price,
+        //   time: this.card.time,
+        //   title: this.card.title,
+        //   quantity: this.card.step
+        // }
         this.orderAdd(order)
       },
-      removeOrder () {
+      removeOrder (order) {
         this.decrease()
-        const order = {
-          name: this.card.name
-        }
+        // const order = {
+        //   name: this.card.name
+        // }
         this.orderDelete(order)
       }
     }
@@ -82,6 +82,7 @@
 </script>
 
 <style lang="scss" scoped>
+
   .card {
     text-align: center;
 
@@ -103,4 +104,5 @@
       display: flex;
     }
   }
+
 </style>
