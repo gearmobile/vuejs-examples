@@ -1,17 +1,14 @@
 <template lang="pug">
   .details.well
     
-    p
-      | К вам приедет <span class="acent acent--more">{{ workerOutput }}</span> со всеми необходимыми средствами и приборами.
+    h5.details__title.page-header
+      | перечень работ
     
-    ul.details__list
+    ul.list
       li( v-for="(order, index) in orders", :key="index" ) <span class="acent acent--more">{{ orderOutput(order) }} {{ order.title }}</span>
-    
-    p
-      | Уборка займет <span class="acent acent--more">{{ timeOutput }}</span>. Приедем в удобное для вас время.
-    
-    p
-      a.acent(href="#") Что входит в уборку
+    p К вам приедет <span class="acent acent--more">{{ workerOutput }}</span> со всеми необходимыми средствами и приборами.
+    p Уборка займет <span class="acent acent--more">{{ timeOutput }}</span>. Приедем в удобное для вас время.
+    p: a.acent(href="#") Что входит в уборку
       
 </template>
 
@@ -58,10 +55,14 @@
       }
     }
 
-    &__list {
-      list-style-type: none;
-      padding-left: 0;
-      margin-left: 0;
+    &__title {
+      text-transform: uppercase;
+    }
+
+    & .list {
+      width: 50%;
+      margin: 0 auto 2rem;
+      text-align: left;
     }
   }
 </style>

@@ -1,6 +1,6 @@
 <template lang="pug">
-  .row.well.promocode
-    h2.promocode__title.text-center.page-header
+  .promocode.row.well
+    h2.promocode__title.page-header
       | У меня есть промокод
     .promocode__row
       input.form-control( type="text", v-model="code" )
@@ -53,6 +53,7 @@
 
     &__title {
       font-size: 26px;
+      text-align: center;
       margin-bottom: 30px;
     }
 

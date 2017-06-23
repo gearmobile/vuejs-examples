@@ -3,8 +3,8 @@ import data from '../../data/data.json'
 const state = {
   order: [],
   discount: [],
-  promocode: null,
-  discountStatus: null
+  discountStatus: null,
+  promocode: []
 }
 
 const mutations = {
@@ -50,10 +50,8 @@ const mutations = {
 }
 
 const actions = {
-  initDiscount ({ commit }) {
+  initResult ({ commit }) {
     commit('SET_DISCOUNT', data.sei)
-  },
-  initPromocode ({ commit }) {
     commit('SET_PROMOCODE', data.sette)
   },
   addOrder ({ commit }, payload) {
@@ -62,7 +60,6 @@ const actions = {
   deleteOrder ({ commit }, payload) {
     commit('DELETE_ORDER', payload)
   },
-
   setDiscountStatus ({ commit }, payload) {
     commit('SET_DISCOUNT_STATUS', payload)
   },

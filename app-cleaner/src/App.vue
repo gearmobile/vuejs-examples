@@ -1,5 +1,6 @@
 <template lang="pug">
   
+  // CONTAINER
   #app.container
     
     // MAIN SECTION
@@ -15,8 +16,10 @@
 </template>
 
 <script>
+  
   import Main from './components/main.vue'
   import Order from './components/order.vue'
+  
   import { mapActions } from 'vuex'
 
   export default {
@@ -27,11 +30,13 @@
     },
     methods: {
       ...mapActions({
-        dataInit: 'initData'
+        dataInit: 'initData',
+        resultInit: 'initResult'
       })
     },
     created () {
       this.dataInit()
+      this.resultInit()
     }
   }
 </script>
