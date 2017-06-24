@@ -10,11 +10,5 @@ export default {
   },
   deleteOrder ({ commit }, payload) {
     commit('DELETE_ORDER', payload)
-  },
-  setDiscountStatus ({ commit }, payload) {
-    commit('SET_DISCOUNT_STATUS', payload)
-  },
-  setPromoValue ({ commit }, payload) {
-    commit('SET_PROMO_VALUE', payload)
   }
 }

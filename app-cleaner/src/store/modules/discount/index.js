@@ -3,7 +3,8 @@ import mutations from './mutations'
 import actions from './actions'
 
 const state = {
-  order: []
+  discount: [],
+  discountStatus: null
 }
 
 export default {
