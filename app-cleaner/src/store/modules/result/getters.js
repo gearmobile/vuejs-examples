@@ -28,8 +28,5 @@ export default {
   },
   getOrders (state) {
     return state.order
-  },
-  showCommon (state) {
-    return !state.discountStatus
   }
 }

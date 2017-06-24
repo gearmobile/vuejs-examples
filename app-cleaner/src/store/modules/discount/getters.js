@@ -8,6 +8,9 @@ export default {
   showDiscount (state) {
     return !!state.discountStatus
   },
+  showCommon (state) {
+    return !state.discountStatus
+  },
   getDiscountSum (state, rootGetters) {
     let result = 0
     if (state.discountStatus) {
