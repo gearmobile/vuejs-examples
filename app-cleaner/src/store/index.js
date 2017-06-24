@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import mainModule from './modules/main-module'
-import resultModule from './modules/result-module'
-import orderModule from './modules/order-module'
+import main from './modules/main/index'
+import result from './modules/result/index'
+import order from './modules/order/index'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    mainModule,
-    resultModule,
-    orderModule
+    main,
+    result,
+    order
   }
 })
 

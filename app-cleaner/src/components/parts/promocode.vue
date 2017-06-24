@@ -1,7 +1,7 @@
 <template lang="pug">
   .promocode.row.well
     h2.promocode__title.page-header
-      | У меня есть промокод
+      | У меня есть <span class="text-uppercase">промокод</span>
     .promocode__row
       input.form-control( type="text", v-model="code" )
       button.btn.btn-default( type="button", @click="onPromo()", :disabled="status" )
