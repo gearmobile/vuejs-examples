@@ -19,9 +19,9 @@
     name: 'discount-output',
     computed: {
       ...mapGetters({
-        common: 'getResult',
+        common: 'getDirtySum',
         discount: 'getDiscountSum',
-        total: 'getTotalDiscountSum'
+        total: 'getCleanSum'
       })
     },
     filters

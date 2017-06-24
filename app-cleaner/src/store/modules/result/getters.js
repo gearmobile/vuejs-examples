@@ -6,8 +6,13 @@ export default {
     return result
   },
   // ЧИСТАЯ СУММА
-  getCleanSum (state, getters) {
-    const result = getters.getDirtySum - getters.getPromoSum
+  getCleanSum (state, getters, rootgGetters) {
+    let result = getters.getDirtySum
+    if (getters.getPromoSum) {
+      result -= getters.getPromoSum
+    } else if (getters.getDiscountSum) {
+      result -= getters.getDiscountSum
+    }
     return result
   },
   // ОБЩЕЕ ВРЕМЯ РАБОТЫ

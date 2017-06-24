@@ -1,7 +1,7 @@
 import data from '../../../data/data.json'
 
 export default {
-  initResult ({ commit }) {
+  initPromo ({ commit }) {
     commit('SET_PROMOCODE', data.sette)
   },
   setPromoValue ({ commit }, payload) {

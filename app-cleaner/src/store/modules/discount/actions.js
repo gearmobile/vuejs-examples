@@ -1,7 +1,7 @@
 import data from '../../../data/data.json'
 
 export default {
-  initResult ({ commit }) {
+  initDiscount ({ commit }) {
     commit('SET_DISCOUNT', data.sei)
   },
   setDiscountStatus ({ commit }, payload) {

@@ -31,12 +31,14 @@
     methods: {
       ...mapActions({
         dataInit: 'initData',
-        resultInit: 'initResult'
+        promoInit: 'initPromo',
+        discountInit: 'initDiscount'
       })
     },
     created () {
       this.dataInit()
-      this.resultInit()
+      this.promoInit()
+      this.discountInit()
     }
   }
 </script>

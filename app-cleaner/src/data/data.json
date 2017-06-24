@@ -254,26 +254,26 @@
       "few": "штук",
       "plural": "штук"
     },
-    "sei": {
-      "oneMonth": {
+    "sei": [
+      {
         "name": "oneMonth",
         "title": "1 раз в месяц",
         "value": 10,
         "flag": true
       },
-      "twoWeek": {
+      {
         "name": "twoWeek",
         "title": "1 раз в 2 недели",
         "value": 15,
         "flag": true
       },
-      "oneWeek": {
+      {
         "name": "oneWeek",
         "title": "1 раз в неделю",
         "value": 20,
         "flag": true
       }
-    },
+    ],
     "sette": {
       "name": "promocode",
       "check": 123,
