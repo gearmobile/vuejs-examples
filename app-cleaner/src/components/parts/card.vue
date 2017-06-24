@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import Mixins from '../../mixins/mixin.js'
+  import mixins from '../../mixins/mixin.js'
   import filters from '../../filters/filters.js'
   import { mapActions } from 'vuex'
 
@@ -23,7 +23,7 @@
         default: null
       }
     },
-    mixins: [Mixins],
+    mixins: [mixins],
     filters,
     computed: {
       increaseState () {
@@ -61,20 +61,10 @@
       },
       addOrder (order) {
         this.increase()
-        // const order = {
-        //   name: this.card.name,
-        //   price: this.card.price,
-        //   time: this.card.time,
-        //   title: this.card.title,
-        //   quantity: this.card.step
-        // }
         this.orderAdd(order)
       },
       removeOrder (order) {
         this.decrease()
-        // const order = {
-        //   name: this.card.name
-        // }
         this.orderDelete(order)
       }
     }
@@ -89,6 +79,7 @@
     &__title {
       font-weight: 700;
       font-size: 16px;
+      text-transform: capitalize;
     }
 
     &__image {
