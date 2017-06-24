@@ -6,6 +6,5 @@ export default {
     commit('SET_CARDS', data.secondo)
     commit('SET_GENERALS', data.tetro)
     commit('SET_REPAIRS', data.quattro)
-    commit('SET_PROMOTION', data.cinque)
   }
 }

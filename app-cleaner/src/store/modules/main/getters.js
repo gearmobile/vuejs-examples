@@ -10,8 +10,5 @@ export default {
   },
   getRepairs (state) {
     return state.repairs
-  },
-  getPromotion (state) {
-    return state.promotion
   }
 }

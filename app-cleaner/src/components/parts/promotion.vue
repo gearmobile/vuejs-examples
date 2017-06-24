@@ -3,9 +3,9 @@
     .well.promotion__panel
       | Только до #[strong 31 июля] помоем #[strong пять] окон за #[strong 1 000 рублей]
     .well.promotion__input
-      button.btn.btn-default( type="button", @click="removeOrder()", :disabled="decreaseState" ) -
+      button.btn.btn-default( type="button", @click="removeOrder(promotion)", :disabled="decreaseState" ) -
       input.form-control.promotion__data( type="text", v-model="output", disabled )
-      button.btn.btn-default( type="button", @click="addOrder()", :disabled="increaseState" ) +
+      button.btn.btn-default( type="button", @click="addOrder(promotion)", :disabled="increaseState" ) +
 </template>
 
 <script>
@@ -48,26 +48,12 @@
         }
         this.promotion.value -= this.promotion.step
       },
-      addOrder () {
+      addOrder (order) {
         this.increase()
-        const order = {
-          name: this.promotion.name,
-          price: this.promotion.price,
-          time: this.promotion.time,
-          title: this.promotion.title,
-          quantity: this.promotion.step
-        }
         this.orderAdd(order)
       },
-      removeOrder () {
+      removeOrder (order) {
         this.decrease()
-        const order = {
-          name: this.promotion.name,
-          price: this.promotion.price,
-          time: this.promotion.time,
-          title: this.promotion.title,
-          quantity: this.promotion.step
-        }
         this.orderDelete(order)
       }
     }

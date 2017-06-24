@@ -108,7 +108,7 @@
       },
       "pane": {
          "name": "pane",
-         "title": "окна",
+         "title": "окно",
          "value": 0,
          "price": 200,
          "min": 0,
@@ -241,7 +241,7 @@
          "plural": "часов"
       }
    },
-   "cinque": {
+    "cinque": {
       "name": "promotion",
       "title": "окна",
       "value": 0,
@@ -254,27 +254,27 @@
       "few": "штук",
       "plural": "штук"
     },
-   "sei": {
+    "sei": {
       "oneMonth": {
-         "name": "oneMonth",
-         "title": "1 раз в месяц",
-         "value": 10,
-         "flag": true
+        "name": "oneMonth",
+        "title": "1 раз в месяц",
+        "value": 10,
+        "flag": true
       },
       "twoWeek": {
-         "name": "twoWeek",
-         "title": "1 раз в 2 недели",
-         "value": 15,
-         "flag": true
+        "name": "twoWeek",
+        "title": "1 раз в 2 недели",
+        "value": 15,
+        "flag": true
       },
       "oneWeek": {
-         "name": "oneWeek",
-         "title": "1 раз в неделю",
-         "value": 20,
-         "flag": true
+        "name": "oneWeek",
+        "title": "1 раз в неделю",
+        "value": 20,
+        "flag": true
       }
-   },
-   "sette": {
+    },
+    "sette": {
       "name": "promocode",
       "value": null,
       "check": 123,
@@ -282,6 +282,5 @@
       "status": false,
       "error": false,
       "show": true
-   },
-   "otto": {}
+    }
 }

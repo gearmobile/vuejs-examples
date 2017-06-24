@@ -10,8 +10,5 @@ export default {
   },
   'SET_REPAIRS' (state, payload) {
     state.repairs = payload
-  },
-  'SET_PROMOTION' (state, payload) {
-    state.promotion = payload
   }
 }
