@@ -21,6 +21,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import mixins from '../../mixins/mixin.js'
+  import filters from '../../filters/filters.js'
 
   export default {
     name: 'details',
@@ -39,10 +40,15 @@
     },
     methods: {
       orderOutput (order) {
-        return order.quantity + ' ' + this.getNoun(order.quantity, order.singular, order.few, order.plural)
+        if (order.name === 'crockery') {
+          return this.$options.filters.time(order.quantity)
+        } else {
+          return order.quantity + ' ' + this.getNoun(order.quantity, order.singular, order.few, order.plural)
+        }
       }
     },
-    mixins: [mixins]
+    mixins: [mixins],
+    filters
   }
 </script>
 
