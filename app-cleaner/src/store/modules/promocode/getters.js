@@ -1,22 +1,18 @@
 export default {
-  // СУММА ПРОМОКОДА
-  getPromoSum (state, getters) {
-    let total = getters.getResult
-    if (state.promocode.status) {
-      const promo = total - total * state.promocode.percent / 100
-      return promo
-    }
-  },
-  // ПОЛУЧИТЬ ДАННЫЕ ДЛЯ ПРОМОКОДА
   getPromocode (state) {
     return state.promocode
   },
-  // ПОЛУЧИТЬ СТАТУС ПРОМОКОДА - АКТИВИРОВАН ПРОМОКОД ИЛИ НЕ АКТИВИРОВАН
   getPromoStatus (state) {
     return state.promocode.status
   },
-  // ПОЛУЧИТЬ ОШИБКУ АКТИВАЦИИ ПРОМОКОДА
   getPromoError (state) {
     return state.promocode.error
+  },
+  getPromoSum (state, rootGetters) {
+    let result = 0
+    if (state.promocode.status) {
+      result = rootGetters.getDirtySum * state.promocode.percent / 100
+    }
+    return result
   }
 }

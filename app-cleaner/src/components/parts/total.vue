@@ -3,7 +3,7 @@
     li.total__title
       | К оплате:
     li.total__sum
-      | {{ commonSum | locate }}
+      | {{ sum | locate }}
 </template>
 
 <script>
@@ -14,7 +14,7 @@
     name: 'total',
     computed: {
       ...mapGetters({
-        commonSum: 'getResult'
+        sum: 'getCleanSum'
       })
     },
     filters
