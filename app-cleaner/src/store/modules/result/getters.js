@@ -1,3 +1,4 @@
+
 export default {
   // ГРЯЗНАЯ СУММА
   getResult (state) {
@@ -54,7 +55,6 @@ export default {
   showDiscount (state) {
     return !!state.discountStatus
   },
-  // PROMOCODE SECTION
   // получить данные для промокода
   getPromocode (state) {
     return state.promocode
