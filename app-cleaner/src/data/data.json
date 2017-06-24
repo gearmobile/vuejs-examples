@@ -245,7 +245,7 @@
       "name": "promotion",
       "title": "окна",
       "value": 0,
-      "price": 200,
+      "price": 1000,
       "min": 0,
       "max": 25,
       "step": 5,

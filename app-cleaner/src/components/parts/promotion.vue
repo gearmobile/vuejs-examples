@@ -1,7 +1,7 @@
 <template lang="pug">
   .promotion
     .well.promotion__panel
-      | Только до #[strong 31 июля] помоем #[strong пять] окон за #[strong 1 000 рублей]
+      | Только до #[strong 31 июля] помоем #[strong пять] окон за #[strong {{ price | locateSmall }} рублей]
     .well.promotion__input
       button.btn.btn-default( type="button", @click="removeOrder(promotion)", :disabled="decreaseState" ) -
       input.form-control.promotion__data( type="text", v-model="output", disabled )
@@ -9,12 +9,14 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   import mixins from '../../mixins/mixin.js'
+  import filters from '../../filters/filters.js'
 
   export default {
     name: 'promotion',
     mixins: [mixins],
+    filters,
     props: {
       promotion: {
         type: Object,
@@ -22,6 +24,9 @@
       }
     },
     computed: {
+      ...mapGetters({
+        price: 'getPromotionPrice'
+      }),
       increaseState () {
         return this.promotion.value === this.promotion.max
       },

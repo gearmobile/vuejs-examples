@@ -8,6 +8,12 @@ export default {
     }
     return value.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', maximumSignificantDigits: 4 })
   },
+  locateSmall (value) {
+    if (value === null) {
+      return
+    }
+    return value.toLocaleString('ru-RU')
+  },
   time (value) {
     let result = null
     switch (value) {
