@@ -3,6 +3,7 @@ export default {
     const record = state.order.find(element => element.name === payload.name)
     if (record) {
       record.quantity += payload.step
+      record.time += payload.time
     } else {
       const order = {
         name: payload.name,
@@ -21,6 +22,7 @@ export default {
     const record = state.order.find(element => element.name === payload.name)
     if (record.quantity > payload.step) {
       record.quantity -= payload.step
+      record.time -= payload.time
     } else {
       state.order.splice(state.order.indexOf(payload), 1)
     }

@@ -22,8 +22,8 @@ export default {
   },
   // ЧИСЛО СПЕЦИАЛИСТОВ
   getWorkers (state, getters) {
-    const time = getters.getTime
-    const worker = time > 7 ? 2 : 1
+    const maxHours = 180
+    const worker = getters.getTime > maxHours ? 2 : 1
     return worker
   },
   getOrders (state) {

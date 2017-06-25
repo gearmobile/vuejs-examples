@@ -32,7 +32,7 @@
         orders: 'getOrders'
       }),
       workerOutput () {
-        return this.worker + ' ' + this.getNoun(this.time, 'специалист', 'специалиста', 'специалистов')
+        return this.worker + ' ' + this.getNoun(this.worker, 'специалист', 'специалиста', 'специалистов')
       }
     },
     methods: {
