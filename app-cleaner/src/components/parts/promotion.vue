@@ -55,7 +55,6 @@
       },
       addOrder (order) {
         this.increase()
-        // order.price = order.price / order.step
         this.orderAdd({
           max: 25,
           name: 'promotion',

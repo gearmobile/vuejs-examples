@@ -42,5 +42,32 @@ export default {
         result = 0 + ' минут'
     }
     return result
+  },
+  hoursAndMinutes (value) {
+    function getNoun (number, singular, few, plural) {
+      number = Math.abs(number)
+      number %= 100
+      if (number >= 5 && number <= 20) {
+        return plural
+      }
+      number %= 10
+      if (number === 1) {
+        return singular
+      }
+      if (number >= 2 && number <= 4) {
+        return few
+      }
+      return plural
+    }
+
+    let minutes = value % 60
+    let hours = (value - minutes) / 60
+
+    minutes = minutes < 10 ? '0' + minutes : minutes
+
+    const resultHours = hours + ' ' + getNoun(hours, 'час', 'часа', 'часов')
+    const resultMinutes = minutes + ' ' + getNoun(minutes, 'минута', 'минуты', 'минут')
+    const result = resultHours + ' ' + resultMinutes
+    return result
   }
 }

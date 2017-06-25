@@ -17,7 +17,7 @@ export default {
   },
   // ОБЩЕЕ ВРЕМЯ РАБОТЫ
   getTime (state) {
-    const result = (state.order.reduce((sum, c) => sum + c.time, 0)) / 60
+    const result = (state.order.reduce((sum, c) => sum + c.time, 0))
     return result
   },
   // ЧИСЛО СПЕЦИАЛИСТОВ

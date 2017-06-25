@@ -13,7 +13,7 @@
 
     // DETAILS DESCRIPTION
     p К вам приедет <span class="acent acent--more">{{ workerOutput }}</span> со всеми необходимыми средствами и приборами.
-    p Уборка займет <span class="acent acent--more">{{ timeOutput }}</span>. Приедем в удобное для вас время.
+    p Уборка займет <span class="acent acent--more">{{ time | hoursAndMinutes }}</span>. Приедем в удобное для вас время.
     p: a.acent(href="#") Что входит в уборку
       
 </template>
@@ -31,9 +31,6 @@
         worker: 'getWorkers',
         orders: 'getOrders'
       }),
-      timeOutput () {
-        return this.time + ' ' + this.getNoun(this.time, 'час', 'часа', 'часов')
-      },
       workerOutput () {
         return this.worker + ' ' + this.getNoun(this.time, 'специалист', 'специалиста', 'специалистов')
       }
