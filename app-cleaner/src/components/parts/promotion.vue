@@ -55,7 +55,20 @@
       },
       addOrder (order) {
         this.increase()
-        this.orderAdd(order)
+        // order.price = order.price / order.step
+        this.orderAdd({
+          max: 25,
+          name: 'promotion',
+          few: 'штук',
+          min: 0,
+          plural: 'штук',
+          price: this.promotion.price / this.promotion.step,
+          singular: 'штук',
+          step: 5,
+          time: 30,
+          title: 'окна',
+          value: 5
+        })
       },
       removeOrder (order) {
         this.decrease()
