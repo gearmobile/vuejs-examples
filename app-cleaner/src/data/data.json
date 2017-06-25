@@ -159,7 +159,7 @@
       "plural": "часов"
     }
   ],
-  "cinque": {
+  "promotion": {
     "name": "promotion",
     "title": "окна",
     "value": 0,
@@ -172,7 +172,7 @@
     "few": "штук",
     "plural": "штук"
   },
-  "sei": [
+  "discount": [
     {
       "name": "oneMonth",
       "title": "1 раз в месяц",
@@ -192,7 +192,7 @@
       "flag": true
     }
   ],
-  "sette": {
+  "promocode": {
     "name": "promocode",
     "check": 123,
     "percent": 12,
