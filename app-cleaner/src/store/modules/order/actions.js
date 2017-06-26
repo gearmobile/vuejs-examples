@@ -1,14 +1,15 @@
+import data from '../../../data/data.json'
 import metros from '../../../data/metros.json'
 
 export default {
-  showOrder ({ commit }) {
-    commit('SHOW_ORDER')
-  },
   initMetros ({ commit }) {
     commit('SET_METROS', metros)
   },
-  setCustomer ({ commit }, payload) {
-    commit('SET_CUSTOMER', payload)
+  initCustomer ({ commit }) {
+    commit('SET_CUSTOMER', data.customer)
+  },
+  showOrder ({ commit }) {
+    commit('SHOW_ORDER')
   },
   modalToggle ({ commit }) {
     commit('MODAL_TOGGLE')

@@ -197,5 +197,19 @@
     "status": false,
     "error": false,
     "show": true
+  },
+  "customer": {
+    "phone": "",
+    "name": "",
+    "email": "",
+    "date": null,
+    "time": null,
+    "street": null,
+    "entrance": null,
+    "floor": null,
+    "doorphone": null,
+    "metro": "zero",
+    "hoover": false,
+    "comments": ""
   }
 }

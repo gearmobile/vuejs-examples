@@ -5,6 +5,9 @@ export default {
   getMetros (state) {
     return state.metros
   },
+  getCustomer (state) {
+    return state.customer
+  },
   getModal (state) {
     return state.modal
   }

@@ -32,13 +32,15 @@
       ...mapActions({
         dataInit: 'initData',
         promoInit: 'initPromo',
-        discountInit: 'initDiscount'
+        discountInit: 'initDiscount',
+        customerInit: 'initCustomer'
       })
     },
     created () {
       this.dataInit()
       this.promoInit()
       this.discountInit()
+      this.customerInit()
     }
   }
 </script>
