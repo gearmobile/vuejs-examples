@@ -4,9 +4,10 @@ import mutations from './mutations'
 import actions from './actions'
 
 const state = {
-  showOrder: false,
   metros: [],
   customer: [],
+  customerDetails: [],
+  showOrder: false,
   modal: false
 }
 

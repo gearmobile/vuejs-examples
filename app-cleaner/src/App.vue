@@ -33,7 +33,8 @@
         dataInit: 'initData',
         promoInit: 'initPromo',
         discountInit: 'initDiscount',
-        customerInit: 'initCustomer'
+        customerInit: 'initCustomer',
+        metrosInit: 'initMetros'
       })
     },
     created () {
@@ -41,6 +42,7 @@
       this.promoInit()
       this.discountInit()
       this.customerInit()
+      this.metrosInit()
     }
   }
 </script>

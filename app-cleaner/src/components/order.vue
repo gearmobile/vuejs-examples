@@ -103,24 +103,6 @@
 
   export default {
     name: 'order',
-    // data () {
-    //   return {
-    //     // customer: {
-    //     //   phone: '',
-    //     //   name: '',
-    //     //   email: '',
-    //     //   date: null,
-    //     //   time: null,
-    //     //   street: null,
-    //     //   entrance: null,
-    //     //   floor: null,
-    //     //   doorphone: null,
-    //     //   metro: 'zero',
-    //     //   hoover: false,
-    //     //   comments: ''
-    //     // }
-    //   }
-    // },
     filters,
     computed: {
       ...mapGetters({
@@ -136,6 +118,7 @@
       }),
       onOrder () {
         this.toggleModal()
+        this.customerSet(this.customer)
       }
     },
     components: {

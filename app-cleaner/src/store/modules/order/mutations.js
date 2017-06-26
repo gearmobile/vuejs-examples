@@ -1,9 +1,12 @@
 export default {
-  'SET_METROS' (state, payload) {
+  'INIT_METROS' (state, payload) {
     state.metros = payload
   },
-  'SET_CUSTOMER' (state, payload) {
+  'INIT_CUSTOMER' (state, payload) {
     state.customer = payload
+  },
+  'SET_CUSTOMER' (state, payload) {
+    state.customerDetails = payload
   },
   'SHOW_ORDER' (state) {
     state.showOrder = !state.showOrder
