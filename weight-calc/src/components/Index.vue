@@ -7,13 +7,17 @@
 
     // navigation
     q-tabs.justified( slot='navigation' )
-      q-tab( route='/primo', icon="donut_small", exact, replace ) Круглый блин
-      q-tab( route='/secondo', icon='dashboard', replace ) Квадратный блин
+      q-tab( route='/primo', name="tab-1", icon="donut_small", exact, replace ) Круглый блин
+      q-tab( route='/secondo', name="tab-2", icon='dashboard', replace ) Квадратный блин
 
 
     .layout-view
       .layout-padding
-        p Таблички для расчета веса самодельных блинов
+        .card
+          .card-title.bg-teal.text-white
+            | Таблички для расчета веса самодельных блинов
+          .card-content
+            img.image( src="../assets/fitness-girl-evolution.jpg" )
 </template>
 
 
@@ -28,5 +32,7 @@
 </script>
 
 <style lang="stylus">
-  //
+  .image
+    width 100%
+    height auto
 </style>
