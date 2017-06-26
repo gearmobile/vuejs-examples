@@ -1,14 +1,17 @@
 export default {
-  'SET_ITEMS' (state, payload) {
-    state.items = payload
+  'SET_DATA' (state, payload) {
+    state.data = payload
+  },
+  'SET_ITEMS' (state) {
+    state.items = state.data.filter(el => /room|bathroom/.test(el.name))
   },
   'SET_CARDS' (state, payload) {
-    state.cards = payload
+    state.cards = state.data.filter(el => /fridge|oven|microwave|kitchen|crockery|ironing|pane|balcony|wardrobe|addtime/.test(el.name))
   },
   'SET_GENERALS' (state) {
-    state.generals = state.cards.filter(el => /ironing|pane|wardrobe/.test(el.name))
+    state.generals = state.data.filter(el => /ironing|pane|wardrobe/.test(el.name))
   },
   'SET_REPAIRS' (state) {
-    state.repairs = state.cards.filter(el => /pane|wardrobe|addtime/.test(el.name))
+    state.repairs = state.data.filter(el => /pane|wardrobe|addtime/.test(el.name))
   }
 }

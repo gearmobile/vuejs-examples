@@ -1,6 +1,6 @@
 {
-  "primo": [
-    {
+  "data": [
+      {
       "name": "room",
       "title": "комната",
       "value": 1,
@@ -25,9 +25,7 @@
       "singular": "штука",
       "few": "штуки",
       "plural": "штук"
-    }
-  ],
-  "secondo": [
+    },
     {
       "name": "fridge",
       "title": "холодильник",
