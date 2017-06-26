@@ -6,7 +6,8 @@ import actions from './actions'
 const state = {
   showOrder: false,
   metros: [],
-  customer: {}
+  customer: {},
+  modal: false
 }
 
 export default {

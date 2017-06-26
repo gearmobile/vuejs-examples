@@ -4,5 +4,8 @@ export default {
   },
   getMetros (state) {
     return state.metros
+  },
+  getModal (state) {
+    return state.modal
   }
 }

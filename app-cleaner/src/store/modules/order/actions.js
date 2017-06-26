@@ -9,5 +9,8 @@ export default {
   },
   setCustomer ({ commit }, payload) {
     commit('SET_CUSTOMER', payload)
+  },
+  modalToggle ({ commit }) {
+    commit('MODAL_TOGGLE')
   }
 }

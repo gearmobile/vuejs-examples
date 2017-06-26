@@ -7,5 +7,8 @@ export default {
   },
   'SET_CUSTOMER' (state, payload) {
     state.customer = payload
+  },
+  'MODAL_TOGGLE' (state) {
+    state.modal = !state.modal
   }
 }

@@ -1,10 +1,10 @@
 <template lang="pug">
-  
+
   .order( v-if="orderShow" )
     h2.page-header.text-center Заказ на уборку
-    
+
     .row
-      
+
       // COLUMN PRIMARY
       .col-md-8
 
@@ -89,6 +89,9 @@
         // section continue
         section.order__section
           button.btn.btn-primary.order__button( type="button", @click="onOrder()" ) продолжить
+
+        // modal
+        app-modal
 </template>
 
 <script>
@@ -96,6 +99,7 @@
   import filters from '../filters/filters.js'
   import Total from './parts/total.vue'
   import Details from './parts/details.vue'
+  import Modal from './parts/modal.vue'
 
   export default {
     name: 'order',
@@ -126,15 +130,18 @@
     },
     methods: {
       ...mapActions({
-        customerSet: 'setCustomer'
+        customerSet: 'setCustomer',
+        toggleModal: 'modalToggle'
       }),
       onOrder () {
-        this.customerSet(this.customer)
+        this.toggleModal()
+        // this.customerSet(this.customer)
       }
     },
     components: {
       appTotal: Total,
-      appDetails: Details
+      appDetails: Details,
+      appModal: Modal
     }
   }
 </script>
