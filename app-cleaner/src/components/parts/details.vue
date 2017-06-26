@@ -14,7 +14,7 @@
     // DETAILS DESCRIPTION
     p К вам приедет <span class="acent acent--more">{{ workerOutput }}</span> со всеми необходимыми средствами и приборами.
     p Уборка займет <span class="acent acent--more">{{ time | hoursAndMinutes }}</span>. Приедем в удобное для вас время.
-    p: a.acent(href="#") Что входит в уборку
+    //- p: a.acent(href="#") Что входит в уборку
       
 </template>
 
@@ -54,7 +54,8 @@
   .details {
     text-align: center;
     width: 80%;
-    margin-top: 20px;
+    // margin-top: 20px;
+    margin-bottom: 0;
 
     & .acent {
       color: #03aebc;

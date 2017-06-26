@@ -60,8 +60,9 @@
       app-cards( v-for="(card, index) in cards", :key="index", :card="card" )
 
     // DETAILS SECTION
-    .main__line
+    .main__line.main__line--details
       app-details
+      p: a.acent(href="#") Что входит в уборку
 
     // SECTION PROMOCODE
     template( v-if="clearing !== 'express'" )
@@ -149,6 +150,12 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+
+      &--details {
+        flex-direction: column;
+        align-items: center;
+        background-color: #f5f5f5;
+      }
     }
 
     &__wrapper {
@@ -165,6 +172,15 @@
       &:hover {
         background-color: rgba( 3,174,188, .3 );
       }
+    }
+
+    & .acent {
+      color: #03aebc;
+      font-weight: 700;
+
+      // &--more {
+      //   font-weight: 700;
+      // }
     }
 
     // ORDER SECTION
