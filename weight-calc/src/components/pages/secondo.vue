@@ -4,10 +4,10 @@
 
     // HEADER
     .toolbar( slot="navigation" )
-      q-toolbar-title Weight Calculate
+      q-toolbar-title Калькулятор веса
 
     // NAVIGATION
-    q-tabs.justified( slot='navigation' )
+    q-tabs.justified.tertiary( slot='navigation' )
       q-tab( route='/', icon='home', exact, replace ) Назад
 
     .layout-view
@@ -16,35 +16,35 @@
         .row
           .auto
             h5.text-center.secondo-title
-              | Табличка для расчета массы квадратного блина для гантели (можно и штанги)
+              | Расчет массы квадратного блина для гантели (штанги)
             p.text-center.secondo-subtitle
-              | То есть, вместо круга (как обычно) для гантели можно применять и квадраты. Конечно, вид и удобство использования будет не то, но вдруг кому понадобиться.
-            //- p.text-center.secondo-subtitle Подбирать массу блина с помощью значений "Толщина листа", "Ширина блина", "Внутренний диаметр".
+              | То есть, вместо круга (как обычно) для гантели (штанги) можно применять квадраты
         
         
         .card
           .card-title.text-center.bg-secondary.text-white
             | Подбирать массу блина с помощью значений "Толщина листа", "Ширина блина", "Внутренний диаметр"
           .card-content
-            .row
+            
+            .row.primo-row
               .auto
                 p Толщина листовой заготовки: #[strong {{ input.list.thickness.value }}мм]
               .auto
                 q-range( class="primary", :min="input.list.thickness.min", :max="input.list.thickness.max", :step="input.list.thickness.step", :value="input.list.thickness.value", v-model="input.list.thickness.value", @input="onCalc()", label )
             
-            .row
+            .row.primo-row
               .auto
                 p Ширина и высота квадратного блина: #[strong {{ input.list.width.value }}мм]
               .auto
                 q-range( class="secondary", :min="input.list.width.min", :max="input.list.width.max", :step="input.list.width.step", :value="input.list.width.value", v-model="input.list.width.value", @input="onCalc()", label, snap )
             
-            .row
+            .row.primo-row
               .auto
                 p Внутренний диаметр блина: #[strong {{ input.list.diameter.value }}мм]
               .auto
                 q-range( class="tertiary", :min="input.list.diameter.min", :max="input.list.diameter.max", :step="input.list.diameter.step", :value="input.list.diameter.value", v-model="input.list.diameter.value", @input="onCalc()", label )
             
-            .row
+            .row.text-center
               .auto
                 p Масса блина: #[strong {{ output.weight | Round }}]
 
@@ -99,6 +99,15 @@
 <style lang="stylus" scoped>
   .secondo-title
     margin-bottom 30px
+
   .secondo-subtitle
     margin-bottom 60px
+  
+  .card-content
+    padding-top 50px
+    padding-bottom 20px
+
+  .primo-row
+    margin-bottom 30px
+
 </style>
