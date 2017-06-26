@@ -2,13 +2,13 @@
   q-layout
 
     // header
-    .toolbar( slot="navigation" )
+    .toolbar.primary( slot="header" )
       q-toolbar-title Weight Сalculate
 
     // navigation
-    q-tabs( slot='navigation' )
-      q-tab( route='/primo', exact, replace ) Круглый блин
-      q-tab( route='/secondo', replace ) Квадратный блин
+    q-tabs.justified( slot='navigation' )
+      q-tab( route='/primo', icon="donut_small", exact, replace ) Круглый блин
+      q-tab( route='/secondo', icon='dashboard', replace ) Квадратный блин
 
 
     .layout-view
