@@ -80,13 +80,10 @@
 
         // section conclusion
         section.order__section.well
-          p Уборка 1-комнатной квартиры с 1 ванной комнатой
-          p Уборка займет 3 часа.
-          h5.order__title К вам приедет
-          p один специалист
+          app-details
 
         // section sum
-        section.order__section.order__section--total.well
+        section.order__section.well
           app-total
 
         // section continue
@@ -98,6 +95,7 @@
   import { mapGetters, mapActions } from 'vuex'
   import filters from '../filters/filters.js'
   import Total from './parts/total.vue'
+  import Details from './parts/details.vue'
 
   export default {
     name: 'order',
@@ -135,7 +133,8 @@
       }
     },
     components: {
-      appTotal: Total
+      appTotal: Total,
+      appDetails: Details
     }
   }
 </script>
@@ -150,6 +149,19 @@
       &:last-child {
         margin-bottom: 0;
       }
+
+      // DETAILS SECTION
+
+      & .details {
+        width: 100%;
+
+        & .list {
+          background-color: red;
+          width: 100%;
+        }
+      }
+
+      // TOTAL SECTION
 
       & .total {
         flex-direction: column;

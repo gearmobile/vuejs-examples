@@ -54,7 +54,6 @@
   .details {
     text-align: center;
     width: 80%;
-    // margin-top: 20px;
     margin-bottom: 0;
 
     & .acent {
@@ -70,9 +69,10 @@
     }
 
     & .list {
-      width: 50%;
-      margin: 0 auto 2rem;
-      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-left: 0;
     }
   }
 </style>
