@@ -76,7 +76,7 @@
     .main__line( v-if="commonShow" )
       app-total
 
-    // ORDER SECTION
+    // ORDER BUTTON SECTION
     .row.order
       .col-md-6.col-md-offset-3
         button.btn.btn-primary.btn-lg.order__button( type="button", @click="orderShow()" ) Заказать уборку

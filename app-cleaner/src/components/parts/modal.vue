@@ -1,5 +1,4 @@
 <template lang="pug">
-  // Modal
   .modal.fade( :class='{ in: state }', :style='modalStyle', tabindex='-1', role='dialog' )
     .modal-dialog( role='document' )
       .modal-content
