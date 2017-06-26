@@ -20,21 +20,23 @@
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
-    name: 'modal'
+    name: 'modal',
     computed: {
       ...mapGetters({
         state: 'getModal'
       }),
       modalStyle () {
-        return this.modalState ? { display: 'block' } : {}
+        return this.state ? { display: 'block' } : {}
       }
     },
     methods: {
       ...mapActions({
         toggle: 'modalToggle'
-    })
+      })
+    }
   }
 </script>
+
 
 <style lang="scss">
   //
