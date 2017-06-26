@@ -8,7 +8,7 @@
 
     // navigation
     q-tabs.justified( slot='navigation' )
-      q-tab( route='/', icon='home', exact, replace ) Home
+      q-tab( route='/', icon='home', exact, replace ) Назад
 
     .layout-view
       .layout-padding

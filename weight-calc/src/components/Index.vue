@@ -3,7 +3,7 @@
 
     // header
     .toolbar.primary( slot="header" )
-      q-toolbar-title Weight Сalculate
+      q-toolbar-title Калькулятор веса
 
     // navigation
     q-tabs.justified( slot='navigation' )
