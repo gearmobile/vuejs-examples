@@ -11,17 +11,22 @@
             router-view
           .col-md-4
             app-output
+        .row
+          .col-md-12
+            app-pag
 </template>
 
 <script>
   import Nav from './components/navigation.vue'
   import Output from './components/output.vue'
+  import Pag from './components/pagination.vue'
   
   export default {
     name: 'app',
     components: {
       appNav: Nav,
-      appOutput: Output
+      appOutput: Output,
+      appPag: Pag
     }
   }
 </script>
