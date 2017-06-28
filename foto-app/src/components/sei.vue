@@ -66,8 +66,7 @@
       color #828282
       line-height 80px
 
-      &:hover
-      &--active
+      & .active
         color #333
         background-color #e4e4e4
 
