@@ -3,7 +3,8 @@
     header.primo__header
       | СКОЛЬКО БУДЕТ <strong>ДЛИТЬСЯ</strong> ФОТОСЕССИЯ?
     main.primo__main
-      .primo__tile.col-md-6( v-for="(period, index) in periods", :key="index", @click="onSelect(period.price)" ) {{ period.value }}
+      .primo__card( v-for="(period, index) in periods", :key="index", @click="onSelect(period.price)" )
+        .primo__tile {{ period.value }}
 </template>
 
 <script>
@@ -39,6 +40,10 @@
     &__header
       background-color #f6e95f
       padding 2rem 0
+      margin-bottom .6rem
+
+    &__card
+      margin-bottom 1rem
 
     &__tile
       cursor pointer
