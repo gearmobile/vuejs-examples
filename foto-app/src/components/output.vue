@@ -1,6 +1,9 @@
 <template lang="pug">
   .output
-    p {{ msg }}
+    header.output__header
+      | ФИНАЛЬНАЯ <strong>СТОИМОСТЬ</strong>
+    main.output__main
+      //- {{ sum }}
 </template>
 
 <script>
@@ -15,5 +18,9 @@
 </script>
 
 <style lang="stylus" scoped>
-  //
+  .output
+
+    &__header
+      padding 2rem 0
+      background-color #f6e95f
 </style>
