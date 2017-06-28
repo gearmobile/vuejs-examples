@@ -3,7 +3,7 @@
     header.primo__header
       | СКОЛЬКО БУДЕТ <strong>ДЛИТЬСЯ</strong> ФОТОСЕССИЯ?
     main.primo__main
-      .primo__tile.col-md-6( v-for="(period, index) in periods", :key="index", @click="onSelect(period.price)" ) {{ period.time }}
+      .primo__tile.col-md-6( v-for="(period, index) in periods", :key="index", @click="onSelect(period.price)" ) {{ period.value }}
 </template>
 
 <script>
@@ -18,15 +18,15 @@
     },
     computed: {
       ...mapGetters({
-        periods: 'getPeriod'
+        periods: 'getPeriods'
       })
     },
     methods: {
       ...mapActions({
-        timeGet: 'getTime'
+        getPrice: 'getTimePrice'
       }),
       onSelect (price) {
-        this.timeGet(price)
+        this.getPrice(price)
       }
     }
   }

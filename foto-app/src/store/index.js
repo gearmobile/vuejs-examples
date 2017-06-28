@@ -4,25 +4,21 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  period: [
+  periods: [
     {
-      id: 'time1',
-      time: 1,
+      value: 1,
       price: 1200
     },
     {
-      id: 'time2',
-      time: 1.5,
+      value: 1.5,
       price: 1300
     },
     {
-      id: 'time3',
-      time: 2,
+      value: 2,
       price: 1400
     },
     {
-      id: 'time4',
-      time: 3,
+      value: 3,
       price: 1500
     }
   ],
@@ -31,18 +27,18 @@ const state = {
   }
 }
 const mutations = {
-  'SET_TIME' (state, payload) {
+  'SET_TIME_PRICE' (state, payload) {
     state.order.time = payload
   }
 }
 const actions = {
-  getTime ({ commit }, payload) {
-    commit('SET_TIME', payload)
+  getTimePrice ({ commit }, payload) {
+    commit('SET_TIME_PRICE', payload)
   }
 }
 const getters = {
-  getPeriod (state) {
-    return state.period
+  getPeriods (state) {
+    return state.periods
   }
 }
 
