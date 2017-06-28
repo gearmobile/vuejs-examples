@@ -1,10 +1,10 @@
 <template lang="pug">
   .secondo
     header.secondo__header
-      h3.secondo__title.text-uppercase
+      h4.secondo__title
         | добавим <strong>дополнительные</strong> услуги?
     main.secondo__main
-      .secondo__card( v-for="(service, index) in services", :key="index", @click="onSelect(service.price)" )
+      .col-md-6.secondo__card( v-for="(service, index) in services", :class="{ 'secondo__card--active': status === service.name }", :key="index", @click="onSelect(service)" )
         .secondo__tile {{ service.title }}
 </template>
 
@@ -15,15 +15,18 @@
     name: 'secondo',
     computed: {
       ...mapGetters({
-        services: 'getServices'
+        services: 'getServices',
+        status: 'getServicesStatus'
       })
     },
     methods: {
       ...mapActions({
-        getPrice: 'getServicePrice'
+        getPrice: 'getServicePrice',
+        setStatus: 'setServiceStatus'
       }),
-      onSelect (price) {
-        this.getPrice(price)
+      onSelect (obj) {
+        this.getPrice(obj)
+        this.setStatus(obj)
       }
     }
   }
@@ -35,11 +38,24 @@
 
     &__header
       background-color #f6e95f
-      padding 2rem 0
       margin-bottom .6rem
 
+    &__title
+      line-height 8.4rem
+      text-transform uppercase
+
     &__card
-      margin-bottom 1rem
+      background-color #ebebeb
+      border-bottom .4rem solid #fff
+
+      &:nth-child(2n+1)
+        border-right .4rem solid #fff
+      
+      &:hover
+      &--active
+        background-color #e4e4e4
+        & .primo__value
+          color #333
 
     &__tile
       cursor pointer
@@ -47,14 +63,7 @@
       display flex
       justify-content center
       align-items center
-      background-color #ebebeb
       color #828282
-      line-height 80px
-
-      &:hover
-      &--active
-        color #333
-        background-color #e4e4e4
-
+      line-height 8rem
 
 </style>

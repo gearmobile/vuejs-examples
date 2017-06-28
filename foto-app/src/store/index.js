@@ -7,28 +7,29 @@ Vue.use(Vuex)
 
 const state = {
   status: {
-    time: 'period1'
+    time: 'period1',
+    service: 'service1'
   },
   periods: [
     {
       name: 'period1',
       value: 1,
-      price: 1200
+      price: 1300
     },
     {
       name: 'period2',
       value: 1.5,
-      price: 1300
+      price: 1900
     },
     {
       name: 'period3',
       value: 2,
-      price: 1400
+      price: 2400
     },
     {
       name: 'period4',
       value: 3,
-      price: 1500
+      price: 3500
     }
   ],
   services: [
@@ -92,15 +93,21 @@ const state = {
 }
 
 const mutations = {
+  //
   'SET_TIME_STATUS' (state, payload) {
     state.status.time = payload.name
   },
   'SET_TIME_PRICE' (state, payload) {
     state.order.time = payload.price
   },
-  'SET_SERVICE_PRICE' (state, payload) {
-    state.order.service = payload
+  // SERVICE SECTION
+  'SET_SERVICE_STATUS' (state, payload) {
+    state.status.service = payload.name
   },
+  'SET_SERVICE_PRICE' (state, payload) {
+    state.order.service = payload.price
+  },
+  //
   'SET_CERTIFICATE_PRICE' (state, payload) {
     state.order.certificate = payload
   },
@@ -118,45 +125,62 @@ const mutations = {
 }
 
 const actions = {
+  // TIME SECTION
   setTimeStatus ({ commit }, payload) {
     commit('SET_TIME_STATUS', payload)
   },
   getTimePrice ({ commit }, payload) {
     commit('SET_TIME_PRICE', payload)
   },
+  // SERVICE SECTION
+  setServiceStatus ({ commit }, payload) {
+    commit('SET_SERVICE_STATUS', payload)
+  },
   getServicePrice ({ commit }, payload) {
     commit('SET_SERVICE_PRICE', payload)
   },
+  //
   getCertificatePrice ({ commit }, payload) {
     commit('SET_CERTIFICATE_PRICE', payload)
   },
+  //
   getCongratulationValue ({ commit }, payload) {
     commit('SET_CONGRATULATIONS_VALUE', payload)
   },
+  //
   getDeliveryPrice ({ commit }, payload) {
     commit('SET_DELIVERY_PRICE', payload)
   },
+  //
   getCustomerDetails ({ commit }, payload) {
     commit('SET_CUSTOMER_DETAILS', payload)
   }
 }
 
 const getters = {
+  //
   getPeriodStatus (state) {
     return state.status.time
   },
   getPeriods (state) {
     return state.periods
   },
+  // SERVICE SECTION
+  getServicesStatus (state) {
+    return state.status.service
+  },
   getServices (state) {
     return state.services
   },
+  // CERTIFICATE SECTION
   getCertificate (state) {
     return state.certificate
   },
+  //
   getDelivery (state) {
     return state.delivery
   },
+  //
   getSum (state) {
     return state.order.time + state.order.service + state.order.certificate + state.order.delivery
   }
