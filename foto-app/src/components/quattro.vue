@@ -1,13 +1,13 @@
 <template lang="pug">
   .quattro
     header.quattro__header
-      h3.quattro__caption.text-uppercase
+      h4.quattro__title
         | индивидуальное <strong>поздравление</strong>
-      h4.quattro__subcaption.text-uppercase
+      h5.quattro__subtitle
         | (мы обязательно напишем его на сертификате)
     main.quattro__main
       .quattro__card
-        textarea.form-control( rows="5", v-model="value", @input="onInput($event.target.value)" )
+        textarea.form-control( rows="6", v-model.trim="value", @input="onInput($event.target.value)", required )
 </template>
 
 <script>
@@ -40,22 +40,11 @@
       padding 2rem 0
       margin-bottom .6rem
 
+    &__title
+    &__subtitle
+      text-transform uppercase
+
     &__card
       margin-bottom 1rem
-
-    &__tile
-      cursor pointer
-      font-size 30px
-      display flex
-      justify-content center
-      align-items center
-      background-color #ebebeb
-      color #828282
-      line-height 80px
-
-      &:hover
-      &--active
-        color #333
-        background-color #e4e4e4
 
 </style>

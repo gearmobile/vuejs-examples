@@ -9,7 +9,8 @@ const state = {
   status: {
     time: 'period1',
     service: 'service1',
-    certificate: 'certificate1'
+    certificate: 'certificate1',
+    delivery: 'delivery1'
   },
   periods: [
     {
@@ -75,7 +76,7 @@ const state = {
     },
     {
       name: 'delivery2',
-      title: 'Доставка в отделение Почты',
+      title: 'Доставка в отделение почты',
       price: 600
     }
   ],
@@ -115,13 +116,18 @@ const mutations = {
   'SET_CERTIFICATE_PRICE' (state, payload) {
     state.order.certificate = payload.price
   },
-  //
+  // CONGRATULATIONS SECTION
   'SET_CONGRATULATIONS_VALUE' (state, payload) {
     state.order.congratulation = payload
   },
-  'SET_DELIVERY_PRICE' (state, payload) {
-    state.order.delivery = payload
+  // DELIVERY SECTION
+  'SET_DELIVERY_STATUS' (state, payload) {
+    state.status.delivery = payload.name
   },
+  'SET_DELIVERY_PRICE' (state, payload) {
+    state.order.delivery = payload.price
+  },
+  // CUSTOMER SECTION
   'SET_CUSTOMER_DETAILS' (state, payload) {
     state.order.customer.name = payload.name
     state.order.customer.phone = payload.phone
@@ -151,11 +157,14 @@ const actions = {
   getCertificatePrice ({ commit }, payload) {
     commit('SET_CERTIFICATE_PRICE', payload)
   },
-  //
+  // CONGRATULATIONS SECTION
   getCongratulationValue ({ commit }, payload) {
     commit('SET_CONGRATULATIONS_VALUE', payload)
   },
-  //
+  // DELIVERY SECTION
+  setDeliveryStatus ({ commit }, payload) {
+    commit('SET_DELIVERY_STATUS', payload)
+  },
   getDeliveryPrice ({ commit }, payload) {
     commit('SET_DELIVERY_PRICE', payload)
   },
@@ -187,7 +196,10 @@ const getters = {
   getCertificate (state) {
     return state.certificate
   },
-  //
+  // DELIVERY SECTION
+  getDeliveryStatus (state) {
+    return state.status.delivery
+  },
   getDelivery (state) {
     return state.delivery
   },

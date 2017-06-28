@@ -50,6 +50,7 @@
       &:hover
       &--active
         background-color #e4e4e4
+        
         & .tetro__value
           color #333
 

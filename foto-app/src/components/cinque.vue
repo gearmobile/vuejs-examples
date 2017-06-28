@@ -1,11 +1,11 @@
 <template lang="pug">
   .cinque
     header.cinque__header
-      h3.text-uppercase
+      h4.cinque__title
         | как сертификат <strong>попадет</strong> к вам?
     main.cinque__main
-      .cinque__card( v-for="(point, index) in points", :key="index", @click="onSelect(point.price)" )
-        .cinque__tile {{ point.title }}
+      .cinque__card( v-for="(point, index) in points", :class="{ 'cinque__card--active': status === point.name }", :key="index", @click="onSelect(point)" )
+        .cinque__value {{ point.title }}
 </template>
 
 <script>
@@ -15,15 +15,18 @@
     name: 'cinque',
     computed: {
       ...mapGetters({
-        points: 'getDelivery'
+        points: 'getDelivery',
+        status: 'getDeliveryStatus'
       })
     },
     methods: {
       ...mapActions({
-        getPrice: 'getDeliveryPrice'
+        getPrice: 'getDeliveryPrice',
+        setStatus: 'setDeliveryStatus'
       }),
-      onSelect (price) {
-        this.getPrice(price)
+      onSelect (obj) {
+        this.getPrice(obj)
+        this.setStatus(obj)
       }
     }
   }
@@ -35,25 +38,30 @@
 
     &__header
       background-color #f6e95f
-      padding 2rem 0
       margin-bottom .6rem
 
-    &__card
-      margin-bottom 1rem
+    &__title
+      line-height 8.4rem
+      text-transform uppercase
 
-    &__tile
-      cursor pointer
-      font-size 30px
-      display flex
-      justify-content center
-      align-items center
+    &__card
       background-color #ebebeb
-      color #828282
-      line-height 80px
+      margin-bottom 1rem
 
       &:hover
       &--active
-        color #333
         background-color #e4e4e4
+
+        & .cinque__value
+          color #333
+
+    &__value
+      cursor pointer
+      font-size 26px
+      display flex
+      justify-content center
+      align-items center
+      color #828282
+      line-height 8rem
         
 </style>
