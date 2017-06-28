@@ -79,7 +79,12 @@ const state = {
     service: null,
     certificate: null,
     congratulation: null,
-    delivery: null
+    delivery: null,
+    customer: {
+      name: null,
+      phone: null,
+      enail: null
+    }
   }
 }
 
@@ -98,6 +103,11 @@ const mutations = {
   },
   'SET_DELIVERY_PRICE' (state, payload) {
     state.order.delivery = payload
+  },
+  'SET_CUSTOMER_DETAILS' (state, payload) {
+    state.order.customer.name = payload.name
+    state.order.customer.phone = payload.phone
+    state.order.customer.email = payload.email
   }
 }
 
@@ -116,6 +126,9 @@ const actions = {
   },
   getDeliveryPrice ({ commit }, payload) {
     commit('SET_DELIVERY_PRICE', payload)
+  },
+  getCustomerDetails ({ commit }, payload) {
+    commit('SET_CUSTOMER_DETAILS', payload)
   }
 }
 

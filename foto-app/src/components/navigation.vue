@@ -15,6 +15,9 @@
     router-link( tag="li", to="/cinque", role="presentation", activeClass="active" )
       a.text-uppercase( href="#" )
         | step 5
+    router-link( tag="li", to="/sei", role="presentation", activeClass="active" )
+      a.text-uppercase( href="#" )
+        | step 6
 </template>
 
 <script>

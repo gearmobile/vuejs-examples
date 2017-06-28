@@ -5,6 +5,7 @@ import Secondo from '@/components/secondo'
 import Tetro from '@/components/tetro'
 import Quattro from '@/components/quattro'
 import Cinque from '@/components/cinque'
+import Sei from '@/components/sei'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/cinque',
       name: 'Cinque',
       component: Cinque
+    },
+    {
+      path: '/sei',
+      name: 'Sei',
+      component: Sei
     }
   ]
 })
