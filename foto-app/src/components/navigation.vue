@@ -37,6 +37,10 @@
       color #000
       font-weight 700
 
+      &:hover
+        background-color #828282
+        color #fff
+
     & > li.active > a
       background-color #828282
       color #fff

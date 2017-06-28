@@ -6,6 +6,9 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
+  status: {
+    time: 'period1'
+  },
   periods: [
     {
       name: 'period1',
@@ -89,8 +92,11 @@ const state = {
 }
 
 const mutations = {
+  'SET_TIME_STATUS' (state, payload) {
+    state.status.time = payload.name
+  },
   'SET_TIME_PRICE' (state, payload) {
-    state.order.time = payload
+    state.order.time = payload.price
   },
   'SET_SERVICE_PRICE' (state, payload) {
     state.order.service = payload
@@ -112,6 +118,9 @@ const mutations = {
 }
 
 const actions = {
+  setTimeStatus ({ commit }, payload) {
+    commit('SET_TIME_STATUS', payload)
+  },
   getTimePrice ({ commit }, payload) {
     commit('SET_TIME_PRICE', payload)
   },
@@ -133,6 +142,9 @@ const actions = {
 }
 
 const getters = {
+  getPeriodStatus (state) {
+    return state.status.time
+  },
   getPeriods (state) {
     return state.periods
   },
