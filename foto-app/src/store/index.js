@@ -48,9 +48,22 @@ const state = {
       price: 500
     }
   ],
+  certificate: [
+    {
+      name: 'certificate1',
+      title: 'желтый кролик',
+      price: 1000
+    },
+    {
+      name: 'certificate2',
+      title: 'классика в рамочке',
+      price: 1200
+    }
+  ],
   order: {
     time: null,
-    service: null
+    service: null,
+    certificate: null
   }
 }
 const mutations = {
@@ -59,6 +72,9 @@ const mutations = {
   },
   'SET_SERVICE_PRICE' (state, payload) {
     state.order.service = payload
+  },
+  'SET_CERTIFICATE_PRICE' (state, payload) {
+    state.order.certificate = payload
   }
 }
 const actions = {
@@ -67,6 +83,9 @@ const actions = {
   },
   getServicePrice ({ commit }, payload) {
     commit('SET_SERVICE_PRICE', payload)
+  },
+  getCertificatePrice ({ commit }, payload) {
+    commit('SET_CERTIFICATE_PRICE', payload)
   }
 }
 const getters = {
@@ -75,6 +94,9 @@ const getters = {
   },
   getServices (state) {
     return state.services
+  },
+  getCertificate (state) {
+    return state.certificate
   }
 }
 
