@@ -15,6 +15,7 @@
     display flex
     justify-content space-between
     align-items center
+    border 1px solid rgba( 0,0,0, .6 )
 
     &__left
     &__right
