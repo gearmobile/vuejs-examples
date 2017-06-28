@@ -1,9 +1,10 @@
 <template lang="pug">
   .primo
     header.primo__header
-      | СКОЛЬКО БУДЕТ <strong>ДЛИТЬСЯ</strong> ФОТОСЕССИЯ?
-    main.primo__main
-      .primo__card( v-for="(period, index) in periods", :key="index", @click="onSelect(period.price)" )
+      h4.text-uppercase
+        | сколько будет <strong>длиться</strong> фотосессия?
+    main.primo__main.row
+      .col-md-6.primo__card( v-for="(period, index) in periods", :key="index", @click="onSelect(period.price)" )
         .primo__tile {{ period.value }}
 </template>
 

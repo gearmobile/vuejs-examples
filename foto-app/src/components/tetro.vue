@@ -4,7 +4,7 @@
       h3.text-uppercase
         | формат <strong>сертификата</strong>
     main.tetro__main
-      .tetro__card( v-for="(certificate, index) in certificates", :key="index", @input="onInput(certificate.price)" )
+      .tetro__card( v-for="(certificate, index) in certificates", :key="index", @click="onSelect(certificate.price)" )
         .tetro__tile {{ certificate.title }}
 </template>
 

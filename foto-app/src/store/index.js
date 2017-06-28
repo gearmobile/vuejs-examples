@@ -75,11 +75,11 @@ const state = {
     }
   ],
   order: {
-    time: null,
-    service: null,
-    certificate: null,
-    congratulation: null,
-    delivery: null,
+    time: 0,
+    service: 0,
+    certificate: 0,
+    congratulation: '',
+    delivery: 0,
     customer: {
       name: null,
       phone: null,
@@ -144,6 +144,9 @@ const getters = {
   },
   getDelivery (state) {
     return state.delivery
+  },
+  getSum (state) {
+    return state.order.time + state.order.service + state.order.certificate + state.order.delivery
   }
 }
 

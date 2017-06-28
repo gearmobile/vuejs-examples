@@ -3,16 +3,18 @@
     header.output__header
       | ФИНАЛЬНАЯ <strong>СТОИМОСТЬ</strong>
     main.output__main
-      //- {{ sum }}
+      | {{ sum }}
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     name: 'output',
-    data () {
-      return {
-        msg: 'output'
-      }
+    computed: {
+      ...mapGetters({
+        sum: 'getSum'
+      })
     }
   }
 </script>

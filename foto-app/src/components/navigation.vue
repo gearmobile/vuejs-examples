@@ -1,33 +1,28 @@
 <template lang="pug">
   ul.nav.nav-justified
-    router-link( tag="li", to="/", role="presentation", activeClass="active", exact )
+    router-link( tag="li", to="/", role="presentation", active-class="active", exact )
       a.text-uppercase( href="#" )
         | step 1
-    router-link( tag="li", to="/secondo", role="presentation", activeClass="active" )
+    router-link( tag="li", to="/secondo", role="presentation", active-class="active" )
       a.text-uppercase( href="#" )
         | step 2
-    router-link( tag="li", to="/tetro", role="presentation", activeClass="active" )
+    router-link( tag="li", to="/tetro", role="presentation", active-class="active" )
       a.text-uppercase( href="#" )
         | step 3
-    router-link( tag="li", to="/quattro", role="presentation", activeClass="active" )
+    router-link( tag="li", to="/quattro", role="presentation", active-class="active" )
       a.text-uppercase( href="#" )
         | step 4
-    router-link( tag="li", to="/cinque", role="presentation", activeClass="active" )
+    router-link( tag="li", to="/cinque", role="presentation", active-class="active" )
       a.text-uppercase( href="#" )
         | step 5
-    router-link( tag="li", to="/sei", role="presentation", activeClass="active" )
+    router-link( tag="li", to="/sei", role="presentation", active-class="active" )
       a.text-uppercase( href="#" )
         | step 6
 </template>
 
 <script>
   export default {
-    name: 'navigation',
-    data () {
-      return {
-        // msg: 'navigation'
-      }
-    }
+    name: 'navigation'
   }
 </script>
 
