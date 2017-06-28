@@ -63,7 +63,8 @@ const state = {
   order: {
     time: null,
     service: null,
-    certificate: null
+    certificate: null,
+    congratulation: null
   }
 }
 const mutations = {
@@ -75,6 +76,9 @@ const mutations = {
   },
   'SET_CERTIFICATE_PRICE' (state, payload) {
     state.order.certificate = payload
+  },
+  'SET_CONGRATULATIONS_VALUE' (state, payload) {
+    state.order.congratulation = payload
   }
 }
 const actions = {
@@ -86,6 +90,9 @@ const actions = {
   },
   getCertificatePrice ({ commit }, payload) {
     commit('SET_CERTIFICATE_PRICE', payload)
+  },
+  getCongratulationValue ({ commit }, payload) {
+    commit('SET_CONGRATULATIONS_VALUE', payload)
   }
 }
 const getters = {
