@@ -30,6 +30,7 @@
 
   .nav
     margin-bottom .6rem
+    background-color #ddd
 
     & > li > a
       text-transform uppercase
@@ -37,7 +38,7 @@
       font-weight 700
 
     & > li.active > a
-      background-color #f6e95f
-      color #000
+      background-color #828282
+      color #fff
 
 </style>
