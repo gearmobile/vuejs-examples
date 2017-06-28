@@ -8,7 +8,8 @@ Vue.use(Vuex)
 const state = {
   status: {
     time: 'period1',
-    service: 'service1'
+    service: 'service1',
+    certificate: 'certificate1'
   },
   periods: [
     {
@@ -107,10 +108,14 @@ const mutations = {
   'SET_SERVICE_PRICE' (state, payload) {
     state.order.service = payload.price
   },
-  //
-  'SET_CERTIFICATE_PRICE' (state, payload) {
-    state.order.certificate = payload
+  // CERTIFICATE SECTION
+  'SET_CERTIFICATE_STATUS' (state, payload) {
+    state.status.certificate = payload.name
   },
+  'SET_CERTIFICATE_PRICE' (state, payload) {
+    state.order.certificate = payload.price
+  },
+  //
   'SET_CONGRATULATIONS_VALUE' (state, payload) {
     state.order.congratulation = payload
   },
@@ -139,7 +144,10 @@ const actions = {
   getServicePrice ({ commit }, payload) {
     commit('SET_SERVICE_PRICE', payload)
   },
-  //
+  // CERTIFICATE SECTION
+  setCertificateStatus ({ commit }, payload) {
+    commit('SET_CERTIFICATE_STATUS', payload)
+  },
   getCertificatePrice ({ commit }, payload) {
     commit('SET_CERTIFICATE_PRICE', payload)
   },
@@ -173,6 +181,9 @@ const getters = {
     return state.services
   },
   // CERTIFICATE SECTION
+  getCertificateStatus (state) {
+    return state.status.certificate
+  },
   getCertificate (state) {
     return state.certificate
   },

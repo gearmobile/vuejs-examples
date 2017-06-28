@@ -1,11 +1,11 @@
 <template lang="pug">
   .tetro
     header.tetro__header
-      h3.text-uppercase
+      h4.tetro__title
         | формат <strong>сертификата</strong>
     main.tetro__main
-      .tetro__card( v-for="(certificate, index) in certificates", :key="index", @click="onSelect(certificate.price)" )
-        .tetro__tile {{ certificate.title }}
+      .tetro__card( v-for="(certificate, index) in certificates", :class="{ 'tetro__card--active': status === certificate.name }", :key="index", @click="onSelect(certificate)" )
+        .tetro__value {{ certificate.title }}
 </template>
 
 <script>
@@ -14,15 +14,18 @@
     name: 'tetro',
     computed: {
       ...mapGetters({
-        certificates: 'getCertificate'
+        certificates: 'getCertificate',
+        status: 'getCertificateStatus'
       })
     },
     methods: {
       ...mapActions({
-        getPrice: 'getCertificatePrice'
+        getPrice: 'getCertificatePrice',
+        setStatus: 'setCertificateStatus'
       }),
-      onSelect (price) {
-        this.getPrice(price)
+      onSelect (obj) {
+        this.getPrice(obj)
+        this.setStatus(obj)
       }
     }
   }
@@ -34,25 +37,29 @@
 
     &__header
       background-color #f6e95f
-      padding 2rem 0
       margin-bottom .6rem
 
+    &__title
+      line-height 8.4rem
+      text-transform uppercase
+
     &__card
+      background-color #ebebeb
       margin-bottom 1rem
 
-    &__tile
+      &:hover
+      &--active
+        background-color #e4e4e4
+        & .tetro__value
+          color #333
+
+    &__value
       cursor pointer
       font-size 30px
       display flex
       justify-content center
       align-items center
-      background-color #ebebeb
       color #828282
-      line-height 80px
-
-      &:hover
-      &--active
-        color #333
-        background-color #e4e4e4
+      line-height 8rem
 
 </style>

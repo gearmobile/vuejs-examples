@@ -5,7 +5,7 @@
         | добавим <strong>дополнительные</strong> услуги?
     main.secondo__main
       .col-md-6.secondo__card( v-for="(service, index) in services", :class="{ 'secondo__card--active': status === service.name }", :key="index", @click="onSelect(service)" )
-        .secondo__tile {{ service.title }}
+        .secondo__value {{ service.title }}
 </template>
 
 <script>
@@ -54,10 +54,10 @@
       &:hover
       &--active
         background-color #e4e4e4
-        & .primo__value
+        & .secondo__value
           color #333
 
-    &__tile
+    &__value
       cursor pointer
       font-size 30px
       display flex
