@@ -1,7 +1,8 @@
 <template lang="pug">
   .output
     header.output__header
-      | ФИНАЛЬНАЯ <strong>СТОИМОСТЬ</strong>
+      h4.output__title.text-uppercase
+        | финальная <strong>стоимость</strong>
     main.output__main
       | {{ sum }}
 </template>

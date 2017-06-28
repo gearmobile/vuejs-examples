@@ -1,7 +1,8 @@
 <template lang="pug">
   .secondo
     header.secondo__header
-      | ДОБАВИМ ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ?
+      h3.secondo__title.text-uppercase
+        | добавим <strong>дополнительные</strong> услуги?
     main.secondo__main
       .secondo__card( v-for="(service, index) in services", :key="index", @click="onSelect(service.price)" )
         .secondo__tile {{ service.title }}

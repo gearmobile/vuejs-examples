@@ -1,7 +1,7 @@
 <template lang="pug">
   .primo
     header.primo__header
-      h4.text-uppercase
+      h3.text-uppercase
         | сколько будет <strong>длиться</strong> фотосессия?
     main.primo__main.row
       .col-md-6.primo__card( v-for="(period, index) in periods", :key="index", @click="onSelect(period.price)" )
