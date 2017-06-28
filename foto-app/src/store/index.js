@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+// https://fotorabbit.com.ua/fotosessiya-v-podarok/
+
 Vue.use(Vuex)
 
 const state = {
@@ -60,13 +62,27 @@ const state = {
       price: 1200
     }
   ],
+  delivery: [
+    {
+      name: 'delivery1',
+      title: 'Самовывоз',
+      price: 500
+    },
+    {
+      name: 'delivery2',
+      title: 'Доставка в отделение Почты',
+      price: 600
+    }
+  ],
   order: {
     time: null,
     service: null,
     certificate: null,
-    congratulation: null
+    congratulation: null,
+    delivery: null
   }
 }
+
 const mutations = {
   'SET_TIME_PRICE' (state, payload) {
     state.order.time = payload
@@ -79,8 +95,12 @@ const mutations = {
   },
   'SET_CONGRATULATIONS_VALUE' (state, payload) {
     state.order.congratulation = payload
+  },
+  'SET_DELIVERY_PRICE' (state, payload) {
+    state.order.delivery = payload
   }
 }
+
 const actions = {
   getTimePrice ({ commit }, payload) {
     commit('SET_TIME_PRICE', payload)
@@ -93,8 +113,12 @@ const actions = {
   },
   getCongratulationValue ({ commit }, payload) {
     commit('SET_CONGRATULATIONS_VALUE', payload)
+  },
+  getDeliveryPrice ({ commit }, payload) {
+    commit('SET_DELIVERY_PRICE', payload)
   }
 }
+
 const getters = {
   getPeriods (state) {
     return state.periods
@@ -104,6 +128,9 @@ const getters = {
   },
   getCertificate (state) {
     return state.certificate
+  },
+  getDelivery (state) {
+    return state.delivery
   }
 }
 
