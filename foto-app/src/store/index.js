@@ -4,43 +4,35 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  session: {
-    period: [
-      {
-        id: 1,
-        time: 1,
-        price: 1200
-      },
-      {
-        id: 2,
-        time: 1.5,
-        price: 1300
-      },
-      {
-        id: 3,
-        time: 2,
-        price: 1400
-      },
-      {
-        id: 4,
-        time: 3,
-        price: 1500
-      }
-    ]
-  },
-  order: []
+  period: [
+    {
+      id: 'time1',
+      time: 1,
+      price: 1200
+    },
+    {
+      id: 'time2',
+      time: 1.5,
+      price: 1300
+    },
+    {
+      id: 'time3',
+      time: 2,
+      price: 1400
+    },
+    {
+      id: 'time4',
+      time: 3,
+      price: 1500
+    }
+  ],
+  order: {
+    time: null
+  }
 }
 const mutations = {
   'SET_TIME' (state, payload) {
-    const sample = state.order.find(el => el.id === payload.id)
-    if (sample) {
-      return
-    }
-    state.order.push({
-      id: payload.id,
-      time: payload.time,
-      price: payload.price
-    })
+    state.order.time = payload
   }
 }
 const actions = {
@@ -50,7 +42,7 @@ const actions = {
 }
 const getters = {
   getPeriod (state) {
-    return state.session.period
+    return state.period
   }
 }
 

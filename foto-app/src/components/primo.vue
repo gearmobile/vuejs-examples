@@ -3,7 +3,7 @@
     header.primo__header
       | СКОЛЬКО БУДЕТ <strong>ДЛИТЬСЯ</strong> ФОТОСЕССИЯ?
     main.primo__main
-      .primo__tile.col-md-6.col-xs-6.col-sm-3( v-for="(period, index) in periods", :key="index", @click="onSelect(period)" ) {{ period.time }}
+      .primo__tile.col-md-6( v-for="(period, index) in periods", :key="index", @click="onSelect(period.price)" ) {{ period.time }}
 </template>
 
 <script>
@@ -25,8 +25,8 @@
       ...mapActions({
         timeGet: 'getTime'
       }),
-      onSelect (order) {
-        this.timeGet(order)
+      onSelect (price) {
+        this.timeGet(price)
       }
     }
   }
@@ -51,6 +51,7 @@
       line-height 80px
 
       &:hover
+      &--active
         color #333
         background-color #e4e4e4
 
