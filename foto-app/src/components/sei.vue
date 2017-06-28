@@ -1,5 +1,5 @@
 <template lang="pug">
-  .c
+  .sei
     header.sei__header
       h3.text-uppercase
         | оформление <strong>заказа</strong>
@@ -17,8 +17,6 @@
           label.col-sm-4.control-label( for="email" ) E-mail
           .col-sm-8
             input.form-control( id="email", name="email", type="text", v-model="user.email" )
-    // TODO - add vue-mask
-    // https://vuejs-tips.github.io/vue-the-mask/
 </template>
 
 <script>
