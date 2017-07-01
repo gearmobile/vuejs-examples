@@ -20,7 +20,6 @@
   import Nav from './components/navigation.vue'
   import Output from './components/output.vue'
   import Pag from './components/pagination.vue'
-  import { mapActions } from 'vuex'
   
   export default {
     name: 'app',
@@ -28,14 +27,6 @@
       appNav: Nav,
       appOutput: Output,
       appPag: Pag
-    },
-    methods: {
-      ...mapActions({
-        initCalc: 'sum'
-      })
-    },
-    created () {
-      this.initCalc()
     }
   }
 </script>

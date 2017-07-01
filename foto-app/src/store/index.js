@@ -133,10 +133,6 @@ const mutations = {
     state.order.customer.name = payload.name
     state.order.customer.phone = payload.phone
     state.order.customer.email = payload.email
-  },
-  // SUM
-  'SUM' (state) {
-    state.order.sum = state.order.time + state.order.service + state.order.certificate + state.order.delivery
   }
 }
 
@@ -176,9 +172,6 @@ const actions = {
   //
   getCustomerDetails ({ commit }, payload) {
     commit('SET_CUSTOMER_DETAILS', payload)
-  },
-  sum ({ commit }) {
-    commit('SUM')
   }
 }
 
@@ -213,8 +206,7 @@ const getters = {
   },
   //
   getSum (state) {
-    return state.order.sum
-    // return state.order.time + state.order.service + state.order.certificate + state.order.delivery
+    return state.order.time + state.order.service + state.order.certificate + state.order.delivery
   }
 }
 
