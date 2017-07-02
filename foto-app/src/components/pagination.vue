@@ -1,7 +1,7 @@
 <template lang="pug">
   .pag
-    .pag__prev( @click="onPrev()" ) {{ prev }}
-    .pag__next( @click="onNext()" ) {{ next }}
+    button.pag__prev( @click="onPrev()" ) {{ prev }}
+    button.pag__next( @click="onNext()", :disabled="nextStatus" ) {{ next }}
 </template>
 
 <script>
@@ -11,18 +11,24 @@
     data () {
       return {
         prev: 'prev',
-        next: 'next'
+        next: 'next',
+        page: 1,
+        nextStatus: false,
+        prevStatus: false
       }
     },
     methods: {
-      onPrev () {
-        // console.log('prev')
-        // this.prev()
-      },
       onNext () {
-        // console.log('next')
-        // this.next()
-        // this.next()
+        this.page += 1
+        if (this.page < 6) {
+          this.$router.push({ path: '/' + this.page })
+        }
+      },
+      onPrev () {
+        this.page -= 1
+        if (this.page >= 1) {
+          this.$router.push({ path: '/' + this.page })
+        }
       }
     }
   }
