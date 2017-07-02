@@ -8,28 +8,22 @@
         .form-group
           label.col-sm-4.control-label( for="name" ) ФИО
           .col-sm-8
-            //- input.form-control( id="name", name="name", type="text", v-model="user.name" )
-            //- input.form-control( id="name", name="name", type="text", v-model="user.name" )
             input.form-control( v-validate="'required|alpha'", :class="{'input': true, 'is-danger': errors.has('name') }", id="name", name="name", type="text", v-model="user.name" )
             span( v-show="errors.has('name')" class="help is-danger") {{ errors.first('name') }}
         .form-group
           label.col-sm-4.control-label( for="phone" ) Номер телефона
           .col-sm-8
-            //- input.form-control( id="phone", name="phone", type="text", v-model="user.phone" )
-            //- the-mask.form-control( :mask="['+7 (###) ###-####']", id="phone", name="phone", type="text", v-model="user.phone" )
             input.form-control( v-validate="'required|digits:11'", :class="{'input': true, 'is-danger': errors.has('phone') }", id="phone", name="phone", type="text", v-model="user.phone" )
             span( v-show="errors.has('phone')" class="help is-danger") {{ errors.first('phone') }}
         .form-group
           label.col-sm-4.control-label( for="email" ) E-mail
           .col-sm-8
-            //- input.form-control( id="email", name="email", type="text", v-model="user.email" )
             input.form-control( v-validate="'required|email'", :class="{'input': true, 'is-danger': errors.has('email') }", id="email", name="email", type="text", v-model="user.email" )
             span( v-show="errors.has('email')" class="help is-danger") {{ errors.first('email') }}
 </template>
 
 <script>
   import { mapActions } from 'vuex'
-  // import TheMask from 'vue-the-mask'
 
   export default {
     name: 'sei',
@@ -49,9 +43,6 @@
       onSelect () {
         this.getDetails(this.user)
       }
-    },
-    components: {
-      // TheMask
     }
   }
 </script>
