@@ -1,22 +1,22 @@
 <template lang="pug">
   ul.nav.nav-justified.nav-pills
-    router-link( tag="li", to="/1", role="presentation", active-class="active", exact )
-      a( href="#" )
+    router-link( tag="li", :to="{ name: 'Primo' }", role="presentation", active-class="active", exact )
+      a.disable-links( href="#" )
         | step 1
-    router-link( tag="li", to="/2", role="presentation", active-class="active" )
-      a( href="#" )
+    router-link( tag="li", :to="{ name: 'Secondo' }", role="presentation", active-class="active" )
+      a.disable-links( href="#" )
         | step 2
-    router-link( tag="li", to="/3", role="presentation", active-class="active" )
-      a( href="#" )
+    router-link( tag="li", :to="{  name: 'Tetro' }", role="presentation", active-class="active" )
+      a.disable-links( href="#" )
         | step 3
-    router-link( tag="li", to="/4", role="presentation", active-class="active" )
-      a( href="#" )
+    router-link( tag="li", :to="{ name: 'Quattro' }", role="presentation", active-class="active" )
+      a.disable-links( href="#" )
         | step 4
-    router-link( tag="li", to="/5", role="presentation", active-class="active" )
-      a( href="#" )
+    router-link( tag="li", :to="{ name: 'Cinque' }", role="presentation", active-class="active" )
+      a.disable-links( href="#" )
         | step 5
-    router-link( tag="li", to="/6", role="presentation", active-class="active" )
-      a( href="#" )
+    router-link( tag="li", :to="{ name: 'Sei' }", role="presentation", active-class="active" )
+      a.disable-links( href="#" )
         | step 6
 </template>
 
@@ -44,5 +44,8 @@
     & > li.active > a
       background-color #828282
       color #fff
+
+    & .disable-links
+      pointer-events none
 
 </style>

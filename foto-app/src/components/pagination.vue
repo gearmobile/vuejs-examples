@@ -12,24 +12,20 @@
     name: 'pagination',
     data () {
       return {
-        page: 1
+        count: 1
       }
     },
     methods: {
       onNext () {
-        if (this.page < 6) {
-          this.page += 1
-          this.$router.push({ path: '/' + this.page })
-        } else {
-          return false
+        if (this.count < 6) {
+          this.count += 1
+          this.$router.push({ path: '/' + this.count })
         }
       },
       onPrev () {
-        if (this.page > 1) {
-          this.page -= 1
-          this.$router.push({ path: '/' + this.page })
-        } else {
-          return false
+        if (this.count > 1) {
+          this.count -= 1
+          this.$router.push({ path: '/' + this.count })
         }
       }
     }

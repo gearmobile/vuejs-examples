@@ -13,32 +13,32 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/:id',
+      path: '/1',
       name: 'Primo',
       component: Primo
     },
     {
-      path: '/:id',
+      path: '/2',
       name: 'Secondo',
       component: Secondo
     },
     {
-      path: '/:id',
+      path: '/3',
       name: 'Tetro',
       component: Tetro
     },
     {
-      path: '/:id',
+      path: '/4',
       name: 'Quattro',
       component: Quattro
     },
     {
-      path: '/:id',
+      path: '/5',
       name: 'Cinque',
       component: Cinque
     },
     {
-      path: '/:id',
+      path: '/6',
       name: 'Sei',
       component: Sei
     }
