@@ -1,8 +1,8 @@
 <template lang="pug">
   .pag
-    button.pag__prev( @click="onPrev()" )
+    button.pag__prev( @click="onPrev()", v-show="prevButton" )
       | prev
-    button.pag__next( @click="onNext()" )
+    button.pag__next( @click="onNext()", v-show="nextButton" )
       | next
 </template>
 
@@ -13,6 +13,14 @@
     data () {
       return {
         count: 1
+      }
+    },
+    computed: {
+      nextButton () {
+        return this.count !== 6
+      },
+      prevButton () {
+        return this.count !== 1
       }
     },
     methods: {
@@ -35,9 +43,9 @@
 <style lang="stylus">
 
   .pag
-    display flex
-    justify-content space-between
-    align-items center
+    width 100%
+    height 63px
+    position relative
     border 1px solid rgba( 0,0,0, .6 )
 
     &__prev
@@ -46,8 +54,16 @@
       background-color salmon
       cursor pointer
       border none
+      position absolute
+      top 0
 
       &:hover
         background-color firebrick
+    
+    &__prev
+      left 0
+
+    &__next
+      right 0
 
 </style>
