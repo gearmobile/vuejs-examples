@@ -2,7 +2,7 @@
   #app.container
     .row
       .col-md-8.col-md-offset-2
-        h2 Заказать подарочный сертификат на фотосессию
+        h2.title Заказать подарочный сертификат на фотосессию
         .row
           .col-md-12
             app-nav
@@ -39,4 +39,7 @@
     text-align: center
     color: #2c3e50
     margin-top: 60px
+
+    & .title
+      margin-bottom 3rem
 </style>

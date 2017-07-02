@@ -90,7 +90,7 @@ const state = {
     customer: {
       name: null,
       phone: null,
-      enail: null
+      email: null
     }
   }
 }

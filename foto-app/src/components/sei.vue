@@ -12,7 +12,8 @@
         .form-group
           label.col-sm-4.control-label( for="phone" ) Номер телефона
           .col-sm-8
-            input.form-control( id="phone", name="phone", type="text", v-model="user.phone" )
+            //- input.form-control( id="phone", name="phone", type="text", v-model="user.phone" )
+            the-mask.form-control( :mask="['+7 (###) ###-####']", id="phone", name="phone", type="text", v-model="user.phone" )
         .form-group
           label.col-sm-4.control-label( for="email" ) E-mail
           .col-sm-8
@@ -21,6 +22,7 @@
 
 <script>
   import { mapActions } from 'vuex'
+  import TheMask from 'vue-the-mask'
 
   export default {
     name: 'sei',
@@ -40,6 +42,9 @@
       onSelect () {
         this.getDetails(this.user)
       }
+    },
+    components: {
+      TheMask
     }
   }
 </script>
