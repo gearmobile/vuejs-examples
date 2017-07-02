@@ -1,7 +1,7 @@
 <template lang="pug">
   .pag
-    button.pag__prev( @click="onPrev()" ) {{ prev }}
-    button.pag__next( @click="onNext()", :disabled="nextStatus" ) {{ next }}
+    button.pag__prev( @click="onPrev()" v-show="prevStatus" ) {{ prev }}
+    button.pag__next( @click="onNext()", v-show="nextStatus" ) {{ next }}
 </template>
 
 <script>
@@ -13,8 +13,8 @@
         prev: 'prev',
         next: 'next',
         page: 1,
-        nextStatus: false,
-        prevStatus: false
+        nextStatus: true,
+        prevStatus: true
       }
     },
     methods: {
@@ -51,6 +51,7 @@
       padding 2rem 3rem
       background-color salmon
       cursor pointer
+      border none
 
       &:hover
         background-color firebrick
