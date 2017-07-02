@@ -19,15 +19,19 @@
     },
     methods: {
       onNext () {
-        this.page += 1
         if (this.page < 6) {
+          this.page += 1
           this.$router.push({ path: '/' + this.page })
+        } else {
+          return false
         }
       },
       onPrev () {
-        this.page -= 1
-        if (this.page >= 1) {
+        if (this.page > 1) {
+          this.page -= 1
           this.$router.push({ path: '/' + this.page })
+        } else {
+          return false
         }
       }
     }
