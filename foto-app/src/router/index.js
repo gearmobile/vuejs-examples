@@ -12,37 +12,37 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/:id',
+      path: '/',
       name: 'Primo',
       component: Primo
     },
     {
-      // path: '/secondo',
-      path: '/:id',
+      path: '/secondo',
+      // path: '/:id',
       name: 'Secondo',
       component: Secondo
     },
     {
-      // path: '/tetro',
-      path: '/:id',
+      path: '/tetro',
+      // path: '/:id',
       name: 'Tetro',
       component: Tetro
     },
     {
-      // path: '/quattro',
-      path: '/:id',
+      path: '/quattro',
+      // path: '/:id',
       name: 'Quattro',
       component: Quattro
     },
     {
-      // path: '/cinque',
-      path: '/:id',
+      path: '/cinque',
+      // path: '/:id',
       name: 'Cinque',
       component: Cinque
     },
     {
-      // path: '/sei',
-      path: '/:id',
+      path: '/sei',
+      // path: '/:id',
       name: 'Sei',
       component: Sei
     }

@@ -5,7 +5,6 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
 
   export default {
     name: 'pagination',
@@ -16,18 +15,13 @@
       }
     },
     methods: {
-      ...mapActions({
-        next: 'nextPage'
-        // next: 'nextPage',
-        // prev: 'prevPage'
-      }),
       onPrev () {
-        console.log('prev')
+        // console.log('prev')
         // this.prev()
       },
       onNext () {
-        console.log('next')
-        this.next()
+        // console.log('next')
+        // this.next()
         // this.next()
       }
     }
