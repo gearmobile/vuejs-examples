@@ -10,6 +10,7 @@ import Sei from '@/components/sei'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/:id',
@@ -17,31 +18,26 @@ export default new Router({
       component: Primo
     },
     {
-      // path: '/secondo',
       path: '/:id',
       name: 'Secondo',
       component: Secondo
     },
     {
-      // path: '/tetro',
       path: '/:id',
       name: 'Tetro',
       component: Tetro
     },
     {
-      // path: '/quattro',
       path: '/:id',
       name: 'Quattro',
       component: Quattro
     },
     {
-      // path: '/cinque',
       path: '/:id',
       name: 'Cinque',
       component: Cinque
     },
     {
-      // path: '/sei',
       path: '/:id',
       name: 'Sei',
       component: Sei

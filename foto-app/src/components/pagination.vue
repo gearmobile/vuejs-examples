@@ -1,7 +1,9 @@
 <template lang="pug">
   .pag
-    button.pag__prev( @click="onPrev()" v-show="prevStatus" ) {{ prev }}
-    button.pag__next( @click="onNext()", v-show="nextStatus" ) {{ next }}
+    button.pag__prev( @click="onPrev()" )
+      | prev
+    button.pag__next( @click="onNext()" )
+      | next
 </template>
 
 <script>
@@ -10,11 +12,7 @@
     name: 'pagination',
     data () {
       return {
-        prev: 'prev',
-        next: 'next',
-        page: 1,
-        nextStatus: true,
-        prevStatus: true
+        page: 1
       }
     },
     methods: {
