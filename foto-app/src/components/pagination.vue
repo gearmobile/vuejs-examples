@@ -1,9 +1,11 @@
 <template lang="pug">
   .pag
-    button.pag__prev( @click="onPrev()", v-show="prevButton" )
+    button.pag__prev( @click="onPrev()", v-if="prevButton" )
       | prev
-    button.pag__next( @click="onNext()", v-show="nextButton" )
+    button.pag__next( @click="onNext()", v-if="nextButton" )
       | next
+    button.pag__send( v-if="sendButton" )
+      | send data
 </template>
 
 <script>
@@ -21,6 +23,9 @@
       },
       prevButton () {
         return this.count !== 1
+      },
+      sendButton () {
+        return this.count === 6
       }
     },
     methods: {
@@ -50,6 +55,11 @@
 
     &__prev
     &__next
+    &__send
+      text-transform uppercase
+      color white
+      font-weight 700
+      text-shadow .1rem .1rem .1rem rgba( 0,0,0, .4 )
       padding 2rem 3rem
       background-color salmon
       cursor pointer
@@ -64,6 +74,7 @@
       left 0
 
     &__next
+    &__send
       right 0
 
 </style>
