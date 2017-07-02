@@ -1,21 +1,26 @@
 <template lang="pug">
   ul.nav.nav-justified.nav-pills
-    router-link( tag="li", to="/", role="presentation", active-class="active", exact )
+    router-link( tag="li", to="/1", role="presentation", active-class="active", exact )
       a( href="#" )
         | step 1
-    router-link( tag="li", to="/secondo", role="presentation", active-class="active" )
+    //- router-link( tag="li", to="/secondo", role="presentation", active-class="active" )
+    router-link( tag="li", to="/2", role="presentation", active-class="active" )
       a( href="#" )
         | step 2
-    router-link( tag="li", to="/tetro", role="presentation", active-class="active" )
+    //- router-link( tag="li", to="/tetro", role="presentation", active-class="active" )
+    router-link( tag="li", to="/3", role="presentation", active-class="active" )
       a( href="#" )
         | step 3
-    router-link( tag="li", to="/quattro", role="presentation", active-class="active" )
+    //- router-link( tag="li", to="/quattro", role="presentation", active-class="active" )
+    router-link( tag="li", to="/4", role="presentation", active-class="active" )
       a( href="#" )
         | step 4
-    router-link( tag="li", to="/cinque", role="presentation", active-class="active" )
+    //- router-link( tag="li", to="/cinque", role="presentation", active-class="active" )
+    router-link( tag="li", to="/5", role="presentation", active-class="active" )
       a( href="#" )
         | step 5
-    router-link( tag="li", to="/sei", role="presentation", active-class="active" )
+    //- router-link( tag="li", to="/sei", role="presentation", active-class="active" )
+    router-link( tag="li", to="/6", role="presentation", active-class="active" )
       a( href="#" )
         | step 6
 </template>

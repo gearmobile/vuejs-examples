@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from '../router/index'
 
 // https://fotorabbit.com.ua/fotosessiya-v-podarok/
 
@@ -10,7 +11,8 @@ const state = {
     time: 'period1',
     service: 'service1',
     certificate: 'certificate1',
-    delivery: 'delivery1'
+    delivery: 'delivery1',
+    step: 1
   },
   periods: [
     {
@@ -96,6 +98,14 @@ const state = {
 }
 
 const mutations = {
+  'NEXT_PAGE' (state) {
+    state.status.step += 1
+    router.push({ path: '/' + state.status.step })
+  },
+  'PREV_PAGE' (state) {
+    state.status.step -= 1
+    router.push({ path: '/' + state.status.step })
+  },
   //
   'SET_TIME_STATUS' (state, payload) {
     state.status.time = payload.name
@@ -137,6 +147,14 @@ const mutations = {
 }
 
 const actions = {
+  // next page
+  nextPage ({ commit }) {
+    commit('NEXT_PAGE')
+  },
+  // prev page
+  prevPage ({ commit }) {
+    commit('PREV_PAGE')
+  },
   // TIME SECTION
   setTimeStatus ({ commit }, payload) {
     commit('SET_TIME_STATUS', payload)
@@ -204,7 +222,7 @@ const getters = {
   getDelivery (state) {
     return state.delivery
   },
-  //
+  // GET TOTAL SUM
   getSum (state) {
     return state.order.time + state.order.service + state.order.certificate + state.order.delivery
   }

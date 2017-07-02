@@ -1,28 +1,54 @@
 <template lang="pug">
   .pag
-    .pag__left
-    .pag__right
+    .pag__prev( @click="onPrev()" ) {{ prev }}
+    .pag__next( @click="onNext()" ) {{ next }}
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
+
   export default {
-    name: 'pagination'
+    name: 'pagination',
+    data () {
+      return {
+        prev: 'prev',
+        next: 'next'
+      }
+    },
+    methods: {
+      ...mapActions({
+        next: 'nextPage'
+        // next: 'nextPage',
+        // prev: 'prevPage'
+      }),
+      onPrev () {
+        console.log('prev')
+        // this.prev()
+      },
+      onNext () {
+        console.log('next')
+        this.next()
+        // this.next()
+      }
+    }
   }
 </script>
 
 <style lang="stylus">
+
   .pag
     display flex
     justify-content space-between
     align-items center
     border 1px solid rgba( 0,0,0, .6 )
 
-    &__left
-    &__right
+    &__prev
+    &__next
       padding 2rem 3rem
       background-color salmon
       cursor pointer
 
       &:hover
         background-color firebrick
+
 </style>
