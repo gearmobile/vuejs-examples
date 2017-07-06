@@ -1,21 +1,19 @@
 # loan-calculator
 
-> A Vue.js project
+## Калькулятор займа под залог автомобиля
 
-## Build Setup
+Переменная в калькуляторе одна, регулируется ползунком, допустим `n`
 
-``` bash
-# install dependencies
-npm install
+Далее две колонки, смотря сверху вниз
 
-# serve with hot reload at localhost:8080
-npm run dev
+### Автоломбард:
 
-# build for production with minification
-npm run build
+  * сумма займа по формуле - `n * 0.7`
+  * процентная ставка постоянная - `2%`
+  * ежемесячный платеж - `(n * 0.7) * 0.02`
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+### Автозалог:
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+  * сумма займа по формуле - `n * 0.9`
+  * процентная ставка постоянная - `4%`
+  * ежемесячный платеж - `(n * 0.9) * 0.04`
