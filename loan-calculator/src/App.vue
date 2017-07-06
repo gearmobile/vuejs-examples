@@ -33,35 +33,35 @@
 
       v-layout( row )
         v-flex.text-xs-right.blue.darken-2.white--text( xs4, style="display: flex; align-items: center; justify-content: flex-end;" )
-          p.mb-0
+          h6.mb-0.white--text.pr-2
             | {{ sum1 | currency }}
         v-flex.red.darken-2( xs4, style="display: flex; align-items: center; justify-content: center" )
           h5.text-xs-center.white--text.mb-0.py-3
             | сумма займа
         v-flex.text-xs-left.green.darken-2( xs4, style="display: flex; align-items: center" )
-          p.mb-0.white--text
+          h6.mb-0.white--text.pl-2
             | {{ sum2 | currency }}
 
       v-layout( row )
         v-flex.text-xs-right.blue.darken-3.white--text( xs4, style="display: flex; align-items: center; justify-content: flex-end;" )
-          p.mb-0
+          h6.mb-0.white--text.pr-2
             | {{ pawnshop.percent | percent }}
         v-flex.red.darken-3( xs4, style="display: flex; align-items: center; justify-content: center" )
           h5.text-xs-center.white--text.mb-0.py-3
             | процентная ставка
         v-flex.text-xs-left.green.darken-3( xs4, style="display: flex; align-items: center" )
-          p.mb-0.white--text
+          h6.mb-0.white--text.pl-2
             | {{ zalog.percent | percent }}
 
       v-layout( row )
         v-flex.text-xs-right.blue.darken-4.white--text( xs4, style="display: flex; align-items: center; justify-content: flex-end;" )
-          p.mb-0
+          h6.mb-0.white--text.pr-2
             | {{ payment1 | currency }}
         v-flex.red.darken-4( xs4, style="display: flex; align-items: center; justify-content: center" )
           h5.text-xs-center.white--text.mb-0.py-3
             | ежемесячный платеж
         v-flex.text-xs-left.green.darken-4( xs4, style="display: flex; align-items: center" )
-          p.mb-0.white--text
+          h6.mb-0.white--text.pl-2
             | {{ payment2 | currency }}
 
       
