@@ -15,18 +15,18 @@
 
 
       v-layout( row )
-        v-flex.text-xs-right.blue.darken-1.white--text( xs4 )
-          h4.white--text.mb-0
+        v-flex.text-xs-right.blue.darken-1.white--text( xs4, style="display: flex; flex-direction: column; justify-content: center;" )
+          h4.white--text.mb-0.pr-2
             | автоломбард
-          p.mb-0
+          p.mb-0.pr-2
             | машина остается на нашей стоянке
-        v-flex.red.darken-1( xs4, style="display: flex; align-items: center; justify-content: center" )
+        v-flex.red.darken-1.py-5( xs4, style="display: flex; align-items: center; justify-content: center" )
           h4.text-xs-center.white--text.mb-0
             | программа
-        v-flex.text-xs-left.green.darken-1( xs4 )
-          h4.white--text.mb-0
+        v-flex.text-xs-left.green.darken-1( xs4, style="display: flex; flex-direction: column; justify-content: center;" )
+          h4.white--text.mb-0.pl-2
             | автозалог
-          p.mb-0.white--text
+          p.mb-0.white--text.pl-2
             | вы оставляете нам только ПТС
             br
             | автомобиль остается у вас
