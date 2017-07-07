@@ -5,18 +5,25 @@
     v-container
       v-flex( md8, offset-md2 )
 
+        // HEADLINE
+
+        v-layout( row )
+          v-flex( xs12 )
+            h2.display-2.text-xs-center
+              | Расчет количества бетона для фундамента
+
         // TYPE
 
         v-layout( row, style="align-items: baseline;" )
           v-flex( xs4 )
             v-subheader
               | Тип фундамента
-          v-flex( xs8 )
-            v-radio( label="Type 1", v-model="type", value="type1", color="indigo", hide-details )
-            v-radio( label="Type 2", v-model="type", value="type2", color="indigo", hide-details )
-            v-radio( label="Type 3", v-model="type", value="type3", color="indigo", hide-details )
-            v-radio( label="Type 4", v-model="type", value="type4", color="indigo", hide-details )
-            v-radio( label="Type 5", v-model="type", value="type5", color="indigo", hide-details )
+          v-flex( xs8, style="display: flex;" )
+            v-radio( label="Type 1", v-model="type", value="basement1", color="indigo", hide-details )
+            v-radio( label="Type 2", v-model="type", value="basement2", color="indigo", hide-details )
+            v-radio( label="Type 3", v-model="type", value="basement3", color="indigo", hide-details )
+            v-radio( label="Type 4", v-model="type", value="basement4", color="indigo", hide-details )
+            v-radio( label="Type 5", v-model="type", value="basement5", color="indigo", hide-details )
 
         // SIDE A
 
@@ -25,7 +32,7 @@
             v-subheader
               | Длина стороны А, метр
           v-flex( xs8 )
-            v-text-field( id="sideA", name="sideA", label="Длина стороны А" )
+            v-text-field( id="sideA", name="sideA", label="Длина стороны А", v-model="basement.sideA" )
 
         // SIDE B
         
@@ -34,7 +41,7 @@
             v-subheader
               | Длина стороны B, метр
           v-flex( xs8 )
-            v-text-field( id="sideB", name="sideB", label="Длина стороны B" )
+            v-text-field( id="sideB", name="sideB", label="Длина стороны B", v-model="basement.sideB" )
 
         // SIDE C
         
@@ -43,7 +50,7 @@
             v-subheader
               | Высота ленты C, метр
           v-flex( xs8 )
-            v-text-field( id="sideC", name="sideC", label="Высота ленты C" )
+            v-text-field( id="sideC", name="sideC", label="Высота ленты C", v-model="basement.sideC" )
 
         // SIDE D
         
@@ -52,7 +59,14 @@
             v-subheader
               | Толщина ленты D, см
           v-flex( xs8 )
-            v-text-field( id="sideD", name="sideD", label="Толщина ленты D" )
+            v-text-field( id="sideD", name="sideD", label="Толщина ленты D", v-model="basement.sideD" )
+
+        // PREVIEW
+
+        v-layout( row )
+          v-flex( xs12 )
+            v-card
+              v-card-media( :src="imagePath", height="540px" )
 
     v-footer( :fixed="fixed" )
       v-spacer
@@ -65,12 +79,21 @@
     data () {
       return {
         fixed: true,
-        type: 'type1'
+        type: 'basement1',
+        basement: {
+          sideA: null,
+          sideB: null,
+          sideC: null,
+          sideD: null
+        }
       }
     },
     computed: {
       date () {
         return new Date().getFullYear()
+      },
+      imagePath () {
+        return require('./assets/' + this.type + '.jpg')
       }
     }
   }
