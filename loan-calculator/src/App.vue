@@ -72,9 +72,6 @@
               h6.mb-0.white--text.pl-2
                 | {{ payment2 | currency }}
 
-
-
-
 </template>
 
 <script>
