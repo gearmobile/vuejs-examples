@@ -5,6 +5,19 @@
     v-container
       v-flex( md8, offset-md2 )
 
+        // TYPE
+
+        v-layout( row, style="align-items: baseline;" )
+          v-flex( xs4 )
+            v-subheader
+              | Тип фундамента
+          v-flex( xs8 )
+            v-radio( label="Type 1", v-model="type", value="type1", color="indigo", hide-details )
+            v-radio( label="Type 2", v-model="type", value="type2", color="indigo", hide-details )
+            v-radio( label="Type 3", v-model="type", value="type3", color="indigo", hide-details )
+            v-radio( label="Type 4", v-model="type", value="type4", color="indigo", hide-details )
+            v-radio( label="Type 5", v-model="type", value="type5", color="indigo", hide-details )
+
         // SIDE A
 
         v-layout( row, style="align-items: baseline;" )
@@ -51,7 +64,8 @@
   export default {
     data () {
       return {
-        fixed: true
+        fixed: true,
+        type: 'type1'
       }
     },
     computed: {
