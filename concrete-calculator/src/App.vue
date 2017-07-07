@@ -153,7 +153,7 @@
               v-flex( xs12 )
                 v-list
                   v-list-tile
-                    | {{ volume1 }}
+                    //- | {{ volume1 }}
                   v-list-tile
                     | {{ mark }}
 
@@ -198,28 +198,26 @@
       imagePath () {
         return require('./assets/' + this.type + '.jpg')
       },
-      volume1 () {
-        const delta = (this.basement.sideD / 100) * 2
-        const S1 = this.basement.sideA * this.basement.sideB
-        const S2 = (this.basement.sideA - delta) * (this.basement.sideB - delta)
-        const V = (S1 - S2) * this.basement.sideC
-        return V
+      delta () {
+        const result = (this.basement.sideD / 100)
+        return result
       },
-      volume2 () {
-        const delta = (this.basement.sideD / 100)
-        const S1 = this.basement.sideA * this.basement.sideB
-        const S2 = (this.basement.sideA - delta * 2) * (this.basement.sideB - delta * 2)
-        const S3 = (this.basement.sideA - delta * 2) * delta
-        const V = (S1 - S2 - S3) * this.basement.sideC
-        return V
+      long () {
+        const s = (this.basement.sideA - this.delta * 2) * this.delta
       },
-      volume3 () {
-        const delta = (this.basement.sideD / 100)
-        const S1 = this.basement.sideA * this.basement.sideB
-        const S2 = (this.basement.sideA - delta * 2) * (this.basement.sideB - delta * 2)
-        const S3 = ((this.basement.sideA - delta * 2) * delta) * 2
-        const V = (S1 - S2 - S3) * this.basement.sideC
-        return V
+      s1 () {
+        const s1 = this.basement.sideA * this.basement.sideB
+        const s2 = (this.basement.sideA - this.delta * 2) * (this.basement.sideB - this.delta * 2)
+        const result = s1 - s2
+        return result
+      },
+      s2 () {
+        const result = (this.s1 - this.long) * this.basement.sideC
+        return result
+      },
+      s3 () {
+        const result = (this.s1 - this.long * 2) * this.basement.sideC
+        return result
       },
       volume4 () {
         const delta = (this.basement.sideD / 100)
