@@ -205,6 +205,9 @@
       long () {
         const s = (this.basement.sideA - this.delta * 2) * this.delta
       },
+      short () {
+        const s = this.delta * ((this.basement.sideB - this.delta * 3) / 2)
+      },
       s1 () {
         const s1 = this.basement.sideA * this.basement.sideB
         const s2 = (this.basement.sideA - this.delta * 2) * (this.basement.sideB - this.delta * 2)
@@ -219,23 +222,13 @@
         const result = (this.s1 - this.long * 2) * this.basement.sideC
         return result
       },
-      volume4 () {
-        const delta = (this.basement.sideD / 100)
-        const S1 = this.basement.sideA * this.basement.sideB
-        const S2 = (this.basement.sideA - delta * 2) * (this.basement.sideB - delta * 2)
-        const S3 = (this.basement.sideA - delta * 2) * delta
-        const S4 = delta * ((this.basement.sideB - delta * 3) / 2)
-        const V = (S1 - S2 - S3 - S4) * this.basement.sideC
-        return V
+      s4 () {
+        const result = (this.s2 - this.short) * this.basement.sideC
+        return result
       },
-      volume5 () {
-        const delta = (this.basement.sideD / 100)
-        const S1 = this.basement.sideA * this.basement.sideB
-        const S2 = (this.basement.sideA - delta * 2) * (this.basement.sideB - delta * 2)
-        const S3 = (this.basement.sideA - delta * 2) * delta
-        const S4 = (delta * ((this.basement.sideB - delta * 3) / 2)) * 2
-        const V = (S1 - S2 - S3 - S4) * this.basement.sideC
-        return V
+      s5 () {
+        const result = (this.s2 - this.short * 2) * this.basement.sideC
+        return result
       }
     }
   }
