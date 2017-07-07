@@ -21,11 +21,11 @@
               v-subheader
                 | Тип фундамента
             v-flex( xs8, style="display: flex;" )
-              v-radio( label="Type 1", v-model="type", value="basement1", color="indigo", hide-details )
-              v-radio( label="Type 2", v-model="type", value="basement2", color="indigo", hide-details )
-              v-radio( label="Type 3", v-model="type", value="basement3", color="indigo", hide-details )
-              v-radio( label="Type 4", v-model="type", value="basement4", color="indigo", hide-details )
-              v-radio( label="Type 5", v-model="type", value="basement5", color="indigo", hide-details )
+              v-radio( label="Type 1", v-model="type", value="basement1", color="teal", hide-details )
+              v-radio( label="Type 2", v-model="type", value="basement2", color="teal", hide-details )
+              v-radio( label="Type 3", v-model="type", value="basement3", color="teal", hide-details )
+              v-radio( label="Type 4", v-model="type", value="basement4", color="teal", hide-details )
+              v-radio( label="Type 5", v-model="type", value="basement5", color="teal", hide-details )
 
         // MAIN
 
@@ -36,7 +36,7 @@
           v-layout( row, style="align-items: baseline;" )
             v-flex( xs4 )
               v-subheader
-                | Длина стороны А, метр
+                | Длина стороны А, метры
             v-flex( xs8 )
               v-text-field( id="sideA", name="sideA", label="Длина стороны А", v-model="basement.sideA", required )
 
@@ -45,7 +45,7 @@
           v-layout( row, style="align-items: baseline;" )
             v-flex( xs4 )
               v-subheader
-                | Длина стороны B, метр
+                | Длина стороны B, метры
             v-flex( xs8 )
               v-text-field( id="sideB", name="sideB", label="Длина стороны B", v-model="basement.sideB", required )
 
@@ -54,7 +54,7 @@
           v-layout( row, style="align-items: baseline;" )
             v-flex( xs4 )
               v-subheader
-                | Высота ленты C, метр
+                | Высота ленты C, метры
             v-flex( xs8 )
               v-text-field( id="sideC", name="sideC", label="Высота ленты C", v-model="basement.sideC", required )
 
@@ -72,7 +72,7 @@
         v-card.mb-5
           v-layout( row )
             v-flex( xs12 )
-              v-card-media( :src="imagePath", height="540px" )
+              v-card-media( :src="imagePath", height="700px" )
 
         // ADDITIONAL
 
@@ -153,9 +153,9 @@
               v-flex( xs12 )
                 v-list
                   v-list-tile
-                    //- | {{ volume1 }}
+                    | {{ s1 }}
                   v-list-tile
-                    | {{ mark }}
+                    | марка бетона - {{ mark.text }}
 
 
     // FOOTER
@@ -186,9 +186,21 @@
           value: null,
           status: false
         },
-        // mark ---
         mark: 'm-100',
-        marks: ['m-100', 'm-150', 'm-200', 'm-250', 'm-300', 'm-350', 'm-400', 'm-450', 'm-500', 'm-550', 'm-600']
+        marks: [
+          { text: 'm-100', price: 3400 },
+          { text: 'm-150', price: 3550 },
+          { text: 'm-200', price: 3750 },
+          { text: 'm-250', price: 3850 },
+          { text: 'm-300', price: 3950 },
+          { text: 'm-350', price: 4050 },
+          { text: 'm-400', price: 4600 },
+          { text: 'm-450', price: 4850 },
+          { text: 'm-500', price: 5000 },
+          { text: 'm-550', price: 5050 },
+          { text: 'm-600', price: 5200 },
+          { text: 'm-650', price: 5500 }
+        ]
       }
     },
     computed: {
