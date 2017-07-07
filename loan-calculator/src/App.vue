@@ -14,11 +14,11 @@
           v-card
             v-card-text
               div.pt-2( style="display: flex; align-items: center;" )
-                h6.mb-0 {{ cost.min | currency }}
+                h6.mb-0( style="user-select: none;" ) {{ cost.min | currency }}
                 v-slider.px-4.my-0( :min="cost.min", :max="cost.max", v-model="cost.value", hide-details )
-                h6.mb-0 {{ cost.max | currency }}
+                h6.mb-0( style="user-select: none;" ) {{ cost.max | currency }}
               div.pt-4( style="display: flex; justify-content: center;" )
-                h6.mb-0 {{ cost.value | currency }}
+                h6.mb-0( style="user-select: none;" ) {{ cost.value | currency }}
 
       main.elevation-6
         v-layout( row )
