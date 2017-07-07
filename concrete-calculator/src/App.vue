@@ -82,12 +82,12 @@
           
           v-container
             // ---
-            v-layout( row, style="align-items: baseline;" )
+            v-layout( row, style="align-items: center;" )
               v-flex( xs4 )
                 v-subheader
                   | Добавить плиту основание
               v-flex( xs8 )
-                v-checkbox( v-model="plate.status" )
+                v-checkbox( v-model="plate.status", hide-details )
             // ---
             v-slide-y-transition( mode="out-in" )
               v-container( v-if="plate.status" )
@@ -98,20 +98,22 @@
                   v-flex( xs8 )
                     v-text-field( id="plate", name="plate", label="Толщина плиты", v-model="plate.value", hide-details )
                 v-layout.mt-2
-                  v-flex( xs12 )
-                    p
-                      | Рекомендуемая толщина от 25 до 40 см.
+                  v-flex( xs12, style="display: flex; align-items: center;" )
+                    v-icon.mr-2.teal--text.text--darken-2
+                      | error_outline
+                    p.mb-0
+                      | Рекомендуемая толщина от 25 до 40 см
 
           // CROSS
           
           v-container
             // ---
-            v-layout( row, style="align-items: baseline;" )
+            v-layout( row, style="align-items: center;" )
               v-flex( xs4 )
                 v-subheader
                   | Добавить плиту перекрытие
               v-flex( xs8 )
-                v-checkbox( v-model="cross.status" )
+                v-checkbox( v-model="cross.status", hide-details )
             // ---
             v-slide-y-transition( mode="out-in" )
               v-container( v-if="cross.status" )
@@ -122,23 +124,38 @@
                   v-flex( xs8 )
                     v-text-field( id="cross", name="cross", label="Толщина плиты", v-model="cross.value", hide-details )
                 v-layout.mt-2
-                  v-flex( xs12 )
-                    p
-                      | Рекомендуемая толщина от 18 до 22 см.
+                  v-flex( xs12, style="display: flex; align-items: center;" )
+                    v-icon.mr-2.teal--text.text--darken-2
+                      | error_outline
+                    p.mb-0
+                      | Рекомендуемая толщина от 18 до 22 см
 
           // MARK
           
           v-container
-            v-layout( row, style="align-items: baseline;" )
+            v-layout( row, style="align-items: center;" )
               v-flex( xs4 )
                 v-subheader
                   | Марка бетона
               v-flex( xs8 )
                 v-select( :items="marks", label="Марка бетона", v-model="mark", single-line, bottom )
-            v-layout( row, style="align-items: baseline;" )
-              v-flex( xs12 )
-                p
+            v-layout( row, style="align-items: center;" )
+              v-flex( xs12, style="display: flex; align-items: center;" )
+                v-icon.mr-2.teal--text.text--darken-2
+                  | error_outline
+                p.mb-0
                   | Рекомендуемая марка м300-м350
+
+          // OUTPUT
+          
+          v-container
+            v-layout( row )
+              v-flex( xs12 )
+                v-list
+                  v-list-tile
+                    | {{ volume1 }}
+                  v-list-tile
+                    | {{ mark }}
 
 
     // FOOTER
@@ -180,6 +197,47 @@
       },
       imagePath () {
         return require('./assets/' + this.type + '.jpg')
+      },
+      volume1 () {
+        const delta = (this.basement.sideD / 100) * 2
+        const S1 = this.basement.sideA * this.basement.sideB
+        const S2 = (this.basement.sideA - delta) * (this.basement.sideB - delta)
+        const V = (S1 - S2) * this.basement.sideC
+        return V
+      },
+      volume2 () {
+        const delta = (this.basement.sideD / 100)
+        const S1 = this.basement.sideA * this.basement.sideB
+        const S2 = (this.basement.sideA - delta * 2) * (this.basement.sideB - delta * 2)
+        const S3 = (this.basement.sideA - delta * 2) * delta
+        const V = (S1 - S2 - S3) * this.basement.sideC
+        return V
+      },
+      volume3 () {
+        const delta = (this.basement.sideD / 100)
+        const S1 = this.basement.sideA * this.basement.sideB
+        const S2 = (this.basement.sideA - delta * 2) * (this.basement.sideB - delta * 2)
+        const S3 = ((this.basement.sideA - delta * 2) * delta) * 2
+        const V = (S1 - S2 - S3) * this.basement.sideC
+        return V
+      },
+      volume4 () {
+        const delta = (this.basement.sideD / 100)
+        const S1 = this.basement.sideA * this.basement.sideB
+        const S2 = (this.basement.sideA - delta * 2) * (this.basement.sideB - delta * 2)
+        const S3 = (this.basement.sideA - delta * 2) * delta
+        const S4 = delta * ((this.basement.sideB - delta * 3) / 2)
+        const V = (S1 - S2 - S3 - S4) * this.basement.sideC
+        return V
+      },
+      volume5 () {
+        const delta = (this.basement.sideD / 100)
+        const S1 = this.basement.sideA * this.basement.sideB
+        const S2 = (this.basement.sideA - delta * 2) * (this.basement.sideB - delta * 2)
+        const S3 = (this.basement.sideA - delta * 2) * delta
+        const S4 = (delta * ((this.basement.sideB - delta * 3) / 2)) * 2
+        const V = (S1 - S2 - S3 - S4) * this.basement.sideC
+        return V
       }
     }
   }
