@@ -14,117 +14,131 @@
 
         // TYPE
 
-        v-layout( row, style="align-items: baseline;" )
-          v-flex( xs4 )
-            v-subheader
-              | Тип фундамента
-          v-flex( xs8, style="display: flex;" )
-            v-radio( label="Type 1", v-model="type", value="basement1", color="indigo", hide-details )
-            v-radio( label="Type 2", v-model="type", value="basement2", color="indigo", hide-details )
-            v-radio( label="Type 3", v-model="type", value="basement3", color="indigo", hide-details )
-            v-radio( label="Type 4", v-model="type", value="basement4", color="indigo", hide-details )
-            v-radio( label="Type 5", v-model="type", value="basement5", color="indigo", hide-details )
+        v-card.mb-4.pa-4
 
-        // SIDE A
+          v-layout( row, style="align-items: center;" )
+            v-flex( xs4 )
+              v-subheader
+                | Тип фундамента
+            v-flex( xs8, style="display: flex;" )
+              v-radio( label="Type 1", v-model="type", value="basement1", color="indigo", hide-details )
+              v-radio( label="Type 2", v-model="type", value="basement2", color="indigo", hide-details )
+              v-radio( label="Type 3", v-model="type", value="basement3", color="indigo", hide-details )
+              v-radio( label="Type 4", v-model="type", value="basement4", color="indigo", hide-details )
+              v-radio( label="Type 5", v-model="type", value="basement5", color="indigo", hide-details )
 
-        v-layout( row, style="align-items: baseline;" )
-          v-flex( xs4 )
-            v-subheader
-              | Длина стороны А, метр
-          v-flex( xs8 )
-            v-text-field( id="sideA", name="sideA", label="Длина стороны А", v-model="basement.sideA", required )
+        // MAIN
 
-        // SIDE B
-        
-        v-layout( row, style="align-items: baseline;" )
-          v-flex( xs4 )
-            v-subheader
-              | Длина стороны B, метр
-          v-flex( xs8 )
-            v-text-field( id="sideB", name="sideB", label="Длина стороны B", v-model="basement.sideB", required )
+        v-card.mb-4.pa-4
 
-        // SIDE C
-        
-        v-layout( row, style="align-items: baseline;" )
-          v-flex( xs4 )
-            v-subheader
-              | Высота ленты C, метр
-          v-flex( xs8 )
-            v-text-field( id="sideC", name="sideC", label="Высота ленты C", v-model="basement.sideC", required )
+          // SIDE A
 
-        // SIDE D
-        
-        v-layout( row, style="align-items: baseline;" )
-          v-flex( xs4 )
-            v-subheader
-              | Толщина ленты D, см
-          v-flex( xs8 )
-            v-text-field( id="sideD", name="sideD", label="Толщина ленты D", v-model="basement.sideD", required )
+          v-layout( row, style="align-items: baseline;" )
+            v-flex( xs4 )
+              v-subheader
+                | Длина стороны А, метр
+            v-flex( xs8 )
+              v-text-field( id="sideA", name="sideA", label="Длина стороны А", v-model="basement.sideA", required )
+
+          // SIDE B
+          
+          v-layout( row, style="align-items: baseline;" )
+            v-flex( xs4 )
+              v-subheader
+                | Длина стороны B, метр
+            v-flex( xs8 )
+              v-text-field( id="sideB", name="sideB", label="Длина стороны B", v-model="basement.sideB", required )
+
+          // SIDE C
+          
+          v-layout( row, style="align-items: baseline;" )
+            v-flex( xs4 )
+              v-subheader
+                | Высота ленты C, метр
+            v-flex( xs8 )
+              v-text-field( id="sideC", name="sideC", label="Высота ленты C", v-model="basement.sideC", required )
+
+          // SIDE D
+          
+          v-layout( row, style="align-items: baseline;" )
+            v-flex( xs4 )
+              v-subheader
+                | Толщина ленты D, см
+            v-flex( xs8 )
+              v-text-field( id="sideD", name="sideD", label="Толщина ленты D", v-model="basement.sideD", required )
 
         // PREVIEW
 
-        v-layout( row )
-          v-flex( xs12 )
-            v-card
-              v-card-media( :src="imagePath", height="540px" )
+        v-card.mb-5
+          //- v-layout( row )
+            v-flex( xs12 )
+          v-card-media( :src="imagePath", height="540px" )
 
-        // PLATE
-        
-        v-container
-          // ---
-          v-layout( row, style="align-items: baseline;" )
-            v-flex( xs4 )
-              v-subheader
-                | Добавить плиту основание
-            v-flex( xs8 )
-              v-checkbox( v-model="plate.status" )
-          // ---
-          v-slide-y-transition( mode="out-in" )
-            v-container( v-if="plate.status" )
-              v-layout( row, style="align-items: center;" )
-                v-flex( xs4 )
-                  v-subheader
-                    | Толщина плиты
-                v-flex( xs8 )
-                  v-text-field( id="plate", name="plate", label="Толщина плиты", v-model="plate.value", hide-details )
-              v-layout.mt-2
-                v-flex( xs12 )
-                  p
-                    | Рекомендуемая толщина от 25 до 40 см.
+        // ADDITIONAL
 
-        // CROSS
-        
-        v-container
-          // ---
-          v-layout( row, style="align-items: baseline;" )
-            v-flex( xs4 )
-              v-subheader
-                | Добавить плиту перекрытие
-            v-flex( xs8 )
-              v-checkbox( v-model="cross.status" )
-          // ---
-          v-slide-y-transition( mode="out-in" )
-            v-container( v-if="cross.status" )
-              v-layout( row, style="align-items: center;" )
-                v-flex( xs4 )
-                  v-subheader
-                    | Толщина плиты
-                v-flex( xs8 )
-                  v-text-field( id="cross", name="cross", label="Толщина плиты", v-model="cross.value", hide-details )
-              v-layout.mt-2
-                v-flex( xs12 )
-                  p
-                    | Рекомендуемая толщина от 18 до 22 см.
+        v-card
 
-        // MARK
-        
-        v-layout( row, style="align-items: baseline;" )
-          v-flex( xs4 )
-            v-subheader
-              | Марка бетона
-          v-flex( xs8 )
-            v-select( :items="marks", label="Марка бетона", v-model="mark", single-line, bottom )
-            //- v-text-field( id="mark", name="mark", label="Толщина ленты D", v-model="mark" )
+          // PLATE
+          
+          v-container
+            // ---
+            v-layout( row, style="align-items: baseline;" )
+              v-flex( xs4 )
+                v-subheader
+                  | Добавить плиту основание
+              v-flex( xs8 )
+                v-checkbox( v-model="plate.status" )
+            // ---
+            v-slide-y-transition( mode="out-in" )
+              v-container( v-if="plate.status" )
+                v-layout( row, style="align-items: center;" )
+                  v-flex( xs4 )
+                    v-subheader
+                      | Толщина плиты
+                  v-flex( xs8 )
+                    v-text-field( id="plate", name="plate", label="Толщина плиты", v-model="plate.value", hide-details )
+                v-layout.mt-2
+                  v-flex( xs12 )
+                    p
+                      | Рекомендуемая толщина от 25 до 40 см.
+
+          // CROSS
+          
+          v-container
+            // ---
+            v-layout( row, style="align-items: baseline;" )
+              v-flex( xs4 )
+                v-subheader
+                  | Добавить плиту перекрытие
+              v-flex( xs8 )
+                v-checkbox( v-model="cross.status" )
+            // ---
+            v-slide-y-transition( mode="out-in" )
+              v-container( v-if="cross.status" )
+                v-layout( row, style="align-items: center;" )
+                  v-flex( xs4 )
+                    v-subheader
+                      | Толщина плиты
+                  v-flex( xs8 )
+                    v-text-field( id="cross", name="cross", label="Толщина плиты", v-model="cross.value", hide-details )
+                v-layout.mt-2
+                  v-flex( xs12 )
+                    p
+                      | Рекомендуемая толщина от 18 до 22 см.
+
+          // MARK
+          
+          v-container
+            v-layout( row, style="align-items: baseline;" )
+              v-flex( xs4 )
+                v-subheader
+                  | Марка бетона
+              v-flex( xs8 )
+                v-select( :items="marks", label="Марка бетона", v-model="mark", single-line, bottom )
+            v-layout( row, style="align-items: baseline;" )
+              v-flex( xs12 )
+                p
+                  | Рекомендуемая марка м300-м350
 
 
 
