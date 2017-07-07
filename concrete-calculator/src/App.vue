@@ -68,6 +68,29 @@
             v-card
               v-card-media( :src="imagePath", height="540px" )
 
+        // PLATE
+        
+        v-container
+          // ---
+          v-layout( row, style="align-items: baseline;" )
+            v-flex( xs4 )
+              v-subheader
+                | Добавить плиту основание
+            v-flex( xs8 )
+              v-checkbox( v-model="plate.status" )
+          // ---
+          v-container( v-if="plate.status" )
+            v-layout( row, style="align-items: center;" )
+              v-flex( xs4 )
+                v-subheader
+                  | Толщина плиты
+              v-flex( xs8 )
+                v-text-field( id="plate", name="plate", label="Толщина ленты D", v-model="plate.value", hide-details )
+            v-layout.mt-2
+              v-flex( xs12 )
+                p
+                  | Рекомендуемая толщина от 25 до 40 см.
+
     v-footer( :fixed="fixed" )
       v-spacer
       span &copy; {{ date }}
@@ -85,6 +108,10 @@
           sideB: null,
           sideC: null,
           sideD: null
+        },
+        plate: {
+          value: null,
+          status: false
         }
       }
     },
