@@ -21,7 +21,7 @@
               v-subheader
                 | Тип фундамента
             v-flex( xs8, style="display: flex" )
-              v-radio( v-for="(item, index) in types" :label="'Type ' + (index + 1)", v-model="type", :value="item", color="teal", hide-details )
+              v-radio( v-for="(item, index) in types" :label="'Type ' + (index + 1)", v-model="type", :value="item", :key="index", color="teal", hide-details )
 
         // MAIN
 
