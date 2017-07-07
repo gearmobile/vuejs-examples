@@ -32,7 +32,7 @@
             v-subheader
               | Длина стороны А, метр
           v-flex( xs8 )
-            v-text-field( id="sideA", name="sideA", label="Длина стороны А", v-model="basement.sideA" )
+            v-text-field( id="sideA", name="sideA", label="Длина стороны А", v-model="basement.sideA", required )
 
         // SIDE B
         
@@ -41,7 +41,7 @@
             v-subheader
               | Длина стороны B, метр
           v-flex( xs8 )
-            v-text-field( id="sideB", name="sideB", label="Длина стороны B", v-model="basement.sideB" )
+            v-text-field( id="sideB", name="sideB", label="Длина стороны B", v-model="basement.sideB", required )
 
         // SIDE C
         
@@ -50,7 +50,7 @@
             v-subheader
               | Высота ленты C, метр
           v-flex( xs8 )
-            v-text-field( id="sideC", name="sideC", label="Высота ленты C", v-model="basement.sideC" )
+            v-text-field( id="sideC", name="sideC", label="Высота ленты C", v-model="basement.sideC", required )
 
         // SIDE D
         
@@ -59,7 +59,7 @@
             v-subheader
               | Толщина ленты D, см
           v-flex( xs8 )
-            v-text-field( id="sideD", name="sideD", label="Толщина ленты D", v-model="basement.sideD" )
+            v-text-field( id="sideD", name="sideD", label="Толщина ленты D", v-model="basement.sideD", required )
 
         // PREVIEW
 
@@ -79,17 +79,54 @@
             v-flex( xs8 )
               v-checkbox( v-model="plate.status" )
           // ---
-          v-container( v-if="plate.status" )
-            v-layout( row, style="align-items: center;" )
-              v-flex( xs4 )
-                v-subheader
-                  | Толщина плиты
-              v-flex( xs8 )
-                v-text-field( id="plate", name="plate", label="Толщина ленты D", v-model="plate.value", hide-details )
-            v-layout.mt-2
-              v-flex( xs12 )
-                p
-                  | Рекомендуемая толщина от 25 до 40 см.
+          v-slide-y-transition( mode="out-in" )
+            v-container( v-if="plate.status" )
+              v-layout( row, style="align-items: center;" )
+                v-flex( xs4 )
+                  v-subheader
+                    | Толщина плиты
+                v-flex( xs8 )
+                  v-text-field( id="plate", name="plate", label="Толщина плиты", v-model="plate.value", hide-details )
+              v-layout.mt-2
+                v-flex( xs12 )
+                  p
+                    | Рекомендуемая толщина от 25 до 40 см.
+
+        // CROSS
+        
+        v-container
+          // ---
+          v-layout( row, style="align-items: baseline;" )
+            v-flex( xs4 )
+              v-subheader
+                | Добавить плиту перекрытие
+            v-flex( xs8 )
+              v-checkbox( v-model="cross.status" )
+          // ---
+          v-slide-y-transition( mode="out-in" )
+            v-container( v-if="cross.status" )
+              v-layout( row, style="align-items: center;" )
+                v-flex( xs4 )
+                  v-subheader
+                    | Толщина плиты
+                v-flex( xs8 )
+                  v-text-field( id="cross", name="cross", label="Толщина плиты", v-model="cross.value", hide-details )
+              v-layout.mt-2
+                v-flex( xs12 )
+                  p
+                    | Рекомендуемая толщина от 18 до 22 см.
+
+        // MARK
+        
+        v-layout( row, style="align-items: baseline;" )
+          v-flex( xs4 )
+            v-subheader
+              | Марка бетона
+          v-flex( xs8 )
+            v-select( :items="marks", label="Марка бетона", v-model="mark", single-line, bottom )
+            //- v-text-field( id="mark", name="mark", label="Толщина ленты D", v-model="mark" )
+
+
 
     v-footer( :fixed="fixed" )
       v-spacer
@@ -112,7 +149,14 @@
         plate: {
           value: null,
           status: false
-        }
+        },
+        cross: {
+          value: null,
+          status: false
+        },
+        // mark ---
+        mark: 'm-100',
+        marks: ['m-100', 'm-150', 'm-200', 'm-250', 'm-300', 'm-350', 'm-400', 'm-450', 'm-500', 'm-550', 'm-600']
       }
     },
     computed: {
