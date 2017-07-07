@@ -20,12 +20,8 @@
             v-flex( xs4 )
               v-subheader
                 | Тип фундамента
-            v-flex( xs8, style="display: flex;" )
-              v-radio( label="Type 1", v-model="type", value="basement1", color="teal", hide-details )
-              v-radio( label="Type 2", v-model="type", value="basement2", color="teal", hide-details )
-              v-radio( label="Type 3", v-model="type", value="basement3", color="teal", hide-details )
-              v-radio( label="Type 4", v-model="type", value="basement4", color="teal", hide-details )
-              v-radio( label="Type 5", v-model="type", value="basement5", color="teal", hide-details )
+            v-flex( xs8, style="display: flex" )
+              v-radio( v-for="(item, index) in types" :label="'Type ' + (index + 1)", v-model="type", :value="item", color="teal", hide-details )
 
         // MAIN
 
@@ -172,6 +168,7 @@
       return {
         fixed: true,
         type: 'basement1',
+        types: ['basement1', 'basement2', 'basement3', 'basement4', 'basement5'],
         basement: {
           sideA: null,
           sideB: null,
