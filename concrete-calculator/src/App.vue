@@ -16,7 +16,7 @@
 
         v-card.mb-4.pa-4
 
-          v-layout( row, style="align-items: center;" )
+          v-layout( row, style="align-items: center" )
             v-flex( xs4 )
               v-subheader
                 | Тип фундамента
@@ -149,9 +149,11 @@
               v-flex( xs12 )
                 v-list
                   v-list-tile
-                    | {{ s1 }}
+                    | Потребуется {{ output | meters }}
                   v-list-tile
-                    | марка бетона - {{ mark.text }}
+                    | Марка бетона - {{ mark.text }}
+                  v-list-tile
+                    | На сумму - {{ sum | currency }}
 
 
     // FOOTER
@@ -164,6 +166,17 @@
 
 <script>
   export default {
+    filters: {
+      meters (value) {
+        return Math.round(value) + ' куб.м бетона'
+      },
+      currency (value) {
+        if (value === null) {
+          return
+        }
+        return value.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', maximumSignificantDigits: 4 })
+      }
+    },
     data () {
       return {
         fixed: true,
@@ -239,6 +252,33 @@
       },
       s5 () {
         const result = (this.s2 - this.short * 2) * this.basement.sideC
+        return result
+      },
+      output () {
+        let result = null
+        switch (this.type) {
+          case 'basement1':
+            result = this.s1
+            break
+          case 'basement2':
+            result = this.s2
+            break
+          case 'basement3':
+            result = this.s3
+            break
+          case 'basement4':
+            result = this.s4
+            break
+          case 'basement5':
+            result = this.s5
+            break
+          default:
+            result = 0
+        }
+        return result
+      },
+      sum () {
+        const result = this.output * this.mark.price
         return result
       }
     }
