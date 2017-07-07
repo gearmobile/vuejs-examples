@@ -203,10 +203,12 @@
         return result
       },
       long () {
-        const s = (this.basement.sideA - this.delta * 2) * this.delta
+        const result = (this.basement.sideA - this.delta * 2) * this.delta
+        return result
       },
       short () {
-        const s = this.delta * ((this.basement.sideB - this.delta * 3) / 2)
+        const result = this.delta * ((this.basement.sideB - this.delta * 3) / 2)
+        return result
       },
       s1 () {
         const s1 = this.basement.sideA * this.basement.sideB
