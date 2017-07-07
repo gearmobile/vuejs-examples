@@ -70,13 +70,13 @@
         // PREVIEW
 
         v-card.mb-5
-          //- v-layout( row )
+          v-layout( row )
             v-flex( xs12 )
-          v-card-media( :src="imagePath", height="540px" )
+              v-card-media( :src="imagePath", height="540px" )
 
         // ADDITIONAL
 
-        v-card
+        v-card.mb-4.pa-4
 
           // PLATE
           
@@ -141,6 +141,7 @@
                   | Рекомендуемая марка м300-м350
 
 
+    // FOOTER
 
     v-footer( :fixed="fixed" )
       v-spacer
