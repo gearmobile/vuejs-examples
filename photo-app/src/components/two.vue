@@ -5,7 +5,7 @@
         h2.display-1.mb-0
           | {{ title }}
       v-flex( v-for="service in services", :key="service", xs6 )
-        v-card.two__card.py-4( @click="onSelect(service)" )
+        v-card.two__card.py-4( @click="onSelect(service)", :class="{ 'yellow': active === service.name }" )
           v-card-text.text-xs-center
             div.headline
               | {{ service.title }}
@@ -19,6 +19,7 @@
     data () {
       return {
         title: 'добавим дополнительные услуги?',
+        active: '',
         services: [
           {
             name: 'service1',
@@ -46,6 +47,7 @@
     methods: {
       onSelect (value) {
         eventBus.$emit('service', value)
+        this.active = value.name
       }
     }
   }

@@ -5,7 +5,7 @@
         h2.display-1.mb-0
           | {{ title }}
       v-flex( v-for="cert in certs", :key="cert", xs6 )
-        v-card.three__card.py-4( @click="onSelect(cert)" )
+        v-card.three__card.py-4( @click="onSelect(cert)", :class="{ 'yellow': active === cert.name }" )
           v-card-text.text-xs-center
             div.headline
               | {{ cert.title }}
@@ -19,6 +19,7 @@
     data () {
       return {
         title: 'формат сертификата',
+        active: '',
         certs: [
           {
             name: 'cert1',
@@ -36,6 +37,7 @@
     methods: {
       onSelect (value) {
         eventBus.$emit('cert', value)
+        this.active = value.name
       }
     }
   }
