@@ -12,16 +12,23 @@
 </template>
 
 <script>
-export default {
-  name: 'four',
-  data () {
-    return {
-      title: 'индивидуальное поздравление',
-      subtitle: '(мы обязательно напишем его на сертификате)',
-      greeting: null
+  import eventBus from '../main.js'
+
+  export default {
+    name: 'four',
+    data () {
+      return {
+        title: 'индивидуальное поздравление',
+        subtitle: '(мы обязательно напишем его на сертификате)',
+        greeting: null
+      }
+    },
+    watch: {
+      greeting () {
+        eventBus.$emit('greeting', this.greeting)
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
