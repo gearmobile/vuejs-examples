@@ -42,6 +42,7 @@
 </template>
 
 <script>
+  import eventBus from './main.js'
   import one from './components/one.vue'
   import two from './components/two.vue'
   import three from './components/three.vue'
@@ -120,6 +121,11 @@
       step4: four,
       step5: five,
       step6: six
+    },
+    created () {
+      eventBus.$on('time', data => {
+        this.order.time = data
+      })
     }
   }
 </script>

@@ -7,6 +7,9 @@ import App from './App'
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
+const eventBus = new Vue()
+export default eventBus
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
