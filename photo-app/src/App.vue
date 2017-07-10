@@ -71,7 +71,10 @@
             title: null,
             price: 0
           },
-          shipping: 0,
+          shipping: {
+            title: null,
+            price: 0
+          },
           greeting: null,
           customer: {
             name: null,
@@ -126,7 +129,7 @@
         return new Date().getFullYear()
       },
       sum () {
-        return this.order.time.price + this.order.service.price + this.order.cert.price + this.order.shipping
+        return this.order.time.price + this.order.service.price + this.order.cert.price + this.order.shipping.price
       }
     },
     components: {
@@ -152,6 +155,10 @@
       })
       eventBus.$on('greeting', data => {
         this.order.greeting = data
+      })
+      eventBus.$on('shipping', data => {
+        this.order.shipping.title = data.title
+        this.order.shipping.price = data.price
       })
     }
   }
