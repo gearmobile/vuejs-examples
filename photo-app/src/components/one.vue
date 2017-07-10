@@ -5,7 +5,7 @@
         h2.display-1.mb-0
           | {{ title }}
       v-flex( v-for="time in times", :key="time", xs6 )
-        v-card.one__card.py-4( @click="onSelect(time.price)" )
+        v-card.one__card.py-4( @click="onSelect(time)" )
           v-card-text.text-xs-center
             div.headline
               | {{ time.value }}

@@ -59,8 +59,14 @@
         current: 'step1',
         active: 1,
         order: {
-          time: 0,
-          service: 0,
+          time: {
+            duration: null,
+            price: 0
+          },
+          service: {
+            title: null,
+            price: 0
+          },
           cert: 0,
           shipping: 0,
           greeting: null,
@@ -74,7 +80,7 @@
     },
     methods: {
       next () {
-        if (this.order.time === 0 && this.current === 'step1') {
+        if (this.order.time.price === 0 && this.current === 'step1') {
           this.warning = 'Выберите длительность фотосессии'
           this.snackbar = true
           return
@@ -116,7 +122,7 @@
         return new Date().getFullYear()
       },
       sum () {
-        return this.order.time + this.order.service + this.order.cert + this.order.shipping
+        return this.order.time.price + this.order.service.price + this.order.cert + this.order.shipping
       }
     },
     components: {
@@ -129,10 +135,12 @@
     },
     created () {
       eventBus.$on('time', data => {
-        this.order.time = data
+        this.order.time.duration = data.value
+        this.order.time.price = data.price
       })
       eventBus.$on('service', data => {
-        this.order.service = data
+        this.order.service.title = data.title
+        this.order.service.price = data.price
       })
     }
   }
