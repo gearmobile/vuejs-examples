@@ -8,19 +8,19 @@
         v-subheader
           | ФИО
       v-flex( xs8 )
-        v-text-field( name="name", label="name", required )
+        v-text-field( name="name", label="name", v-model="customer.name", required )
     v-layout( row, wrap )
       v-flex( xs4 )
         v-subheader
           | Номер телефона
       v-flex( xs8 )
-        v-text-field( name="phone", label="phone", required )
+        v-text-field( name="phone", label="phone", v-model="customer.phone", required )
     v-layout( row, wrap )
       v-flex( xs4 )
         v-subheader
           | E-mail
       v-flex( xs8 )
-        v-text-field( name="email", label="email", required )
+        v-text-field( name="email", label="email", v-model="customer.email" )
 
 </template>
 
@@ -29,7 +29,12 @@ export default {
   name: 'hello',
   data () {
     return {
-      title: 'оформление заказа'
+      title: 'оформление заказа',
+      customer: {
+        name: null,
+        phone: null,
+        email: null
+      }
     }
   }
 }
