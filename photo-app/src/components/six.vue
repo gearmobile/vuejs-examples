@@ -25,19 +25,21 @@
 </template>
 
 <script>
-export default {
-  name: 'six',
-  data () {
-    return {
-      title: 'оформление заказа',
-      customer: {
-        name: null,
-        phone: null,
-        email: null
+  // import eventBus from '../main.js'
+
+  export default {
+    name: 'six',
+    data () {
+      return {
+        title: 'оформление заказа',
+        customer: {
+          name: null,
+          phone: null,
+          email: null
+        }
       }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
