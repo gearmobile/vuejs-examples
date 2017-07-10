@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  // import eventBus from '../main.js'
+  import eventBus from '../main.js'
 
   export default {
     name: 'six',
@@ -38,6 +38,29 @@
           email: null
         }
       }
+    },
+    watch: {
+      customer: {
+        handler: function () {
+          eventBus.$emit('customer', this.customer)
+        },
+        deep: true
+      }
+      // customer: {
+
+      // } () {
+      //   eventBus.$emit('customer', this.customer)
+      //   // deep: true
+      // }
+      // name () {
+      //   eventBus.$emit('name', this.name)
+      // },
+      // phone () {
+      //   eventBus.$emit('phone', this.phone)
+      // },
+      // email () {
+      //   eventBus.$emit('email', this.email)
+      // }
     }
   }
 </script>

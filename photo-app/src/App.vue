@@ -18,23 +18,37 @@
           v-card( height="200px" )
             v-card-text.text-xs-center
               h2.display-2
-                | {{sum}}
+                | {{ sum }}
 
       v-layout( row, justify-space-between )
         v-flex( xs2 )
-          v-btn.primary( @click.native="prev()" )
+          v-btn.primary( @click.native="onPrev()" )
             | prev
         v-flex.text-xs-right( xs2, v-if="nextShow" )
-          v-btn.primary( @click.native="next()" )
+          v-btn.primary( @click.native="onNext()" )
             | next
         v-flex.text-xs-right( xs2, v-if="orderShow" )
-          v-btn.primary( @click.native="order()" )
+          v-btn.primary( @click.native.stop="onOrder()" )
             | make order
 
       v-snackbar( top, v-model="snackbar" )
         | {{ warning }}
         v-btn.pink--text( flat, @click.native="snackbar = false" )
           | close
+
+      v-dialog( v-model="dialog", persistent )
+        v-card
+          v-card-title.headline
+            | спасибо за ваш заказ!
+          v-card-text
+            | ваш заказ успешно отправлен. ожидайте звонок менеджера с подтверждением
+          v-card-actions
+            v-spacer
+            v-btn.green--text.darken-1( flat, @click.native="dialog = false" )
+              | disagree
+            v-btn.green--text.darken-1( flat, @click.native="dialog = false" )
+              | agree
+
 
 
     v-footer( :fixed="fixed" )
@@ -56,6 +70,7 @@
   export default {
     data () {
       return {
+        dialog: false,
         nextShow: true,
         orderShow: false,
         snackbar: false,
@@ -90,7 +105,7 @@
       }
     },
     methods: {
-      next () {
+      onNext () {
         if (this.order.time.price === 0 && this.current === 'step1') {
           this.warning = 'Выберите длительность фотосессии'
           this.snackbar = true
@@ -120,7 +135,7 @@
           this.orderShow = true
         }
       },
-      prev () {
+      onPrev () {
         if (this.active === 6) {
           this.nextShow = true
           this.orderShow = false
@@ -129,6 +144,14 @@
           this.active -= 1
           this.current = 'step' + this.active
         }
+      },
+      onOrder () {
+        if ((this.order.customer.name === null || this.order.customer.phone === null) && this.current === 'step6') {
+          this.warning = 'Необходимо указать ваши Ф.И.О.'
+          this.snackbar = true
+          return
+        }
+        this.dialog = true
       }
     },
     computed: {
@@ -167,6 +190,20 @@
         this.order.shipping.title = data.title
         this.order.shipping.price = data.price
       })
+      eventBus.$on('name', data => {
+        this.order.customer.name = data.name
+        this.order.customer.phone = data.phone
+        this.order.customer.email = data.email
+      })
+      // eventBus.$on('name', data => {
+      //   this.order.customer.name = data
+      // })
+      // eventBus.$on('phone', data => {
+      //   this.order.customer.phone = data
+      // })
+      // eventBus.$on('email', data => {
+      //   this.order.customer.email = data
+      // })
     }
   }
 </script>
