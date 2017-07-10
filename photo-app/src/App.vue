@@ -80,11 +80,11 @@
     },
     methods: {
       next () {
-        if (this.order.time.price === 0 && this.current === 'step1') {
-          this.warning = 'Выберите длительность фотосессии'
-          this.snackbar = true
-          return
-        }
+        // if (this.order.time.price === 0 && this.current === 'step1') {
+        //   this.warning = 'Выберите длительность фотосессии'
+        //   this.snackbar = true
+        //   return
+        // }
         // if (this.order.service === 0) {
         //   this.warning = 'Выберите дополнительные услуги'
         //   this.snackbar = true
@@ -101,13 +101,14 @@
         //   return
         // }
         if (this.active < 6) {
-          if (this.order.time === 0 && this.current === 'step1') {
+          if (this.order.time.price === 0 && this.current === 'step1') {
             this.warning = 'Выберите длительность фотосессии'
             this.snackbar = true
             return
+          } else {
+            this.active += 1
+            this.current = 'step' + this.active
           }
-          this.active += 1
-          this.current = 'step' + this.active
         }
       },
       prev () {
