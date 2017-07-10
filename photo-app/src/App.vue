@@ -24,9 +24,12 @@
         v-flex( xs2 )
           v-btn.primary( @click.native="prev()" )
             | prev
-        v-flex.text-xs-right( xs2 )
+        v-flex.text-xs-right( xs2, v-if="nextShow" )
           v-btn.primary( @click.native="next()" )
             | next
+        v-flex.text-xs-right( xs2, v-if="orderShow" )
+          v-btn.primary( @click.native="order()" )
+            | make order
 
       v-snackbar( top, v-model="snackbar" )
         | {{ warning }}
@@ -53,6 +56,8 @@
   export default {
     data () {
       return {
+        nextShow: true,
+        orderShow: false,
         snackbar: false,
         warning: '',
         fixed: true,
@@ -110,8 +115,16 @@
           this.active += 1
           this.current = 'step' + this.active
         }
+        if (this.active === 6) {
+          this.nextShow = false
+          this.orderShow = true
+        }
       },
       prev () {
+        if (this.active === 6) {
+          this.nextShow = true
+          this.orderShow = false
+        }
         if (this.active > 1) {
           this.active -= 1
           this.current = 'step' + this.active
