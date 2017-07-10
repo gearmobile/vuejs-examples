@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'four',
   data () {
     return {
       title: 'индивидуальное поздравление',

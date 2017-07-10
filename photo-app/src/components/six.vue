@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'six',
   data () {
     return {
       title: 'оформление заказа',

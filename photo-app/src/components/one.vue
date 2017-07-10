@@ -4,7 +4,7 @@
       div.text-xs-center.yellow.py-3.mb-1( style="width: 100%" )
         h2.display-1.mb-0
           | {{ title }}
-      v-flex( v-for="time in times", :key="time", xs6 )
+      v-flex( v-for="time in times", :key="time", xs6, v-model="price" )
         v-card.py-4
           v-card-text.text-xs-center
             div.headline
@@ -13,10 +13,11 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'one',
   data () {
     return {
       title: 'сколько будет длиться фотосессия?',
+      price: null,
       times: [
         {
           name: 'time1',

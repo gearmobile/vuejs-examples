@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'three',
   data () {
     return {
       title: 'формат сертификата',

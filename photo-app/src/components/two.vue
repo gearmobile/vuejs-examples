@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'two',
   data () {
     return {
       title: 'добавим дополнительные услуги?',

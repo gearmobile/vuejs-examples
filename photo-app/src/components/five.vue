@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'five',
   data () {
     return {
       title: 'как сертификат попадет к вам?',
