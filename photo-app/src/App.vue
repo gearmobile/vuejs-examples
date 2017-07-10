@@ -74,27 +74,32 @@
     },
     methods: {
       next () {
-        if (this.order.time === 0) {
+        if (this.order.time === 0 && this.current === 'step1') {
           this.warning = 'Выберите длительность фотосессии'
           this.snackbar = true
           return
         }
-        if (this.order.service === 0) {
-          this.warning = 'Выберите дополнительные услуги'
-          this.snackbar = true
-          return
-        }
-        if (this.order.cert === 0) {
-          this.warning = 'Выберите сертификат'
-          this.snackbar = true
-          return
-        }
-        if (this.order.shipping === 0) {
-          this.warning = 'Выберите тип доставки'
-          this.snackbar = true
-          return
-        }
+        // if (this.order.service === 0) {
+        //   this.warning = 'Выберите дополнительные услуги'
+        //   this.snackbar = true
+        //   return
+        // }
+        // if (this.order.cert === 0) {
+        //   this.warning = 'Выберите сертификат'
+        //   this.snackbar = true
+        //   return
+        // }
+        // if (this.order.shipping === 0) {
+        //   this.warning = 'Выберите тип доставки'
+        //   this.snackbar = true
+        //   return
+        // }
         if (this.active < 6) {
+          if (this.order.time === 0 && this.current === 'step1') {
+            this.warning = 'Выберите длительность фотосессии'
+            this.snackbar = true
+            return
+          }
           this.active += 1
           this.current = 'step' + this.active
         }
@@ -125,6 +130,9 @@
     created () {
       eventBus.$on('time', data => {
         this.order.time = data
+      })
+      eventBus.$on('service', data => {
+        this.order.service = data
       })
     }
   }
