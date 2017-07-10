@@ -6,7 +6,7 @@
 
       v-layout.mb-2( row )
         v-flex( v-for="i in 6", :key="i" )
-          v-card
+          v-card( :class="{ 'primary white--text': active === i }" )
             v-card-text.text-xs-center
               | step {{ i }}
 
