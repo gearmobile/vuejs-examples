@@ -28,7 +28,7 @@
           v-btn.primary( @click.native="next()" )
             | next
 
-      v-snackbar( vertical, v-model="snackbar" )
+      v-snackbar( top, v-model="snackbar" )
         | {{ warning }}
         v-btn.pink--text( flat, @click.native="snackbar = false" )
           | close
@@ -73,12 +73,29 @@
     },
     methods: {
       next () {
+        if (this.order.time === 0) {
+          this.warning = 'Выберите длительность фотосессии'
+          this.snackbar = true
+          return
+        }
+        if (this.order.service === 0) {
+          this.warning = 'Выберите дополнительные услуги'
+          this.snackbar = true
+          return
+        }
+        if (this.order.cert === 0) {
+          this.warning = 'Выберите сертификат'
+          this.snackbar = true
+          return
+        }
+        if (this.order.shipping === 0) {
+          this.warning = 'Выберите тип доставки'
+          this.snackbar = true
+          return
+        }
         if (this.active < 6) {
           this.active += 1
           this.current = 'step' + this.active
-        } else if (this.order.time === 0) {
-          this.warning = 'step one warning'
-          this.snackbar = true
         }
       },
       prev () {
