@@ -1,15 +1,17 @@
 <template lang="pug">
 
-  v-app
+  v-app.app
 
     v-container
 
-      v-layout.mb-2( row )
-        v-flex( v-for="i in 6", :key="i", style="padding-right: 0; padding-left: 0;" )
+      v-layout.mb-2( row, wrap )
+        v-flex( v-for="i in 6", :key="i", xs2, style="padding-right: 0; padding-left: 0;" )
           v-card( flat, :class="{ 'teal darken-1 white--text': active === i }" )
             v-card-text.text-xs-center
-              span( style="text-transform: uppercase; text-transform: uppercase;" )
+              span.hidden-xs-only( style="text-transform: uppercase; text-transform: uppercase;" )
                 | step {{ i }}
+              span.hidden-sm-and-up( style="text-transform: uppercase; text-transform: uppercase;" )
+                | {{ i }}
 
       v-layout( row, wrap )
         v-flex.mb-2( xs12, md8 )
@@ -22,14 +24,14 @@
               h2.display-2.mb-0
                 | {{ sum | currency }}
 
-      v-layout( row, justify-space-between )
-        v-flex( xs2, v-if="prevShow" )
-          v-btn.teal( dark, @click.native="onPrev()" )
+      v-layout.app__btns( row, wrap )
+        v-flex( xs12, sm3, v-if="prevShow" )
+          v-btn.app__btn.teal( dark, @click.native="onPrev()" )
             | prev
-        v-flex.text-xs-right( xs2, v-if="nextShow" )
-          v-btn.teal( dark, @click.native="onNext()" )
+        v-flex.text-sm-right( xs12, sm3 offset-sm6, v-if="nextShow" )
+          v-btn.app__btn.teal( dark, @click.native="onNext()" )
             | next
-        v-flex.text-xs-right( xs2, v-if="orderShow" )
+        v-flex.text-xs-right( xs12, sm3, v-if="orderShow" )
           v-btn.indigo( dark, @click.native.stop="onOrder()" )
             | make order
 
@@ -257,4 +259,13 @@
 
 <style lang="stylus">
   @import './stylus/main'
+
+  @media screen and ( max-width: 600px )
+    
+    .app__btns
+      text-align center
+
+    .app__btn
+      width 90%
+
 </style>
