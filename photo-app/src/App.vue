@@ -13,8 +13,9 @@
 
       v-layout( row, wrap )
         v-flex( xs12, sm8, style="height: 316px" )
-          keep-alive
-            component( :is="current" )
+          v-slide-x-transition( mode="out-in" )
+            keep-alive
+              component( :is="current" )
         v-flex( xs12, sm4, style="height: 316px" )
           v-card.teal.lighten-4( height="312px", style="display: flex; align-items: center;" )
             v-card-text.text-xs-center
