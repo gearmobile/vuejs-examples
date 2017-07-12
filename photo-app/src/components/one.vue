@@ -69,6 +69,11 @@
         eventBus.$emit('time', value)
         this.active = value.name
       }
+    },
+    created () {
+      eventBus.$on('clear', () => {
+        this.active = ''
+      })
     }
   }
 </script>

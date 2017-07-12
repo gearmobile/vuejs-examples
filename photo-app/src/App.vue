@@ -86,7 +86,7 @@
         active: 1,
         order: {
           time: {
-            duration: null,
+            title: null,
             price: 0
           },
           service: {
@@ -163,6 +163,26 @@
         this.dialog = false
         this.active = 1
         this.current = 'step' + this.active
+        this.orderShow = false
+        this.nextShow = true
+        // ---
+        this.order.time.price = 0
+        this.order.service.price = 0
+        this.order.cert.price = 0
+        this.order.shipping.price = 0
+        // ---
+        this.order.time.title = null
+        this.order.service.title = null
+        this.order.cert.title = null
+        this.order.shipping.title = null
+        // ---
+        this.order.customer.name = null
+        this.order.customer.phone = null
+        this.order.customer.email = null
+        // ---
+        // this.order.greeting = null
+        // ---
+        eventBus.$emit('clear')
       }
     },
     computed: {
@@ -183,7 +203,7 @@
     },
     created () {
       eventBus.$on('time', data => {
-        this.order.time.duration = data.value
+        this.order.time.title = data.value
         this.order.time.price = data.price
       })
       eventBus.$on('service', data => {
