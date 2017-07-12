@@ -8,7 +8,7 @@
         v-card.one__card.py-4( @click="onSelect(time)", :class="{ 'teal lighten-2 white--text': active === time.name }" )
           v-card-text.text-xs-center
             div.headline
-              | {{ time.value }}
+              | {{ time.value | pluralize }}
 </template>
 
 <script>
@@ -16,6 +16,26 @@
 
   export default {
     name: 'one',
+    filters: {
+      pluralize (value) {
+        let result = null
+        switch (value) {
+          case 1:
+            result = value + ' час'
+            break
+          case 1.5:
+            result = value + ' часа'
+            break
+          case 2:
+            result = value + ' часа'
+            break
+          case 3:
+            result = value + ' часа'
+            break
+        }
+        return result
+      }
+    },
     data () {
       return {
         title: 'Сколько будет длиться фотосессия?',
