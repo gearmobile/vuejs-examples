@@ -4,7 +4,7 @@
       div.text-xs-center.teal.lighten-1.py-3.mb-2( style="width: 100%" )
         h2.display-1.mb-0.white--text
           | {{ title }}
-      v-flex( v-for="time in times", :key="time", xs6 )
+      v-flex( v-for="time in times", :key="time", xs12, sm6 )
         v-card.one__card.py-4( @click="onSelect(time)", :class="{ 'teal lighten-2 white--text': active === time.name }" )
           v-card-text.text-xs-center
             div.headline
