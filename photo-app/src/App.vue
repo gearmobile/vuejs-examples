@@ -23,7 +23,7 @@
                 | {{ sum | currency }}
 
       v-layout.mt-2( row, justify-space-between )
-        v-flex( xs2 )
+        v-flex( xs2, v-if="prevShow" )
           v-btn.teal( dark, @click.native="onPrev()" )
             | prev
         v-flex.text-xs-right( xs2, v-if="nextShow" )
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import eventBus from './main.js'
   import one from './components/one.vue'
   import two from './components/two.vue'
@@ -79,6 +80,7 @@
       return {
         dialog: false,
         nextShow: true,
+        prevShow: true,
         orderShow: false,
         snackbar: false,
         warning: '',
@@ -160,13 +162,18 @@
         }
         this.dialog = true
       },
-      onClose () {
-        this.dialog = false
-        this.active = 1
-        this.current = 'step' + this.active
-        this.orderShow = false
-        this.nextShow = true
-        // ---
+      onSend () {
+        const root = 'https://jsonplaceholder.typicode.com'
+        axios.post(root + '/posts', this.order)
+          .then(response => {
+            console.log(response)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+        // this.onClear()
+      },
+      onClear () {
         this.order.time.price = 0
         this.order.service.price = 0
         this.order.cert.price = 0
@@ -181,9 +188,20 @@
         this.order.customer.phone = null
         this.order.customer.email = null
         // ---
-        // this.order.greeting = null
-        // ---
         eventBus.$emit('clear')
+      },
+      onBack () {
+        this.dialog = false
+        this.active = 1
+        this.current = 'step' + this.active
+        this.orderShow = false
+        this.nextShow = true
+      },
+      onClose () {
+        this.onSend()
+        this.onBack()
+        // this.onClear()
+        // eventBus.$emit('clear')
       }
     },
     computed: {
