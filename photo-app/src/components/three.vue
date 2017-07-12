@@ -4,7 +4,7 @@
       div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
         h2.display-1.mb-0.white--text
           | {{ title }}
-      v-flex( v-for="cert in certs", :key="cert", xs6 )
+      v-flex( v-for="cert in certs", :key="cert", xs12 )
         v-card.three__card.py-4( @click="onSelect(cert)", :class="{ 'teal lighten-2 white--text': active === cert.name }" )
           v-card-text.text-xs-center
             div.headline

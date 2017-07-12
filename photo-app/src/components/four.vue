@@ -7,7 +7,7 @@
         h3.title.mb-0.white--text
           | {{ subtitle }}
       v-flex( xs12 )
-        v-text-field( name="greeting", label="Ваше поздравление", v-model="greeting", multi-line )
+        v-text-field( name="greeting", label="Ваше поздравление здесь ...", v-model="greeting", multi-line )
 
 </template>
 

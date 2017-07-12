@@ -5,7 +5,7 @@
         h2.display-1.mb-0.white--text
           | {{ title }}
       v-flex( v-for="shipping in shippings", :key="shipping", xs12 )
-        v-card.five__card.py-2( @click="onSelect(shipping)", :class="{ 'teal lighten-2 white--text': active === shipping.name }" )
+        v-card.five__card.py-4( @click="onSelect(shipping)", :class="{ 'teal lighten-2 white--text': active === shipping.name }" )
           v-card-text.text-xs-center
             div.headline
               | {{ shipping.title }}

@@ -16,12 +16,12 @@
           keep-alive
             component( :is="current" )
         v-flex( xs12, sm4, style="height: 316px" )
-          v-card( height="312px", style="display: flex; align-items: center;" )
+          v-card.teal.lighten-4( height="312px", style="display: flex; align-items: center;" )
             v-card-text.text-xs-center
               h2.display-2.mb-0
                 | {{ sum | currency }}
 
-      v-layout( row, justify-space-between )
+      v-layout.mt-2( row, justify-space-between )
         v-flex( xs2 )
           v-btn.teal( dark, @click.native="onPrev()" )
             | prev
@@ -29,7 +29,7 @@
           v-btn.teal( dark, @click.native="onNext()" )
             | next
         v-flex.text-xs-right( xs2, v-if="orderShow" )
-          v-btn.primary( @click.native.stop="onOrder()" )
+          v-btn.indigo( dark, @click.native.stop="onOrder()" )
             | make order
 
       v-snackbar( top, v-model="snackbar" )
