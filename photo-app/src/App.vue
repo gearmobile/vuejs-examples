@@ -46,7 +46,7 @@
             | Ожидайте звонок менеджера с подтверждением.
           v-card-actions
             v-spacer
-            v-btn.green--text.darken-1( flat, @click.native="dialog = false" )
+            v-btn.green--text.darken-1( flat, @click.native="onClose()" )
               | выход
 
     v-footer( :fixed="fixed" )
@@ -158,6 +158,11 @@
           return
         }
         this.dialog = true
+      },
+      onClose () {
+        this.dialog = false
+        this.active = 1
+        this.current = 'step' + this.active
       }
     },
     computed: {
