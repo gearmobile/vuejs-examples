@@ -12,17 +12,17 @@
                 | step {{ i }}
 
       v-layout( row, wrap )
-        v-flex( xs12, sm8, style="height: 316px" )
+        v-flex.mb-2( xs12, md8 )
           v-slide-x-transition( mode="out-in" )
             keep-alive
               component( :is="current" )
-        v-flex( xs12, sm4, style="height: 316px" )
+        v-flex.mb-2( xs12, md4 )
           v-card.teal.lighten-4( height="312px", style="display: flex; align-items: center;" )
             v-card-text.text-xs-center
               h2.display-2.mb-0
                 | {{ sum | currency }}
 
-      v-layout.mt-2( row, justify-space-between )
+      v-layout( row, justify-space-between )
         v-flex( xs2, v-if="prevShow" )
           v-btn.teal( dark, @click.native="onPrev()" )
             | prev
