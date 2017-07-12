@@ -1,11 +1,11 @@
 <template lang="pug">
   v-container.five( fluid, grid-list-sm )
     v-layout( row, wrap )
-      div.text-xs-center.yellow.py-3.mb-1( style="width: 100%" )
-        h2.display-1.mb-0
+      div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
+        h2.display-1.mb-0.white--text
           | {{ title }}
       v-flex( v-for="shipping in shippings", :key="shipping", xs12 )
-        v-card.five__card.py-2( @click="onSelect(shipping)", :class="{ 'yellow': active === shipping.name }" )
+        v-card.five__card.py-2( @click="onSelect(shipping)", :class="{ 'teal lighten-2 white--text': active === shipping.name }" )
           v-card-text.text-xs-center
             div.headline
               | {{ shipping.title }}
@@ -18,7 +18,7 @@
     name: 'five',
     data () {
       return {
-        title: 'как сертификат попадет к вам?',
+        title: 'Как сертификат попадет к вам?',
         active: '',
         shippings: [
           {

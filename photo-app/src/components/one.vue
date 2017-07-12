@@ -1,11 +1,11 @@
 <template lang="pug">
   v-container.one( fluid, grid-list-sm )
     v-layout( row, wrap )
-      div.text-xs-center.yellow.py-3.mb-1( style="width: 100%" )
-        h2.display-1.mb-0
+      div.text-xs-center.teal.lighten-1.py-3.mb-2( style="width: 100%" )
+        h2.display-1.mb-0.white--text
           | {{ title }}
       v-flex( v-for="time in times", :key="time", xs6 )
-        v-card.one__card.py-4( @click="onSelect(time)", :class="{ 'yellow': active === time.name }" )
+        v-card.one__card.py-4( @click="onSelect(time)", :class="{ 'teal lighten-2 white--text': active === time.name }" )
           v-card-text.text-xs-center
             div.headline
               | {{ time.value }}
@@ -18,7 +18,7 @@
     name: 'one',
     data () {
       return {
-        title: 'сколько будет длиться фотосессия?',
+        title: 'Сколько будет длиться фотосессия?',
         active: '',
         times: [
           {

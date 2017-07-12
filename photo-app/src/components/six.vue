@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container( fluid )
-    div.text-xs-center.yellow.py-3.mb-1( style="width: 100%" )
-      h2.display-1.mb-0
+    div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
+      h2.display-1.mb-0.white--text
         | {{ title }}
     v-layout( row, wrap )
       v-flex( xs4 )
@@ -31,7 +31,7 @@
     name: 'six',
     data () {
       return {
-        title: 'оформление заказа',
+        title: 'Оформление заказа',
         name: null,
         phone: null,
         email: null

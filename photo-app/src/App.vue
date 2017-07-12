@@ -6,26 +6,27 @@
 
       v-layout.mb-2( row )
         v-flex( v-for="i in 6", :key="i", style="padding-right: 0; padding-left: 0;" )
-          v-card( flat, :class="{ 'orange': active === i }" )
+          v-card( flat, :class="{ 'teal darken-1 white--text': active === i }" )
             v-card-text.text-xs-center
-              | step {{ i }}
+              span( style="text-transform: uppercase; text-transform: uppercase;" )
+                | step {{ i }}
 
       v-layout( row, wrap )
-        v-flex( xs12, sm8 )
+        v-flex( xs12, sm8, style="height: 316px" )
           keep-alive
             component( :is="current" )
-        v-flex( xs12, sm4 )
-          v-card( height="200px", style="display: flex; align-items: center;" )
+        v-flex( xs12, sm4, style="height: 316px" )
+          v-card( height="312px", style="display: flex; align-items: center;" )
             v-card-text.text-xs-center
-              h2.display-2
+              h2.display-2.mb-0
                 | {{ sum | currency }}
 
       v-layout( row, justify-space-between )
         v-flex( xs2 )
-          v-btn.primary( @click.native="onPrev()" )
+          v-btn.teal( dark, @click.native="onPrev()" )
             | prev
         v-flex.text-xs-right( xs2, v-if="nextShow" )
-          v-btn.primary( @click.native="onNext()" )
+          v-btn.teal( dark, @click.native="onNext()" )
             | next
         v-flex.text-xs-right( xs2, v-if="orderShow" )
           v-btn.primary( @click.native.stop="onOrder()" )

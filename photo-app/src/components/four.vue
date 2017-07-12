@@ -1,10 +1,10 @@
 <template lang="pug">
   v-container
     v-layout( row, wrap )
-      div.text-xs-center.yellow.py-3.mb-1( style="width: 100%" )
-        h2.display-1.mb-0
+      div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
+        h2.display-1.mb-0.white--text
           | {{ title }}
-        h3.title.mb-0
+        h3.title.mb-0.white--text
           | {{ subtitle }}
       v-flex( xs12 )
         v-text-field( name="greeting", label="Ваше поздравление", v-model="greeting", multi-line )
@@ -18,7 +18,7 @@
     name: 'four',
     data () {
       return {
-        title: 'индивидуальное поздравление',
+        title: 'Индивидуальное поздравление',
         subtitle: '(мы обязательно напишем его на сертификате)',
         greeting: null
       }
