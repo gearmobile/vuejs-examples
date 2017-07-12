@@ -31,8 +31,8 @@
         v-flex.text-sm-right( xs12, sm3 offset-sm6, v-if="nextShow" )
           v-btn.app__btn.teal( dark, @click.native="onNext()" )
             | next
-        v-flex.text-xs-right( xs12, sm3, v-if="orderShow" )
-          v-btn.indigo( dark, @click.native.stop="onOrder()" )
+        v-flex( xs12, sm3, v-if="orderShow" )
+          v-btn.app__btn.indigo( dark, @click.native.stop="onOrder()" )
             | make order
 
       v-snackbar( top, v-model="snackbar" )
@@ -46,16 +46,12 @@
             | Спасибо за ваш заказ!
           v-card-text.text-xs-center
             | Ваш заказ успешно отправлен.
+            br
             | Ожидайте звонок менеджера с подтверждением.
           v-card-actions
             v-spacer
             v-btn.green--text.darken-1( flat, @click.native="onClose()" )
               | выход
-
-    v-footer( :fixed="fixed" )
-      v-spacer
-      span
-        | {{ date }}
 
 </template>
 
@@ -209,9 +205,6 @@
       }
     },
     computed: {
-      date () {
-        return new Date().getFullYear()
-      },
       sum () {
         return this.order.time.price + this.order.service.price + this.order.cert.price + this.order.shipping.price
       }

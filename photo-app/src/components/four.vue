@@ -1,13 +1,13 @@
 <template lang="pug">
-  v-container
+  v-container.four
     v-layout( row, wrap )
       div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
-        h2.display-1.mb-0.white--text
+        h2.four__title.display-1.mb-0.white--text
           | {{ title }}
-        h3.title.mb-0.white--text
+        h3.four__subtitle.title.mb-0.white--text
           | {{ subtitle }}
       v-flex( xs12 )
-        v-text-field( name="greeting", label="Ваше поздравление здесь ...", v-model="greeting", multi-line )
+        v-text-field( name="greeting", label="Ваше поздравление здесь ...", v-model="greeting", rows="7", multi-line, hide-details )
 
 </template>
 
@@ -37,5 +37,18 @@
 </script>
 
 <style lang="stylus" scoped>
-  //
+
+  @media screen and ( max-width: 600px )
+
+    .four
+
+      & .four__title
+        font-size 30px !important
+        margin-bottom 1rem !important
+
+      & .four__subtitle
+        font-size 18px !important
+        padding 0 1rem !important
+        line-height 1.2 !important
+
 </style>
