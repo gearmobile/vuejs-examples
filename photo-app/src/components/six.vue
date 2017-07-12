@@ -8,19 +8,19 @@
         v-subheader
           | ФИО
       v-flex( xs8 )
-        v-text-field( name="name", label="name", v-model="name", required )
+        v-text-field( name="name", label="name", v-model="name", prepend-icon="account_box", max="50", required )
     v-layout( row, wrap )
       v-flex( xs4 )
         v-subheader
           | Номер телефона
       v-flex( xs8 )
-        v-text-field( name="phone", label="phone", v-model="phone", required )
+        v-text-field( name="phone", label="phone", v-model="phone", prepend-icon="phone", required )
     v-layout( row, wrap )
       v-flex( xs4 )
         v-subheader
           | E-mail
       v-flex( xs8 )
-        v-text-field( name="email", label="email", v-model="email" )
+        v-text-field( name="email", label="email", v-model="email", prepend-icon="email" )
 
 </template>
 
