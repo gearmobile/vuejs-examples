@@ -168,7 +168,11 @@
           })
           .then(() => {
             this.onClear()
+            // this.onClearing()
           })
+          // .then(() => {
+          //   eventBus.$emit('clear')
+          // })
           .then(() => {
             this.onBack()
           })
@@ -192,6 +196,15 @@
         this.order.customer.email = null
         // ---
         eventBus.$emit('clear')
+      },
+      onClearing () {
+        this.order.find(el => {
+          el.price = 0
+          el.title = null
+          el.name = null
+          el.phone = null
+          el.email = null
+        })
       },
       onBack () {
         this.dialog = false
