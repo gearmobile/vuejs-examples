@@ -5,8 +5,8 @@
     v-container
 
       v-layout.mb-2( row )
-        v-flex( v-for="i in 6", :key="i" )
-          v-card( :class="{ 'yellow white--text': active === i }" )
+        v-flex( v-for="i in 6", :key="i", style="padding-right: 0; padding-left: 0;" )
+          v-card( flat, :class="{ 'orange': active === i }" )
             v-card-text.text-xs-center
               | step {{ i }}
 
@@ -15,10 +15,10 @@
           keep-alive
             component( :is="current" )
         v-flex( xs12, sm4 )
-          v-card( height="200px" )
+          v-card( height="200px", style="display: flex; align-items: center;" )
             v-card-text.text-xs-center
               h2.display-2
-                | {{ sum }}
+                | {{ sum | currency }}
 
       v-layout( row, justify-space-between )
         v-flex( xs2 )
@@ -39,17 +39,14 @@
       v-dialog( v-model="dialog", persistent )
         v-card
           v-card-title.headline
-            | спасибо за ваш заказ!
-          v-card-text
-            | ваш заказ успешно отправлен. ожидайте звонок менеджера с подтверждением
+            | Спасибо за ваш заказ!
+          v-card-text.text-xs-center
+            | Ваш заказ успешно отправлен.
+            | Ожидайте звонок менеджера с подтверждением.
           v-card-actions
             v-spacer
             v-btn.green--text.darken-1( flat, @click.native="dialog = false" )
-              | disagree
-            v-btn.green--text.darken-1( flat, @click.native="dialog = false" )
-              | agree
-
-
+              | выход
 
     v-footer( :fixed="fixed" )
       v-spacer
@@ -68,6 +65,14 @@
   import six from './components/six.vue'
 
   export default {
+    filters: {
+      currency (value) {
+        if (value === null) {
+          return
+        }
+        return value.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', maximumSignificantDigits: 4 })
+      }
+    },
     data () {
       return {
         dialog: false,
@@ -191,19 +196,14 @@
         this.order.shipping.price = data.price
       })
       eventBus.$on('name', data => {
-        this.order.customer.name = data.name
-        this.order.customer.phone = data.phone
-        this.order.customer.email = data.email
+        this.order.customer.name = data
       })
-      // eventBus.$on('name', data => {
-      //   this.order.customer.name = data
-      // })
-      // eventBus.$on('phone', data => {
-      //   this.order.customer.phone = data
-      // })
-      // eventBus.$on('email', data => {
-      //   this.order.customer.email = data
-      // })
+      eventBus.$on('phone', data => {
+        this.order.customer.phone = data
+      })
+      eventBus.$on('email', data => {
+        this.order.customer.email = data
+      })
     }
   }
 </script>
