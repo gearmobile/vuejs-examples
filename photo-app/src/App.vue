@@ -168,10 +168,15 @@
           .then(response => {
             console.log(response)
           })
+          .then(() => {
+            this.onClear()
+          })
+          .then(() => {
+            this.onBack()
+          })
           .catch(error => {
             console.log(error)
           })
-        // this.onClear()
       },
       onClear () {
         this.order.time.price = 0
@@ -199,9 +204,6 @@
       },
       onClose () {
         this.onSend()
-        this.onBack()
-        // this.onClear()
-        // eventBus.$emit('clear')
       }
     },
     computed: {
