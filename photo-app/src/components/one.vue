@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.one( fluid, grid-list-sm )
     v-layout( row, wrap )
-      div.text-xs-center.teal.lighten-1.py-3.mb-2( style="width: 100%" )
+      header.text-xs-center.teal.lighten-1.py-3.mb-2.one__header
         h2.display-1.mb-0.white--text.one__title
           | {{ title }}
       v-flex( v-for="time in times", :key="time", xs12, sm6 )
@@ -81,6 +81,9 @@
 <style lang="stylus" scoped>
   
   .one
+
+    &__header
+      width 100%
 
     &__card
       cursor pointer

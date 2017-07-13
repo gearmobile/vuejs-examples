@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.four
     v-layout( row, wrap )
-      div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
+      header.text-xs-center.teal.lighten-1.py-3.mb-1.four__header
         h2.four__title.display-1.mb-0.white--text
           | {{ title }}
         h3.four__subtitle.title.mb-0.white--text
@@ -41,6 +41,9 @@
   @media screen and ( max-width: 600px )
 
     .four
+
+      &__header
+        width 100%
 
       & .four__title
         font-size 26px !important

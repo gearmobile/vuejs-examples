@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container.six( fluid )
-    div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
+    header.text-xs-center.teal.lighten-1.py-3.mb-1.six__header
       h2.display-1.mb-0.white--text.six__title
         | {{ title }}
     v-layout( row, wrap )
@@ -8,7 +8,7 @@
         v-subheader
           | ФИО
       v-flex( xs12, sm8 )
-        v-text-field( name="name", label="name", v-model="name", prepend-icon="account_box", max="50", required, hide-details )
+        v-text-field( name="name", label="name", v-model="name", prepend-icon="account_box", required, hide-details )
     v-layout( row, wrap )
       v-flex( xs12, sm4 )
         v-subheader
@@ -59,6 +59,11 @@
 </script>
 
 <style lang="stylus" scoped>
+
+  .six
+
+    &__header
+      width 100%
 
   @media screen and ( max-width 600px )
 

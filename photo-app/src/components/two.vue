@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.two( fluid, grid-list-sm )
     v-layout( row, wrap )
-      div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
+      header.text-xs-center.teal.lighten-1.py-3.mb-1.two__header
         h2.display-1.mb-0.white--text.two__title
           | {{ title }}
       v-flex( v-for="service in services", :key="service", xs12, sm6 )
@@ -61,6 +61,9 @@
 <style lang="stylus" scoped>
 
   .two
+
+    &__header
+      width 100%
 
     &__card
       cursor pointer

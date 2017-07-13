@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.three( fluid, grid-list-sm )
     v-layout( row, wrap )
-      div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
+      header.text-xs-center.teal.lighten-1.py-3.mb-1.three__header
         h2.display-1.mb-0.white--text.three__title
           | {{ title }}
       v-flex( v-for="cert in certs", :key="cert", xs12 )
@@ -51,6 +51,9 @@
 <style lang="stylus" scoped>
 
   .three
+
+    &__header
+      width 100%
 
     &__card
       cursor pointer

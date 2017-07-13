@@ -5,12 +5,12 @@
     v-container
 
       v-layout.mb-2( row, wrap )
-        v-flex( v-for="i in 6", :key="i", xs2, style="padding-right: 0; padding-left: 0;" )
+        v-flex.app__tabs( v-for="i in 6", :key="i", xs2 )
           v-card( flat, :class="{ 'teal darken-1 white--text': active === i }" )
             v-card-text.text-xs-center
-              span.hidden-xs-only( style="text-transform: uppercase; text-transform: uppercase;" )
+              span.hidden-xs-only.app__caption
                 | step {{ i }}
-              span.hidden-sm-and-up( style="text-transform: uppercase; text-transform: uppercase;" )
+              span.hidden-sm-and-up.app__caption
                 | {{ i }}
 
       v-layout( row, wrap )
@@ -19,13 +19,13 @@
             keep-alive
               component( :is="current" )
         v-flex.mb-2( xs12, md4 )
-          v-card.teal.lighten-4( height="312px", style="display: flex; align-items: center;" )
+          v-card.teal.lighten-4.app__output
             v-card-text.text-xs-center
               h2.display-2.mb-0
                 | {{ sum | currency }}
 
       v-layout.app__btns( row, wrap )
-        v-flex( xs12, sm3, v-if="prevShow" )
+        v-flex( xs12, sm3 )
           v-btn.app__btn.teal( dark, @click.native="onPrev()" )
             | prev
         v-flex.text-sm-right( xs12, sm3 offset-sm6, v-if="nextShow" )
@@ -79,7 +79,6 @@
       return {
         dialog: false,
         nextShow: true,
-        prevShow: true,
         orderShow: false,
         snackbar: false,
         warning: '',
@@ -254,6 +253,21 @@
 
 <style lang="stylus">
   @import './stylus/main'
+
+  .app
+
+    &__tabs
+      padding-left 0 !important
+      padding-right 0 !important
+
+    &__caption
+      text-transform uppercase !important
+
+    &__output
+      height 312px !important
+      display flex !important
+      align-items center !important
+
 
   @media screen and ( max-width: 600px )
     
