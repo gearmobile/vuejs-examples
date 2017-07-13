@@ -43,15 +43,16 @@
       v-dialog( v-model="dialog", persistent )
         v-card
           v-card-title.headline
-            | Спасибо за ваш заказ!
+            | Спасибо за Ваш заказ!
           v-card-text.text-xs-center
-            | Ваш заказ успешно отправлен.
-            br
-            | Ожидайте звонок менеджера с подтверждением.
+            p.mb-2
+              | Ваш заказ успешно отправлен.
+            p.mb-0
+              | Ожидайте звонок менеджера с подтверждением Вашего заказа.
           v-card-actions
             v-spacer
-            v-btn.green--text.darken-1( flat, @click.native="onClose()" )
-              | выход
+            v-btn.teal--text.darken-1( flat, @click.native="onClose()" )
+              | назад
 
 </template>
 
