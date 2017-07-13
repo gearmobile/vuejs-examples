@@ -2,7 +2,7 @@
   v-container.three( fluid, grid-list-sm )
     v-layout( row, wrap )
       div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
-        h2.display-1.mb-0.white--text
+        h2.display-1.mb-0.white--text.three__title
           | {{ title }}
       v-flex( v-for="cert in certs", :key="cert", xs12 )
         v-card.three__card.py-4( @click="onSelect(cert)", :class="{ 'teal lighten-2 white--text': active === cert.name }" )
@@ -54,5 +54,12 @@
 
     &__card
       cursor pointer
+
+  @media screen and ( max-width 600px )
+
+    .three__title
+      font-size 30px !important
+      padding 0 1rem !important
+      line-height 1.2 !important
 
 </style>

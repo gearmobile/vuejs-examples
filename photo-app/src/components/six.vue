@@ -1,7 +1,7 @@
 <template lang="pug">
-  v-container( fluid )
+  v-container.six( fluid )
     div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
-      h2.display-1.mb-0.white--text
+      h2.display-1.mb-0.white--text.six__title
         | {{ title }}
     v-layout( row, wrap )
       v-flex( xs4 )
@@ -59,5 +59,12 @@
 </script>
 
 <style lang="stylus" scoped>
-  //
+
+  @media screen and ( max-width 600px )
+
+      .six__title
+        font-size 30px !important
+        padding 0 1rem !important
+        line-height 1.2 !important
+
 </style>

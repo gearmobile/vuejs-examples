@@ -2,7 +2,7 @@
   v-container.five( fluid, grid-list-sm )
     v-layout( row, wrap )
       div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
-        h2.display-1.mb-0.white--text
+        h2.display-1.mb-0.white--text.five__title
           | {{ title }}
       v-flex( v-for="shipping in shippings", :key="shipping", xs12 )
         v-card.five__card.py-4( @click="onSelect(shipping)", :class="{ 'teal lighten-2 white--text': active === shipping.name }" )
@@ -54,5 +54,12 @@
 
     &__card
       cursor pointer
+
+  @media screen and ( max-width 600px )
+
+    .five__title
+      font-size 30px !important
+      padding 0 1rem !important
+      line-height 1.2 !important
 
 </style>

@@ -43,8 +43,10 @@
     .four
 
       & .four__title
-        font-size 30px !important
+        font-size 26px !important
         margin-bottom 1rem !important
+        line-height 1.2 !important
+        padding 0 1rem !important
 
       & .four__subtitle
         font-size 18px !important

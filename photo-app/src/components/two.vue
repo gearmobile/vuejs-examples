@@ -2,7 +2,7 @@
   v-container.two( fluid, grid-list-sm )
     v-layout( row, wrap )
       div.text-xs-center.teal.lighten-1.py-3.mb-1( style="width: 100%" )
-        h2.display-1.mb-0.white--text
+        h2.display-1.mb-0.white--text.two__title
           | {{ title }}
       v-flex( v-for="service in services", :key="service", xs12, sm6 )
         v-card.two__card.py-4( @click="onSelect(service)", :class="{ 'teal lighten-2 white--text': active === service.name }" )
@@ -64,5 +64,12 @@
 
     &__card
       cursor pointer
+
+  @media screen and ( max-width 600px )
+
+    .two__title
+      font-size 30px !important
+      padding 0 1rem !important
+      line-height 1.2 !important
 
 </style>

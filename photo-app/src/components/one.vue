@@ -2,7 +2,7 @@
   v-container.one( fluid, grid-list-sm )
     v-layout( row, wrap )
       div.text-xs-center.teal.lighten-1.py-3.mb-2( style="width: 100%" )
-        h2.display-1.mb-0.white--text
+        h2.display-1.mb-0.white--text.one__title
           | {{ title }}
       v-flex( v-for="time in times", :key="time", xs12, sm6 )
         v-card.one__card.py-4( @click="onSelect(time)", :class="{ 'teal lighten-2 white--text': active === time.name }" )
@@ -84,5 +84,12 @@
 
     &__card
       cursor pointer
+
+  @media screen and ( max-width 600px )
+
+    .one__title
+      font-size 30px !important
+      padding 0 1rem !important
+      line-height 1.2 !important
 
 </style>
