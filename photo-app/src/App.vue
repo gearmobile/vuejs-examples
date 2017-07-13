@@ -160,6 +160,11 @@
         }
         this.dialog = true
       },
+      onClean () {
+        for (let key in this.order) {
+          delete this.order[key]
+        }
+      },
       onSend () {
         const root = 'https://jsonplaceholder.typicode.com'
         axios.post(root + '/posts', this.order)
@@ -167,12 +172,11 @@
             console.log(response)
           })
           .then(() => {
-            this.onClear()
-            // this.onClearing()
+            this.onClearing()
           })
-          // .then(() => {
-          //   eventBus.$emit('clear')
-          // })
+          .then(() => {
+            eventBus.$emit('clear')
+          })
           .then(() => {
             this.onBack()
           })
@@ -180,31 +184,11 @@
             console.log(error)
           })
       },
-      onClear () {
+      onClearing () {
         this.order.time.price = 0
         this.order.service.price = 0
         this.order.cert.price = 0
         this.order.shipping.price = 0
-        // ---
-        this.order.time.title = null
-        this.order.service.title = null
-        this.order.cert.title = null
-        this.order.shipping.title = null
-        // ---
-        this.order.customer.name = null
-        this.order.customer.phone = null
-        this.order.customer.email = null
-        // ---
-        eventBus.$emit('clear')
-      },
-      onClearing () {
-        this.order.find(el => {
-          el.price = 0
-          el.title = null
-          el.name = null
-          el.phone = null
-          el.email = null
-        })
       },
       onBack () {
         this.dialog = false
