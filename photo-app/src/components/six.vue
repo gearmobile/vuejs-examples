@@ -32,9 +32,9 @@
     data () {
       return {
         title: 'Оформление заказа',
-        name: null,
-        phone: null,
-        email: null
+        name: '',
+        phone: '',
+        email: ''
       }
     },
     watch: {
@@ -47,6 +47,13 @@
       email () {
         eventBus.$emit('email', this.email)
       }
+    },
+    created () {
+      eventBus.$on('clrCustomer', () => {
+        this.name = ''
+        this.phone = ''
+        this.email = ''
+      })
     }
   }
 </script>

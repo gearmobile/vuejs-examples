@@ -103,6 +103,7 @@
             price: 0
           },
           greeting: null,
+          sum: null,
           customer: {
             name: null,
             phone: null,
@@ -176,6 +177,7 @@
           })
           .then(() => {
             eventBus.$emit('clear')
+            eventBus.$emit('clrCustomer')
           })
           .then(() => {
             this.onBack()
@@ -189,9 +191,6 @@
         this.order.service.price = 0
         this.order.cert.price = 0
         this.order.shipping.price = 0
-        this.order.customer.name = null
-        this.order.customer.phone = null
-        this.order.customer.email = null
       },
       onBack () {
         this.dialog = false
@@ -206,7 +205,9 @@
     },
     computed: {
       sum () {
-        return this.order.time.price + this.order.service.price + this.order.cert.price + this.order.shipping.price
+        const result = this.order.time.price + this.order.service.price + this.order.cert.price + this.order.shipping.price
+        this.order.sum = result
+        return result
       }
     },
     components: {
