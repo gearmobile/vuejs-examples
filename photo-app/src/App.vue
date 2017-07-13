@@ -31,7 +31,7 @@
         v-flex.text-sm-right( xs12, sm3 offset-sm6, v-if="nextShow" )
           v-btn.app__btn.teal( dark, @click.native="onNext()" )
             | next
-        v-flex( xs12, sm3, v-if="orderShow" )
+        v-flex.text-sm-right( xs12, sm3, offset-sm6, v-if="orderShow" )
           v-btn.app__btn.indigo( dark, @click.native.stop="onOrder()" )
             | make order
 
@@ -189,6 +189,9 @@
         this.order.service.price = 0
         this.order.cert.price = 0
         this.order.shipping.price = 0
+        this.order.customer.name = null
+        this.order.customer.phone = null
+        this.order.customer.email = null
       },
       onBack () {
         this.dialog = false

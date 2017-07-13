@@ -27,12 +27,12 @@
       greeting () {
         eventBus.$emit('greeting', this.greeting)
       }
+    },
+    created () {
+      eventBus.$on('clear', () => {
+        this.greeting = ''
+      })
     }
-    // created () {
-    //   eventBus.$on('clear', () => {
-    //     this.greeting = ''
-    //   })
-    // }
   }
 </script>
 
