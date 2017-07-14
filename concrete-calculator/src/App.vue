@@ -93,14 +93,14 @@
                 v-layout( row, style="align-items: center;" )
                   v-flex( xs4 )
                     v-subheader
-                      | Толщина плиты
+                      | Толщина плиты, см
                   v-flex( xs8 )
-                    v-text-field( id="footer", name="footer", label="Толщина плиты", v-model="footer.value", hide-details )
+                    v-text-field( id="footer", name="footer", label="Толщина", v-model="footer.value", hide-details )
                 v-layout.mt-2
                   v-flex( xs12, style="display: flex; align-items: center;" )
                     v-icon.mr-2.teal--text.text--darken-2
                       | error_outline
-                    p.mb-0
+                    p.mb-0.teal--text
                       | Рекомендуемая толщина от 25 до 40 см
 
           // HEADER
@@ -119,14 +119,14 @@
                 v-layout( row, style="align-items: center;" )
                   v-flex( xs4 )
                     v-subheader
-                      | Толщина плиты
+                      | Толщина плиты, см
                   v-flex( xs8 )
-                    v-text-field( id="header", name="header", label="Толщина плиты", v-model="header.value", hide-details )
+                    v-text-field( id="header", name="header", label="Толщина", v-model="header.value", hide-details )
                 v-layout.mt-2
                   v-flex( xs12, style="display: flex; align-items: center;" )
                     v-icon.mr-2.teal--text.text--darken-2
                       | error_outline
-                    p.mb-0
+                    p.mb-0.teal--text
                       | Рекомендуемая толщина от 18 до 22 см
 
           // MARK
@@ -142,7 +142,7 @@
               v-flex( xs12, style="display: flex; align-items: center;" )
                 v-icon.mr-2.teal--text.text--darken-2
                   | error_outline
-                p.mb-0
+                p.mb-0.teal--text
                   | Рекомендуемая марка м300-м350
 
           // OUTPUT
@@ -260,8 +260,23 @@
         const result = this.delta * ((this.basement.sideB - this.delta * 3) / 2)
         return result
       },
+      base () {
+        const result = this.basement.sideA * this.basement.sideB
+        return result
+      },
+      header () {
+        const result = this.base * (this.header.value * 0.01)
+        return result
+      },
+      footer () {
+        const delta = (this.basement.allowance * 0.01) * 2
+        const L1 = this.basement.sideA + delta
+        const L2 = this.basement.sideB + delta
+        const result = L1 * L2 * this.footer.value
+        return result
+      },
       s1 () {
-        const s1 = this.basement.sideA * this.basement.sideB
+        const s1 = this.base
         const s2 = (this.basement.sideA - this.delta * 2) * (this.basement.sideB - this.delta * 2)
         const result = s1 - s2
         return result
@@ -309,6 +324,9 @@
         const result = this.output * this.mark.price
         return result
       }
+    },
+    created () {
+      this.sum
     }
   }
 </script>
