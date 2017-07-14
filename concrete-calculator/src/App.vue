@@ -171,7 +171,7 @@
   export default {
     filters: {
       meters (value) {
-        return Math.round(value) + ' куб.м бетона'
+        return value.toFixed(2) + ' куб.м бетона'
       },
       currency (value) {
         if (value === null) {
@@ -197,14 +197,14 @@
           sideB: null,
           sideC: null,
           sideD: null,
-          allowance: 20
+          allowance: 0.2
         },
         footer: {
-          value: null,
+          value: 25,
           status: false
         },
         header: {
-          value: null,
+          value: 18,
           status: false
         },
         mark: 'm-100',
@@ -264,15 +264,21 @@
         const result = this.basement.sideA * this.basement.sideB
         return result
       },
-      header () {
-        const result = this.base * (this.header.value * 0.01)
+      head () {
+        let result = 0
+        if (this.header.status) {
+          result = this.base * (this.header.value * 0.01)
+        }
         return result
       },
-      footer () {
-        const delta = (this.basement.allowance * 0.01) * 2
-        const L1 = this.basement.sideA + delta
-        const L2 = this.basement.sideB + delta
-        const result = L1 * L2 * this.footer.value
+      foot () {
+        let result = null
+        if (this.footer.status) {
+          const delta = this.basement.allowance * 2
+          const L1 = parseInt(this.basement.sideA) + delta
+          const L2 = parseInt(this.basement.sideB) + delta
+          result = L1 * L2 * (this.footer.value * 0.01)
+        }
         return result
       },
       s1 () {
@@ -298,7 +304,7 @@
         return result
       },
       output () {
-        let result = null
+        let result = 0
         switch (this.type) {
           case 'basement1':
             result = this.s1
@@ -318,15 +324,13 @@
           default:
             result = 0
         }
+        result += (this.head + this.foot)
         return result
       },
       sum () {
         const result = this.output * this.mark.price
         return result
       }
-    },
-    created () {
-      this.sum
     }
   }
 </script>
