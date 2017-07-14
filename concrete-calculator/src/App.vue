@@ -108,7 +108,7 @@
                     v-subheader
                       | Толщина плиты, см
                   v-flex( xs8 )
-                    v-text-field( id="footer", name="footer", label="Толщина", v-model="footer.value", hide-details )
+                    v-text-field( id="footer", name="footer", label="Толщина", v-model.trim="footer.value", hide-details )
                 v-layout.mt-2
                   v-flex( xs12, style="display: flex; align-items: center;" )
                     v-icon.mr-2.teal--text.text--darken-2
@@ -134,7 +134,7 @@
                     v-subheader
                       | Толщина плиты, см
                   v-flex( xs8 )
-                    v-text-field( id="header", name="header", label="Толщина", v-model="header.value", hide-details )
+                    v-text-field( id="header", name="header", label="Толщина", v-model.trim="header.value", hide-details )
                 v-layout.mt-2
                   v-flex( xs12, style="display: flex; align-items: center;" )
                     v-icon.mr-2.teal--text.text--darken-2
@@ -186,6 +186,7 @@
 </template>
 
 <script>
+  import { required, between } from 'vuelidate/lib/validators'
   export default {
     filters: {
       meters (value) {
@@ -196,6 +197,16 @@
           return
         }
         return value.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', maximumSignificantDigits: 4 })
+      }
+    },
+    validations: {
+      'footer.value': {
+        required,
+        between: between(25, 40)
+      },
+      'header.value': {
+        required,
+        between: between(18, 22)
       }
     },
     data () {
