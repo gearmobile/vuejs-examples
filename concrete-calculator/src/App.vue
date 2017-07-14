@@ -19,6 +19,9 @@
 
         v-card.mb-4.pa-4
 
+          h2.display-1
+            | Тип фундамента
+
           v-layout( row, style="align-items: center" )
             v-flex( xs4 )
               v-subheader
@@ -29,6 +32,9 @@
         // MAIN
 
         v-card.mb-4.pa-4
+
+          h2.display-1
+            | Размеры фундамента
 
           // SIDE A
 
@@ -69,6 +75,10 @@
         // PREVIEW
 
         v-card.mb-5
+
+          h2.display-1
+            | Схема фундамента
+
           v-layout( row )
             v-flex( xs12 )
               v-card-media( :src="imagePath", height="700px" )
@@ -76,6 +86,9 @@
         // ADDITIONAL
 
         v-card.mb-4.pa-4
+
+          h2.display-1
+            | Плита и перекрытие
 
           // FOOTER
           
@@ -145,8 +158,13 @@
                 p.mb-0.teal--text
                   | Рекомендуемая марка м300-м350
 
-          // OUTPUT
-          
+        // OUTPUT
+        
+        v-card
+
+          h2.display-1
+            | Результаты
+
           v-container
             v-layout( row )
               v-flex( xs12 )
@@ -161,9 +179,9 @@
 
     // FOOT
 
-    v-footer( :fixed="fixed" )
-      v-spacer
-      span &copy; {{ date }}
+    //- v-footer( :fixed="fixed" )
+    //-   v-spacer
+    //-   span &copy; {{ date }}
 
 </template>
 
