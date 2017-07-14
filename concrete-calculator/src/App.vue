@@ -35,7 +35,7 @@
           v-layout( row, style="align-items: baseline;" )
             v-flex( xs4 )
               v-subheader
-                | Длина стороны А, метры
+                | Длина стороны А, м
             v-flex( xs8 )
               v-text-field( id="sideA", name="sideA", label="Сторона А", v-model="basement.sideA", required )
 
@@ -44,7 +44,7 @@
           v-layout( row, style="align-items: baseline;" )
             v-flex( xs4 )
               v-subheader
-                | Длина стороны B, метры
+                | Длина стороны B, м
             v-flex( xs8 )
               v-text-field( id="sideB", name="sideB", label="Сторона B", v-model="basement.sideB", required )
 
@@ -53,7 +53,7 @@
           v-layout( row, style="align-items: baseline;" )
             v-flex( xs4 )
               v-subheader
-                | Высота ленты C, метры
+                | Высота ленты C, м
             v-flex( xs8 )
               v-text-field( id="sideC", name="sideC", label="Высота C", v-model="basement.sideC", required )
 
@@ -64,7 +64,7 @@
               v-subheader
                 | Толщина ленты D, см
             v-flex( xs8 )
-              v-text-field( id="sideD", name="sideD", label="Толщина D", v-model="basement.sideD", required )
+              v-text-field( id="sideD", name="sideD", label="Толщина D, см", v-model="basement.sideD", required )
 
         // PREVIEW
 
