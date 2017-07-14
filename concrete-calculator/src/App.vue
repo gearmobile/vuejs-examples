@@ -8,6 +8,9 @@
         // HEADLINE
 
         v-layout( row )
+          
+          // TITLE
+
           v-flex( xs12 )
             h2.display-2.text-xs-center
               | Расчет количества бетона для фундамента
@@ -181,7 +184,13 @@
       return {
         fixed: true,
         type: 'basement1',
-        types: ['basement1', 'basement2', 'basement3', 'basement4', 'basement5'],
+        types: [
+          'basement1',
+          'basement2',
+          'basement3',
+          'basement4',
+          'basement5'
+        ],
         basement: {
           sideA: null,
           sideB: null,
@@ -218,7 +227,20 @@
         return new Date().getFullYear()
       },
       imagePath () {
-        return require('./assets/' + this.type + '.jpg')
+        let path
+        if (this.plate.status) {
+          path = 'basement6'
+        }
+        if (this.cross.status) {
+          path = 'basement7'
+        }
+        if (this.plate.status && this.cross.status) {
+          path = 'basement8'
+        }
+        if (!this.plate.status && !this.cross.status) {
+          path = this.type
+        }
+        return require('./assets/' + path + '.jpg')
       },
       delta () {
         const result = (this.basement.sideD / 100)
