@@ -24,7 +24,7 @@
               v-subheader
                 | Тип фундамента
             v-flex( xs8, style="display: flex" )
-              v-radio( v-for="(item, index) in types" :label="'Type ' + (index + 1)", v-model="type", :value="item", :key="index", color="teal", hide-details )
+              v-radio( v-for="(item, index) in types" :label="'Type ' + (index + 1)", v-model="type", :value="item", :key="index", color="teal", :disabled="radio", hide-details )
 
         // MAIN
 
@@ -183,6 +183,7 @@
     data () {
       return {
         fixed: true,
+        radio: false,
         type: 'basement1',
         types: [
           'basement1',
@@ -230,15 +231,19 @@
         let path
         if (this.plate.status) {
           path = 'basement6'
+          this.radio = true
         }
         if (this.cross.status) {
           path = 'basement7'
+          this.radio = true
         }
         if (this.plate.status && this.cross.status) {
           path = 'basement8'
+          this.radio = true
         }
         if (!this.plate.status && !this.cross.status) {
           path = this.type
+          this.radio = false
         }
         return require('./assets/' + path + '.jpg')
       },
