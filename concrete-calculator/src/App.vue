@@ -137,7 +137,7 @@
                 v-subheader
                   | Марка бетона
               v-flex( xs8 )
-                v-select( :items="marks", label="Выберите марку бетона", v-model="mark", item-text="text", item-value="price", return-object, single-line, bottom, hide-details )
+                v-select( :items="marks", label="Выберите марку бетона", v-model="mark", item-text="name", item-value="price", return-object, single-line, bottom, hide-details )
             v-layout( row, style="align-items: center;" )
               v-flex( xs12, style="display: flex; align-items: center;" )
                 v-icon.mr-2.teal--text.text--darken-2
@@ -154,7 +154,7 @@
                   v-list-tile
                     | Потребуется {{ output | meters }}
                   v-list-tile
-                    | Марка бетона - {{ mark.text }}
+                    | Марка бетона - {{ mark.name }}
                   v-list-tile
                     | На сумму - {{ sum | currency }}
 
@@ -207,33 +207,24 @@
           value: 18,
           status: false
         },
-        mark: { text: 'm100', price: 3400 },
+        mark: { name: 'm100', price: 3400 },
         marks: [
-          { text: 'm100', price: 3400 },
-          { text: 'm150', price: 3550 },
-          { text: 'm200', price: 3750 },
-          { text: 'm250', price: 3850 },
-          { text: 'm300', price: 3950 },
-          { text: 'm350', price: 4050 },
-          { text: 'm400', price: 4600 },
-          { text: 'm450', price: 4850 },
-          { text: 'm500', price: 5000 },
-          { text: 'm550', price: 5050 },
-          { text: 'm600', price: 5200 },
-          { text: 'm650', price: 5500 }
+          { name: 'm100', price: 3400 },
+          { name: 'm150', price: 3550 },
+          { name: 'm200', price: 3750 },
+          { name: 'm250', price: 3850 },
+          { name: 'm300', price: 3950 },
+          { name: 'm350', price: 4050 },
+          { name: 'm400', price: 4600 },
+          { name: 'm450', price: 4850 },
+          { name: 'm500', price: 5000 },
+          { name: 'm550', price: 5050 },
+          { name: 'm600', price: 5200 },
+          { name: 'm650', price: 5500 }
         ]
       }
     },
     computed: {
-      price () {
-        let result = null
-        this.marks.find(el => {
-          if (el.text === this.mark) {
-            result = el.price
-          }
-        })
-        return result
-      },
       date () {
         return new Date().getFullYear()
       },
@@ -264,21 +255,17 @@
         return this.basement.sideB === null ? 0 : parseInt(this.basement.sideB)
       },
       sideD () {
-        return this.basement.sideD === null ? 0 : parseInt(this.basement.sideD)
+        return this.basement.sideD === null ? 0 : parseInt(this.basement.sideD) * 0.01
       },
       sideC () {
         return this.basement.sideC === null ? 0 : parseInt(this.basement.sideC)
       },
-      delta () {
-        const result = this.sideD * 0.01
-        return result
-      },
       long () {
-        const result = (this.sideA - this.delta * 2) * this.delta
+        const result = (this.sideA - this.sideD * 2) * this.sideD
         return result
       },
       short () {
-        const result = this.delta * ((this.sideB - this.delta * 3) / 2)
+        const result = this.sideD * ((this.sideB - this.sideD * 3) / 2)
         return result
       },
       base () {
@@ -301,9 +288,9 @@
         return result
       },
       s1 () {
-        const s1 = this.base
-        const s2 = (this.sideA - this.delta * 2) * (this.sideB - this.delta * 2)
-        const result = s1 - s2
+        const outer = this.base
+        const inner = (this.sideA - this.sideD * 2) * (this.sideB - this.sideD * 2)
+        const result = outer - inner
         return result
       },
       s2 () {
@@ -348,7 +335,7 @@
         return result
       },
       sum () {
-        const result = this.output * this.price
+        const result = this.output * this.mark.price
         return result
       }
     }
