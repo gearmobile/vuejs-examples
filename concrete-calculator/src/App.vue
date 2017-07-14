@@ -137,7 +137,7 @@
                 v-subheader
                   | Марка бетона
               v-flex( xs8 )
-                v-select( :items="marks", label="Выберите марку бетона", v-model="mark", single-line, bottom, hide-details )
+                v-select( :items="marks", label="Выберите марку бетона", v-model="mark", item-text="text", item-value="price", return-object, single-line, bottom, hide-details )
             v-layout( row, style="align-items: center;" )
               v-flex( xs12, style="display: flex; align-items: center;" )
                 v-icon.mr-2.teal--text.text--darken-2
@@ -154,7 +154,7 @@
                   v-list-tile
                     | Потребуется {{ output | meters }}
                   v-list-tile
-                    | Марка бетона - {{ mark }}
+                    | Марка бетона - {{ mark.text }}
                   v-list-tile
                     | На сумму - {{ sum | currency }}
 
@@ -207,7 +207,7 @@
           value: 18,
           status: false
         },
-        mark: 'm100',
+        mark: { text: 'm100', price: 3400 },
         marks: [
           { text: 'm100', price: 3400 },
           { text: 'm150', price: 3550 },
@@ -270,7 +270,7 @@
         return this.basement.sideC === null ? 0 : parseInt(this.basement.sideC)
       },
       delta () {
-        const result = (this.sideD / 100)
+        const result = this.sideD * 0.01
         return result
       },
       long () {
@@ -296,9 +296,7 @@
         let result = 0
         if (this.footer.status) {
           const delta = this.basement.allowance * 2
-          const L1 = this.sideA + delta
-          const L2 = this.sideB + delta
-          result = L1 * L2 * (this.footer.value * 0.01)
+          result = (this.sideA + delta) * (this.sideB + delta) * (this.footer.value * 0.01)
         }
         return result
       },
@@ -309,19 +307,19 @@
         return result
       },
       s2 () {
-        const result = (this.s1 - this.long) * this.sideC
+        const result = this.s1 + this.long
         return result
       },
       s3 () {
-        const result = (this.s1 - this.long * 2) * this.sideC
+        const result = this.s1 + this.long * 2
         return result
       },
       s4 () {
-        const result = (this.s2 - this.short) * this.sideC
+        const result = this.s2 + this.short
         return result
       },
       s5 () {
-        const result = (this.s2 - this.short * 2) * this.sideC
+        const result = this.s2 + this.short * 2
         return result
       },
       output () {
@@ -345,6 +343,7 @@
           default:
             result = 0
         }
+        result *= this.sideC
         result += (this.head + this.foot)
         return result
       },
