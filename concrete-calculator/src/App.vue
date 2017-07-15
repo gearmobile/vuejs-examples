@@ -114,7 +114,7 @@
                     v-subheader
                       | Толщина плиты, см
                   v-flex( xs12, sm8 )
-                    v-text-field( id="footer", name="footer", title="Введите толщину плиты", label="Толщина", v-model.trim="footer.value", @input="$v.footer.value.$touch()", hide-details )
+                    v-text-field( id="footer", name="footer", title="Введите толщину плиты", v-model.trim="footer.value", @input="$v.footer.value.$touch()", hide-details )
                     span.orange--text( v-if="!$v.footer.value.required" )
                       | Введите в поле значение!
                     span.red--text( v-if="!$v.footer.value.between" )
@@ -144,7 +144,7 @@
                     v-subheader
                       | Толщина плиты, см
                   v-flex( xs12, sm8 )
-                    v-text-field( id="header", name="header", title="Введите толщину плиты", label="Толщина", v-model.trim.number="header.value", @input="$v.header.value.$touch()", hide-details )
+                    v-text-field( id="header", name="header", title="Введите толщину плиты", v-model.trim.number="header.value", @input="$v.header.value.$touch()", hide-details )
                     span.orange--text( v-if="!$v.header.value.required" )
                       | Введите в поле значение!
                     span.red--text( v-if="!$v.header.value.between" )
@@ -180,15 +180,33 @@
             | Результаты
 
           v-container
+            
+            v-layout.mb-3( row, wrap )
+              v-flex( xs12, sm4 )
+                p.mb-1
+                  | Потребуется
+              v-flex( xs12, sm8 )
+                span.teal--text.title
+                  | {{ output | meters }}
+                = ' '
+                span
+                  | куб.м бетона
+
+            v-layout.mb-3( row, wrap )
+              v-flex( xs12, sm4 )
+                p.mb-1
+                  | Марка бетона
+              v-flex( xs12, sm8 )
+                span.teal--text.title
+                  | {{ mark.name }}
+
             v-layout( row, wrap )
-              v-flex( xs12 )
-                v-list
-                  v-list-tile
-                    | Потребуется -&nbsp;<span class="title teal--text">{{ output | meters }}</span>&nbsp;куб.м бетона
-                  v-list-tile
-                    | Марка бетона -&nbsp;<span class="title teal--text">{{ mark.name }}</span>
-                  v-list-tile
-                    | Всего на сумму -&nbsp;<span class="title teal--text">{{ sum | currency }}</span>
+              v-flex( xs12, sm4 )
+                p.mb-1
+                  | Всего на сумму
+              v-flex( xs12, sm8 )
+                span.teal--text.title
+                  | {{ sum | currency }}
 
 </template>
 
