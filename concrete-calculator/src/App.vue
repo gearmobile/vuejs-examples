@@ -311,16 +311,16 @@
         return require('./assets/' + path + '.jpg')
       },
       sideA () {
-        return this.basement.sideA === null ? 0 : parseInt(this.basement.sideA)
+        return (this.basement.sideA === null || typeof (this.basement.sideA) === 'undefined') ? 0 : parseInt(this.basement.sideA)
       },
       sideB () {
-        return this.basement.sideB === null ? 0 : parseInt(this.basement.sideB)
+        return (this.basement.sideB === null || typeof (this.basement.sideB) === 'undefined') ? 0 : parseInt(this.basement.sideB)
       },
       sideD () {
-        return this.basement.sideD === null ? 0 : parseInt(this.basement.sideD) * 0.01
+        return (this.basement.sideD === null || typeof (this.basement.sideD) === 'undefined') ? 0 : parseInt(this.basement.sideD) * 0.01
       },
       sideC () {
-        return this.basement.sideC === null ? 0 : parseInt(this.basement.sideC)
+        return (this.basement.sideC === null || typeof (this.basement.sideC) === 'undefined') ? 0 : parseInt(this.basement.sideC)
       },
       long () {
         const result = (this.sideA - this.sideD * 2) * this.sideD
