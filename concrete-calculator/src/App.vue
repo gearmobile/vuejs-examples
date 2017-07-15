@@ -19,7 +19,7 @@
 
         v-card.mb-4.pa-4
 
-          h2.display-1
+          h2.display-1.text-xs-center.mb-4.teal--text
             | Тип фундамента
 
           v-layout( row, style="align-items: center" )
@@ -33,7 +33,7 @@
 
         v-card.mb-4.pa-4
 
-          h2.display-1
+          h2.display-1.text-xs-center.mb-4.teal--text
             | Размеры фундамента
 
           // SIDE A
@@ -43,9 +43,9 @@
               v-subheader
                 | Длина стороны А, м
             v-flex( xs8 )
-              v-text-field( id="sideA", name="sideA", label="Сторона А", v-model="basement.sideA", @input="$v.basement.sideA.$touch()", hide-details, required )
-              span( v-if="!$v.basement.sideA.numeric" )
-                | В поле должны быть только цифры
+              v-text-field( id="sideA", name="sideA", title="Введите длину фундамента", label="Сторона А", v-model.trim="basement.sideA", @input="$v.basement.sideA.$touch()", hide-details, required )
+              span.red--text( v-if="!$v.basement.sideA.numeric" )
+                | В поле должны быть только цифры!
 
           // SIDE B
           
@@ -54,9 +54,9 @@
               v-subheader
                 | Длина стороны B, м
             v-flex( xs8 )
-              v-text-field( id="sideB", name="sideB", label="Сторона B", v-model="basement.sideB", @input="$v.basement.sideB.touch()", hide-details, required )
-              span( v-if="!$v.basement.sideB.numeric" )
-                | В поле должны быть только цифры
+              v-text-field( id="sideB", name="sideB", title="Введите ширину фундамента", label="Сторона B", v-model.trim="basement.sideB", @input="$v.basement.sideB.touch()", hide-details, required )
+              span.red--text( v-if="!$v.basement.sideB.numeric" )
+                | В поле должны быть только цифры!
 
           // SIDE C
           
@@ -65,9 +65,9 @@
               v-subheader
                 | Высота ленты C, м
             v-flex( xs8 )
-              v-text-field( id="sideC", name="sideC", label="Высота C", v-model="basement.sideC", @input="$v.basement.sideC.touch()", hide-details, required )
-              span( v-if="!$v.basement.sideC.numeric" )
-                | В поле должны быть только цифры
+              v-text-field( id="sideC", name="sideC", title="Введите высоту фундамента", label="Высота C", v-model.trim="basement.sideC", @input="$v.basement.sideC.touch()", hide-details, required )
+              span.red--text( v-if="!$v.basement.sideC.numeric" )
+                | В поле должны быть только цифры!
 
           // SIDE D
           
@@ -76,15 +76,15 @@
               v-subheader
                 | Толщина ленты D, см
             v-flex( xs8 )
-              v-text-field( id="sideD", name="sideD", label="Толщина D", v-model="basement.sideD", @input="$v.basement.sideD.touch()", hide-details, required )
-              span( v-if="!$v.basement.sideD.numeric" )
-                | В поле должны быть только цифры
+              v-text-field( id="sideD", name="sideD", title="Введите толщину фундамента", label="Толщина D", v-model.trim="basement.sideD", @input="$v.basement.sideD.touch()", hide-details, required )
+              span.red--text( v-if="!$v.basement.sideD.numeric" )
+                | В поле должны быть только цифры!
 
         // PREVIEW
 
-        v-card.mb-5
+        v-card.mb-4.pa-4
 
-          h2.display-1
+          h2.display-1.text-xs-center.mb-4.teal--text
             | Схема фундамента
 
           v-layout( row )
@@ -95,20 +95,18 @@
 
         v-card.mb-4.pa-4
 
-          h2.display-1
+          h2.display-1.text-xs-center.mb-4.teal--text
             | Плита и перекрытие
 
           // FOOTER
           
           v-container
-            // ---
             v-layout( row, style="align-items: center;" )
               v-flex( xs4 )
                 v-subheader
                   | Добавить плиту основание
               v-flex( xs8 )
                 v-checkbox( v-model="footer.status", hide-details )
-            // ---
             v-slide-y-transition( mode="out-in" )
               v-container( v-if="footer.status" )
                 v-layout( row, style="align-items: center;" )
@@ -116,11 +114,11 @@
                     v-subheader
                       | Толщина плиты, см
                   v-flex( xs8 )
-                    v-text-field( id="footer", name="footer", label="Толщина", v-model.trim="footer.value", @input="$v.footer.value.$touch()", hide-details )
-                    span( v-if="!$v.footer.value.required" )
-                      | The field is required!
-                    span( v-if="!$v.footer.value.between" )
-                      | The input must be between 25 and 40!
+                    v-text-field( id="footer", name="footer", title="Введите толщину плиты", label="Толщина", v-model.trim="footer.value", @input="$v.footer.value.$touch()", hide-details )
+                    span.orange--text( v-if="!$v.footer.value.required" )
+                      | Введите в поле значение!
+                    span.red--text( v-if="!$v.footer.value.between" )
+                      | Толщина должна быть от 25 до 40см
                 v-layout.mt-2
                   v-flex( xs12, style="display: flex; align-items: center;" )
                     v-icon.mr-2.teal--text.text--darken-2
@@ -146,17 +144,17 @@
                     v-subheader
                       | Толщина плиты, см
                   v-flex( xs8 )
-                    v-text-field( id="header", name="header", label="Толщина", v-model.trim.number="header.value", @input="$v.header.value.$touch()", hide-details )
-                    p( v-if="!$v.header.value.required" )
-                      | The field is required!
-                    p( v-if="!$v.header.value.between" )
-                      | The input must be between 18 and 22!
+                    v-text-field( id="header", name="header", title="Введите толщину плиты", label="Толщина", v-model.trim.number="header.value", @input="$v.header.value.$touch()", hide-details )
+                    span.orange--text( v-if="!$v.header.value.required" )
+                      | Введите в поле значение!
+                    span.red--text( v-if="!$v.header.value.between" )
+                      | Толщина должна быть от 18 до 22см!
                 v-layout.mt-2
                   v-flex( xs12, style="display: flex; align-items: center;" )
                     v-icon.mr-2.teal--text.text--darken-2
                       | error_outline
                     p.mb-0.teal--text
-                      | Рекомендуемая толщина от 18 до 22 см
+                      | Рекомендуемая толщина от 18 до 22см
 
           // MARK
           
@@ -176,9 +174,9 @@
 
         // OUTPUT
         
-        v-card
+        v-card.pa-4
 
-          h2.display-1
+          h2.display-1.text-xs-center.mb-4.teal--text
             | Результаты
 
           v-container
