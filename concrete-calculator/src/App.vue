@@ -43,7 +43,9 @@
               v-subheader
                 | Длина стороны А, м
             v-flex( xs8 )
-              v-text-field( id="sideA", name="sideA", label="Сторона А", v-model="basement.sideA", required )
+              v-text-field( id="sideA", name="sideA", label="Сторона А", v-model="basement.sideA", @input="$v.basement.sideA.$touch()", hide-details, required )
+              span( v-if="!$v.basement.sideA.numeric" )
+                | В поле должны быть только цифры
 
           // SIDE B
           
@@ -52,7 +54,9 @@
               v-subheader
                 | Длина стороны B, м
             v-flex( xs8 )
-              v-text-field( id="sideB", name="sideB", label="Сторона B", v-model="basement.sideB", required )
+              v-text-field( id="sideB", name="sideB", label="Сторона B", v-model="basement.sideB", @input="$v.basement.sideB.touch()", hide-details, required )
+              span( v-if="!$v.basement.sideB.numeric" )
+                | В поле должны быть только цифры
 
           // SIDE C
           
@@ -61,7 +65,9 @@
               v-subheader
                 | Высота ленты C, м
             v-flex( xs8 )
-              v-text-field( id="sideC", name="sideC", label="Высота C", v-model="basement.sideC", required )
+              v-text-field( id="sideC", name="sideC", label="Высота C", v-model="basement.sideC", @input="$v.basement.sideC.touch()", hide-details, required )
+              span( v-if="!$v.basement.sideC.numeric" )
+                | В поле должны быть только цифры
 
           // SIDE D
           
@@ -70,7 +76,9 @@
               v-subheader
                 | Толщина ленты D, см
             v-flex( xs8 )
-              v-text-field( id="sideD", name="sideD", label="Толщина D, см", v-model="basement.sideD", required )
+              v-text-field( id="sideD", name="sideD", label="Толщина D", v-model="basement.sideD", @input="$v.basement.sideD.touch()", hide-details, required )
+              span( v-if="!$v.basement.sideD.numeric" )
+                | В поле должны быть только цифры
 
         // PREVIEW
 
@@ -194,7 +202,7 @@
 </template>
 
 <script>
-  import { required, between } from 'vuelidate/lib/validators'
+  import { required, between, numeric } from 'vuelidate/lib/validators'
 
   export default {
     filters: {
@@ -220,15 +228,21 @@
           required,
           between: between(18, 22)
         }
+      },
+      basement: {
+        sideA: {
+          numeric
+        },
+        sideB: {
+          numeric
+        },
+        sideC: {
+          numeric
+        },
+        sideD: {
+          numeric
+        }
       }
-      // 'footer.value': {
-      //   required,
-      //   between: between(25, 40)
-      // },
-      // 'header.value': {
-      //   required,
-      //   between: between(18, 22)
-      // }
     },
     data () {
       return {
