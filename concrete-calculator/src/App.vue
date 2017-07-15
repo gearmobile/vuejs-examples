@@ -1,6 +1,6 @@
 <template lang="pug">
   
-  v-app
+  v-app.app
 
     v-container
       v-flex( md8, offset-md2 )
@@ -12,14 +12,14 @@
           // TITLE
 
           v-flex( xs12 )
-            h2.display-2.text-xs-center.mb-4.teal--text.darken-2
-              | Расчет количества бетона для фундамента
+            h2.display-2.text-xs-center.mb-4.teal--text.darken-2.app__caption
+              | Расчет количества бетона <span class="hidden-sm-and-down">для фундамента</span>
 
         // TYPE
 
         v-card.mb-4.pa-4
 
-          h2.display-1.text-xs-center.mb-4.teal--text
+          h2.display-1.text-xs-center.mb-4.teal--text.hidden-xs-only
             | Тип фундамента
 
           v-layout( row, wrap, style="align-items: center" )
@@ -33,7 +33,7 @@
 
         v-card.mb-4.pa-4
 
-          h2.display-1.text-xs-center.mb-4.teal--text
+          h2.display-1.text-xs-center.mb-4.teal--text.hidden-xs-only
             | Размеры фундамента
 
           // SIDE A
@@ -84,7 +84,7 @@
 
         v-card.mb-4.pa-4
 
-          h2.display-1.text-xs-center.mb-4.teal--text
+          h2.display-1.text-xs-center.mb-4.teal--text.hidden-xs-only
             | Схема фундамента
 
           v-layout( row )
@@ -95,7 +95,7 @@
 
         v-card.mb-4.pa-4
 
-          h2.display-1.text-xs-center.mb-4.teal--text
+          h2.display-1.text-xs-center.mb-4.teal--text.hidden-xs-only
             | Плита и перекрытие
 
           // FOOTER
@@ -399,4 +399,20 @@
 
 <style lang="stylus">
   @import './stylus/main'
+
+  .app
+
+
+    @media screen and ( max-width 600px )
+
+      .app__caption
+        font-size 36px !important
+        line-height 1.2 !important
+        padding 0 1rem !important
+
+    @media screen and ( max-width 500px )
+
+      .app__caption
+        font-size 30px !important
+
 </style>
