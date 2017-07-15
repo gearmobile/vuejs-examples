@@ -181,7 +181,7 @@
 
           v-container
             
-            v-layout.mb-3( row, wrap )
+            v-layout.mb-4( row, wrap )
               v-flex( xs12, sm4 )
                 p.mb-1
                   | Потребуется
@@ -192,7 +192,7 @@
                 span
                   | куб.м бетона
 
-            v-layout.mb-3( row, wrap )
+            v-layout.mb-4( row, wrap )
               v-flex( xs12, sm4 )
                 p.mb-1
                   | Марка бетона
