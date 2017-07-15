@@ -184,18 +184,11 @@
               v-flex( xs12 )
                 v-list
                   v-list-tile
-                    | Потребуется {{ output | meters }}
+                    | Потребуется -&nbsp;<span class="title teal--text">{{ output | meters }}</span>&nbsp;куб.м бетона
                   v-list-tile
-                    | Марка бетона - {{ mark.name }}
+                    | Марка бетона -&nbsp;<span class="title teal--text">{{ mark.name }}</span>
                   v-list-tile
-                    | На сумму - {{ sum | currency }}
-
-
-    // FOOT
-
-    //- v-footer( :fixed="fixed" )
-    //-   v-spacer
-    //-   span &copy; {{ date }}
+                    | Всего на сумму -&nbsp;<span class="title teal--text">{{ sum | currency }}</span>
 
 </template>
 
@@ -205,7 +198,7 @@
   export default {
     filters: {
       meters (value) {
-        return value.toFixed(2) + ' куб.м бетона'
+        return value.toFixed(2)
       },
       currency (value) {
         if (value === null) {
