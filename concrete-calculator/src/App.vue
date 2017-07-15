@@ -108,7 +108,11 @@
                     v-subheader
                       | Толщина плиты, см
                   v-flex( xs8 )
-                    v-text-field( id="footer", name="footer", label="Толщина", v-model.trim="footer.value", hide-details )
+                    v-text-field( id="footer", name="footer", label="Толщина", v-model.trim="footer.value", @input="$v.footer.value.$touch()", hide-details )
+                    span( v-if="!$v.footer.value.required" )
+                      | The field is required!
+                    span( v-if="!$v.footer.value.between" )
+                      | The input must be between 25 and 40!
                 v-layout.mt-2
                   v-flex( xs12, style="display: flex; align-items: center;" )
                     v-icon.mr-2.teal--text.text--darken-2
@@ -134,7 +138,11 @@
                     v-subheader
                       | Толщина плиты, см
                   v-flex( xs8 )
-                    v-text-field( id="header", name="header", label="Толщина", v-model.trim="header.value", hide-details )
+                    v-text-field( id="header", name="header", label="Толщина", v-model.trim.number="header.value", @input="$v.header.value.$touch()", hide-details )
+                    p( v-if="!$v.header.value.required" )
+                      | The field is required!
+                    p( v-if="!$v.header.value.between" )
+                      | The input must be between 18 and 22!
                 v-layout.mt-2
                   v-flex( xs12, style="display: flex; align-items: center;" )
                     v-icon.mr-2.teal--text.text--darken-2
@@ -187,6 +195,7 @@
 
 <script>
   import { required, between } from 'vuelidate/lib/validators'
+
   export default {
     filters: {
       meters (value) {
@@ -200,14 +209,26 @@
       }
     },
     validations: {
-      'footer.value': {
-        required,
-        between: between(25, 40)
+      footer: {
+        value: {
+          required,
+          between: between(25, 40)
+        }
       },
-      'header.value': {
-        required,
-        between: between(18, 22)
+      header: {
+        value: {
+          required,
+          between: between(18, 22)
+        }
       }
+      // 'footer.value': {
+      //   required,
+      //   between: between(25, 40)
+      // },
+      // 'header.value': {
+      //   required,
+      //   between: between(18, 22)
+      // }
     },
     data () {
       return {

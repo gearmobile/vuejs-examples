@@ -2,7 +2,8 @@ div
   .form-group( v-bind:class="{ 'form-group--error': $v.name.$error }" )
     label.form__label Name
     input.form__input( v-model.trim="name" @input="$v.name.$touch()" )
-  span.form-group__message( v-if="!$v.name.required" ) Field is required
+  span.form-group__message( v-if="!$v.name.required" )
+    | Field is required
   span.form-group__message( v-if="!$v.name.minLength" )
     | Name must have at least {{ $v.name.$params.minLength.min }} letters.
   pre
