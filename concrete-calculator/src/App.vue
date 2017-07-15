@@ -12,7 +12,7 @@
           // TITLE
 
           v-flex( xs12 )
-            h2.display-2.text-xs-center
+            h2.display-2.text-xs-center.mb-4.teal--text.darken-2
               | Расчет количества бетона для фундамента
 
         // TYPE
@@ -22,11 +22,11 @@
           h2.display-1.text-xs-center.mb-4.teal--text
             | Тип фундамента
 
-          v-layout( row, style="align-items: center" )
-            v-flex( xs4 )
+          v-layout( row, wrap, style="align-items: center" )
+            v-flex( xs12, sm4 )
               v-subheader
                 | Тип фундамента
-            v-flex( xs8, style="display: flex" )
+            v-flex( xs12, sm8, style="display: flex" )
               v-radio( v-for="(item, index) in types" :label="'Type ' + (index + 1)", v-model="type", :value="item", :key="index", color="teal", :disabled="radio", hide-details )
 
         // MAIN
@@ -38,44 +38,44 @@
 
           // SIDE A
 
-          v-layout( row, style="align-items: baseline;" )
-            v-flex( xs4 )
+          v-layout( row, wrap, style="align-items: baseline;" )
+            v-flex( xs12, sm4 )
               v-subheader
                 | Длина стороны А, м
-            v-flex( xs8 )
+            v-flex( xs12, sm8 )
               v-text-field( id="sideA", name="sideA", title="Введите длину фундамента", label="Сторона А", v-model.trim="basement.sideA", @input="$v.basement.sideA.$touch()", hide-details, required )
               span.red--text( v-if="!$v.basement.sideA.numeric" )
                 | В поле должны быть только цифры!
 
           // SIDE B
           
-          v-layout( row, style="align-items: baseline;" )
-            v-flex( xs4 )
+          v-layout( row, wrap, style="align-items: baseline;" )
+            v-flex( xs12, sm4 )
               v-subheader
                 | Длина стороны B, м
-            v-flex( xs8 )
+            v-flex( xs12, sm8 )
               v-text-field( id="sideB", name="sideB", title="Введите ширину фундамента", label="Сторона B", v-model.trim="basement.sideB", @input="$v.basement.sideB.touch()", hide-details, required )
               span.red--text( v-if="!$v.basement.sideB.numeric" )
                 | В поле должны быть только цифры!
 
           // SIDE C
           
-          v-layout( row, style="align-items: baseline;" )
-            v-flex( xs4 )
+          v-layout( row, wrap, style="align-items: baseline;" )
+            v-flex( xs12, sm4 )
               v-subheader
                 | Высота ленты C, м
-            v-flex( xs8 )
+            v-flex( xs12, sm8 )
               v-text-field( id="sideC", name="sideC", title="Введите высоту фундамента", label="Высота C", v-model.trim="basement.sideC", @input="$v.basement.sideC.touch()", hide-details, required )
               span.red--text( v-if="!$v.basement.sideC.numeric" )
                 | В поле должны быть только цифры!
 
           // SIDE D
           
-          v-layout( row, style="align-items: baseline;" )
-            v-flex( xs4 )
+          v-layout( row, wrap, style="align-items: baseline;" )
+            v-flex( xs12, sm4 )
               v-subheader
                 | Толщина ленты D, см
-            v-flex( xs8 )
+            v-flex( xs12, sm8 )
               v-text-field( id="sideD", name="sideD", title="Введите толщину фундамента", label="Толщина D", v-model.trim="basement.sideD", @input="$v.basement.sideD.touch()", hide-details, required )
               span.red--text( v-if="!$v.basement.sideD.numeric" )
                 | В поле должны быть только цифры!
@@ -101,19 +101,19 @@
           // FOOTER
           
           v-container
-            v-layout( row, style="align-items: center;" )
-              v-flex( xs4 )
+            v-layout( row, wrap, style="align-items: center;" )
+              v-flex( xs12, sm4 )
                 v-subheader
                   | Добавить плиту основание
-              v-flex( xs8 )
+              v-flex( xs12, sm8 )
                 v-checkbox( v-model="footer.status", hide-details )
             v-slide-y-transition( mode="out-in" )
               v-container( v-if="footer.status" )
-                v-layout( row, style="align-items: center;" )
-                  v-flex( xs4 )
+                v-layout( row, wrap, style="align-items: center;" )
+                  v-flex( xs12, sm4 )
                     v-subheader
                       | Толщина плиты, см
-                  v-flex( xs8 )
+                  v-flex( xs12, sm8 )
                     v-text-field( id="footer", name="footer", title="Введите толщину плиты", label="Толщина", v-model.trim="footer.value", @input="$v.footer.value.$touch()", hide-details )
                     span.orange--text( v-if="!$v.footer.value.required" )
                       | Введите в поле значение!
@@ -130,20 +130,20 @@
           
           v-container
             // ---
-            v-layout( row, style="align-items: center;" )
-              v-flex( xs4 )
+            v-layout( row, wrap, style="align-items: center;" )
+              v-flex( xs12, sm4 )
                 v-subheader
                   | Добавить плиту перекрытие
-              v-flex( xs8 )
+              v-flex( xs12, sm8 )
                 v-checkbox( v-model="header.status", hide-details )
             // ---
             v-slide-y-transition( mode="out-in" )
               v-container( v-if="header.status" )
-                v-layout( row, style="align-items: center;" )
-                  v-flex( xs4 )
+                v-layout( row, wrap, style="align-items: center;" )
+                  v-flex( xs12, sm4 )
                     v-subheader
                       | Толщина плиты, см
-                  v-flex( xs8 )
+                  v-flex( xs12, sm8 )
                     v-text-field( id="header", name="header", title="Введите толщину плиты", label="Толщина", v-model.trim.number="header.value", @input="$v.header.value.$touch()", hide-details )
                     span.orange--text( v-if="!$v.header.value.required" )
                       | Введите в поле значение!
@@ -159,13 +159,13 @@
           // MARK
           
           v-container
-            v-layout( row, style="align-items: center;" )
-              v-flex( xs4 )
+            v-layout( row, wrap, style="align-items: center;" )
+              v-flex( xs12, sm4 )
                 v-subheader
                   | Марка бетона
-              v-flex( xs8 )
+              v-flex( xs12, sm8 )
                 v-select( :items="marks", label="Выберите марку бетона", v-model="mark", item-text="name", item-value="price", return-object, single-line, bottom, hide-details )
-            v-layout( row, style="align-items: center;" )
+            v-layout( row, wrap, style="align-items: center;" )
               v-flex( xs12, style="display: flex; align-items: center;" )
                 v-icon.mr-2.teal--text.text--darken-2
                   | error_outline
@@ -180,7 +180,7 @@
             | Результаты
 
           v-container
-            v-layout( row )
+            v-layout( row, wrap )
               v-flex( xs12 )
                 v-list
                   v-list-tile
