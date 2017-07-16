@@ -26,7 +26,7 @@
             v-flex( xs12, md4 )
               v-subheader
                 | Тип фундамента
-            v-flex( xs12, md8, style="display: flex" )
+            v-flex.app__nav( xs12, md8, style="display: flex" )
               v-radio( v-for="(item, index) in types" :label="'Type ' + (index + 1)", v-model="type", :value="item", :key="index", color="teal", :disabled="radio", hide-details )
 
         // MAIN
@@ -422,6 +422,9 @@
 
 
     @media screen and ( max-width 600px )
+
+      .app__nav .input-group
+        //
 
       .app__caption
         font-size 36px !important
