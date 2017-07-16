@@ -26,9 +26,9 @@
             v-flex( xs12, md4 )
               v-subheader
                 | Тип фундамента
-            v-flex( xs12, md8 )
-              v-btn-toggle.app__nav( :items="types", v-model="type", :disabled="disable" )
-              //- v-radio( v-for="(item, index) in types" :label="'Type ' + (index + 1)", v-model="type", :value="item", :key="index", color="teal", :disabled="radio", hide-details )
+            v-flex.app__nav( xs12, md8 )
+              v-btn.teal--text.darken-2( outline, v-for="(item, index) in types", :key="item", :value="item", :disabled="disable", @click.native="onShow(item)" )
+                | {{ 'type ' + (index + 1) }}
 
         // MAIN
 
@@ -259,23 +259,12 @@
         fixed: true,
         disable: false,
         type: 'basement1',
-        // types: [
-        //   'basement1',
-        //   'basement2',
-        //   'basement3',
-        //   'basement4',
-        //   'basement5'
-        // ],
         types: [
-          { text: 'Type 1', value: 'basement1' },
-          { text: 'Type 2', value: 'basement2' },
-          { text: 'Type 3', value: 'basement3' },
-          { text: 'Type 4', value: 'basement4' },
-          { text: 'Type 5', value: 'basement5' }
-          // 'basement2',
-          // 'basement3',
-          // 'basement4',
-          // 'basement5'
+          'basement1',
+          'basement2',
+          'basement3',
+          'basement4',
+          'basement5'
         ],
         basement: {
           sideA: null,
@@ -307,6 +296,12 @@
           { name: 'm600', price: 5200 },
           { name: 'm650', price: 5500 }
         ]
+      }
+    },
+    methods: {
+      onShow (value) {
+        console.log(value)
+        this.type = value
       }
     },
     computed: {
