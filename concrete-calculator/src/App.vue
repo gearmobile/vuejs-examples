@@ -26,8 +26,9 @@
             v-flex( xs12, md4 )
               v-subheader
                 | Тип фундамента
-            v-flex.app__nav( xs12, md8 )
-              v-radio( v-for="(item, index) in types" :label="'Type ' + (index + 1)", v-model="type", :value="item", :key="index", color="teal", :disabled="radio", hide-details )
+            v-flex( xs12, md8 )
+              v-btn-toggle.app__nav( :items="types", v-model="type", :disabled="disable" )
+              //- v-radio( v-for="(item, index) in types" :label="'Type ' + (index + 1)", v-model="type", :value="item", :key="index", color="teal", :disabled="radio", hide-details )
 
         // MAIN
 
@@ -256,14 +257,25 @@
     data () {
       return {
         fixed: true,
-        radio: false,
+        disable: false,
         type: 'basement1',
+        // types: [
+        //   'basement1',
+        //   'basement2',
+        //   'basement3',
+        //   'basement4',
+        //   'basement5'
+        // ],
         types: [
-          'basement1',
-          'basement2',
-          'basement3',
-          'basement4',
-          'basement5'
+          { text: 'Type 1', value: 'basement1' },
+          { text: 'Type 2', value: 'basement2' },
+          { text: 'Type 3', value: 'basement3' },
+          { text: 'Type 4', value: 'basement4' },
+          { text: 'Type 5', value: 'basement5' }
+          // 'basement2',
+          // 'basement3',
+          // 'basement4',
+          // 'basement5'
         ],
         basement: {
           sideA: null,
@@ -305,19 +317,19 @@
         let path
         if (this.footer.status) {
           path = 'basement6'
-          this.radio = true
+          this.disable = true
         }
         if (this.header.status) {
           path = 'basement7'
-          this.radio = true
+          this.disable = true
         }
         if (this.footer.status && this.header.status) {
           path = 'basement8'
-          this.radio = true
+          this.disable = true
         }
         if (!this.footer.status && !this.header.status) {
           path = this.type
-          this.radio = false
+          this.disable = false
         }
         return require('./assets/' + path + '.jpg')
       },
@@ -422,6 +434,7 @@
 
     &__nav
       display flex
+      justify-content space-between
 
     @media screen and ( max-width 600px )
 
