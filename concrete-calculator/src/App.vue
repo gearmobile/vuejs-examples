@@ -209,23 +209,26 @@
                   | {{ sum | currency }}
 
             v-layout( row )
-              v-btn.primary( @click.native.stop="dialog = true" )
-                | Оформить заказ
+              v-flex( xs12 )
+                v-btn.primary( @click.native.stop="dialog = true" )
+                  | Оформить заказ
 
-              v-dialog( v-model="dialog", persistent, width="600px" )
-                v-card
-                  v-card-title
-                    span.headline
-                      | Оформление заказа
-                  v-card-text
-                    v-text-field( label="Имя", name="name", prepend-icon="account_box", required )
-                    v-text-field( label="Телефон", name="phone", prepend-icon="phone", required )
-                    v-text-field( label="Email", name="email", prepend-icon="email" )
-                    v-text-field( label="Адрес доставки", name="address", multi-line )
-                  v-card-actions
-                    v-spacer
-                    v-btn.blue--text.darken-1( flat, @click.native="dialog = false" )
-                      | send
+                v-dialog( v-model="dialog", persistent, width="600px" )
+                  v-card( style="padding: 30px;" )
+                    v-card-title
+                      span.headline.teal--text
+                        | Оформление заказа
+                    v-card-text
+                      v-text-field( label="Имя", name="name", prepend-icon="account_box", required )
+                      v-text-field( label="Телефон", name="phone", prepend-icon="phone", required )
+                      v-text-field( label="Email", name="email", prepend-icon="email" )
+                      v-text-field( label="Адрес доставки", name="address", multi-line )
+                    v-card-actions
+                      v-spacer
+                      v-btn.teal--text.darken-1( flat, @click.native="dialog = false" )
+                        | отменить
+                      v-btn.teal--text.darken-1( flat, @click.native="dialog = false" )
+                        | отправить
 
 </template>
 
