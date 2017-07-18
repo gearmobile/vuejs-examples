@@ -22,7 +22,7 @@
           h2.display-1.text-xs-center.mb-4.teal--text.hidden-xs-only
             | Тип фундамента
 
-          v-layout( row, wrap, style="align-items: center" )
+          v-layout.app__center( row, wrap )
             v-flex( xs12, md4 )
               v-subheader
                 | Тип фундамента
@@ -39,7 +39,7 @@
 
           // SIDE A
 
-          v-layout( row, wrap, style="align-items: baseline;" )
+          v-layout.app__baseline( row, wrap )
             v-flex( xs12, sm4 )
               v-subheader
                 | Длина стороны А, м
@@ -50,7 +50,7 @@
 
           // SIDE B
           
-          v-layout( row, wrap, style="align-items: baseline;" )
+          v-layout.app__baseline( row, wrap )
             v-flex( xs12, sm4 )
               v-subheader
                 | Длина стороны B, м
@@ -61,7 +61,7 @@
 
           // SIDE C
           
-          v-layout( row, wrap, style="align-items: baseline;" )
+          v-layout.app__baseline( row, wrap )
             v-flex( xs12, sm4 )
               v-subheader
                 | Высота ленты C, м
@@ -72,7 +72,7 @@
 
           // SIDE D
           
-          v-layout( row, wrap, style="align-items: baseline;" )
+          v-layout.app__baseline( row, wrap )
             v-flex( xs12, sm4 )
               v-subheader
                 | Толщина ленты D, см
@@ -91,7 +91,6 @@
           v-layout( row )
             v-flex( xs12 )
               v-card
-                //- v-card-media.app__preview( :src="imagePath", height="500px", contain )
                 v-card-media.app__preview( :src="imagePath", contain )
 
         // ADDITIONAL
@@ -104,7 +103,7 @@
           // FOOTER
           
           v-container
-            v-layout( row, wrap, style="align-items: center;" )
+            v-layout.app__center( row, wrap )
               v-flex( xs12, sm4 )
                 v-subheader
                   | Добавить плиту основание
@@ -112,7 +111,7 @@
                 v-checkbox( v-model="footer.status", hide-details )
             v-slide-y-transition( mode="out-in" )
               v-container( v-if="footer.status" )
-                v-layout( row, wrap, style="align-items: center;" )
+                v-layout.app__center( row, wrap )
                   v-flex( xs12, sm4 )
                     v-subheader
                       | Толщина плиты, см
@@ -132,17 +131,15 @@
           // HEADER
           
           v-container
-            // ---
-            v-layout( row, wrap, style="align-items: center;" )
+            v-layout.app__center( row, wrap )
               v-flex( xs12, sm4 )
                 v-subheader
                   | Добавить плиту перекрытие
               v-flex( xs12, sm8 )
                 v-checkbox( v-model="header.status", hide-details )
-            // ---
             v-slide-y-transition( mode="out-in" )
               v-container( v-if="header.status" )
-                v-layout( row, wrap, style="align-items: center;" )
+                v-layout.app__center( row, wrap )
                   v-flex( xs12, sm4 )
                     v-subheader
                       | Толщина плиты, см
@@ -153,7 +150,7 @@
                     span.red--text( v-if="!$v.header.value.between" )
                       | Толщина должна быть от 18 до 22см!
                 v-layout.mt-2
-                  v-flex( xs12, style="display: flex; align-items: center;" )
+                  v-flex.app__justify( xs12 )
                     v-icon.mr-2.teal--text.text--darken-2
                       | error_outline
                     p.mb-0.teal--text
@@ -162,14 +159,14 @@
           // MARK
           
           v-container
-            v-layout( row, wrap, style="align-items: center;" )
+            v-layout.app__center( row, wrap )
               v-flex( xs12, sm4 )
                 v-subheader
                   | Марка бетона
               v-flex( xs12, sm8 )
                 v-select( :items="marks", label="Выберите марку бетона", v-model="mark", item-text="name", item-value="price", return-object, single-line, bottom, hide-details )
-            v-layout( row, wrap, style="align-items: center;" )
-              v-flex( xs12, style="display: flex; align-items: center;" )
+            v-layout.app__center( row, wrap )
+              v-flex.app__justify( xs12 )
                 v-icon.mr-2.teal--text.text--darken-2
                   | error_outline
                 p.mb-0.teal--text
@@ -425,9 +422,20 @@
 </script>
 
 <style lang="stylus">
+
   @import './stylus/main'
 
   .app
+
+    &__center
+      align-items center !important
+
+    &__baseline
+      align-items baseline !important
+
+    &__justify
+      display flex !important
+      align-items center !important
 
     &__nav
       display flex
