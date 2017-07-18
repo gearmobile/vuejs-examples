@@ -188,9 +188,6 @@
               v-flex( xs12, sm8 )
                 span.teal--text.title
                   | {{ output | meters }}
-                //- = ' '
-                //- span
-                //-   | куб.м бетона
 
             v-layout.mb-4( row, wrap )
               v-flex( xs12, sm4 )
@@ -208,7 +205,7 @@
                 span.teal--text.title
                   | {{ sum | currency }}
 
-            v-layout.mt-4( row )
+            v-layout.mt-4( row, v-if="showOrder" )
               v-flex.text-xs-center( xs12 )
                 v-btn.teal.white--text( @click.native.stop="dialog = true" )
                   | Оформить заказ
@@ -219,10 +216,22 @@
                       span.headline.teal--text
                         | Оформление заказа
                     v-card-text
-                      v-text-field( label="Имя", name="name", prepend-icon="account_box", v-model="order.name", required )
-                      v-text-field( label="Телефон", name="phone", prepend-icon="phone", v-model="order.phone", required )
-                      v-text-field( label="Email", name="email", prepend-icon="email", v-model="order.email" )
-                      v-text-field( label="Адрес доставки", name="address", v-model="order.address", multi-line )
+                      v-text-field( label="Имя", name="name", prepend-icon="account_box", v-model.trim="order.name", @input="$v.order.name.$touch()", required )
+                      span.orange--text( v-if="!$v.order.name.required" )
+                        | Введите в поле значение!
+                      span.red--text( v-if="!$v.order.name.alpha" )
+                        | Только буквы!
+                      v-text-field( label="Телефон", name="phone", prepend-icon="phone", v-model.trim="order.phone", @input="$v.order.phone.$touch()", required )
+                      span.orange--text( v-if="!$v.order.phone.required" )
+                        | Введите в поле значение!
+                      span.red--text( v-if="!$v.order.phone.alpha" )
+                        | Только цифры!
+                      v-text-field( label="Email", name="email", prepend-icon="email", v-model.trim="order.email", @input="$v.order.email.$touch()" )
+                      span.red--text( v-if="!$v.order.email.email" )
+                        | Правильный email!
+                      v-text-field( label="Адрес доставки", name="address", v-model.trim="order.address", @input="$v.order.address.$touch()", multi-line )
+                      span.red--text( v-if="!$v.order.address.alphaNum" )
+                        | Правильный адресс!
                     v-card-actions
                       v-spacer
                       v-btn.teal--text.darken-1( flat, @click.native="onCancel()" )
@@ -233,7 +242,7 @@
 </template>
 
 <script>
-  import { required, between, numeric } from 'vuelidate/lib/validators'
+  import { required, between, numeric, alpha, email, alphaNum } from 'vuelidate/lib/validators'
   import axios from 'axios'
   const root = 'http://localhost:3000'
 
@@ -274,6 +283,22 @@
         },
         sideD: {
           numeric
+        }
+      },
+      order: {
+        name: {
+          required,
+          alpha
+        },
+        phone: {
+          required,
+          numeric
+        },
+        email: {
+          email
+        },
+        address: {
+          alphaNum
         }
       }
     },
@@ -351,6 +376,10 @@
       }
     },
     computed: {
+      showOrder () {
+        // return (this.sideA === 0 && this.sideB === 0 && this.sideC === 0 && this.sideD === 0) ? false : true
+        return !(this.sideA === 0 || this.sideB === 0 || this.sideC === 0 || this.sideD === 0)
+      },
       date () {
         return new Date().getFullYear()
       },
