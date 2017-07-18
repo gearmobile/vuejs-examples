@@ -219,21 +219,23 @@
                       span.headline.teal--text
                         | Оформление заказа
                     v-card-text
-                      v-text-field( label="Имя", name="name", prepend-icon="account_box", required )
-                      v-text-field( label="Телефон", name="phone", prepend-icon="phone", required )
-                      v-text-field( label="Email", name="email", prepend-icon="email" )
-                      v-text-field( label="Адрес доставки", name="address", multi-line )
+                      v-text-field( label="Имя", name="name", prepend-icon="account_box", v-model="order.name", required )
+                      v-text-field( label="Телефон", name="phone", prepend-icon="phone", v-model="order.phone", required )
+                      v-text-field( label="Email", name="email", prepend-icon="email", v-model="order.email" )
+                      v-text-field( label="Адрес доставки", name="address", v-model="order.address", multi-line )
                     v-card-actions
                       v-spacer
-                      v-btn.teal--text.darken-1( flat, @click.native="dialog = false" )
+                      v-btn.teal--text.darken-1( flat, @click.native="onCancel()" )
                         | отменить
-                      v-btn.teal--text.darken-1( flat, @click.native="dialog = false" )
+                      v-btn.teal--text.darken-1( flat, @click.native="onSend()" )
                         | отправить
 
 </template>
 
 <script>
   import { required, between, numeric } from 'vuelidate/lib/validators'
+  import axios from 'axios'
+  const root = 'http://localhost:3000'
 
   export default {
     filters: {
@@ -317,13 +319,35 @@
           { name: 'm550', price: 5050 },
           { name: 'm600', price: 5200 },
           { name: 'm650', price: 5500 }
-        ]
+        ],
+        order: {
+          name: null,
+          phone: null,
+          email: null,
+          address: null
+        }
       }
     },
     methods: {
       onShow (value) {
         console.log(value)
         this.type = value
+      },
+      onCancel () {
+        this.dialog = false
+      },
+      onSend () {
+        axios.post(root + '/users', this.order)
+          .then(response => {
+            console.log(response)
+            for (let key in this.order) {
+              this.order[key] = null
+            }
+            this.dialog = false
+          })
+          .catch(error => {
+            console.log(error)
+          })
       }
     },
     computed: {
