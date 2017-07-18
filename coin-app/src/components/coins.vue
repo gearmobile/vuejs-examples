@@ -6,7 +6,7 @@
       .layout-padding
         q-card
           q-card-title
-            | {{ coin.name }}
+            | {{ currency.name }}
           q-card-main
             q-list
               q-item
@@ -14,21 +14,21 @@
                   q-item-tile( label )
                     | Symbol
                   q-item-tile( sublabel )
-                    | {{ coin.symbol }}
+                    | {{ currency.symbol }}
               q-item-separator
               q-item
                 q-item-main
                   q-item-tile( label )
                     | Price (USD)
                   q-item-tile( sublabel )
-                    | {{ coin.price_usd }}
-              //- q-item-separator
-              //- q-item
-              //-   q-item-main
-              //-     q-item-tile( label )
-              //-       | Rank
-              //-     q-item-tile( sublabel )
-              //-       | {{ icon.rank }}
+                    | {{ currency.price_usd }}
+              q-item-separator
+              q-item
+                q-item-main
+                  q-item-tile( label )
+                    | Rank
+                  q-item-tile( sublabel )
+                    | {{ currency.rank }}
 
 </template>
 
@@ -42,7 +42,7 @@
     name: 'coins',
     data () {
       return {
-        coin: null
+        currency: {}
       }
     },
     components: {
@@ -59,8 +59,9 @@
     methods: {
       getData () {
         axios.get(root + this.$route.params.id + '/')
-          .then(data => {
-            this.coin = data.data[0]
+          .then(response => {
+            this.currency = response.data[0]
+            console.log(response.data[0])
           })
           .catch(error => {
             console.log(error)
@@ -69,6 +70,9 @@
     },
     created () {
       this.getData()
+    },
+    watch: {
+      '$route': 'getData'
     }
   }
 </script>

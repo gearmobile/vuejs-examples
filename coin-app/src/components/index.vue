@@ -4,11 +4,19 @@
 
     .layout-view
       .layout-padding
+        q-card
+          q-card-title.bg-primary.text-white
+            h4
+              | What is a Crypto-Currency?
+          q-card-main
+            p
+              | It's a digital currency in which encryption techniques are used to regulate the generation of units of currency and verify the transfer of funds, operating independently of a central bank.
+
 
 </template>
 
 <script>
-  import { QLayout } from 'quasar'
+  import { QLayout, QCard, QCardTitle, QCardMain } from 'quasar'
 
   export default {
     name: 'index',
@@ -18,7 +26,10 @@
       }
     },
     components: {
-      QLayout
+      QLayout,
+      QCard,
+      QCardTitle,
+      QCardMain
     }
   }
 </script>
