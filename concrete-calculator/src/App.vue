@@ -208,6 +208,25 @@
                 span.teal--text.title
                   | {{ sum | currency }}
 
+            v-layout( row )
+              v-btn.primary( @click.native.stop="dialog = true" )
+                | Оформить заказ
+
+              v-dialog( v-model="dialog", persistent, width="600px" )
+                v-card
+                  v-card-title
+                    span.headline
+                      | Оформление заказа
+                  v-card-text
+                    v-text-field( label="Имя", name="name", prepend-icon="account_box", required )
+                    v-text-field( label="Телефон", name="phone", prepend-icon="phone", required )
+                    v-text-field( label="Email", name="email", prepend-icon="email" )
+                    v-text-field( label="Адрес доставки", name="address", multi-line )
+                  v-card-actions
+                    v-spacer
+                    v-btn.blue--text.darken-1( flat, @click.native="dialog = false" )
+                      | send
+
 </template>
 
 <script>
@@ -255,6 +274,7 @@
     },
     data () {
       return {
+        dialog: false,
         fixed: true,
         disable: false,
         type: 'basement1',
