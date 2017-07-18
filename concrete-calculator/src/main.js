@@ -3,11 +3,11 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './App'
-
 import Vuelidate from 'vuelidate'
-Vue.use(Vuelidate)
 
+Vue.use(Vuelidate)
 Vue.use(Vuetify)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
