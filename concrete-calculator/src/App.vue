@@ -91,7 +91,8 @@
           v-layout( row )
             v-flex( xs12 )
               v-card
-                v-card-media( :src="imagePath", height="500px", contain )
+                //- v-card-media.app__preview( :src="imagePath", height="500px", contain )
+                v-card-media.app__preview( :src="imagePath", contain )
 
         // ADDITIONAL
 
@@ -432,7 +433,13 @@
       display flex
       justify-content space-between
 
+    &__preview
+      height 500px !important
+
     @media screen and ( max-width 600px )
+
+      .app__preview
+        height 400px !important
 
       .app__nav
         flex-direction column
@@ -446,5 +453,10 @@
 
       .app__caption
         font-size 30px !important
+
+    @media screen and ( max-width 400px )
+
+      .app__preview
+        height 300px !important
 
 </style>
