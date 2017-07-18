@@ -184,13 +184,13 @@
             v-layout.mb-4( row, wrap )
               v-flex( xs12, sm4 )
                 p.mb-1
-                  | Потребуется
+                  | Потребуется, куб.м бетона
               v-flex( xs12, sm8 )
                 span.teal--text.title
                   | {{ output | meters }}
-                = ' '
-                span
-                  | куб.м бетона
+                //- = ' '
+                //- span
+                //-   | куб.м бетона
 
             v-layout.mb-4( row, wrap )
               v-flex( xs12, sm4 )
@@ -203,14 +203,14 @@
             v-layout( row, wrap )
               v-flex( xs12, sm4 )
                 p.mb-1
-                  | Всего на сумму
+                  | Всего на сумму, руб
               v-flex( xs12, sm8 )
                 span.teal--text.title
                   | {{ sum | currency }}
 
-            v-layout( row )
-              v-flex( xs12 )
-                v-btn.primary( @click.native.stop="dialog = true" )
+            v-layout.mt-4( row )
+              v-flex.text-xs-center( xs12 )
+                v-btn.teal.white--text( @click.native.stop="dialog = true" )
                   | Оформить заказ
 
                 v-dialog( v-model="dialog", persistent, width="600px" )
