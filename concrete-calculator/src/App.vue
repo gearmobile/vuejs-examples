@@ -91,7 +91,7 @@
           v-layout( row )
             v-flex( xs12 )
               v-card
-                v-card-media( :src="imagePath", height="700px" )
+                v-card-media( :src="imagePath", height="500px", contain )
 
         // ADDITIONAL
 
