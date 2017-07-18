@@ -17,7 +17,7 @@
 
         // TYPE
 
-        v-card.mb-4.pa-4
+        v-card.mb-4.pa-4.grey.lighten-4
 
           h2.display-1.text-xs-center.mb-4.teal--text.hidden-xs-only
             | Тип фундамента
@@ -32,7 +32,7 @@
 
         // MAIN
 
-        v-card.mb-4.pa-4
+        v-card.mb-4.pa-4.grey.lighten-4
 
           h2.display-1.text-xs-center.mb-4.teal--text.hidden-xs-only
             | Размеры фундамента
@@ -83,7 +83,7 @@
 
         // PREVIEW
 
-        v-card.mb-4.pa-4
+        v-card.mb-4.pa-4.grey.lighten-4
 
           h2.display-1.text-xs-center.mb-4.teal--text.hidden-xs-only
             | Схема фундамента
@@ -95,7 +95,7 @@
 
         // ADDITIONAL
 
-        v-card.mb-4.pa-4
+        v-card.mb-4.pa-4.grey.lighten-4
 
           h2.display-1.text-xs-center.mb-4.teal--text.hidden-xs-only
             | Плита и перекрытие
@@ -176,7 +176,7 @@
 
         // OUTPUT
         
-        v-card.pa-4
+        v-card.pa-4.grey.lighten-4
 
           h2.display-1.text-xs-center.mb-4.teal--text
             | Результаты
