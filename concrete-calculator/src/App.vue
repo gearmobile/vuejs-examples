@@ -12,7 +12,7 @@
           // TITLE
 
           v-flex( xs12 )
-            h2.display-2.text-xs-center.mb-4.teal--text.darken-2.app__caption
+            h2.display-2.text-xs-center.mb-4.teal--text.darken-4.app__caption
               | Расчет количества бетона <span class="hidden-sm-and-down">для фундамента</span>
 
         // TYPE
@@ -27,7 +27,7 @@
               v-subheader
                 | Тип фундамента
             v-flex.app__nav( xs12, md8 )
-              v-btn.teal--text.darken-2( outline, :class="{ 'app__button--active': item === type }" v-for="(item, index) in types", :key="item", :value="item", :disabled="disable", @click.native="onShow(item)" )
+              v-btn.teal--text.darken-2( outline, :class="{ 'app__button--active': item === type }", v-for="(item, index) in types", :key="item", :value="item", :disabled="disable", @click.native="onShow(item)" )
                 | {{ 'type ' + (index + 1) }}
 
         // MAIN
@@ -55,7 +55,7 @@
               v-subheader
                 | Длина стороны B, м
             v-flex( xs12, sm8 )
-              v-text-field( id="sideB", name="sideB", title="Введите ширину фундамента", label="Сторона B", v-model.trim="basement.sideB", @input="$v.basement.sideB.touch()", hide-details, required )
+              v-text-field( id="sideB", name="sideB", title="Введите ширину фундамента", label="Сторона B", v-model.trim="basement.sideB", @input="$v.basement.sideB.$touch()", hide-details, required )
               span.red--text( v-if="!$v.basement.sideB.numeric" )
                 | В поле должны быть только цифры!
 
@@ -66,7 +66,7 @@
               v-subheader
                 | Высота ленты C, м
             v-flex( xs12, sm8 )
-              v-text-field( id="sideC", name="sideC", title="Введите высоту фундамента", label="Высота C", v-model.trim="basement.sideC", @input="$v.basement.sideC.touch()", hide-details, required )
+              v-text-field( id="sideC", name="sideC", title="Введите высоту фундамента", label="Высота C", v-model.trim="basement.sideC", @input="$v.basement.sideC.$touch()", hide-details, required )
               span.red--text( v-if="!$v.basement.sideC.numeric" )
                 | В поле должны быть только цифры!
 
@@ -77,7 +77,7 @@
               v-subheader
                 | Толщина ленты D, см
             v-flex( xs12, sm8 )
-              v-text-field( id="sideD", name="sideD", title="Введите толщину фундамента", label="Толщина D", v-model.trim="basement.sideD", @input="$v.basement.sideD.touch()", hide-details, required )
+              v-text-field( id="sideD", name="sideD", title="Введите толщину фундамента", label="Толщина D", v-model.trim="basement.sideD", @input="$v.basement.sideD.$touch()", hide-details, required )
               span.red--text( v-if="!$v.basement.sideD.numeric" )
                 | В поле должны быть только цифры!
 
@@ -205,13 +205,17 @@
                 span.teal--text.title
                   | {{ sum | currency }}
 
+            // ORDER BUTTON
+
             v-layout.mt-4( row, v-if="showOrder" )
               v-flex.text-xs-center( xs12 )
                 v-btn.teal.white--text( @click.native.stop="dialog = true" )
                   | Оформить заказ
 
+                // DIALOG SECTION
+
                 v-dialog( v-model="dialog", persistent, width="600px" )
-                  v-card( style="padding: 30px;" )
+                  v-card.app__dialog.text-sm-center
                     v-card-title
                       span.headline.teal--text
                         | Оформление заказа
@@ -219,21 +223,15 @@
                       v-text-field( label="Имя", name="name", prepend-icon="account_box", v-model.trim="order.name", @input="$v.order.name.$touch()", required )
                       p.orange--text( v-if="!$v.order.name.required" )
                         | Введите в поле значение!
-                      p.red--text( v-if="!$v.order.name.alpha" )
-                        | Только буквы!
                       v-text-field( label="Телефон", name="phone", prepend-icon="phone", v-model.trim="order.phone", @input="$v.order.phone.$touch()", required )
                       p.orange--text( v-if="!$v.order.phone.required" )
                         | Введите в поле значение!
                       p.red--text( v-if="!$v.order.phone.numeric" )
-                        | Только цифры!
-                      p.red--text( v-if="!$v.order.phone.minLength" )
-                        | Длина телефона не меньше 11 цифр!
+                        | В поле должны быть только цифры!
                       v-text-field( label="Email", name="email", prepend-icon="email", v-model.trim="order.email", @input="$v.order.email.$touch()" )
                       p.red--text( v-if="!$v.order.email.email" )
-                        | Правильный email!
-                      v-text-field( label="Адрес доставки", name="address", v-model.trim="order.address", @input="$v.order.address.$touch()", multi-line )
-                      p.red--text( v-if="!$v.order.address.alphaNum" )
-                        | Правильный адресс!
+                        | Введите правильный email!
+                      v-text-field( label="Адрес доставки", name="address", v-model.trim="order.address", multi-line )
                     v-card-actions
                       v-spacer
                       v-btn.teal--text.darken-1( flat, @click.native="onCancel()" )
@@ -244,7 +242,7 @@
 </template>
 
 <script>
-  import { required, between, numeric, alpha, email, alphaNum, minLength } from 'vuelidate/lib/validators'
+  import { required, between, numeric, email } from 'vuelidate/lib/validators'
   import axios from 'axios'
   const root = 'http://localhost:3000'
 
@@ -289,19 +287,14 @@
       },
       order: {
         name: {
-          required,
-          alpha
+          required
         },
         phone: {
           required,
-          numeric,
-          minLength: minLength(11)
+          numeric
         },
         email: {
           email
-        },
-        address: {
-          alphaNum
         }
       }
     },
@@ -525,6 +518,11 @@
     &__button--active
       background-color #e0f2f1 !important
 
+    &__dialog
+      padding 30px !important
+
+    // BP600
+
     @media screen and ( max-width 600px )
 
       .app__preview
@@ -537,6 +535,11 @@
         font-size 36px !important
         line-height 1.2 !important
         padding 0 1rem !important
+
+      .app__dialog
+        padding 10px !important
+
+    // BP500
 
     @media screen and ( max-width 500px )
 
