@@ -27,7 +27,7 @@
               v-subheader
                 | Тип фундамента
             v-flex.app__nav( xs12, md8 )
-              v-btn.teal--text.darken-2( outline, v-for="(item, index) in types", :key="item", :value="item", :disabled="disable", @click.native="onShow(item)" )
+              v-btn.teal--text.darken-2( outline, :class="{ 'app__button--active': item === type }" v-for="(item, index) in types", :key="item", :value="item", :disabled="disable", @click.native="onShow(item)" )
                 | {{ 'type ' + (index + 1) }}
 
         // MAIN
@@ -521,6 +521,9 @@
 
     &__preview
       height 500px !important
+
+    &__button--active
+      background-color #e0f2f1 !important
 
     @media screen and ( max-width 600px )
 
