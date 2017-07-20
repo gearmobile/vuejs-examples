@@ -1,6 +1,6 @@
-# concrete-calculator
+# electric-app
 
-> A Vue.js project
+> Calculation of the cost of carrying out electrical work
 
 ## Build Setup
 
