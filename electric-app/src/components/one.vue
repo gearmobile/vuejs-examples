@@ -178,49 +178,4 @@ export default {
       margin-top 0
       margin-bottom 0
 
-      & .icon
-        cursor pointer !important
-
-      & .input-group__prepend-icon
-        justify-content center !important
-
-    // & .icon
-      // cursor pointer !important
-      // background-color #008080 !important
-      // background-color #008080 !important
-      // color #fff !important
-
-    // & .input-group__prepend-icon
-      //
-      // justify-content center !important
-
-    // & .input-group__details
-      // display none
-
-  // .one
-
-  // .icon
-  //     cursor pointer !important
-  //     background-color #008080 !important
-  //     color #fff !important
-      
-  //     &:hover
-  //         background-color #26a69a !important
-  //         transition background-color 0.2s
-
-  // .input-group__prepend-icon
-  //     justify-content center !important
-
-  // .input-group__details
-  //     display none
-
-  // .input-group__input
-  //     padding 0.2rem !important
-  //     border 0.1rem solid #008080
-      
-  //     & input
-  //         padding 0 0.6rem
-  //         text-align center
-  //         color #009688 !important
-
 </style>
