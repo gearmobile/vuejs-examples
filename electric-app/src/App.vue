@@ -1,35 +1,39 @@
 <template lang="pug">
   
+  // ROOT
   v-app.app
     v-container
 
+      // NAVIGATION SECTION
       v-layout.amber.text-xs-center.white--text( row, wrap )
-        v-flex.py-3.app__nav( xs12, md3 )
+        v-flex.py-3.app__nav( xs12, md3, @click.native="current = 'appOne'" )
           .title
-            | квартира
-        v-flex.py-3.app__nav( xs12, md3 )
+            | Квартира
+        v-flex.py-3.app__nav( xs12, md3, @click.native="current = 'appTwo'" )
           .title
-            | коттедж
-        v-flex.py-3.app__nav( xs12, md3 )
+            | Коттедж
+        v-flex.py-3.app__nav( xs12, md3, @click.native="current = 'appThree'" )
           .title
-            | офис
-        v-flex.py-3.app__nav( xs12, md3 )
+            | Офис
+        v-flex.py-3.app__nav( xs12, md3, @click.native="current = 'appFour'" )
           .title
-            | дача
+            | Дача
 
+      // OUTPUT SECTION
       v-layout( row, wrap )
         v-flex( xs12, md6 )
           component( :is="current" )
         v-flex( xs12, md6 )
           app-description
 
-
-
 </template>
 
 <script>
   import Description from './components/description.vue'
   import One from './components/one.vue'
+  import Two from './components/two.vue'
+  import Three from './components/three.vue'
+  import Four from './components/four.vue'
 
   export default {
     data () {
@@ -39,7 +43,10 @@
     },
     components: {
       appDescription: Description,
-      appOne: One
+      appOne: One,
+      appTwo: Two,
+      appThree: Three,
+      appFour: Four
     }
   }
 </script>
