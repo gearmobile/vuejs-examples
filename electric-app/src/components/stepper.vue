@@ -3,7 +3,7 @@
     v-flex( xs12, md4 )
       v-subheader.stepper__title
         | {{ point.title }}
-    v-flex( xs12, md8 )
+    v-flex.pr-3( xs12, md8 )
       v-text-field(
         single-line,
         prepend-icon='remove',

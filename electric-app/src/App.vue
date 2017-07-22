@@ -6,16 +6,16 @@
 
       // NAVIGATION SECTION
       v-layout.amber.text-xs-center.white--text( row, wrap )
-        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appOne'" )
+        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appOne'", :class="{ 'app__nav--active': current === 'appOne' }" )
           .title
             | Квартира
-        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appTwo'" )
+        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appTwo'", :class="{ 'app__nav--active': current === 'appTwo' }" )
           .title
             | Коттедж
-        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appThree'" )
+        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appThree'", :class="{ 'app__nav--active': current === 'appThree' }" )
           .title
             | Офис
-        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appFour'" )
+        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appFour'", :class="{ 'app__nav--active': current === 'appFour' }" )
           .title
             | Дача
 
