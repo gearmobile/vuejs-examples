@@ -28,6 +28,14 @@ const mutations = {
     } else {
       state.order.push(payload)
     }
+  },
+  'REMOVE_ORDER' (state, payload) {
+    const sample = state.order.find(el => el.name === payload.name)
+    if (sample.quantity > 0) {
+      sample.quantity -= payload.quantity
+    } else {
+      state.order.splice(state.order.indexOf(payload), 1)
+    }
   }
 }
 
@@ -37,6 +45,9 @@ const actions = {
   },
   addOrder ({ commit }, payload) {
     commit('ADD_ORDER', payload)
+  },
+  removeOrder ({ commit }, payload) {
+    commit('REMOVE_ORDER', payload)
   }
 }
 

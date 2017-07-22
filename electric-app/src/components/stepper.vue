@@ -33,7 +33,8 @@
     },
     methods: {
       ...mapActions({
-        orderAdd: 'addOrder'
+        orderAdd: 'addOrder',
+        orderRemove: 'removeOrder'
       }),
       increment () {
         if (this.value < this.point.max) {
@@ -51,6 +52,12 @@
       decrement () {
         if (this.value > this.point.min) {
           this.value = (this.value || 0) - 1
+          const order = {
+            name: this.point.name,
+            title: this.point.title,
+            quantity: this.point.step
+          }
+          this.orderRemove(order)
         } else {
           return
         }
