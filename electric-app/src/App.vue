@@ -33,6 +33,8 @@
 
 <script>
   import Description from './components/description.vue'
+  import Output from './components/output.vue'
+
   import One from './components/one.vue'
   import Two from './components/two.vue'
   import Three from './components/three.vue'
@@ -46,6 +48,7 @@
     },
     components: {
       appDescription: Description,
+      appOutput: Output,
       appOne: One,
       appTwo: Two,
       appThree: Three,
