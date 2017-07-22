@@ -32,16 +32,24 @@
 </template>
 
 <script>
-export default {
-  name: 'three',
-  data () {
-    return {
-      brick: false,
-      concrete: false,
-      drywall: false
+  import stepperList from './stepperList.vue'
+
+  export default {
+    name: 'three',
+    data () {
+      return {
+        brick: false,
+        concrete: false,
+        drywall: false,
+        bell: false,
+        check1: false,
+        check2: false
+      }
+    },
+    components: {
+      appStepperList: stepperList
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
