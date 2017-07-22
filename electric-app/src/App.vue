@@ -6,23 +6,25 @@
 
       // NAVIGATION SECTION
       v-layout.amber.text-xs-center.white--text( row, wrap )
-        v-flex.py-3.app__nav( xs12, md3, @click.native="current = 'appOne'" )
+        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appOne'" )
           .title
             | Квартира
-        v-flex.py-3.app__nav( xs12, md3, @click.native="current = 'appTwo'" )
+        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appTwo'" )
           .title
             | Коттедж
-        v-flex.py-3.app__nav( xs12, md3, @click.native="current = 'appThree'" )
+        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appThree'" )
           .title
             | Офис
-        v-flex.py-3.app__nav( xs12, md3, @click.native="current = 'appFour'" )
+        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appFour'" )
           .title
             | Дача
 
       // OUTPUT SECTION
       v-layout( row, wrap )
         v-flex( xs12, md6 )
-          component( :is="current" )
+          v-fade-transition( mode="out-in" )
+            keep-alive
+              component( :is="current" )
         v-flex( xs12, md6 )
           app-description
 
