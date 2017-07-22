@@ -26,14 +26,6 @@
         v-flex( xs12 )
           v-checkbox( label="Щиток в помещении", v-model="check2", hide-details )
 
-      // FOOTER
-      v-layout( row )
-        v-flex( xs12 )
-          v-btn( block, primary )
-            v-icon( left, dark )
-              | attach_money
-            | расчитать стоимость
-
 </template>
 
 <script>

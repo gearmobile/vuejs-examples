@@ -5,7 +5,7 @@
     v-container
 
       // NAVIGATION SECTION
-      v-layout.amber.text-xs-center.white--text( row, wrap )
+      v-layout.amber.text-xs-center.white--text.mb-3( row, wrap )
         v-flex.py-3.app__nav( xs12, md3, @click="current = 'appOne'", :class="{ 'app__nav--active': current === 'appOne' }" )
           .title
             | Квартира
@@ -25,6 +25,15 @@
           v-fade-transition( mode="out-in" )
             keep-alive
               component( :is="current" )
+          v-card.mt-4
+            v-card-title.secondary.white--text
+              .title
+                | расчет
+            v-card-text
+              v-btn( block, primary )
+                v-icon( left, dark )
+                  | attach_money
+                | расчитать стоимость
         v-flex( xs12, md6 )
           app-description
           app-output

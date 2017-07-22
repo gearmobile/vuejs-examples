@@ -38,7 +38,7 @@
       }),
       increment () {
         if (this.value < this.point.max) {
-          this.value = (this.value || 0) + 1
+          this.value = (this.value || 0) + this.point.step
           const order = {
             name: this.point.name,
             title: this.point.title,
@@ -51,7 +51,7 @@
       },
       decrement () {
         if (this.value > this.point.min) {
-          this.value = (this.value || 0) - 1
+          this.value = (this.value || 0) - this.point.step
           const order = {
             name: this.point.name,
             title: this.point.title,
