@@ -3,6 +3,7 @@
   v-card.three
     v-card-text
 
+      // HEADER
       v-layout( row )
         v-flex( xs12, md6 )
           v-checkbox( label="Кирпич", v-model="brick", hide-details )
@@ -11,9 +12,11 @@
         v-flex( xs12, md6 )
           v-checkbox( label="Гипсокартон", v-model="drywall", hide-details )
 
+      // MAIN
       v-layout.mb-2( row, wrap)
         app-stepper-list
 
+      // FOOTER
       v-layout( row, wrap )
         v-flex( xs12 )
           v-checkbox( label="Звонок", v-model="bell", hide-details )
@@ -22,6 +25,7 @@
         v-flex( xs12 )
           v-checkbox( label="Щиток в помещении", v-model="check2", hide-details )
 
+      // FOOTER
       v-layout( row )
         v-flex( xs12 )
           v-btn( block, primary )
