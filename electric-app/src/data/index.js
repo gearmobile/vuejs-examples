@@ -31,7 +31,7 @@ const mutations = {
   },
   'REMOVE_ORDER' (state, payload) {
     const sample = state.order.find(el => el.name === payload.name)
-    if (sample.quantity > 0) {
+    if (sample.quantity > payload.quantity) {
       sample.quantity -= payload.quantity
     } else {
       state.order.splice(state.order.indexOf(payload), 1)
