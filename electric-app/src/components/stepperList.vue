@@ -6,34 +6,18 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import stepper from './stepper.vue'
-
-  const root = 'http://localhost:3000'
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'stepper-list',
-    data () {
-      return {
-        points: []
-      }
-    },
     components: {
       appStepper: stepper
     },
-    methods: {
-      fetchData () {
-        axios.get(root + '/electric')
-          .then(response => {
-            this.points = response.data
-          })
-          .catch(error => {
-            console.log(error)
-          })
-      }
-    },
-    created () {
-      this.fetchData()
+    computed: {
+      ...mapGetters({
+        points: 'getData'
+      })
     }
   }
 

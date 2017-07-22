@@ -40,6 +40,8 @@
   import Three from './components/three.vue'
   import Four from './components/four.vue'
 
+  import { mapActions } from 'vuex'
+
   export default {
     data () {
       return {
@@ -53,6 +55,14 @@
       appTwo: Two,
       appThree: Three,
       appFour: Four
+    },
+    methods: {
+      ...mapActions({
+        dataInit: 'initData'
+      })
+    },
+    created () {
+      this.dataInit()
     }
   }
 </script>
