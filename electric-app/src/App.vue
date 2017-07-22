@@ -27,6 +27,7 @@
               component( :is="current" )
         v-flex( xs12, md6 )
           app-description
+          app-output
 
 </template>
 
