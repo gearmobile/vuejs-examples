@@ -7,7 +7,8 @@ const root = 'http://localhost:3000'
 Vue.use(Vuex)
 
 const state = {
-  points: []
+  points: [],
+  order: []
 }
 
 const mutations = {
@@ -19,12 +20,23 @@ const mutations = {
       .catch(error => {
         console.log(error)
       })
+  },
+  'ADD_ORDER' (state, payload) {
+    const sample = state.order.find(el => el.name === payload.name)
+    if (sample) {
+      sample.quantity += payload.quantity
+    } else {
+      state.order.push(payload)
+    }
   }
 }
 
 const actions = {
   initData ({ commit }) {
     commit('INIT_DATA')
+  },
+  addOrder ({ commit }, payload) {
+    commit('ADD_ORDER', payload)
   }
 }
 

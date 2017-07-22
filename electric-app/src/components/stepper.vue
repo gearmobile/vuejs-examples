@@ -8,14 +8,15 @@
         single-line,
         prepend-icon='remove',
         append-icon='add',
-        :append-icon-cb="(() => increment('value'))",
-        :prepend-icon-cb="(() => decrement('value'))",
+        :append-icon-cb="(() => increment())",
+        :prepend-icon-cb="(() => decrement())",
         v-model='value',
         hide-details
       )
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
 
   export default {
     name: 'stepper',
@@ -31,16 +32,25 @@
       }
     },
     methods: {
-      increment (value) {
-        if (this[value] < this.point.max) {
-          this[value] = (this[value] || 0) + 1
+      ...mapActions({
+        orderAdd: 'addOrder'
+      }),
+      increment () {
+        if (this.value < this.point.max) {
+          this.value = (this.value || 0) + 1
+          const order = {
+            name: this.point.name,
+            title: this.point.title,
+            quantity: this.point.step
+          }
+          this.orderAdd(order)
         } else {
           return
         }
       },
-      decrement (value) {
-        if (this[value] > this.point.min) {
-          this[value] = (this[value] || 0) - 1
+      decrement () {
+        if (this.value > this.point.min) {
+          this.value = (this.value || 0) - 1
         } else {
           return
         }
