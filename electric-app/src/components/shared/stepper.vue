@@ -11,6 +11,7 @@
         :append-icon-cb="(() => increment())",
         :prepend-icon-cb="(() => decrement())",
         v-model='value',
+        @input="onInput()",
         hide-details
       )
 </template>
@@ -39,25 +40,27 @@
       increment () {
         if (this.value < this.point.max) {
           this.value = (this.value || 0) + 1
-          const order = {
-            name: this.point.name,
-            title: this.point.title,
-            quantity: 1
-          }
-          this.orderAdd(order)
+          this.orderAdd({
+            order: this.point,
+            value: this.value
+          })
         } else {
           return
         }
       },
+      onInput () {
+        this.orderAdd({
+          order: this.point,
+          value: this.value
+        })
+      },
       decrement () {
         if (this.value > this.point.min) {
           this.value = (this.value || 0) - 1
-          const order = {
-            name: this.point.name,
-            title: this.point.title,
-            quantity: 1
-          }
-          this.orderRemove(order)
+          this.orderRemove({
+            order: this.point,
+            value: this.value
+          })
         } else {
           return
         }

@@ -30,14 +30,28 @@
 
 <script>
   import stepperList from '../shared/stepperList.vue'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'four',
     data () {
       return {
-        material: 'brick',
         additional: []
       }
+    },
+    computed: {
+      ...mapGetters({
+        materialGet: 'getMaterial'
+      }),
+      material: {
+        get () { return this.materialGet },
+        set (value) { this.materialSet(value) }
+      }
+    },
+    methods: {
+      ...mapActions({
+        materialSet: 'setMaterial'
+      })
     },
     components: {
       appStepperList: stepperList

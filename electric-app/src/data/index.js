@@ -8,7 +8,8 @@ Vue.use(Vuex)
 
 const state = {
   points: [],
-  order: []
+  order: [],
+  material: 'brick'
 }
 
 const mutations = {
@@ -20,23 +21,32 @@ const mutations = {
       .catch(err => console.log(err))
   },
   'ADD_ORDER' (state, payload) {
-    const sample = state.order.find(el => el.name === payload.name)
+    const sample = state.order.find(el => el.name === payload.order.name)
     if (sample) {
-      sample.quantity += payload.quantity
+      sample.quantity = payload.value
     } else {
-      state.order.push(payload)
+      const order = {
+        name: payload.order.name,
+        title: payload.order.title,
+        quantity: payload.value
+      }
+      state.order.push(order)
     }
   },
   'REMOVE_ORDER' (state, payload) {
-    const sample = state.order.find(el => el.name === payload.name)
-    if (sample.quantity > payload.quantity) {
-      sample.quantity -= payload.quantity
+    const sample = state.order.find(el => el.name === payload.order.name)
+    if (sample.quantity > payload.value) {
+      sample.quantity -= (sample.quantity - payload.value)
     } else {
-      state.order.splice(state.order.indexOf(payload), 1)
+      state.order.splice(state.order.indexOf(payload.order), 1)
     }
+  },
+  'SET_MATERIAL' (state, payload) {
+    state.material = payload
   },
   'CLEAR_ORDER' (state) {
     state.order.length = 0
+    state.material = 'brick'
   }
 }
 
@@ -52,12 +62,18 @@ const actions = {
   },
   clearOrder ({ commit }) {
     commit('CLEAR_ORDER')
+  },
+  setMaterial ({ commit }, payload) {
+    commit('SET_MATERIAL', payload)
   }
 }
 
 const getters = {
   getData (state) {
     return state.points
+  },
+  getMaterial (state) {
+    return state.material
   }
 }
 
