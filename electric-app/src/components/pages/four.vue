@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import stepperList from './stepperList.vue'
+  import stepperList from '../shared/stepperList.vue'
 
   export default {
     name: 'four',

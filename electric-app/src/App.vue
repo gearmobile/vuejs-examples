@@ -41,13 +41,13 @@
 </template>
 
 <script>
-  import Description from './components/description.vue'
-  import Output from './components/output.vue'
+  import Description from './components/pages/description.vue'
+  import One from './components/pages/one.vue'
+  import Two from './components/pages/two.vue'
+  import Three from './components/pages/three.vue'
+  import Four from './components/pages/four.vue'
 
-  import One from './components/one.vue'
-  import Two from './components/two.vue'
-  import Three from './components/three.vue'
-  import Four from './components/four.vue'
+  import Output from './components/shared/output.vue'
 
   import { mapActions } from 'vuex'
 
