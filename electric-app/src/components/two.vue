@@ -6,13 +6,13 @@
       // HEADER
       v-layout( row )
         v-flex( xs12, md6 )
-          v-checkbox( label="Кирпич", value="brick", v-model="material", hide-details )
+          v-radio( label="Кирпич", value="brick", v-model="material", hide-details )
         v-flex( xs12, md6 )
-          v-checkbox( label="Бетон", value="concrete", v-model="material", hide-details )
+          v-radio( label="Бетон", value="concrete", v-model="material", hide-details )
         v-flex( xs12, md6 )
-          v-checkbox( label="Дерево", value="wood", v-model="material", hide-details )
+          v-radio( label="Дерево", value="wood", v-model="material", hide-details )
         v-flex( xs12, md6 )
-          v-checkbox( label="Блоки", value="blocks", v-model="material", hide-details )
+          v-radio( label="Блоки", value="blocks", v-model="material", hide-details )
 
       // MAIN
       v-layout.mb-2( row, wrap)
@@ -36,7 +36,7 @@
     data () {
       return {
         material: 'brick',
-        additional: ''
+        additional: []
       }
     },
     components: {

@@ -26,8 +26,8 @@
             keep-alive
               component( :is="current" )
           v-card.mt-4
-            v-card-title.secondary.white--text
-              .title
+            v-card-title.secondary.white--text.text-xs-center( style="text-transform: capitalize" )
+              .title( style="width: 100%" )
                 | расчет
             v-card-text
               v-btn( block, primary )
