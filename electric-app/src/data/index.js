@@ -9,7 +9,9 @@ Vue.use(Vuex)
 const state = {
   points: [],
   order: [],
-  material: 'brick'
+  material: 'brick',
+  curr: '',
+  additional: []
 }
 
 const mutations = {
@@ -44,6 +46,11 @@ const mutations = {
   'SET_MATERIAL' (state, payload) {
     state.material = payload
   },
+  'SET_ADDITIONAL' (state, payload) {
+    state.curr = payload
+    const check = state.additional.find(el => el === payload)
+    check ? state.additional.splice(state.additional.indexOf(payload), 1) : state.additional.push(payload)
+  },
   'CLEAR_ORDER' (state) {
     state.order.length = 0
     state.material = 'brick'
@@ -65,6 +72,9 @@ const actions = {
   },
   setMaterial ({ commit }, payload) {
     commit('SET_MATERIAL', payload)
+  },
+  setAdditional ({ commit }, payload) {
+    commit('SET_ADDITIONAL', payload)
   }
 }
 
@@ -74,6 +84,9 @@ const getters = {
   },
   getMaterial (state) {
     return state.material
+  },
+  getAdditional (state) {
+    return state.curr
   }
 }
 
