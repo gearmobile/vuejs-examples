@@ -29,16 +29,17 @@
   import stepperList from './stepperList.vue'
 
   export default {
-    name: 'one',
     data () {
       return {
         material: 'brick',
         additional: ''
+      }
     },
     components: {
       appStepperList: stepperList
     }
   }
+  
 </script>
 
 <style lang="stylus">
