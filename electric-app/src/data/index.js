@@ -17,9 +17,7 @@ const mutations = {
       .then(res => {
         state.points = res.data
       })
-      .catch(error => {
-        console.log(error)
-      })
+      .catch(err => console.log(err))
   },
   'ADD_ORDER' (state, payload) {
     const sample = state.order.find(el => el.name === payload.name)
@@ -62,6 +60,7 @@ const store = new Vuex.Store({
   mutations,
   actions,
   getters
+  // strict: true
 })
 
 export default store

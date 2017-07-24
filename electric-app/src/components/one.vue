@@ -1,14 +1,14 @@
 <template lang="pug">
-  
+
   v-card.one
     v-card-text
 
       // HEADER
       v-layout( row )
         v-flex( xs12, md6 )
-          v-checkbox( label="Кирпич", v-model="brick", hide-details )
+          v-checkbox( label="Кирпич", value="brick", v-model="material", hide-details )
         v-flex( xs12, md6 )
-          v-checkbox( label="Бетон", v-model="concrete", hide-details )
+          v-checkbox( label="Бетон", value="concrete", v-model="material", hide-details )
 
       // MAIN
       v-layout.mb-2( row, wrap)
@@ -16,11 +16,11 @@
 
       v-layout( row, wrap )
         v-flex( xs12 )
-          v-checkbox( label="Звонок", v-model="bell", hide-details )
+          v-checkbox( label="Звонок", value="bell", v-model="additional", hide-details )
         v-flex( xs12 )
-          v-checkbox( label="Щиток в подъезде", v-model="check1", hide-details )
+          v-checkbox( label="Щиток в подъезде", value="flapEnt", v-model="additional", hide-details )
         v-flex( xs12 )
-          v-checkbox( label="Щиток в помещении", v-model="check2", hide-details )
+          v-checkbox( label="Щиток в помещении", value="flapIndoors", v-model="additional", hide-details )
 
 </template>
 
@@ -32,12 +32,8 @@
     name: 'one',
     data () {
       return {
-        brick: false,
-        concrete: false,
-        bell: false,
-        check1: false,
-        check2: false
-      }
+        material: 'brick',
+        additional: ''
     },
     components: {
       appStepperList: stepperList

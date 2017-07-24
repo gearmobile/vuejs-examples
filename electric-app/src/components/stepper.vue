@@ -38,11 +38,11 @@
       }),
       increment () {
         if (this.value < this.point.max) {
-          this.value = (this.value || 0) + this.point.step
+          this.value = (this.value || 0) + 1
           const order = {
             name: this.point.name,
             title: this.point.title,
-            quantity: this.point.step
+            quantity: 1
           }
           this.orderAdd(order)
         } else {
@@ -51,11 +51,11 @@
       },
       decrement () {
         if (this.value > this.point.min) {
-          this.value = (this.value || 0) - this.point.step
+          this.value = (this.value || 0) - 1
           const order = {
             name: this.point.name,
             title: this.point.title,
-            quantity: this.point.step
+            quantity: 1
           }
           this.orderRemove(order)
         } else {
