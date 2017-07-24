@@ -34,6 +34,9 @@ const mutations = {
     } else {
       state.order.splice(state.order.indexOf(payload), 1)
     }
+  },
+  'CLEAR_ORDER' (state) {
+    state.order.length = 0
   }
 }
 
@@ -46,6 +49,9 @@ const actions = {
   },
   removeOrder ({ commit }, payload) {
     commit('REMOVE_ORDER', payload)
+  },
+  clearOrder ({ commit }) {
+    commit('CLEAR_ORDER')
   }
 }
 

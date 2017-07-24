@@ -6,16 +6,16 @@
 
       // NAVIGATION SECTION
       v-layout.amber.text-xs-center.white--text.mb-3( row, wrap )
-        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appOne'", :class="{ 'app__nav--active': current === 'appOne' }" )
+        v-flex.py-3.app__nav( xs12, md3, @click="onSwitch('appOne')", :class="{ 'app__nav--active': current === 'appOne' }" )
           .title
             | Квартира
-        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appTwo'", :class="{ 'app__nav--active': current === 'appTwo' }" )
+        v-flex.py-3.app__nav( xs12, md3, @click="onSwitch('appTwo')", :class="{ 'app__nav--active': current === 'appTwo' }" )
           .title
             | Коттедж
-        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appThree'", :class="{ 'app__nav--active': current === 'appThree' }" )
+        v-flex.py-3.app__nav( xs12, md3, @click="onSwitch('appThree')", :class="{ 'app__nav--active': current === 'appThree' }" )
           .title
             | Офис
-        v-flex.py-3.app__nav( xs12, md3, @click="current = 'appFour'", :class="{ 'app__nav--active': current === 'appFour' }" )
+        v-flex.py-3.app__nav( xs12, md3, @click="onSwitch('appFour')", :class="{ 'app__nav--active': current === 'appFour' }" )
           .title
             | Дача
 
@@ -67,8 +67,13 @@
     },
     methods: {
       ...mapActions({
-        dataInit: 'initData'
-      })
+        dataInit: 'initData',
+        orderClear: 'clearOrder'
+      }),
+      onSwitch (value) {
+        this.current = value
+        this.orderClear()
+      }
     },
     created () {
       this.dataInit()
