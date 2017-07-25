@@ -14,6 +14,11 @@ const state = {
 }
 
 const mutations = {
+  'SUM_ORDER' (state) {
+    if (state.material === 'brick') {
+      // if ()
+    }
+  },
   'INIT_DATA' (state) {
     axios.get(root + '/electric')
       .then(res => {
@@ -22,14 +27,29 @@ const mutations = {
       .catch(err => console.log(err))
   },
   'ADD_ORDER' (state, payload) {
-    const sample = state.order.find(el => el.name === payload.order.name)
+    const sample = state.order.find(el => el.id === payload.order.name)
     if (sample) {
       sample.quantity = payload.value
     } else {
       const order = {
-        name: payload.order.name,
+        id: payload.order.name,
         title: payload.order.title,
         quantity: payload.value
+      }
+      if (state.material === 'brick') {
+        order.priceBrick = payload.order.priceBrick
+      }
+      if (state.material === 'concrete') {
+        order.priceConcrete = payload.order.priceConcrete
+      }
+      if (state.material === 'wood') {
+        order.priceWood = payload.order.priceWood
+      }
+      if (state.material === 'blocks') {
+        order.priceBlocks = payload.order.priceBlocks
+      }
+      if (state.material === 'drywall') {
+        order.priceDrywall = payload.order.priceDrywall
       }
       state.order.push(order)
     }
