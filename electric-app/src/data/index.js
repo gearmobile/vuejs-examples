@@ -10,7 +10,6 @@ const state = {
   points: [],
   order: [],
   material: 'brick',
-  curr: '',
   additional: []
 }
 
@@ -47,9 +46,7 @@ const mutations = {
     state.material = payload
   },
   'SET_ADDITIONAL' (state, payload) {
-    state.curr = payload
-    const check = state.additional.find(el => el === payload)
-    check ? state.additional.splice(state.additional.indexOf(payload), 1) : state.additional.push(payload)
+    state.additional = payload
   },
   'CLEAR_ORDER' (state) {
     state.order.length = 0
@@ -86,7 +83,7 @@ const getters = {
     return state.material
   },
   getAdditional (state) {
-    return state.curr
+    return state.additional
   }
 }
 
