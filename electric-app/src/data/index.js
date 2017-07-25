@@ -72,6 +72,9 @@ const mutations = {
     state.order.length = 0
     state.additional.length = 0
     state.material = 'brick'
+  },
+  'CLEAR_SWITCH' (state) {
+    state.order.length = 0
   }
 }
 
@@ -87,6 +90,9 @@ const actions = {
   },
   clearOrder ({ commit }) {
     commit('CLEAR_ORDER')
+  },
+  clearSwitch ({ commit }) {
+    commit('CLEAR_SWITCH')
   },
   setMaterial ({ commit }, payload) {
     commit('SET_MATERIAL', payload)

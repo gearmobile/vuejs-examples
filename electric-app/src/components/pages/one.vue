@@ -16,11 +16,11 @@
 
       v-layout( row, wrap )
         v-flex( xs12 )
-          v-checkbox( label="Звонок", value="bell", v-model="additional", hide-details )
+          v-switch( label="Звонок", value="bell", v-model="additional", hide-details )
         v-flex( xs12 )
-          v-checkbox( label="Щиток в подъезде", value="flapEnt", v-model="additional", hide-details )
+          v-switch( label="Щиток в подъезде", value="flapEnt", v-model="additional", hide-details )
         v-flex( xs12 )
-          v-checkbox( label="Щиток в помещении", value="flapIndoors", v-model="additional", hide-details )
+          v-switch( label="Щиток в помещении", value="flapIndoors", v-model="additional", hide-details )
 
 </template>
 
@@ -47,8 +47,14 @@
     methods: {
       ...mapActions({
         materialSet: 'setMaterial',
-        additionalSet: 'setAdditional'
+        additionalSet: 'setAdditional',
+        switchClear: 'clearSwitch'
       })
+    },
+    watch: {
+      material () {
+        this.switchClear()
+      }
     },
     components: {
       appStepperList: stepperList
