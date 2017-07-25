@@ -18,6 +18,7 @@
 
 <script>
   import { mapActions } from 'vuex'
+  import eventBus from '../../main.js'
 
   export default {
     name: 'stepper',
@@ -65,6 +66,11 @@
           return
         }
       }
+    },
+    created () {
+      eventBus.$on('onSwitch', () => {
+        this.value = null
+      })
     }
   }
 </script>

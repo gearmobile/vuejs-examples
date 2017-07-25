@@ -73,6 +73,7 @@ const mutations = {
   },
   'CLEAR_SWITCH' (state) {
     state.order.length = 0
+    state.additional.length = 0 // ?
   }
 }
 

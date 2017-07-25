@@ -30,6 +30,7 @@
 <script>
   import stepperList from '../shared/stepperList.vue'
   import { mapGetters, mapActions } from 'vuex'
+  import eventBus from '../../main.js'
 
   export default {
     name: 'three',
@@ -50,8 +51,15 @@
     methods: {
       ...mapActions({
         materialSet: 'setMaterial',
-        additionalSet: 'setAdditional'
+        additionalSet: 'setAdditional',
+        switchClear: 'clearSwitch'
       })
+    },
+    watch: {
+      material () {
+        this.switchClear()
+        eventBus.$emit('onSwitch')
+      }
     },
     components: {
       appStepperList: stepperList

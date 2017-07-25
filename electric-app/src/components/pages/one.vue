@@ -28,6 +28,7 @@
 
   import stepperList from '../shared/stepperList.vue'
   import { mapGetters, mapActions } from 'vuex'
+  import eventBus from '../../main.js'
 
   export default {
     computed: {
@@ -54,6 +55,7 @@
     watch: {
       material () {
         this.switchClear()
+        eventBus.$emit('onSwitch')
       }
     },
     components: {
