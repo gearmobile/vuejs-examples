@@ -15,9 +15,7 @@ const state = {
 
 const mutations = {
   'SUM_ORDER' (state) {
-    if (state.material === 'brick') {
-      // if ()
-    }
+    //
   },
   'INIT_DATA' (state) {
     axios.get(root + '/electric')

@@ -18,7 +18,7 @@
         v-flex( xs12 )
           v-switch( label="Звонок", value="bell", v-model="additional", hide-details )
         v-flex( xs12 )
-          v-switch( label="Щиток в подъезде", value="flapEnt", v-model="additional", hide-details )
+          v-switch( label="Щиток в подъезде", value="flapEntrance", v-model="additional", hide-details )
         v-flex( xs12 )
           v-switch( label="Щиток в помещении", value="flapIndoors", v-model="additional", hide-details )
 
