@@ -50,6 +50,7 @@ const mutations = {
   },
   'CLEAR_ORDER' (state) {
     state.order.length = 0
+    state.additional.length = 0
     state.material = 'brick'
   }
 }

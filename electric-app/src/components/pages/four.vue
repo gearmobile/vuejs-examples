@@ -34,23 +34,24 @@
 
   export default {
     name: 'four',
-    data () {
-      return {
-        additional: []
-      }
-    },
     computed: {
       ...mapGetters({
-        materialGet: 'getMaterial'
+        materialGet: 'getMaterial',
+        additionalGet: 'getAdditional'
       }),
       material: {
         get () { return this.materialGet },
         set (value) { this.materialSet(value) }
+      },
+      additional: {
+        get () { return this.additionalGet },
+        set (value) { this.additionalSet(value) }
       }
     },
     methods: {
       ...mapActions({
-        materialSet: 'setMaterial'
+        materialSet: 'setMaterial',
+        additionalSet: 'setAdditional'
       })
     },
     components: {
