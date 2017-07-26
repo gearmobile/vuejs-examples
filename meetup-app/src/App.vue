@@ -1,7 +1,9 @@
 <template lang="pug">
 
+  // ROOT
   v-app
 
+    // SIDEBAR PANEL
     v-navigation-drawer( v-model="showSide" )
       v-list
         v-list-tile( v-for="item in items", :key="item.title" )
@@ -11,6 +13,7 @@
           v-list-tile-content
             | {{ item.title }}
 
+    // TOOLBAR
     v-toolbar
       v-toolbar-side-icon.hidden-sm-and-up( @click.native.stop="showSide = !showSide" )
       v-toolbar-title
@@ -22,6 +25,7 @@
             | {{ item.icon }}
           | {{ item.title }}
 
+    // MAIN
     main
       router-view
 
