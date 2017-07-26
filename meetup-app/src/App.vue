@@ -4,12 +4,12 @@
 
     v-navigation-drawer( v-model="showSide" )
       v-list
-        v-list-tile
+        v-list-tile( v-for="item in items", :key="item.title" )
           v-list-tile-action
             v-icon
-              | supervisor_account
+              | {{ item.icon }}
           v-list-tile-content
-            | view meetup
+            | {{ item.title }}
 
     v-toolbar
       v-toolbar-side-icon.hidden-sm-and-up( @click.native.stop="showSide = !showSide" )
@@ -17,12 +17,13 @@
         | MeetupApp
       v-spacer
       v-toolbar-items.hidden-xs-only
-        v-btn( flat )
+        v-btn( flat, v-for="item in items", :key="item.title" )
           v-icon( left )
-            | supervisor_account
-          | view meetups
+            | {{ item.icon }}
+          | {{ item.title }}
 
     main
+      router-view
 
 </template>
 
@@ -30,7 +31,14 @@
   export default {
     data () {
       return {
-        showSide: false
+        showSide: false,
+        items: [
+          { icon: 'supervisor_account', title: 'view meetup' },
+          { icon: 'room', title: 'organize meetup' },
+          { icon: 'person', title: 'profile' },
+          { icon: 'face', title: 'sign up' },
+          { icon: 'lock_open', title: 'sign in' }
+        ]
       }
     }
   }
