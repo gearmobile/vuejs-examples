@@ -37,11 +37,11 @@
       return {
         showSide: false,
         items: [
-          { icon: 'supervisor_account', title: 'view meetup' },
-          { icon: 'room', title: 'organize meetup' },
-          { icon: 'person', title: 'profile' },
-          { icon: 'face', title: 'sign up' },
-          { icon: 'lock_open', title: 'sign in' }
+          { icon: 'supervisor_account', title: 'view meetup', link: '/meetup' },
+          { icon: 'room', title: 'organize meetup', link: '/meetup/new' },
+          { icon: 'person', title: 'profile', link: '/profile' },
+          { icon: 'face', title: 'sign up', link: '/signup' },
+          { icon: 'lock_open', title: 'sign in', link: '/signin' }
         ]
       }
     }
