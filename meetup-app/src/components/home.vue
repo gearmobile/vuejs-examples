@@ -1,6 +1,12 @@
 <template lang="pug">
-  .home
-    | home
+  v-container
+    v-layout( rwo, wrap )
+      v-flex.text-sm-right( xs12, sm6 )
+        v-btn.info( large, router, to="/meetup" )
+          | explore meetups
+      v-flex.text-sm-left( xs12, sm6 )
+        v-btn.info( large, router, to="/meetup/new" )
+          | organize meetup
 </template>
 
 <script>
