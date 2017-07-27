@@ -21,8 +21,8 @@
           | MeetupApp
       v-spacer
       v-toolbar-items.hidden-xs-only
-        v-btn( flat, v-for="item in items", :key="item.title" )
-          v-icon( left )
+        v-btn( flat, v-for="item in items", :key="item.title", router, :to="item.link" )
+          v-icon( left, dark )
             | {{ item.icon }}
           | {{ item.title }}
 
