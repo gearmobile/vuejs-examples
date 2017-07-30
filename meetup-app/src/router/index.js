@@ -34,7 +34,8 @@ export default new Router({
     {
       path: '/meetup/:id',
       name: 'MeetupDetails',
-      component: MeetupDetails
+      component: MeetupDetails,
+      props: true
     },
     {
       path: '/profile',

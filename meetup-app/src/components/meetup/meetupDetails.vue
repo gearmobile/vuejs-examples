@@ -6,11 +6,11 @@
         v-card
           v-card-title
             h6.primary--text
-              | meetup title
-          v-card-media( src="http://cdni.condenast.co.uk/1920x1280/a_c/Charles-Bridge-and-the-Vltava-River-Prague-Czech-Republic-conde-nast-traveller-26oct16-rex.jpg", height="600px" )
+              | {{ meetup.title }}
+          v-card-media( :src="meetup.path", height="600px" )
           v-card-text
             p.info--text.text-sm-right
-              | 17 July 2017 - where it takes place
+              | {{ meetup.date }}
             p
               | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga perferendis porro quia, natus alias vel? Tempora maxime fuga perferendis modi architecto adipisci, porro alias delectus. Laboriosam suscipit accusantium quibusdam odit, error, voluptatem ducimus earum dolor nesciunt alias atque, officia voluptate.
             p
@@ -25,7 +25,13 @@
 
 <script>
   export default {
-    name: 'meetupDetails'
+    name: 'meetupDetails',
+    props: ['id'],
+    computed: {
+      meetup () {
+        return this.$store.getters.getMeetup(this.id)
+      }
+    }
   }
 </script>
 
