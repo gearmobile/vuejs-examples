@@ -4,17 +4,17 @@
     // BUTTONS GROUP
     v-layout.mb-2( row, wrap )
       v-flex.text-xs-center.text-sm-right( xs12, sm6 )
-        v-btn.info( large, router, to="/meetup" )
+        v-btn.info( large, to="/meetup" )
           | explore meetups
       v-flex.text-xs-center.text-sm-left( xs12, sm6 )
-        v-btn.info( large, router, to="/meetup/new" )
+        v-btn.info( large, to="/meetup/new" )
           | organize meetup
 
     // CAROUSEL
     v-layout.mb-4( row )
       v-flex( xs12 )
         v-carousel
-          v-carousel-item( v-for="meetup in meetups", :key="meetup.id", :src="meetup.path" )
+          v-carousel-item.carousel-item( v-for="meetup in meetups", :key="meetup.id", :src="meetup.path", @click="onShow(meetup.id)" )
             .carousel-title
               | {{ meetup.title }}
 
@@ -31,10 +31,15 @@
     data () {
       return {
         meetups: [
-          { id: '1', path: 'http://cdni.condenast.co.uk/1920x1280/a_c/Charles-Bridge-and-the-Vltava-River-Prague-Czech-Republic-conde-nast-traveller-26oct16-rex.jpg', title: 'Meetup in Prague' },
-          { id: '2', path: 'https://valholl-prd.s3.amazonaws.com/images/warsaw_sumar2017_facebook.width-1200.png', title: 'Meetup in Warsaw' },
-          { id: '3', path: 'https://a1.odistatic.net/images/landingpages/vacation/1920x800/budapest_1920x800.jpg', title: 'Meetup in Budapest' }
+          { id: 1, path: 'http://cdni.condenast.co.uk/1920x1280/a_c/Charles-Bridge-and-the-Vltava-River-Prague-Czech-Republic-conde-nast-traveller-26oct16-rex.jpg', title: 'Meetup in Prague' },
+          { id: 2, path: 'https://valholl-prd.s3.amazonaws.com/images/warsaw_sumar2017_facebook.width-1200.png', title: 'Meetup in Warsaw' },
+          { id: 3, path: 'https://a1.odistatic.net/images/landingpages/vacation/1920x800/budapest_1920x800.jpg', title: 'Meetup in Budapest' }
         ]
+      }
+    },
+    methods: {
+      onShow (value) {
+        this.$router.push('/meetup/' + value)
       }
     }
   }
@@ -51,5 +56,8 @@
     position absolute
     top 2rem
     left 2rem
+
+  .carousel-item
+    cursor pointer
 
 </style>
