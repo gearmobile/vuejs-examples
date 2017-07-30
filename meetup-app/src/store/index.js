@@ -49,10 +49,15 @@ const getters = {
   sortedMeetups (state, getters) {
     return getters.getMeetups.slice(0, 5)
   },
+  // getMeetup (state, payload) {
+  //   return state.meetups.find(el => {
+  //     return el.id === payload
+  //   })
+  // }
   getMeetup (state) {
     return (value) => {
       return state.meetups.find(el => {
-        return el.id === value
+        return el.id === value.toString()
       })
     }
   }
