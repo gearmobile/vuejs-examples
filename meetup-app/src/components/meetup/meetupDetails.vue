@@ -6,11 +6,11 @@
         v-card
           v-card-title
             h6.primary--text
-              //- | {{ meetup.title }}
-          //- v-card-media( :src="meetup.path", height="600px" )
+              | {{ meetup.title }}
+          v-card-media( :src="meetup.path", height="600px" )
           v-card-text
             p.info--text.text-sm-right
-              //- | {{ meetup.date }}
+              | {{ meetup.date }}
             p
               | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga perferendis porro quia, natus alias vel? Tempora maxime fuga perferendis modi architecto adipisci, porro alias delectus. Laboriosam suscipit accusantium quibusdam odit, error, voluptatem ducimus earum dolor nesciunt alias atque, officia voluptate.
             p
@@ -24,18 +24,11 @@
 </template>
 
 <script>
-  // import { mapGetters } from 'vuex'
 
   export default {
     name: 'meetupDetails',
     props: ['id'],
     computed: {
-      // ...mapGetters({
-      //   meetupGet: 'getMeetup'
-      // }),
-      // meetup () {
-      //   return this.meetupGet(this.id)
-      // }
       meetup () {
         return this.$store.getters.getMeetup(this.id)
       }
