@@ -7,25 +7,29 @@ const state = {
   meetups: [
     {
       id: 1,
-      path: 'http://cdni.condenast.co.uk/1920x1280/a_c/Charles-Bridge-and-the-Vltava-River-Prague-Czech-Republic-conde-nast-traveller-26oct16-rex.jpg',
+      // path: 'http://cdni.condenast.co.uk/1920x1280/a_c/Charles-Bridge-and-the-Vltava-River-Prague-Czech-Republic-conde-nast-traveller-26oct16-rex.jpg',
+      path: '../assets/prague.png',
       title: 'Meetup in Prague',
       date: '2017-07-11'
     },
     {
       id: 2,
-      path: 'https://valholl-prd.s3.amazonaws.com/images/warsaw_sumar2017_facebook.width-1200.png',
+      // path: 'https://valholl-prd.s3.amazonaws.com/images/warsaw_sumar2017_facebook.width-1200.png',
+      path: '../assets/warsaw.png',
       title: 'Meetup in Warsaw',
       date: '2017-07-12'
     },
     {
       id: 3,
-      path: 'https://a1.odistatic.net/images/landingpages/vacation/1920x800/budapest_1920x800.jpg',
+      // path: 'https://a1.odistatic.net/images/landingpages/vacation/1920x800/budapest_1920x800.jpg',
+      path: '../assets/budapest.jpg',
       title: 'Meetup in Budapest',
       date: '2017-07-13'
     },
     {
       id: 4,
-      path: 'https://berlin.grand.hyatt.com/content/dam/PropertyWebsites/grandhyatt/bergh/Media/All/Grand-Hyatt-Berlin-P608-Skyline.masthead-feature-pane-medium.jpg',
+      // path: 'https://berlin.grand.hyatt.com/content/dam/PropertyWebsites/grandhyatt/bergh/Media/All/Grand-Hyatt-Berlin-P608-Skyline.masthead-feature-pane-medium.jpg',
+      path: '../assets/berlin.jpg',
       title: 'Meetup in Berlin',
       date: '2017-07-01'
     }
