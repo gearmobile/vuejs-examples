@@ -44,6 +44,7 @@
 </template>
 
 <script>
+  import _ from 'lodash'
   import { mapActions } from 'vuex'
 
   export default {
@@ -51,10 +52,10 @@
     data () {
       return {
         meetup: {
-          title: '',
-          location: '',
-          upload: '',
-          description: ''
+          title: null,
+          location: null,
+          upload: null,
+          description: null
         }
       }
     },
@@ -68,14 +69,10 @@
         meetupCreate: 'newMeetup'
       }),
       onSend () {
-        const meetup = {
-          title: this.meetup.title,
-          location: this.meetup.location,
-          upload: this.meetup.upload,
-          description: this.meetup.description,
-          date: new Date()
-        }
+        const meetup = _.pick(this.meetup, _.keys(this.meetup))
+        meetup.date = new Date()
         this.meetupCreate(meetup)
+        this.meetup = _.mapValues(this.meetup, () => null)
       }
     }
   }

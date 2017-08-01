@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 
@@ -38,13 +39,8 @@ const state = {
 
 const mutations = {
   'NEW_MEETUP' (state, payload) {
-    const meetup = {
-      title: payload.title,
-      location: payload.location,
-      upload: payload.upload,
-      description: payload.description,
-      date: payload.date
-    }
+    const meetup = _.pick(payload, _.keys(payload))
+    meetup.id = _.toString(_.toNumber(_.max(_.map(state.meetups, 'id'))) + 1)
     state.meetups.push(meetup)
   }
 }
