@@ -36,9 +36,24 @@ const state = {
   }
 }
 
-const mutations = {}
+const mutations = {
+  'NEW_MEETUP' (state, payload) {
+    const meetup = {
+      title: payload.title,
+      location: payload.location,
+      upload: payload.upload,
+      description: payload.description,
+      date: payload.date
+    }
+    state.meetups.push(meetup)
+  }
+}
 
-const actions = {}
+const actions = {
+  newMeetup ({ commit }, payload) {
+    commit('NEW_MEETUP', payload)
+  }
+}
 
 const getters = {
   getMeetups (state) {

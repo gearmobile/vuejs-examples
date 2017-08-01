@@ -8,7 +8,7 @@
 
     v-layout( row )
       v-flex( xs12 )
-        form
+        form( @submit.prevent="onSend()" )
 
           // TITLE
           v-layout( row )
@@ -33,18 +33,19 @@
           // PREVIEW
           v-layout( row )
             v-flex( xs12, sm6, offset-sm3 )
-              //- img( :src="path", :alt="" )
-              //- v-text-field( name="preview", label="Preview", multi-line, required )
+              img.image( :src="meetup.upload", :alt="meetup.title" )
 
           // BUTTON
           v-layout( row )
             v-flex( xs12, sm6, offset-sm3 )
-              v-btn.primary( :disabled="isBlocked" )
+              v-btn.primary( type="submit", :disabled="isBlocked" )
                 | create meetup
 
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
+
   export default {
     name: 'meetupNew',
     data () {
@@ -61,11 +62,27 @@
       isBlocked () {
         return !this.meetup.title || !this.meetup.location || !this.meetup.upload || !this.meetup.description
       }
+    },
+    methods: {
+      ...mapActions({
+        meetupCreate: 'newMeetup'
+      }),
+      onSend () {
+        const meetup = {
+          title: this.meetup.title,
+          location: this.meetup.location,
+          upload: this.meetup.upload,
+          description: this.meetup.description,
+          date: new Date()
+        }
+        this.meetupCreate(meetup)
+      }
     }
   }
 </script>
 
 <style lang="stylus" scoped>
-  //
+  .image
+    height 300px
 </style>
 
