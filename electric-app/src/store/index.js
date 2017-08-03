@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import _ from 'lodash'
 
 const root = 'http://localhost:3000'
 
@@ -24,8 +25,11 @@ const mutations = {
       })
       .catch(err => console.log(err))
   },
+  // ADD ORDER
   'ADD_ORDER' (state, payload) {
-    const sample = state.order.find(el => el.id === payload.order.name)
+    const sample = _.find(state.order, el => {
+      return el.id === payload.order.name
+    })
     if (sample) {
       sample.quantity = payload.value
     } else {
@@ -35,29 +39,30 @@ const mutations = {
         quantity: payload.value
       }
       if (state.material === 'brick') {
-        order.priceBrick = payload.order.priceBrick
+        order.price = payload.order.priceBrick
       }
       if (state.material === 'concrete') {
-        order.priceConcrete = payload.order.priceConcrete
+        order.price = payload.order.priceConcrete
       }
       if (state.material === 'wood') {
-        order.priceWood = payload.order.priceWood
+        order.price = payload.order.priceWood
       }
       if (state.material === 'blocks') {
-        order.priceBlocks = payload.order.priceBlocks
+        order.price = payload.order.priceBlocks
       }
       if (state.material === 'drywall') {
-        order.priceDrywall = payload.order.priceDrywall
+        order.price = payload.order.priceDrywall
       }
       state.order.push(order)
     }
   },
+  // REMOVE ORDER
   'REMOVE_ORDER' (state, payload) {
-    const sample = state.order.find(el => el.name === payload.order.name)
-    if (sample.quantity > payload.value) {
+    const sample = _.find(state.order, el => {
+      return el.id === payload.order.name
+    })
+    if (sample.quantity >= payload.value) {
       sample.quantity -= (sample.quantity - payload.value)
-    } else {
-      state.order.splice(state.order.indexOf(payload.order), 1)
     }
   },
   'SET_MATERIAL' (state, payload) {

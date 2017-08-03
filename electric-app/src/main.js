@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './App'
-import store from './data/index'
+import store from './store'
 
 const eventBus = new Vue()
 export default eventBus
