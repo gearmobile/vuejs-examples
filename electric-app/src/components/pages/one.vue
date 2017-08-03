@@ -43,10 +43,7 @@
       },
       additional: {
         get () { return this.additionalGet },
-        set (value) {
-          this.additionalSet(value)
-          this.isActive = false
-        }
+        set (value) { this.additionalSet(value) }
       }
     },
     methods: {

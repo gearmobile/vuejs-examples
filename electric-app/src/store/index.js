@@ -69,16 +69,21 @@ const mutations = {
     state.material = payload
   },
   'SET_ADDITIONAL' (state, payload) {
-    state.additional = payload
+    // state.additional = payload
+    Vue.set(state.additional, payload, state.additional[payload])
+    // Vue.set(state.selected, payload, !state.selected[payload])
+    // https://codepen.io/gearmobile/pen/QMKJJx?editors=1010
   },
   'CLEAR_ORDER' (state) {
     state.order.length = 0
-    state.additional.length = 0
+    // state.additional.length = 0
+    state.additional = _.fill(Array(3), null)
     state.material = 'brick'
   },
   'CLEAR_SWITCH' (state) {
     state.order.length = 0
-    state.additional.length = 0
+    // state.additional.length = 0
+    state.additional = _.fill(Array(3), null)
   }
 }
 
