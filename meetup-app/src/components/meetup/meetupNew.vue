@@ -35,6 +35,21 @@
             v-flex( xs12, sm6, offset-sm3 )
               img.image( :src="meetup.upload", :alt="meetup.title" )
 
+          // date && time
+          v-layout.text-xs-center.mb-4( row )
+            v-flex( xs12, sm6, offset-sm3 )
+              v-layout( row, wrap )
+                // date
+                v-flex.mb-2( xs12, lg6 )
+                  h4
+                    | choose date meetup
+                  v-date-picker( v-model="meetup.date" )
+                // time
+                v-flex.mb-2( xs12, lg6 )
+                  h4
+                    | choose time meetup
+                  v-time-picker( v-model="meetup.time" )
+
           // BUTTON
           v-layout( row )
             v-flex( xs12, sm6, offset-sm3 )
@@ -55,7 +70,9 @@
           title: null,
           location: null,
           upload: null,
-          description: null
+          description: null,
+          date: null,
+          time: null
         }
       }
     },
