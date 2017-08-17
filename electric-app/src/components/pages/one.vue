@@ -14,6 +14,7 @@
       v-layout.mb-2( row, wrap)
         app-stepper-list
 
+      // ADDITIONAL
       v-layout( row, wrap )
         v-flex( xs12 )
           v-switch( label="Звонок", value="bell", v-model="additional", hide-details )

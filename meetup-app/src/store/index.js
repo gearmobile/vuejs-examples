@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 
@@ -36,9 +37,19 @@ const state = {
   }
 }
 
-const mutations = {}
+const mutations = {
+  'NEW_MEETUP' (state, payload) {
+    const meetup = _.pick(payload, _.keys(payload))
+    meetup.id = _.toString(_.toNumber(_.max(_.map(state.meetups, 'id'))) + 1)
+    state.meetups.push(meetup)
+  }
+}
 
-const actions = {}
+const actions = {
+  newMeetup ({ commit }, payload) {
+    commit('NEW_MEETUP', payload)
+  }
+}
 
 const getters = {
   getMeetups (state) {
