@@ -69,7 +69,7 @@ const mutations = {
     state.material = payload
   },
   'SET_ADDITIONAL' (state, payload) {
-    Vue.set(state.additional, payload, state.additional[payload])
+    Vue.set(state.additional, payload, !state.additional[payload])
   },
   'CLEAR_ORDER' (state) {
     state.order.length = 0
