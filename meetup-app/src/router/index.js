@@ -24,17 +24,17 @@ export default new Router({
       component: Meetup
     },
     {
-      path: '/meetup/:id',
+      path: '/meetup/edit',
       name: 'MeetupEdit',
       component: MeetupEdit
     },
     {
-      path: '/meetup/:id',
+      path: '/meetup/new',
       name: 'MeetupNew',
       component: MeetupNew
     },
     {
-      path: '/meetup/:id',
+      path: '/meetup/single',
       name: 'MeetupSingle',
       component: MeetupSingle
     },
@@ -44,12 +44,12 @@ export default new Router({
       component: Profile
     },
     {
-      path: '/profile/signin',
+      path: '/signin',
       name: 'SignIn',
       component: SignIn
     },
     {
-      path: '/profile/signup',
+      path: '/signup',
       name: 'SignUp',
       component: SignUp
     }

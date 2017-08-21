@@ -2,7 +2,7 @@
   v-app
 
     // DRAWER
-    v-navigation-drawer( v-model="showDrawer" )
+    v-navigation-drawer( v-model="showDrawer", temporary )
       v-list
         v-list-tile( v-for="item in items", :key="item.title" )
           v-list-tile-action
@@ -15,7 +15,8 @@
     v-toolbar.primary( dark )
       v-toolbar-side-icon.hidden-sm-and-up( @click.stop="onDrawer()" )
       v-toolbar-title
-        | meetup app
+        router-link( to='/', tag="span" )
+          | meetup app
       v-spacer
       v-toolbar-items.hidden-sm-and-down( v-for="item in items", :key="item.title" )
         v-btn( flat )
@@ -33,11 +34,11 @@
       return {
         showDrawer: false,
         items: [
-          { icon: 'supervisor_account', title: 'meetups' },
-          { icon: 'room', title: 'new meetup' },
-          { icon: 'person', title: 'profile' },
-          { icon: 'face', title: 'sign up' },
-          { icon: 'lock_open', title: 'sign in' }
+          { icon: 'supervisor_account', title: 'meetups', link: '/meetup' },
+          { icon: 'room', title: 'new meetup', link: '/meetup/new' },
+          { icon: 'person', title: 'profile', link: '/profile' },
+          { icon: 'face', title: 'sign up', link: '/signup' },
+          { icon: 'lock_open', title: 'sign in', link: '/signin' }
         ]
       }
     },
