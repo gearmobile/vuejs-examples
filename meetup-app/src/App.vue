@@ -4,7 +4,7 @@
     // DRAWER
     v-navigation-drawer( v-model="showDrawer", temporary )
       v-list
-        v-list-tile( v-for="item in items", :key="item.title" )
+        v-list-tile( v-for="item in items", :key="item.title", :to="item.link" )
           v-list-tile-action
             v-icon
               | {{ item.icon }}
@@ -19,7 +19,7 @@
           | meetup app
       v-spacer
       v-toolbar-items.hidden-sm-and-down( v-for="item in items", :key="item.title" )
-        v-btn( flat )
+        v-btn( flat, :to="item.link" )
           v-icon( left )
             | {{ item.icon }}
           | {{ item.title }}
