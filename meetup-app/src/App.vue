@@ -2,34 +2,28 @@
   v-app
 
     // DRAWER
-    v-navigation-drawer.hidden-sm-and-up( v-model="showDrawer" )
+    v-navigation-drawer( v-model="showDrawer" )
       v-list
-        v-list-tile
+        v-list-tile( v-for="item in items", :key="item.title" )
           v-list-tile-action
             v-icon
-              | supervisor_account
+              | {{ item.icon }}
           v-list-tile-content
-            | meetups
+            | {{ item.title }}
     
     // TOOLBAR
     v-toolbar.primary( dark )
-      v-toolbar-side-icon( @click.stop="onDrawer()" )
+      v-toolbar-side-icon.hidden-sm-and-up( @click.stop="onDrawer()" )
       v-toolbar-title
         | meetup app
       v-spacer
-      v-toolbar-items.hidden-sm-and-down
+      v-toolbar-items.hidden-sm-and-down( v-for="item in items", :key="item.title" )
         v-btn( flat )
           v-icon( left )
-            | supervisor_account
-          | meetups
-        v-btn( flat )
-          v-icon( left )
-            | create
-          | new meetup
-        v-btn( flat )
-          v-icon( left )
-            | collections
-          | profile
+            | {{ item.icon }}
+          | {{ item.title }}
+
+    router-view
 
 </template>
 
@@ -37,7 +31,14 @@
   export default {
     data () {
       return {
-        showDrawer: false
+        showDrawer: false,
+        items: [
+          { icon: 'supervisor_account', title: 'meetups' },
+          { icon: 'room', title: 'new meetup' },
+          { icon: 'person', title: 'profile' },
+          { icon: 'face', title: 'sign up' },
+          { icon: 'lock_open', title: 'sign in' }
+        ]
       }
     },
     methods: {
