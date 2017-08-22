@@ -6,13 +6,13 @@
         v-card
           v-card-title( primary-title )
             h4
-              | title
-          v-card-media( src="http://via.placeholder.com/800x400", height="400px" )
+              | {{ meetup.title }}
+          v-card-media( :src="meetup.path", height="400px" )
           v-card-text
-            date.info--text
-              | 17-March-2017
+            .info--text
+              | {{ meetup.date }}
             article
-              | lorem20
+              | {{ meetup.description }}
           v-card-actions
             v-spacer
             v-btn.primary
@@ -22,7 +22,12 @@
 
 <script>
   export default {
-    //
+    props: ['id'],
+    computed: {
+      meetup () {
+        return this.$store.getters.getMeetupSelected(this.id)
+      }
+    }
   }
 </script>
 

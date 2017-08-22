@@ -12,7 +12,7 @@
     v-layout.mb-4
       v-flex( xs12 )
         v-carousel
-          v-carousel-item( v-for="meetup in meetups", :key="meetup.id", :src="meetup.path", @click="onClick(meetup.id)" )
+          v-carousel-item( v-for="meetup in meetups", :key="meetup.id", :src="meetup.path", @click="onClick(meetup.id)", style="cursor: pointer" )
             section.carousel-item__title
               | {{ meetup.title }}
 
@@ -30,13 +30,9 @@
 <script>
   export default {
     name: 'home',
-    data () {
-      return {
-        meetups: [
-          { id: '1', path: 'http://via.placeholder.com/800x400', title: 'title one' },
-          { id: '2', path: 'http://via.placeholder.com/800x400', title: 'title two' },
-          { id: '3', path: 'http://via.placeholder.com/800x400', title: 'title three' }
-        ]
+    computed: {
+      meetups () {
+        return this.$store.getters.getMeetupsPart
       }
     },
     methods: {

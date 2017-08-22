@@ -11,7 +11,7 @@
             v-flex( xs7, sm8, md9, style="position: relative" )
               v-card-title( primary-title )
                 article
-                  h4.white--text.mb-0( style="text-transform: capitalize" )
+                  h5.white--text.mb-0( style="text-transform: capitalize" )
                     | {{ meetup.title }}
                   div
                     | {{ meetup.date }}
@@ -24,17 +24,15 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      meetups: [
-        { id: '1', path: 'http://via.placeholder.com/800x400', title: 'title one', date: '17-March-2017' },
-        { id: '2', path: 'http://via.placeholder.com/800x400', title: 'title two', date: '17-March-2017' },
-        { id: '3', path: 'http://via.placeholder.com/800x400', title: 'title three', date: '17-March-2017' }
-      ]
+  import { mapGetters } from 'vuex'
+
+  export default {
+    computed: {
+      ...mapGetters({
+        meetups: 'getMeetupsSorted'
+      })
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
