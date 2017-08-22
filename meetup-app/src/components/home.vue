@@ -12,7 +12,7 @@
     v-layout.mb-4
       v-flex( xs12 )
         v-carousel
-          v-carousel-item( v-for="meetup in meetups", :key="meetup.id", :src="meetup.path" )
+          v-carousel-item( v-for="meetup in meetups", :key="meetup.id", :src="meetup.path", @click="onClick(meetup.id)" )
             section.carousel-item__title
               | {{ meetup.title }}
 
@@ -37,6 +37,11 @@
           { id: '2', path: 'http://via.placeholder.com/800x400', title: 'title two' },
           { id: '3', path: 'http://via.placeholder.com/800x400', title: 'title three' }
         ]
+      }
+    },
+    methods: {
+      onClick (id) {
+        this.$router.push('meetup/' + id)
       }
     }
   }
