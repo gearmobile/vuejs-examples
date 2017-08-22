@@ -35,24 +35,19 @@
             v-flex( xs12, sm6, offset-sm3 )
               v-text-field( name="description", id="description", label="Description", v-model="meetup.description", required, multi-line )
 
-          //- // DATE FIELD
-          //- v-layout( row )
-          //-   v-flex( xs12, sm6, offset-sm3 )
-          //-     //
-
           // DATE FIELD
-          v-layout.mb-2( row )
-            v-flex( xs12, sm6, offset-sm2 )
+          v-layout.mb-4( row )
+            v-flex( xs12, sm6, offset-sm3, style="display: flex; justify-content: center" )
               v-date-picker( v-model="meetup.date" )
             
           // TIME FIELD
-          v-layout.mb-2( row )
-            v-flex( xs12, sm6, offset-sm2 )
+          v-layout.mb-4( row )
+            v-flex( xs12, sm6, offset-sm3, style="display: flex; justify-content: center" )
               v-time-picker( v-model="meetup.time", format="24hr" )
 
           // SUBMIT FIELD
           v-layout( row )
-            v-flex( xs12, sm6, offset-sm3 )
+            v-flex( xs12, sm6, offset-sm3, style="display: flex; justify-content: center" )
               v-btn.primary( :disabled="!show", type="submit" )
                 | create meetup
 
@@ -84,7 +79,11 @@
         createMeetup: 'newMeetup'
       }),
       onSend () {
+        if (!this.show) {
+          return
+        }
         this.createMeetup(this.meetup)
+        this.$router.push('/meetup')
       }
     }
   }
