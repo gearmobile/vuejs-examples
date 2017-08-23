@@ -10,21 +10,21 @@ const state = {
       id: '1',
       path: 'http://via.placeholder.com/800x400',
       title: 'title one',
-      date: '11-03-2017',
+      date: new Date(),
       description: 'Lorem ipsum dolor sit amet, ei hendrerit constituto dissentias vim. Usu doctus facilisi torquatos cu, mel eligendi pericula eu. Quod nulla omnes ius ea, an nam sapientem persecuti disputationi, at qui partem expetendis disputando. Te volumus prodesset nam. Et sit nibh choro dicunt, an idque dicunt minimum nec. Viris possim verear ne mea.'
     },
     {
       id: '2',
       path: 'http://via.placeholder.com/800x400',
       title: 'title two',
-      date: '27-04-2017',
+      date: new Date(),
       description: 'Lorem ipsum dolor sit amet, ei hendrerit constituto dissentias vim. Usu doctus facilisi torquatos cu, mel eligendi pericula eu. Quod nulla omnes ius ea, an nam sapientem persecuti disputationi, at qui partem expetendis disputando. Te volumus prodesset nam. Et sit nibh choro dicunt, an idque dicunt minimum nec. Viris possim verear ne mea.'
     },
     {
       id: '3',
       path: 'http://via.placeholder.com/800x400',
       title: 'title three',
-      date: '03-02-2017',
+      date: new Date(),
       description: 'Lorem ipsum dolor sit amet, ei hendrerit constituto dissentias vim. Usu doctus facilisi torquatos cu, mel eligendi pericula eu. Quod nulla omnes ius ea, an nam sapientem persecuti disputationi, at qui partem expetendis disputando. Te volumus prodesset nam. Et sit nibh choro dicunt, an idque dicunt minimum nec. Viris possim verear ne mea.'
     }
   ],
@@ -48,7 +48,9 @@ const actions = {
       path: payload.image,
       description: payload.description,
       date: payload.date,
-      time: payload.time
+      schedule: {
+        ...payload.schedule
+      }
     }
     commit('NEW_MEETUP', meetup)
   }

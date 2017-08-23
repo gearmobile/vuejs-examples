@@ -10,7 +10,7 @@
           v-card-media( :src="meetup.path", height="400px" )
           v-card-text
             .info--text
-              | {{ meetup.date }}
+              | {{ meetup.date | date }}
             article
               | {{ meetup.description }}
           v-card-actions

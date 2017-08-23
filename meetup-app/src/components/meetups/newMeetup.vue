@@ -38,12 +38,12 @@
           // DATE FIELD
           v-layout.mb-4( row )
             v-flex( xs12, sm6, offset-sm3, style="display: flex; justify-content: center" )
-              v-date-picker( v-model="meetup.date" )
+              v-date-picker( v-model="meetup.schedule.date" )
             
           // TIME FIELD
           v-layout.mb-4( row )
             v-flex( xs12, sm6, offset-sm3, style="display: flex; justify-content: center" )
-              v-time-picker( v-model="meetup.time", format="24hr" )
+              v-time-picker( v-model="meetup.schedule.time", format="24hr" )
 
           // SUBMIT FIELD
           v-layout( row )
@@ -64,8 +64,11 @@
           location: null,
           image: 'http://via.placeholder.com/800x400',
           description: null,
-          date: null,
-          time: null
+          schedule: {
+            date: null,
+            time: null
+          },
+          date: new Date()
         }
       }
     },

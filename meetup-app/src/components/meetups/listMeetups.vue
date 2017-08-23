@@ -14,7 +14,7 @@
                   h5.white--text.mb-0( style="text-transform: capitalize" )
                     | {{ meetup.title }}
                   div
-                    | {{ meetup.date }}
+                    | {{ meetup.date | date }}
               v-card-actions( style="position: absolute; right: 0; bottom: 0" )
                 v-btn( flat, :to="'meetup/' + meetup.id" )
                   v-icon( left, light )
