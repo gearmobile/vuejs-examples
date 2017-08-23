@@ -21,8 +21,13 @@
 </template>
 
 <script>
+  import date from '../../filters/date.js'
+
   export default {
     props: ['id'],
+    filters: {
+      date
+    },
     computed: {
       meetup () {
         return this.$store.getters.getMeetupSelected(this.id)

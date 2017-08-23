@@ -25,8 +25,12 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import date from '../../filters/date.js'
 
   export default {
+    filters: {
+      date
+    },
     computed: {
       ...mapGetters({
         meetups: 'getMeetupsSorted'
