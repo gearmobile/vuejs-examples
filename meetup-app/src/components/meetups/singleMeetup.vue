@@ -21,12 +21,12 @@
 </template>
 
 <script>
-  import date from '../../filters/date.js'
+  import filterDate from '../../filters/date.js'
 
   export default {
     props: ['id'],
     filters: {
-      date
+      date: filterDate
     },
     computed: {
       meetup () {
