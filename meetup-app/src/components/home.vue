@@ -28,11 +28,16 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     name: 'home',
     computed: {
+      ...mapGetters({
+        meetupsPart: 'getMeetupsPart'
+      }),
       meetups () {
-        return this.$store.getters.getMeetupsPart
+        return this.meetupsPart
       }
     },
     methods: {

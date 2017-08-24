@@ -28,6 +28,9 @@
 </template>
 
 <script>
+  import { mapActions, mapGetters } from 'vuex'
+  import { isNil } from 'lodash'
+
   export default {
     data () {
       return {
@@ -39,13 +42,29 @@
       }
     },
     computed: {
+      ...mapGetters({
+        users: 'getUsers'
+      }),
+      user () {
+        return this.users
+      },
       comparePassword () {
         return this.signup.password !== this.signup.confirm ? 'Passwords do not match' : ''
       }
     },
     methods: {
+      ...mapActions({
+        sign: 'signUp'
+      }),
       onSubmit () {
-        //
+        this.sign({email: this.signup.email, password: this.signup.password})
+      }
+    },
+    watch: {
+      user (value) {
+        if (!isNil(value)) {
+          this.$router.push({name: 'Home'})
+        }
       }
     }
   }

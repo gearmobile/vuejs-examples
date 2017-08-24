@@ -1,4 +1,5 @@
 <template lang="pug">
+
   v-app
 
     // DRAWER
@@ -29,22 +30,44 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import { isNil } from 'lodash'
+
   export default {
     data () {
       return {
-        showDrawer: false,
-        items: [
-          { icon: 'supervisor_account', title: 'meetups', link: '/meetup' },
-          { icon: 'room', title: 'new meetup', link: '/meetup/new' },
-          { icon: 'person', title: 'profile', link: '/profile' },
-          { icon: 'face', title: 'sign up', link: '/signup' },
-          { icon: 'lock_open', title: 'sign in', link: '/signin' }
-        ]
+        showDrawer: false
       }
     },
     methods: {
       onDrawer () {
         this.showDrawer = !this.showDrawer
+      }
+    },
+    computed: {
+      ...mapGetters({
+        users: 'getUsers'
+      }),
+      userAuthTrue () {
+        if (!isNil(this.users)) {
+          return true
+        }
+      },
+      items () {
+        let items = null
+        if (this.userAuthTrue) {
+          items = [
+            { icon: 'supervisor_account', title: 'meetups', link: '/meetup' },
+            { icon: 'room', title: 'new meetup', link: '/meetup/new' },
+            { icon: 'person', title: 'profile', link: '/profile' }
+          ]
+        } else {
+          items = [
+            { icon: 'face', title: 'sign up', link: '/signup' },
+            { icon: 'lock_open', title: 'sign in', link: '/signin' }
+          ]
+        }
+        return items
       }
     }
   }
