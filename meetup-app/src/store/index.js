@@ -29,7 +29,9 @@ const state = {
       description: 'Lorem ipsum dolor sit amet, ei hendrerit constituto dissentias vim. Usu doctus facilisi torquatos cu, mel eligendi pericula eu. Quod nulla omnes ius ea, an nam sapientem persecuti disputationi, at qui partem expetendis disputando. Te volumus prodesset nam. Et sit nibh choro dicunt, an idque dicunt minimum nec. Viris possim verear ne mea.'
     }
   ],
-  users: null
+  users: null,
+  loading: false,
+  error: null
 }
 
 const mutations = {
@@ -38,6 +40,15 @@ const mutations = {
   },
   'SET_USER' (state, payload) {
     state.users = payload
+  },
+  'SET_LOADING' (state, payload) {
+    state.loading = payload
+  },
+  'SET_ERROR' (state, payload) {
+    state.error = payload
+  },
+  'CLEAR_ERROR' (state) {
+    state.error = null
   }
 }
 
@@ -57,8 +68,11 @@ const actions = {
     commit('NEW_MEETUP', meetup)
   },
   signUp ({ commit }, payload) {
+    commit('SET_LOADING', true)
     firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
       .then(
+        commit('SET_LOADING', false),
+        commit('CLEAR_ERROR'),
         user => {
           const newUser = {
             id: user.uid,
@@ -69,13 +83,17 @@ const actions = {
       )
       .catch(
         error => {
-          console.log(error)
+          commit('SET_LOADING', false)
+          commit('SET_ERROR', error)
         }
       )
   },
   signIn ({ commit }, payload) {
+    commit('SET_LOADING', true)
     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then(
+        commit('SET_LOADING', false),
+        commit('CLEAR_ERROR'),
         user => {
           const newUser = {
             id: user.uid,
@@ -86,7 +104,8 @@ const actions = {
       )
       .catch(
         error => {
-          console.log(error)
+          commit('SET_LOADING', false)
+          commit('SET_ERROR', error)
         }
       )
   }
