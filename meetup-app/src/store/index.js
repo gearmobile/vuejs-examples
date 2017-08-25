@@ -71,9 +71,9 @@ const actions = {
     commit('SET_LOADING', true)
     firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
       .then(
-        commit('SET_LOADING', false),
-        commit('CLEAR_ERROR'),
         user => {
+          commit('SET_LOADING', false)
+          commit('CLEAR_ERROR')
           const newUser = {
             id: user.uid,
             meetups: []
@@ -92,12 +92,12 @@ const actions = {
     commit('SET_LOADING', true)
     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then(
-        commit('SET_LOADING', false),
-        commit('CLEAR_ERROR'),
         user => {
+          commit('SET_LOADING', false)
+          commit('CLEAR_ERROR')
           const newUser = {
             id: user.uid,
-            meetups: [] // ?
+            meetups: []
           }
           commit('SET_USER', newUser)
         }

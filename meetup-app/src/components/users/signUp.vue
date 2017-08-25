@@ -1,6 +1,11 @@
 <template lang="pug">
   
   v-container
+    // ERROR
+    v-layout( row )
+      v-flex( xs12, sm6, offset-sm3 )
+        app-error( @closed="onTrigger()" )
+    // MAIN SECTION
     v-layout( row )
       v-flex( xs12, sm6, offset-sm3 )
         v-card
@@ -28,6 +33,7 @@
 </template>
 
 <script>
+  import error from '../shared/error.vue'
   import { mapActions, mapGetters } from 'vuex'
   import { isNil } from 'lodash'
 
@@ -58,6 +64,9 @@
       }),
       onSubmit () {
         this.sign({email: this.signup.email, password: this.signup.password})
+      },
+      onTrigger () {
+        console.log('alert triggered')
       }
     },
     watch: {
@@ -66,6 +75,9 @@
           this.$router.push({name: 'Home'})
         }
       }
+    },
+    components: {
+      appError: error
     }
   }
 </script>
