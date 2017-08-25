@@ -108,6 +108,9 @@ const actions = {
           commit('SET_ERROR', error)
         }
       )
+  },
+  clearError ({ commit }) {
+    commit('CLEAR_ERROR')
   }
 }
 
@@ -127,6 +130,12 @@ const getters = {
   },
   getUsers (state) {
     return state.users
+  },
+  getErrorState (state) {
+    return state.error
+  },
+  getLoadingState (state) {
+    return state.loading
   }
 }
 
