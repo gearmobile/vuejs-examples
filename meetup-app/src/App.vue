@@ -49,9 +49,7 @@
         users: 'getUsers'
       }),
       userAuthTrue () {
-        if (!isNil(this.users)) {
-          return true
-        }
+        return !isNil(this.users)
       },
       items () {
         let items = null
