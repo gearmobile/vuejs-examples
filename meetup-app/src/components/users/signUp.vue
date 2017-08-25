@@ -28,8 +28,11 @@
                 // SIGN UP
                 v-layout( row )
                   v-flex( xs12 )
-                    v-btn.primary( type='submit' )
+                    v-btn.primary( type='submit', :disabled="loading", :loading="loading" )
                       | sign up
+                      span.loading( slot="loader" )
+                        v-icon( light )
+                          | cached
 </template>
 
 <script>
@@ -86,6 +89,6 @@
 </script>
 
 <style lang="stylus" scoped>
-    //
+  //
 </style>
 
