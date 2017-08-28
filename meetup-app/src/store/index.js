@@ -33,6 +33,12 @@ const mutations = {
 }
 
 const actions = {
+  autoSignIn ({ commit }, payload) {
+    commit('SET_USER', {
+      id: payload.uid,
+      meetups: []
+    })
+  },
   loadMeetups ({ commit }) {
     commit('SET_LOADING', true)
     firebase.database().ref('meetups').once('value') // method onc get a snapshot of firebase database
