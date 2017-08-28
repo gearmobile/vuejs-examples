@@ -34,6 +34,7 @@ const mutations = {
 
 const actions = {
   loadMeetups ({ commit }) {
+    commit('SET_LOADING', true)
     firebase.database().ref('meetups').once('value') // method onc get a snapshot of firebase database
       .then(data => {
         const meetups = []
@@ -53,9 +54,11 @@ const actions = {
           })
         }
         commit('SET_MEETUP', meetups)
+        commit('SET_LOADING', false)
       })
       .catch(error => {
         console.log(error)
+        commit('SET_LOADING', true)
       })
   },
   newMeetup ({ commit }, payload) {

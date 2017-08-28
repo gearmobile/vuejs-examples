@@ -9,7 +9,11 @@
         v-btn.primary( large, to='/meetup/new' )
           | new meetup
     
-    v-layout.mb-4
+    v-layout( row, v-if="loading" )
+      v-flex( xs12 )
+        v-progress-circular.primary--text( indeterminate, :width="7", :size="70" )
+    
+    v-layout.mb-4( v-else )
       v-flex( xs12 )
         v-carousel
           v-carousel-item( v-for="meetup in meetups", :key="meetup.id", :src="meetup.path", @click="onClick(meetup.id)", style="cursor: pointer" )
@@ -34,7 +38,8 @@
     name: 'home',
     computed: {
       ...mapGetters({
-        meetupsPart: 'getMeetupsPart'
+        meetupsPart: 'getMeetupsPart',
+        loading: 'getLoadingState'
       }),
       meetups () {
         return this.meetupsPart

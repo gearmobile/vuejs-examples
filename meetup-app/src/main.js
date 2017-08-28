@@ -24,5 +24,6 @@ new Vue({
       projectId: 'meetup-app-530c6',
       storageBucket: 'meetup-app-530c6.appspot.com'
     })
+    this.$store.dispatch('loadMeetups')
   }
 }).$mount('#app')
