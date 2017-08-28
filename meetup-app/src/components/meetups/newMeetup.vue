@@ -21,9 +21,11 @@
               v-text-field( name="location", id="location", label="Location", v-model="meetup.location", required )
 
           // IMAGE FIELD
-          v-layout( row )
+          v-layout.mb-4( row )
             v-flex( xs12, sm6, offset-sm3 )
-              v-text-field( name="image", id="image", label="Image", v-model="meetup.image", required )
+              v-btn.primary( raised, @click="onPick()" )
+                | upload image
+              input( type="file", id="image", style="display: none", ref="inputImage", accept="image/*", @change="onUpload" )
 
           // IMAGE PREVIEW
           v-layout( row )
@@ -81,6 +83,16 @@
       ...mapActions({
         createMeetup: 'newMeetup'
       }),
+      onPick () {
+        this.$refs.inputImage.click()
+      },
+      onUpload (event) {
+        const files = event.target.files
+        let fileName = files[0].filename
+        if (fileName.lastIndexOf('.') <= 0) {
+          return alert('Please add a valid file!')
+        }
+      },
       onSend () {
         if (!this.show) {
           return
