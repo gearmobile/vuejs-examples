@@ -9,10 +9,12 @@
         v-btn.primary( large, to='/meetup/new' )
           | new meetup
     
+    // PRELOADER SECTION
     v-layout( row, v-if="loading" )
-      v-flex( xs12 )
+      v-flex.text-xs-center( xs12 )
         v-progress-circular.primary--text( indeterminate, :width="7", :size="70" )
-    
+
+    // CAROUSEL SECTION    
     v-layout.mb-4( v-else )
       v-flex( xs12 )
         v-carousel

@@ -8,7 +8,7 @@ import MeetupSingle from '@/components/meetups/singleMeetup'
 import Profile from '@/components/users/profile'
 import SignIn from '@/components/users/signIn'
 import SignUp from '@/components/users/signUp'
-import Guard from '@/components/router/guard'
+import Guard from '@/router/guard'
 
 Vue.use(Router)
 
