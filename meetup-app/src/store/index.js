@@ -33,6 +33,10 @@ const mutations = {
 }
 
 const actions = {
+  logout ({ commit }) {
+    firebase.auth().signOut() // method signOut removes firebase token from localStorage
+    commit('SET_USER', null)
+  },
   autoSignIn ({ commit }, payload) {
     commit('SET_USER', {
       id: payload.uid,
@@ -56,7 +60,8 @@ const actions = {
             schedule: {
               date: object[key].schedule.date,
               time: object[key].schedule.time
-            }
+            },
+            creatorID: object[key].creatorID
           })
         }
         commit('SET_MEETUP', meetups)
@@ -67,7 +72,7 @@ const actions = {
         commit('SET_LOADING', true)
       })
   },
-  newMeetup ({ commit }, payload) {
+  newMeetup ({ commit, getters }, payload) {
     const meetup = {
       title: payload.name,
       location: payload.location,
@@ -76,7 +81,8 @@ const actions = {
       date: payload.date.toISOString(), // toISOString - method to convert date-object to a string; firebase can't store date like a object - only string allowed, cause firebase - one big JSON-object
       schedule: {
         ...payload.schedule
-      }
+      },
+      creatorID: getters.getUsers.id
     }
     firebase.database().ref('meetups').push(meetup)
       .then(data => {
@@ -111,9 +117,9 @@ const actions = {
       )
   },
   signIn ({ commit }, payload) {
-    commit('SET_LOADING', true)
     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
-      .then(
+    commit('SET_LOADING', true)
+    .then(
         user => {
           commit('SET_LOADING', false)
           commit('CLEAR_ERROR')

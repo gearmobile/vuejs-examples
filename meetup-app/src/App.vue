@@ -11,6 +11,12 @@
               | {{ item.icon }}
           v-list-tile-content
             | {{ item.title }}
+        v-list-tile( v-if="userAuthTrue", @click="onLogout()" )
+          v-list-tile-action
+            v-icon
+              | exit_to_app
+          v-list-tile-content
+            | logout
     
     // TOOLBAR
     v-toolbar.primary( dark )
@@ -19,18 +25,24 @@
         router-link( to='/', tag="span" )
           | meetup app
       v-spacer
+      // NAVIGATION ITEMS
       v-toolbar-items.hidden-sm-and-down( v-for="item in items", :key="item.title" )
         v-btn( flat, :to="item.link" )
           v-icon( left )
             | {{ item.icon }}
           | {{ item.title }}
+      // LOGOUT
+      v-btn( flat, v-if="userAuthTrue", @click="onLogout()" )
+        v-icon( left )
+          | exit_to_app
+        | logout
 
     router-view
 
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import { isNil } from 'lodash'
 
   export default {
@@ -40,6 +52,9 @@
       }
     },
     methods: {
+      ...mapActions({
+        onLogout: 'logout'
+      }),
       onDrawer () {
         this.showDrawer = !this.showDrawer
       }

@@ -68,7 +68,10 @@
         clear: 'clearError'
       }),
       onSubmit () {
-        this.sign({email: this.signin.email, password: this.signin.password})
+        this.sign({
+          email: this.signin.email,
+          password: this.signin.password
+        })
       },
       onTrigger () {
         this.clear()
