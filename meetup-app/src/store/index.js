@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { toString, toNumber, max, map } from 'lodash'
 import * as firebase from 'firebase'
 
 Vue.use(Vuex)
@@ -53,19 +52,51 @@ const mutations = {
 }
 
 const actions = {
+  loadMeetups ({ commit }) {
+    firebase.database().ref('meetups').once('value') // method onc get a snapshot of firebase database
+      .then(data => {
+        const meetups = []
+        const object = data.val()
+        for (let key in object) {
+          meetups.push({
+            id: key,
+            title: object[key].title,
+            description: object[key].description,
+            path: object[key].path,
+            date: object[key].date,
+            location: object[key].location,
+            schedule: {
+              date: object[key].schedule.date,
+              time: object[key].schedule.time
+            }
+          })
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
   newMeetup ({ commit }, payload) {
     const meetup = {
-      id: toString(toNumber(max(map(state.meetups, 'id'))) + 1),
       title: payload.name,
       location: payload.location,
       path: payload.image,
       description: payload.description,
-      date: payload.date,
+      date: payload.date.toISOString(), // toISOString - method to convert date-object to a string; firebase can't store date like a object - only string allowed, cause firebase - one big JSON-object
       schedule: {
         ...payload.schedule
       }
     }
-    commit('NEW_MEETUP', meetup)
+    firebase.database().ref('meetups').push(meetup)
+      .then(data => {
+        commit('NEW_MEETUP', {
+          ...meetup,
+          id: data.key
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
   },
   signUp ({ commit }, payload) {
     commit('SET_LOADING', true)
