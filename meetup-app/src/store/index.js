@@ -69,7 +69,7 @@ const actions = {
       })
       .catch(error => {
         console.log(error)
-        commit('SET_LOADING', true)
+        commit('SET_LOADING', false)
       })
   },
   newMeetup ({ commit, getters }, payload) {
@@ -117,25 +117,25 @@ const actions = {
       )
   },
   signIn ({ commit }, payload) {
-    firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
     commit('SET_LOADING', true)
+    firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
     .then(
-        user => {
-          commit('SET_LOADING', false)
-          commit('CLEAR_ERROR')
-          const newUser = {
-            id: user.uid,
-            meetups: []
-          }
-          commit('SET_USER', newUser)
+      user => {
+        commit('SET_LOADING', false)
+        commit('CLEAR_ERROR')
+        const newUser = {
+          id: user.uid,
+          meetups: []
         }
-      )
-      .catch(
-        error => {
-          commit('SET_LOADING', false)
-          commit('SET_ERROR', error)
-        }
-      )
+        commit('SET_USER', newUser)
+      }
+    )
+    .catch(
+      error => {
+        commit('SET_LOADING', false)
+        commit('SET_ERROR', error)
+      }
+    )
   },
   clearError ({ commit }) {
     commit('CLEAR_ERROR')
