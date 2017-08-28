@@ -5,35 +5,16 @@ import * as firebase from 'firebase'
 Vue.use(Vuex)
 
 const state = {
-  meetups: [
-    {
-      id: '1',
-      path: 'http://via.placeholder.com/800x400',
-      title: 'title one',
-      date: new Date(),
-      description: 'Lorem ipsum dolor sit amet, ei hendrerit constituto dissentias vim. Usu doctus facilisi torquatos cu, mel eligendi pericula eu. Quod nulla omnes ius ea, an nam sapientem persecuti disputationi, at qui partem expetendis disputando. Te volumus prodesset nam. Et sit nibh choro dicunt, an idque dicunt minimum nec. Viris possim verear ne mea.'
-    },
-    {
-      id: '2',
-      path: 'http://via.placeholder.com/800x400',
-      title: 'title two',
-      date: new Date(),
-      description: 'Lorem ipsum dolor sit amet, ei hendrerit constituto dissentias vim. Usu doctus facilisi torquatos cu, mel eligendi pericula eu. Quod nulla omnes ius ea, an nam sapientem persecuti disputationi, at qui partem expetendis disputando. Te volumus prodesset nam. Et sit nibh choro dicunt, an idque dicunt minimum nec. Viris possim verear ne mea.'
-    },
-    {
-      id: '3',
-      path: 'http://via.placeholder.com/800x400',
-      title: 'title three',
-      date: new Date(),
-      description: 'Lorem ipsum dolor sit amet, ei hendrerit constituto dissentias vim. Usu doctus facilisi torquatos cu, mel eligendi pericula eu. Quod nulla omnes ius ea, an nam sapientem persecuti disputationi, at qui partem expetendis disputando. Te volumus prodesset nam. Et sit nibh choro dicunt, an idque dicunt minimum nec. Viris possim verear ne mea.'
-    }
-  ],
+  meetups: [],
   users: null,
   loading: false,
   error: null
 }
 
 const mutations = {
+  'SET_MEETUP' (state, payload) {
+    state.meetups = payload
+  },
   'NEW_MEETUP' (state, payload) {
     state.meetups.push(payload)
   },
@@ -71,6 +52,7 @@ const actions = {
             }
           })
         }
+        commit('SET_MEETUP', meetups)
       })
       .catch(error => {
         console.log(error)
