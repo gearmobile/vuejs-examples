@@ -30,7 +30,7 @@
           // IMAGE PREVIEW
           v-layout( row )
             v-flex( xs12, sm6, offset-sm3 )
-              img( :src="meetup.image", :alt="meetup.name", style="width: 100%; height: auto" )
+              img( :src="meetup.path", :alt="meetup.name", style="width: 100%; height: auto" )
 
           // DESCRIPTION FIELD
           v-layout( row )
@@ -64,7 +64,8 @@
         meetup: {
           name: null,
           location: null,
-          image: 'http://via.placeholder.com/800x400',
+          image: null,
+          path: null,
           description: null,
           schedule: {
             date: null,
@@ -88,10 +89,16 @@
       },
       onUpload (event) {
         const files = event.target.files
-        let fileName = files[0].filename
+        let fileName = files[0].name
         if (fileName.lastIndexOf('.') <= 0) {
           return alert('Please add a valid file!')
         }
+        const fileReader = new FileReader()
+        fileReader.addEventListener('load', () => {
+          this.meetup.path = fileReader.result
+        })
+        fileReader.readAsDataURL(files[0])
+        this.meetup.image = files[0]
       },
       onSend () {
         if (!this.show) {
