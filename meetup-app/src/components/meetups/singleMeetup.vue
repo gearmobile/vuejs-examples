@@ -9,7 +9,7 @@
               | {{ meetup.title }}
             v-spacer
             template( v-if="showEdit" )
-              app-edit
+              app-edit( :meetup="meetup" )
           v-card-media( :src="meetup.path", height="400px" )
           v-card-text
             .info--text
