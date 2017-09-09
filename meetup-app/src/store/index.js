@@ -72,11 +72,12 @@ const actions = {
         commit('SET_LOADING', false)
       })
   },
+  // CREATE NEW MEETUP
   newMeetup ({ commit, getters }, payload) {
     const meetup = {
       title: payload.name,
       location: payload.location,
-      path: payload.image,
+      image: payload.image,
       description: payload.description,
       date: payload.date.toISOString(), // toISOString - method to convert date-object to a string; firebase can't store date like a object - only string allowed, cause firebase - one big JSON-object
       schedule: {
@@ -84,13 +85,36 @@ const actions = {
       },
       creatorID: getters.getUsers.id
     }
+    // initialize id of object and url of image
+    let key = null
+    let path = null
+    // add new object to firebase database
     firebase.database().ref('meetups').push(meetup)
+      // get key from new object
       .then(data => {
+        key = data.key
+        return key
+      })
+      // add new image to firebase storage
+      .then(key => {
+        const fileName = payload.image.name
+        const ext = fileName.slice(fileName.lastIndexOf('.'))
+        return firebase.storage().ref('meetups/' + key + '.' + ext).put(payload.image)
+      })
+      // update existing object in firebase database
+      .then(fileInfo => {
+        path = fileInfo.metadata.downloadURLs[0]
+        return firebase.database().ref('meetups').child(key).update({ path: path })
+      })
+      // add new object to locale store
+      .then(() => {
         commit('NEW_MEETUP', {
           ...meetup,
-          id: data.key
+          path: path,
+          id: key
         })
       })
+      // catch error
       .catch(error => {
         console.log(error)
       })

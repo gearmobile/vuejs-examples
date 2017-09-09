@@ -104,6 +104,9 @@
         if (!this.show) {
           return
         }
+        if (this.meetup.image === null || this.meetup.image === undefined) {
+          return
+        }
         this.createMeetup(this.meetup)
         this.$router.push('/meetup')
       }
