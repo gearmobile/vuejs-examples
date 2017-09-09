@@ -7,10 +7,13 @@
           v-card-title( primary-title )
             h4
               | {{ meetup.title }}
+            v-spacer
+            template( v-if="showEdit" )
+              app-edit
           v-card-media( :src="meetup.path", height="400px" )
           v-card-text
             .info--text
-              | {{ meetup.date | date }}
+              | {{ meetup.date | date }} - {{ meetup.location }}
             article
               | {{ meetup.description }}
           v-card-actions
@@ -22,6 +25,7 @@
 
 <script>
   import filterDate from '../../filters/date.js'
+  import editMeetup from '../meetups/editMeetup.vue'
 
   export default {
     props: ['id'],
@@ -31,7 +35,20 @@
     computed: {
       meetup () {
         return this.$store.getters.getMeetupSelected(this.id)
+      },
+      userAuthTrue () {
+        return this.$store.getters.getUsers !== null && this.$store.getters.getUsers !== undefined
+      },
+      showEdit () {
+        if (!this.userAuthTrue) {
+          return false
+        } else {
+          return this.$store.getters.getUsers.id === this.meetup.creatorID
+        }
       }
+    },
+    components: {
+      appEdit: editMeetup
     }
   }
 </script>

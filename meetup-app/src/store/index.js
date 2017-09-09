@@ -45,7 +45,7 @@ const actions = {
   },
   loadMeetups ({ commit }) {
     commit('SET_LOADING', true)
-    firebase.database().ref('meetups').once('value') // method onc get a snapshot of firebase database
+    firebase.database().ref('meetups').once('value') // method once get a snapshot of firebase database one time only
       .then(data => {
         const meetups = []
         const object = data.val()
@@ -176,7 +176,7 @@ const getters = {
     return getters.getMeetupsSorted.slice(0, 3)
   },
   getMeetupSelected (state) {
-    return meetID => {
+    return (meetID) => {
       return state.meetups.find(el => el.id === meetID)
     }
   },
