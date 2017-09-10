@@ -24,9 +24,9 @@
             v-flex( xs12 )
               v-card-actions
                 v-spacer 
-                v-btn.accent--text( flat, @click="closeDialod()" )
+                v-btn.accent--text( flat, @click="close()" )
                   | cancel
-                v-btn.accent--text( flat, @click="saveDialod()" )
+                v-btn.accent--text( flat, @click="save()" )
                   | save
 </template>
 
@@ -44,16 +44,21 @@
       }
     },
     methods: {
-      closeDialod () {
+      close () {
         this.dialog = false
       },
-      saveDialod () {
-        if (this.edit.name === '' || this.edit.description) {
+      save () {
+        if (this.edit.name === '' || this.edit.description === '') {
           return false
         } else {
-          //
+          this.$store.dispatch('updateMeetup', {
+            title: this.edit.name,
+            description: this.edit.description,
+            id: this.meetup.id
+            // date: new Date()
+          })
+          this.close()
         }
-        this.closeDialod()
       }
     }
   }

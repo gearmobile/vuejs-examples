@@ -19,7 +19,18 @@ const mutations = {
     state.meetups.push(payload)
   },
   'UPDATE_MEETUP' (state, payload) {
-    //
+    const sample = state.meetups.find(el => el.id === payload.id)
+    if (sample) {
+      if (payload.title) {
+        sample.title = payload.title
+      }
+      if (payload.description) {
+        sample.description = payload.description
+      }
+      if (payload.date) {
+        sample.date = payload.date
+      }
+    }
   },
   'SET_USER' (state, payload) {
     state.users = payload
@@ -126,8 +137,8 @@ const actions = {
   updateMeetup ({ commit }, payload) {
     commit('SET_LOADING', true)
     const meetup = {}
-    if (payload.name) {
-      meetup.title = payload.name
+    if (payload.title) {
+      meetup.title = payload.title
     }
     if (payload.description) {
       meetup.description = payload.description
@@ -135,10 +146,14 @@ const actions = {
     if (payload.date) {
       meetup.date = payload.date
     }
-    firebase.database().ref('meetups').child(payload.key).update(meetup)
+    firebase.database().ref('meetups').child(payload.id).update(meetup)
       .then(() => {
         commit('SET_LOADING', false)
-        commit('UPDATE_MEETUP', meetup)
+        commit('UPDATE_MEETUP', payload)
+      })
+      .catch(error => {
+        console.log(error)
+        commit('SET_LOADING', false)
       })
   },
   signUp ({ commit }, payload) {
