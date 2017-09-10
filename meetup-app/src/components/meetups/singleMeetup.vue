@@ -26,6 +26,7 @@
 <script>
   import filterDate from '../../filters/date.js'
   import editMeetup from '../meetups/editMeetup.vue'
+  import editDate from '../meetups/editMeetupDate.vue'
 
   export default {
     props: ['id'],
@@ -48,7 +49,8 @@
       }
     },
     components: {
-      appEdit: editMeetup
+      appEdit: editMeetup,
+      appDate: editDate
     }
   }
 </script>
